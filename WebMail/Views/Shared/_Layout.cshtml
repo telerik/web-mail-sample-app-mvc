@@ -45,7 +45,7 @@
 				.Orientation(MenuOrientation.Vertical)
 			)
 		</nav>
-		
+
 		<header class="header">
 			<div class="home-btn">
 				<span class="icon icon-Home">
@@ -66,13 +66,13 @@
 			)
 		</header>
 
-		<div>
-			<section class="content-wrapper main-content clear-fix">
-				@RenderBody()
-			</section>
-		</div>
+
+		<section class="content-wrapper main-content clear-fix">
+			@RenderBody()
+		</section>
+
 	</div>
-	
+
 	<script>
 		$('.home-btn').on("click", function () {
 			$('.slider').toggleClass('expanded');

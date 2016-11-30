@@ -13,6 +13,10 @@ html, body {
 	overflow: hidden;
 }
 
+.content-wrapper {
+	height: 100%;
+}
+
 /* SLIDER */
 .slider {
 	float: left;
@@ -63,3 +67,19 @@ html, body {
 	.header .home-btn {
 		float: left;
 	}
+
+/* ASIDE */
+.treeview-wrapper,
+.calendar-aside {
+	float: left;
+	height: 100%;
+	background-color: red;
+	width: 250px;
+}
+
+/* CONTENT */
+
+.content {
+	height: 100%;
+	background-color: green;
+}

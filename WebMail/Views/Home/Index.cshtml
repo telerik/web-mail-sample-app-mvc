@@ -1,11 +1,53 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿<aside class="treeview-wrapper">
+	@{ Html.RenderPartial("TreeView"); }
+</aside>
 
-<h2>Mail</h2>
+<div class="content">
+	@(Html.Kendo().ToolBar()
+		.Name("indexToolbar")
+		.Items(items =>
+		{
+			items.Add().Type(CommandType.Button).Text("Next");
 
-@Html.ActionLink("New Mail", "NewMail", "Home")
+			items.Add().Type(CommandType.SplitButton).Text("Reply").MenuButtons(menuButtons =>
+			{
+				menuButtons.Add().Text("Reply");
+				menuButtons.Add().Text("Reply All");
+				menuButtons.Add().Text("Forward");
+			});
 
-<div class="treeview-wrapper">
-        @{ Html.RenderPartial("TreeView"); }
+			items.Add().Type(CommandType.Button).Text("Delete");
+
+			items.Add().Type(CommandType.SplitButton).Text("Move").MenuButtons(menuButtons =>
+			{
+				menuButtons.Add().Text("Inbox");
+				menuButtons.Add().Text("Junk");
+				menuButtons.Add().Text("Drafts");
+				menuButtons.Add().Text("Deleted");
+			});
+
+			items.Add().Type(CommandType.SplitButton).Text("Junk").MenuButtons(menuButtons =>
+			{
+				menuButtons.Add().Text("Report Spam");
+			});
+
+			items.Add().Type(CommandType.SplitButton).Text("More").MenuButtons(menuButtons =>
+			{
+				menuButtons.Add().Text("Mark us read");
+				menuButtons.Add().Text("Mark as unread");
+				menuButtons.Add().Text("Print");
+			});
+
+			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft");
+			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyRight");
+			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
+		})
+	)
+
+
+	<h2>Mail</h2>
+
+	@Html.ActionLink("New Mail", "NewMail", "Home")
 </div>
+
+

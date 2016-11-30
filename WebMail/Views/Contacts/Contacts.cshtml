@@ -1,13 +1,25 @@
-﻿
-@{
-    ViewBag.Title = "Contacts";
-}
+﻿<aside class="treeview-wrapper">
+	@{ Html.RenderPartial("TreeView"); }
+</aside>
 
-<h2>Contacts</h2>
+<div class="content">
+	@(Html.Kendo().ToolBar()
+		.Name("calendarToolbar")
+		.Items(items =>
+		{
+			items.Add().Type(CommandType.Button).Text("Next");
 
-@Html.ActionLink("New Contact", "NewContact", "Contacts")
+			items.Add().Type(CommandType.SplitButton).Text("Export").MenuButtons(menuButtons =>
+			{
+				menuButtons.Add().Text("Export to PDF");
+			});
 
-<div class="treeview-wrapper">
-    @{ Html.RenderPartial("TreeView"); }
+			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-createTable");
+
+			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
+		})
+	)
+	<h2>Contacts</h2>
+
+	@Html.ActionLink("New Contact", "NewContact", "Contacts")
 </div>
-

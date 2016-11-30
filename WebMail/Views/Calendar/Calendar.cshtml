@@ -1,7 +1,24 @@
-﻿
-@{
-    ViewBag.Title = "Calendar";
-}
+﻿<aside class="calendar-aside"></aside>
 
-<h2>Calendar</h2>
+<div class="content">
+	@(Html.Kendo().ToolBar()
+		.Name("calendarToolbar")
+		.Items(items =>
+		{
+			items.Add().Type(CommandType.Button).Text("Next");
+
+			items.Add().Type(CommandType.SplitButton).Text("Export").MenuButtons(menuButtons =>
+			{
+				menuButtons.Add().Text("Export to PDF");
+				menuButtons.Add().Text("Export to Image");
+			});
+
+			items.Add().Type(CommandType.Button).Text("Import");
+
+			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
+		})
+	)
+	<h2>Calendar</h2>
+</div>
+
 

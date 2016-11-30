@@ -1,10 +1,18 @@
-﻿
-@{
-    ViewBag.Title = "Notes";
-}
+﻿<aside class="treeview-wrapper">
+	@{ Html.RenderPartial("TreeView"); }
+</aside>
 
-<h2>Notes</h2>
-
-<div class="treeview-wrapper">
-    @{ Html.RenderPartial("TreeView"); }
+<div class="content">
+	@(Html.Kendo().ToolBar()
+		.Name("calendarToolbar")
+		.Items(items =>
+		{
+			items.Add().Type(CommandType.Button).Text("New");
+			items.Add().Type(CommandType.Button).Text("Delete");
+			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
+		})
+	)
+	<h2>Notes</h2>
 </div>
+
+
