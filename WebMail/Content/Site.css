@@ -1,24 +1,21 @@
-﻿/* HEADER AND SLIDER START*/
-
-.header-wrapper {
-	overflow-x: hidden;
-	min-height: 100px;
+﻿body, div, p, h1, h2, h3, h4, h5, h6, ul, li, section, header, nav {
+	padding: 0;
+	margin: 0;
 }
 
-.slider,
-.page {
-	vertical-align: top;
-	display: inline-block;
-	margin-left: -4px;
-	overflow: auto;
-	width: 80%;
+html, body {
+	height: 100%;
+	min-width: 800px;
 }
 
-.slider.expanded {
-	width: 300px;
+.page-wrapper {
+	height: 100%;
+	overflow: hidden;
 }
 
+/* SLIDER */
 .slider {
+	float: left;
 	width: 0;
 	height: 100%;
 	position: relative;
@@ -27,35 +24,42 @@
 	transition: width 0.07s 0.07s ease;
 }
 
-.expandedSlider {
-	width: 200px !important;
+	.slider.expanded {
+		width: 250px;
+	}
+
+	.slider .k-menu,
+	.slider .logo {
+		width: 250px;
+	}
+
+	.slider .logo {
+		text-transform: uppercase;
+		color: #8d8d8d;
+		font-size: 16px;
+		font-weight: 400;
+		margin: 16px auto;
+		text-align: center;
+	}
+
+
+
+#HelpMenu {
+	position: absolute;
+	bottom: 0;
 }
 
-.slider .logo {
-	text-transform: uppercase;
-	color: #8d8d8d;
-	margin: 0;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 16px 10px;
-	text-align: center;
-}
-
-/* HEADER HEADER AND SLIDER END*/
-
-.main-header {
+/* HEADER */
+.header {
+	width: 100%;
 	background-image: url('http://demos.telerik.com/aspnet-ajax/webmail/Images/backgrounds/header_mail.gif');
 	height: 60px;
 }
 
-.main-header .k-menu {
-	float: right;
-}
+	.header .k-menu {
+		float: right;
+	}
 
-.main-header .home-btn {
-	float: left;
-}
-
-#HelpMenu {
-	margin-top: 200px;
-}
+	.header .home-btn {
+		float: left;
+	}

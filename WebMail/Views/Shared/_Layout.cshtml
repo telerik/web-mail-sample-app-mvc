@@ -1,90 +1,82 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <title>@ViewBag.Title - My Kendo UI MVC Application</title>
-        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
-	    <link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
-	    <link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
-	    <link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.default.min.css" rel="stylesheet" type="text/css" />
-	    <link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.dataviz.default.min.css" rel="stylesheet" type="text/css" />
-	    <script src="http://cdn.kendostatic.com/2016.3.1118/js/jquery.min.js"></script>
-	    <script src="http://cdn.kendostatic.com/2016.3.1118/js/kendo.all.min.js"></script>
-	    <script src="http://cdn.kendostatic.com/2016.3.1118/js/kendo.aspnetmvc.min.js"></script>
-	</head>
-    <body>
-        @*<header>*@
-		<div class="header-wrapper">	
-			<div id="about" class="slider">
-				<header class="tm-header" id="logo">
-					<h2 class="logo">
-						WebMail Application
-					</h2>
-					@(Html.Kendo().Menu()
-						  .Name("VerticalMenu")
-						  .Items(items =>
-						  {
-							  items.Add().Text("Mail").Action("Index", "Home");
-							  items.Add().Text("Contacts").Action("Contacts", "Contacts");
-							  items.Add().Text("Calendar").Action("Calendar", "Calendar");
-							  items.Add().Text("Notes").Action("Notes", "Notes");
-						  })
-						  .Orientation(MenuOrientation.Vertical)
-						)
-					
-					@(Html.Kendo().Menu()
-						  .Name("HelpMenu")
-						  .Items(items =>
-						  {
-							  items.Add().Text("DOWNLOAD TRIAL");
-							  items.Add().Text("DOWNLOAD SOURCE");
-						  })
-						  .Orientation(MenuOrientation.Vertical)
-						)
-				</header>
+<head>
+	<title>@ViewBag.Title - My Kendo UI MVC Application</title>
+
+	<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.default.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.dataviz.default.min.css" rel="stylesheet" type="text/css" />
+
+	<script src="http://cdn.kendostatic.com/2016.3.1118/js/jquery.min.js"></script>
+	<script src="http://cdn.kendostatic.com/2016.3.1118/js/kendo.all.min.js"></script>
+	<script src="http://cdn.kendostatic.com/2016.3.1118/js/kendo.aspnetmvc.min.js"></script>
+</head>
+<body>
+	<div class="page-wrapper">
+		<nav class="slider">
+			<h2 class="logo">
+				WebMail Application
+			</h2>
+			@(Html.Kendo().Menu()
+				.Name("VerticalMenu")
+				.Items(items =>
+				{
+					items.Add().Text("Mail").Action("Index", "Home");
+					items.Add().Text("Contacts").Action("Contacts", "Contacts");
+					items.Add().Text("Calendar").Action("Calendar", "Calendar");
+					items.Add().Text("Notes").Action("Notes", "Notes");
+				})
+				.Orientation(MenuOrientation.Vertical)
+			)
+
+			@(Html.Kendo().Menu()
+				.Name("HelpMenu")
+				.Items(items =>
+				{
+					items.Add().Text("DOWNLOAD TRIAL");
+					items.Add().Text("DOWNLOAD SOURCE");
+				})
+				.Orientation(MenuOrientation.Vertical)
+			)
+		</nav>
+		
+		<header class="header">
+			<div class="home-btn">
+				<span class="icon icon-Home">
+					<i class="fa fa-bars"></i>
+					<span class="text">
+						Mail
+					</span>
+				</span>
 			</div>
-			<div class="page">
-				<div class="main-header">
-					<div class="home-btn">
-						<span class=" icon icon-Home">	
-							<i class="fa fa-bars"></i>
-							<span class="text">	
-								Mail
-							</span>
-						</span>
-					</div>
-					@(Html.Kendo().Menu()
-						.Name("MainNaviagation")
-						.Items(items =>
-						{
-							items.Add().Text("About App").Action("About", "Home");
-							items.Add().Text("Download");
-							items.Add().Text("Antonio Morandi");
-						})
-					)
-				</div>
-			</div>
+			@(Html.Kendo().Menu()
+				.Name("MainNaviagation")
+				.Items(items =>
+				{
+					items.Add().Text("About App").Action("About", "Home");
+					items.Add().Text("Download");
+					items.Add().Text("Antonio Morandi");
+				})
+			)
+		</header>
+
+		<div>
+			<section class="content-wrapper main-content clear-fix">
+				@RenderBody()
+			</section>
 		</div>
-        @*</header>*@
-        <div id="body">
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    
-                </div>
-            </div>
-        </footer>
-
-		<script>	
-			$('.home-btn').on("click", function () {
-				$('.slider').toggleClass('expandedSlider');
-			});
-		</script>
-    </body>
+	</div>
+	
+	<script>
+		$('.home-btn').on("click", function () {
+			$('.slider').toggleClass('expanded');
+		});
+	</script>
+</body>
 </html>
