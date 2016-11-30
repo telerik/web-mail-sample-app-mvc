@@ -1,0 +1,61 @@
+﻿/* HEADER AND SLIDER START*/
+
+.header-wrapper {
+	overflow-x: hidden;
+	min-height: 100px;
+}
+
+.slider,
+.page {
+	vertical-align: top;
+	display: inline-block;
+	margin-left: -4px;
+	overflow: auto;
+	width: 80%;
+}
+
+.slider.expanded {
+	width: 300px;
+}
+
+.slider {
+	width: 0;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	background: #000;
+	transition: width 0.07s 0.07s ease;
+}
+
+.expandedSlider {
+	width: 200px !important;
+}
+
+.slider .logo {
+	text-transform: uppercase;
+	color: #8d8d8d;
+	margin: 0;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 16px 10px;
+	text-align: center;
+}
+
+/* HEADER HEADER AND SLIDER END*/
+
+.main-header {
+	background-image: url('http://demos.telerik.com/aspnet-ajax/webmail/Images/backgrounds/header_mail.gif');
+	height: 60px;
+}
+
+.main-header .k-menu {
+	float: right;
+}
+
+.main-header .home-btn {
+	float: left;
+}
+
+#HelpMenu {
+	margin-top: 200px;
+}

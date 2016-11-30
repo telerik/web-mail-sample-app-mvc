@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Mail</h2>
+
+@Html.ActionLink("New Mail", "NewMail", "Home")
+
+<div class="treeview-wrapper">
+        @{ Html.RenderPartial("TreeView"); }
+</div>

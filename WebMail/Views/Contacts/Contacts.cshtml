@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Contacts";
+}
+
+<h2>Contacts</h2>
+
+@Html.ActionLink("New Contact", "NewContact", "Contacts")
+
+<div class="treeview-wrapper">
+    @{ Html.RenderPartial("TreeView"); }
+</div>
+
