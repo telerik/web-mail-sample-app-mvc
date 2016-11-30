@@ -46,8 +46,6 @@ html, body {
 		text-align: center;
 	}
 
-
-
 #HelpMenu {
 	position: absolute;
 	bottom: 0;
@@ -77,8 +75,12 @@ html, body {
 	width: 273px;
 }
 
-/* CONTENT */
+/* NAVIGATION TREEVIEW */
+.add-new-node {
+	margin-left: 0px;
+}
 
+/* CONTENT */
 .content {
 	height: 100%;
 	background-color: green;

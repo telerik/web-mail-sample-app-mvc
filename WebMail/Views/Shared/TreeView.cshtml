@@ -1,5 +1,21 @@
-﻿@{
-    ViewBag.Title = "TreeView Partial View";
-}
+﻿<h2>TreeView Partial View</h2>
 
-<h2>TreeView Partial View</h2>
+@(Html.Kendo().TreeView()
+	.Name("treeview")
+	.Items(treeview => {
+		treeview.Add().Text("Inbox (17)");
+		treeview.Add().Text("Junk (0)");
+		treeview.Add().Text("Drafts (0)");
+		treeview.Add().Text("Deleted (0)");
+		treeview.Add().Text("NativeScript (1)");
+
+		treeview.Add().Text("Kend UI (3)")
+			.Items(item => {
+				item.Add().Text("Blog Comments (5)");
+				item.Add().Text("News (3)");
+			})
+		;
+		treeview.Add().Text("Sitefinity (7)");
+		treeview.Add().Text("Add New").SpriteCssClasses("add-new-node");
+	})
+)
