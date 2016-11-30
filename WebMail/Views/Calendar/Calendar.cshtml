@@ -1,4 +1,15 @@
-﻿<aside class="calendar-aside"></aside>
+﻿<aside class="calendar-aside">
+	@(Html.Kendo().Calendar()
+		.Name("calendar")
+	)
+	<ul class="calendar-checkbox-list">
+		<li>@(Html.Kendo().CheckBox().Name("personal").Checked(true).Label("Personal"));</li>
+		<li>@(Html.Kendo().CheckBox().Name("work").Checked(true).Label("Work"));</li>
+		<li>@(Html.Kendo().CheckBox().Name("Development").Checked(true).Label("development"));</li>
+		<li>@(Html.Kendo().CheckBox().Name("design").Checked(true).Label("Design"));</li>
+		<li>@(Html.Kendo().CheckBox().Name("marketing").Checked(true).Label("Marketing"));</li>
+	</ul>
+</aside>
 
 <div class="content">
 	@(Html.Kendo().ToolBar()

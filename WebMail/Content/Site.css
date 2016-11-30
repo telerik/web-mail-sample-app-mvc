@@ -74,7 +74,7 @@ html, body {
 	float: left;
 	height: 100%;
 	background-color: red;
-	width: 250px;
+	width: 273px;
 }
 
 /* CONTENT */
@@ -82,4 +82,10 @@ html, body {
 .content {
 	height: 100%;
 	background-color: green;
+}
+
+/* CHECKBOX LIST */
+.calendar-checkbox-list li {
+	list-style: none;
+	padding-bottom: 1em;
 }
