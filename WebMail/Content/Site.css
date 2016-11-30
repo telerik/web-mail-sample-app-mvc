@@ -14,7 +14,7 @@ html, body {
 }
 
 .content-wrapper {
-	height: 100%;
+	height: 94%;
 }
 
 /* SLIDER */
@@ -55,7 +55,8 @@ html, body {
 .header {
 	width: 100%;
 	background-image: url('http://demos.telerik.com/aspnet-ajax/webmail/Images/backgrounds/header_mail.gif');
-	height: 60px;
+	height: 6%;
+	min-height: 40px;
 }
 
 	.header .k-menu {
@@ -75,19 +76,54 @@ html, body {
 	width: 273px;
 }
 
+/* CONTENT */
+.content {
+	height: 100%;
+}
+
 /* NAVIGATION TREEVIEW */
 .add-new-node {
 	margin-left: 0px;
 }
 
-/* CONTENT */
-.content {
-	height: 100%;
-	background-color: green;
+/* TOOLBAR */
+.content .k-toolbar {
+	height: 5.8%;
+	min-height: 48px;
 }
 
 /* CHECKBOX LIST */
 .calendar-checkbox-list li {
 	list-style: none;
 	padding-bottom: 1em;
+}
+
+/* SCHEDULER */
+.scheduler,
+.contacts,
+.notes {
+	height: 100%;
+	background-color: yellow;
+}
+
+/* MAIL */
+.inner-mail-content {
+	overflow:auto;
+	height: 94%;
+}
+
+.mail-grid,
+.mail-details {
+	height: 50%;
+	min-height: 350px;
+}
+
+.mail-grid {
+	background-color: yellow;
+}
+
+.mail-details {
+	height: 50%;
+	min-height: 350px;
+	background-color: orange;
 }

@@ -43,11 +43,15 @@
 			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
 		})
 	)
+	<div class="inner-mail-content">
+		<div class="mail-grid">
+			<h2>Mail</h2>
+			@Html.ActionLink("New Mail", "NewMail", "Home")
+		</div>
+		<div class="mail-details">
 
-
-	<h2>Mail</h2>
-
-	@Html.ActionLink("New Mail", "NewMail", "Home")
+		</div>
+	</div>
 </div>
 
 
