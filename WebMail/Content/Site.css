@@ -72,7 +72,7 @@ html, body {
 .calendar-aside {
 	float: left;
 	height: 100%;
-	background-color: red;
+	background-color: lightblue;
 	width: 273px;
 }
 
@@ -103,7 +103,7 @@ html, body {
 .contacts,
 .notes {
 	height: 100%;
-	background-color: yellow;
+	background-color: lightgreen;
 }
 
 /* MAIL */
