@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TelerikMvcWebMail.Models;
 
 namespace TelerikMvcWebMail.Controllers
 {
@@ -12,7 +13,9 @@ namespace TelerikMvcWebMail.Controllers
 		// GET: /Calendar/
 		public ActionResult Calendar()
 		{
-			return View();
+			var data = new List<TaskViewModel>();
+
+			return View(data);
 		}
 	}
 }

@@ -55,8 +55,7 @@ html, body {
 .header {
 	width: 100%;
 	background-image: url('http://demos.telerik.com/aspnet-ajax/webmail/Images/backgrounds/header_mail.gif');
-	height: 6%;
-	min-height: 40px;
+	height: 60px;
 }
 
 	.header .k-menu {
@@ -88,8 +87,7 @@ html, body {
 
 /* TOOLBAR */
 .content .k-toolbar {
-	height: 5.8%;
-	min-height: 48px;
+	/*height: 48px;*/
 }
 
 /* CHECKBOX LIST */
@@ -98,12 +96,24 @@ html, body {
 	padding-bottom: 1em;
 }
 
-/* SCHEDULER */
-.scheduler,
+/* VIEWS */
 .contacts,
 .notes {
 	height: 100%;
 	background-color: lightgreen;
+}
+
+/* SCHEDULER */
+.content .k-scheduler {
+	position: absolute;
+	display: inline-block;
+	bottom: 0;
+	top: 110px;
+	overflow: auto;
+}
+
+.k-scheduler .k-scheduler-layout {
+	border: 1px solid #DDD;
 }
 
 /* MAIL */
