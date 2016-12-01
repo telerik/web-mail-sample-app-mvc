@@ -78,6 +78,7 @@ html, body {
 /* CONTENT */
 .content {
 	height: 100%;
+	overflow:hidden;
 }
 
 /* NAVIGATION TREEVIEW */
@@ -118,14 +119,15 @@ html, body {
 
 /* MAIL */
 .inner-mail-content {
-	overflow:auto;
-	height: 94%;
+	overflow: hidden;
+	position: relative;
+	height: 87%;
 }
 
 .mail-grid,
 .mail-details {
 	height: 50%;
-	min-height: 350px;
+	min-height: 250px;
 }
 
 .mail-grid {
@@ -133,7 +135,5 @@ html, body {
 }
 
 .mail-details {
-	height: 50%;
-	min-height: 350px;
 	background-color: orange;
 }
