@@ -17,6 +17,10 @@ html, body {
 	height: 94%;
 }
 
+.hidden {
+	display: none;
+}
+
 /* SLIDER */
 .slider {
 	float: left;
@@ -82,8 +86,13 @@ html, body {
 }
 
 /* NAVIGATION TREEVIEW */
-.add-new-node {
-	margin-left: 0px;
+.btn-new-node {
+	margin-left: 25px;
+	color: dodgerblue; 
+}
+
+#new-node-container {
+	margin-left: 25px;
 }
 
 /* TOOLBAR */
