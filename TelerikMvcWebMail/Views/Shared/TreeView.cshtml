@@ -16,6 +16,45 @@
 			})
 		;
 		treeview.Add().Text("Sitefinity (7)");
-		treeview.Add().Text("Add New").SpriteCssClasses("add-new-node");
 	})
 )
+
+<div id="new-node-container" class="hidden">
+	<input id="newNodeText" class="k-textbox" />
+</div>
+<div class="btn-new-node" onclick="addNewCategory()">Add New</div>
+
+<script>	
+	function addNewCategory() {
+		var nodeContainer = $("#new-node-container")
+		if (nodeContainer.hasClass("hidden")) {
+			nodeContainer.removeClass("hidden");
+		}
+		else {
+			appendCategory();
+			nodeContainer.addClass("hidden");
+		}
+	}
+
+	function appendCategory() {
+		var treeview = $("#treeview").data("kendoTreeView");
+		var selectedNode = treeview.select();
+		var newNodeValue = $("#newNodeText").val()
+
+		if (selectedNode.length == 0) {
+			selectedNode = null;
+		}
+
+		if (newNodeValue != "") {
+			treeview.append({
+				text: $("#newNodeText").val()
+			}, selectedNode);
+			$("#newNodeText").val("");
+		}
+		else {
+			treeview.append({
+				text: "New Folder"
+			}, selectedNode);
+		}
+	}
+</script>
