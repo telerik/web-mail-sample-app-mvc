@@ -2,60 +2,120 @@
     ViewBag.Title = "Mail";
 }
 
+@model IEnumerable<TelerikMvcWebMail.Models.MailViewModel>
+
 <aside class="treeview-wrapper">
-	@{ Html.RenderPartial("TreeView"); }
+    @{ Html.RenderPartial("TreeView"); }
 </aside>
 
 <div class="content">
-	@(Html.Kendo().ToolBar()
-		.Name("indexToolbar")
-		.Items(items =>
-		{
-			items.Add().Type(CommandType.Button).Text("Next");
+    @(Html.Kendo().ToolBar()
+        .Name("IndexToolbar")
+        .Items(items =>
+        {
+            items.Add()
+                .Type(CommandType.Button)
+                .Text("New")
+                .Url(Url.Action("NewMail", "Home"));
 
-			items.Add().Type(CommandType.SplitButton).Text("Reply").MenuButtons(menuButtons =>
-			{
-				menuButtons.Add().Text("Reply");
-				menuButtons.Add().Text("Reply All");
-				menuButtons.Add().Text("Forward");
-			});
+            items.Add().Type(CommandType.SplitButton).Text("Reply").MenuButtons(menuButtons =>
+            {
+                menuButtons.Add().Text("Reply");
+                menuButtons.Add().Text("Reply All");
+                menuButtons.Add().Text("Forward");
+            });
 
-			items.Add().Type(CommandType.Button).Text("Delete");
+            items.Add().Type(CommandType.Button).Text("Delete");
 
-			items.Add().Type(CommandType.SplitButton).Text("Move").MenuButtons(menuButtons =>
-			{
-				menuButtons.Add().Text("Inbox");
-				menuButtons.Add().Text("Junk");
-				menuButtons.Add().Text("Drafts");
-				menuButtons.Add().Text("Deleted");
-			});
+            items.Add().Type(CommandType.SplitButton).Text("Move").MenuButtons(menuButtons =>
+            {
+                menuButtons.Add().Text("Inbox");
+                menuButtons.Add().Text("Junk");
+                menuButtons.Add().Text("Drafts");
+                menuButtons.Add().Text("Deleted");
+            });
 
-			items.Add().Type(CommandType.SplitButton).Text("Junk").MenuButtons(menuButtons =>
-			{
-				menuButtons.Add().Text("Report Spam");
-			});
+            items.Add().Type(CommandType.SplitButton).Text("Junk").MenuButtons(menuButtons =>
+            {
+                menuButtons.Add().Text("Report Spam");
+            });
 
-			items.Add().Type(CommandType.SplitButton).Text("More").MenuButtons(menuButtons =>
-			{
-				menuButtons.Add().Text("Mark us read");
-				menuButtons.Add().Text("Mark as unread");
-				menuButtons.Add().Text("Print");
-			});
+            items.Add().Type(CommandType.SplitButton).Text("More").MenuButtons(menuButtons =>
+            {
+                menuButtons.Add().Text("Mark us read");
+                menuButtons.Add().Text("Mark as unread");
+                menuButtons.Add().Text("Print");
+            });
 
-			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft");
-			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyRight");
-			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
-		})
-	)
-	<div class="inner-mail-content">
-		<div class="mail-grid">
-			<h2>Mail</h2>
-			@Html.ActionLink("New Mail", "NewMail", "Home")
-		</div>
-		<div class="mail-details">
-
-		</div>
-	</div>
+            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft");
+            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyRight");
+            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
+        })
+    )
+    <div class="inner-mail-content">
+        <div class="mail-grid">
+            @(Html.Kendo().Grid(Model)
+                .Name("MailGrid")
+                .Columns(columns =>
+                {
+                    columns.Bound(p => p.CheckBoxCheked)
+                        .Title("")
+                        .Width(80)
+                        .ClientTemplate("<input type='checkbox' #= CheckBoxCheked ? checked='checked': '' # class='chkbx' />");
+                    columns.Bound(p => p.From).Title("From").Width(300);
+                    columns.Bound(p => p.Subject).Title("Subject");
+                    columns.Bound(p => p.Date).Title("Date").Width(300).Format("{0:g}");
+                })
+                .HtmlAttributes(new { style = "height: 100%;" })
+                .Sortable()
+                .Scrollable()
+                .Filterable()
+                .Groupable()
+                .Selectable(s => s.Mode(GridSelectionMode.Multiple))
+                .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .ServerOperation(false)
+                    .Group(g => g.Add(p => p.Date))
+                )
+                .Events(e => e.Change("mailSelectionChanged"))
+            )
+        </div>
+        <div class="mail-details">
+            <div class="mail-details-header">
+                <p class="mail-subject"></p>
+                <p class="mail-sender"></p>
+                <p class="mail-date"></p>
+            </div>
+            <p class="mail-text"></p>
+        </div>
+    </div>
 </div>
+<script>
+    function mailSelectionChanged(e) {
+        var selectedRows = this.select();
+        $('input.chkbx').prop('checked', false);
+        
+        var checkboxes = selectedRows.find('.chkbx');
+        checkboxes.prop('checked', true);
 
+        if (selectedRows.length === 1) {
+            var dataItem = this.dataItem(selectedRows[0]);
+            populateDetailsView(dataItem);
+        }
+    }
 
+    $(document).ready(function () {
+        $($('input.chkbx')[0]).prop('checked', true);
+
+        var gridData = $('#MailGrid').data('kendoGrid').dataSource;
+        var firstItem = gridData.data()[0];
+        populateDetailsView(firstItem);
+    });
+
+    function populateDetailsView(item) {
+        $('.mail-subject').text(item.Subject);
+        $('.mail-sender').text(item.From);
+        $('.mail-date').text(item.Date);
+        $('.mail-text').text(item.Text);
+    }
+</script>

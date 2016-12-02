@@ -143,6 +143,33 @@ html, body {
 	background-color: yellow;
 }
 
-.mail-details {
-	background-color: orange;
+.mail-details-header {
+    padding: 1em 0.5em;
+    margin-bottom: 1em;
+    background-color: orange;
+}
+
+.mail-details-header:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+}
+
+.mail-details-header .mail-subject {
+    font-size: 2em;
+}
+
+.mail-details-header .mail-sender {
+    float: left;
+}
+
+.mail-details-header .mail-date {
+    float: right;
+}
+
+.mail-text {
+    padding: 0 0.5em;
 }
