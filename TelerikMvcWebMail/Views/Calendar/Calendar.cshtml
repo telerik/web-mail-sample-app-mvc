@@ -26,14 +26,15 @@
 
 			items.Add().Type(CommandType.SplitButton).Text("Export").MenuButtons(menuButtons =>
 			{
-				menuButtons.Add().Text("Export to PDF");
-				menuButtons.Add().Text("Export to Image");
+				menuButtons.Add().Text("Export to PDF").Id("exportPdf");
+				menuButtons.Add().Text("Export to Image").Id("exportImage"); 
 			});
 
 			items.Add().Type(CommandType.Button).Text("Import");
 
 			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
 		})
+		.Events(e => e.Click("toolBarOnClick"))
 	)
 
 	@(Html.Kendo().Scheduler<TelerikMvcWebMail.Models.TaskViewModel>()
@@ -66,7 +67,37 @@
 				});
 		})
 	)
-
 </div>
+<script>
+	function toolBarOnClick(e) {
+		if (e.id == "exportPdf") {
+			kendo.drawing.drawDOM($("#scheduler"))
+				.then(function (group) {
+					return kendo.drawing.exportPDF(group, {
+						paperSize: "auto",
+						margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" }
+					});
+				})
+				.done(function (data) {
+					kendo.saveAs({
+						dataURI: data,
+						fileName: "Calendar.pdf"
+					});
+				});
+		}
+		else if (e.id == "exportImage") {
+			kendo.drawing.drawDOM($("#scheduler"))
+				.then(function (group) {
+					return kendo.drawing.exportImage(group);
+				})
+				.done(function (data) {
+					kendo.saveAs({
+						dataURI: data,
+						fileName: "Calendar.png"
+					});
+				});
+		}
+	}
+</script>
 
 
