@@ -71,32 +71,40 @@
 <script>
 	function toolBarOnClick(e) {
 		if (e.id == "exportPdf") {
-			kendo.drawing.drawDOM($("#scheduler"))
-				.then(function (group) {
-					return kendo.drawing.exportPDF(group, {
-						paperSize: "auto",
-						margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" }
-					});
-				})
-				.done(function (data) {
-					kendo.saveAs({
-						dataURI: data,
-						fileName: "Calendar.pdf"
-					});
-				});
+			exportSchedulerToPdf($("#scheduler"), "Calendar.pdf");
 		}
 		else if (e.id == "exportImage") {
-			kendo.drawing.drawDOM($("#scheduler"))
-				.then(function (group) {
-					return kendo.drawing.exportImage(group);
-				})
-				.done(function (data) {
-					kendo.saveAs({
-						dataURI: data,
-						fileName: "Calendar.png"
-					});
-				});
+			exportSchedulerToImage($("#scheduler"), "Calendar.png")
 		}
+	}
+
+	function exportSchedulerToPdf(content, fileName) {
+		kendo.drawing.drawDOM(content)
+			.then(function (group) {
+				return kendo.drawing.exportPDF(group, {
+					paperSize: "auto",
+					margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" }
+				});
+			})
+			.done(function (data) {
+				kendo.saveAs({
+					dataURI: data,
+					fileName: fileName
+				});
+			});
+	}
+
+	function exportSchedulerToImage(content, fileName) {
+		kendo.drawing.drawDOM(content)
+			.then(function (group) {
+				return kendo.drawing.exportImage(group);
+			})
+			.done(function (data) {
+				kendo.saveAs({
+					dataURI: data,
+					fileName: fileName
+				});
+			});
 	}
 </script>
 
