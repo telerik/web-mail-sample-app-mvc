@@ -182,3 +182,8 @@ html, body {
 .mail-text {
     padding: 0 0.5em;
 }
+
+/* NEW MAIL */
+.k-menu {
+    display: inline-block;
+}
