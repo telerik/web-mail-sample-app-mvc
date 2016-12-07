@@ -8,14 +8,15 @@
 	@(Html.Kendo().Calendar()
 		.Name("calendar")
 	)
-	<ul class="calendar-checkbox-list">
-		<li>@(Html.Kendo().CheckBox().Name("personal").Checked(true).Label("Personal"));</li>
-		<li>@(Html.Kendo().CheckBox().Name("work").Checked(true).Label("Work"));</li>
-		<li>@(Html.Kendo().CheckBox().Name("Development").Checked(true).Label("development"));</li>
-		<li>@(Html.Kendo().CheckBox().Name("design").Checked(true).Label("Design"));</li>
-		<li>@(Html.Kendo().CheckBox().Name("marketing").Checked(true).Label("Marketing"));</li>
-	</ul>
+
+	<div class="calendar-resources-list">	
+		<div class="calendar-resource" data-resource-value="1" >Alex</div>
+		<div class="calendar-resource" data-resource-value="2">Bob</div>
+		<div class="calendar-resource" data-resource-value="3">Charlie</div>
+	</div>
 </aside>
+
+
 
 <div class="content">
 	@(Html.Kendo().ToolBar()
@@ -69,6 +70,33 @@
 	)
 </div>
 <script>
+	$('.calendar-resource').on("click", function () {
+		$(this).toggleClass('selected');
+	});
+
+	$(function () {
+		$(".calendar-resources-list > div").click(function (e) {
+			var selected = $.map($(".calendar-resources-list > div.selected"), function (div) {
+				return parseInt($(div).attr("data-resource-value"));
+			});
+
+			var filter = {
+				logic: "or",
+				filters: $.map(selected, function (value) {
+					return {
+						operator: "eq",
+						field: "OwnerID",
+						value: value
+					};
+				})
+			};
+
+			var scheduler = $("#scheduler").data("kendoScheduler");
+
+			scheduler.dataSource.filter(filter);
+		});
+	})
+
 	function toolBarOnClick(e) {
 		if (e.id == "exportPdf") {
 			exportSchedulerToPdf($("#scheduler"), "Calendar.pdf");
