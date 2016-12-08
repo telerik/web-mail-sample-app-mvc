@@ -4,8 +4,19 @@
     ViewBag.Title = "Contacts";
 }
 
-<script type="text/x-kendo-tmpl" id="template">
-    <div class="contact k-widget">
+<script type="text/x-kendo-tmpl" id="list-template">
+    <div class="contact-list k-widget">
+        <img src="@Url.Content("~/Content/web/Employees/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
+        <span>#: FirstName# #: LastName#</span>
+        <div class="edit-buttons">
+            <a class="k-button k-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
+            <a class="k-button k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-kendo-tmpl" id="cards-template">
+    <div class="contact-card k-widget">
         <img src="@Url.Content("~/Content/web/Employees/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
         <h3>#: FirstName# #: LastName#</h3>
         <p>Country : #: Country# </p>
@@ -16,6 +27,19 @@
             <a class="k-button k-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
             <a class="k-button k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
         </div>
+    </div>
+</script>
+
+<script type="text/x-kendo-tmpl" id="details-template">
+    <img src="@Url.Content("~/Content/web/Employees/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
+    <h3>#: FirstName# #: LastName#</h3>
+    <p>Country : #: Country# </p>
+    <p>Company : #: LastName# </p>
+    <p>City : #: City# </p>
+    <p>Phone : #: HomePhone# </p>
+    <div class="edit-buttons">
+        <a class="k-button k-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
+        <a class="k-button k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
     </div>
 </script>
 
@@ -37,16 +61,18 @@
 
             items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-createTable");
 
-            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
+            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft").Click("changeToListDetails");
+            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyRight").Click("changeToContactsCards");
         })
     )
-    
+
     <div class="contacts">
         @Html.ActionLink("New Contact", "NewContact", "Contacts")
+        <br />
         @(Html.Kendo().ListView<TelerikMvcWebMail.Models.ContactViewModel>()
             .Name("contactsListView")
             .TagName("div")
-            .ClientTemplateId("template")
+            .ClientTemplateId("list-template")
             .DataSource(dataSource => dataSource
                 .Model(model => model.Id("EmployeeID"))
                 .Create(create => create.Action("Contacts_Create", "Contacts"))
@@ -55,7 +81,55 @@
                 .Destroy(destroy => destroy.Action("Contacts_Destroy", "Contacts"))
             )
             .Editable()
+            .Selectable()
+            .HtmlAttributes(new { style = "width:40%;float:left;" })
+            .Events(e => e
+                .DataBound("onListViewDataBound")
+                .Change("onListViewSelectionChange")
+            )
         )
-       
+
+        <div class="contact-details k-widget">
+
+        </div>
+
+
     </div>
 </div>
+
+<script>
+    function changeToListDetails() {
+        var lvDiv = $('#contactsListView');
+        lvDiv.css('width', '300px');
+        $('.contact-details').css('display', 'block');
+
+        var lv = lvDiv.data('kendoListView');
+        lv.setOptions({ template: kendo.template($('#list-template').html()) });
+        lv.refresh();
+    }
+
+    function changeToContactsCards() {
+        var lvDiv = $('#contactsListView');
+        lvDiv.css('width', '100%');
+        $('.contact-details').css('display', 'none');
+
+        var lv = lvDiv.data('kendoListView');
+        lv.setOptions({ template: kendo.template($('#cards-template').html()) });
+        lv.refresh();
+    }
+
+    function onListViewDataBound(e) {
+        var listView = e.sender;
+        var selectedItem = listView.select();
+        listView.select(listView.element.children().first());
+    }
+
+    function onListViewSelectionChange(e) {
+        var selecteditem = e.sender.select();
+        var dataItem = e.sender.dataItem(selecteditem);
+        var template = kendo.template($('#details-template').html());
+        var result = template(dataItem);
+        $(".contact-details").html(result);
+    }
+
+</script>

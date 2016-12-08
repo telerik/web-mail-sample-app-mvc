@@ -214,11 +214,25 @@ html, body {
 }
 
 /* CONTACTS CARDS */
-.contact {
+.contacts {
+    overflow: auto;
+}
+
+.contact-card {
     float: left;
     width: 300px;
     height: 300px;
     box-sizing: border-box;
     border-top: 0;
     position: relative;
+}
+
+.contact-list {
+    /*width: 300px;*/
+}
+
+.contact-details {
+    float: left;
+    width: 59%;
+    height: 400px;
 }
