@@ -122,6 +122,7 @@
     </Compile>
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\MailViewModel.cs" />
+    <Compile Include="Models\NoteViewModel.cs" />
     <Compile Include="Models\TaskViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

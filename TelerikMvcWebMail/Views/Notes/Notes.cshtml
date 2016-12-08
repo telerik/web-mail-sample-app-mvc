@@ -2,23 +2,74 @@
     ViewBag.Title = "Notes";
 }
 
+@model IEnumerable<TelerikMvcWebMail.Models.NoteViewModel>
+
 <aside class="treeview-wrapper">
 	@{ Html.RenderPartial("TreeView"); }
 </aside>
 
 <div class="content">
 	@(Html.Kendo().ToolBar()
-		.Name("calendarToolbar")
-		.Items(items =>
-		{
-			items.Add().Type(CommandType.Button).Text("New");
-			items.Add().Type(CommandType.Button).Text("Delete");
-			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
-		})
+        .Name("noteToolbar")
+        .Items(items =>
+        {
+            items.Add()
+               .Type(CommandType.Button)
+               .Text("New")
+               .Url(Url.Action("NewNote", "Notes"));
+            items.Add().Type(CommandType.Button).Text("Delete");
+            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
+        })
 	)
 	<div class="notes">
-		<h2>Notes</h2>
+        <input type="text" class="k-input long-textbox search-textbox" placeholder="Search tasks ..." name="to-textbox">
+		@(Html.Kendo().Grid(Model)
+            .Name("noteGrid")
+            .Columns(columns =>
+            {
+                columns.Bound(p => p.CheckBoxCheked)
+                    .Title("")
+                    .Width(80)
+                    .ClientTemplate("<input type='checkbox' #= CheckBoxCheked ? checked='checked': '' # class='chkbx' />");
+                columns.Bound(p => p.Subject).Title("Subject");
+                columns.Bound(p => p.CreatedOn).Title("Created On").Width(300).Format("{0:g}");
+                columns.Bound(p => p.Category).Title("Category");
+                
+            })
+            .HtmlAttributes(new { style = "height: 100%;" })
+            .Filterable()
+            .Scrollable()
+            .Selectable(s => s.Mode(GridSelectionMode.Multiple))
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .Read(read => read.Action("Notes_Read", "Notes").Data("getSearch"))
+                .Model(model => { model.Id(p => p.Id); })
+            )
+            .Events(e => e.Change("noteSelectionChanged"))
+        )
 	</div>
 </div>
+
+<script>
+    function noteSelectionChanged(e) {
+        var selectedRows = this.select();
+        $('input.chkbx').prop('checked', false);
+
+        var checkboxes = selectedRows.find('.chkbx');
+        checkboxes.prop('checked', true);
+    }
+
+    function getSearch() {
+        return {
+            search: $(".search-textbox").val()
+        };
+    }
+
+    $(document).ready(function() {
+        $(".search-textbox").on('keyup', function (e) {
+            $("#noteGrid").data("kendoGrid").dataSource.read();
+        });
+    });
+</script>
 
 

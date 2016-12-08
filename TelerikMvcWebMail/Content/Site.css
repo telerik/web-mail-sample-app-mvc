@@ -113,6 +113,11 @@ html, body {
     background-color: lightgreen;
 }
 
+
+.long-textbox {
+    width: 100%;
+}
+
 /* SCHEDULER */
 .content .k-scheduler {
     position: absolute;
@@ -207,10 +212,6 @@ html, body {
 
 .k-menu {
     display: inline-block;
-}
-
-.new-mail-textbox {
-    width: 100%;
 }
 
 /* CONTACTS CARDS */
