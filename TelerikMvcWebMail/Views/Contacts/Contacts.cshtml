@@ -1,31 +1,61 @@
-﻿@{
+﻿@using TelerikMvcWebMail.Models
+
+@{
     ViewBag.Title = "Contacts";
 }
 
+<script type="text/x-kendo-tmpl" id="template">
+    <div class="contact k-widget">
+        <img src="@Url.Content("~/Content/web/Employees/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
+        <h3>#: FirstName# #: LastName#</h3>
+        <p>Country : #: Country# </p>
+        <p>Company : #: LastName# </p>
+        <p>City : #: City# </p>
+        <p>Phone : #: HomePhone# </p>
+        <div class="edit-buttons">
+            <a class="k-button k-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
+            <a class="k-button k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
+        </div>
+    </div>
+</script>
+
 <aside class="treeview-wrapper">
-	@{ Html.RenderPartial("TreeView"); }
+    @{ Html.RenderPartial("TreeView"); }
 </aside>
 
 <div class="content">
-	@(Html.Kendo().ToolBar()
-		.Name("calendarToolbar")
-		.Items(items =>
-		{
-			items.Add().Type(CommandType.Button).Text("Next");
+    @(Html.Kendo().ToolBar()
+        .Name("calendarToolbar")
+        .Items(items =>
+        {
+            items.Add().Type(CommandType.Button).Text("Next");
 
-			items.Add().Type(CommandType.SplitButton).Text("Export").MenuButtons(menuButtons =>
-			{
-				menuButtons.Add().Text("Export to PDF");
-			});
+            items.Add().Type(CommandType.SplitButton).Text("Export").MenuButtons(menuButtons =>
+            {
+                menuButtons.Add().Text("Export to PDF");
+            });
 
-			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-createTable");
+            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-createTable");
 
-			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
-		})
-	)
-	<div class="contacts">
-		<h2>Contacts</h2>
-
-		@Html.ActionLink("New Contact", "NewContact", "Contacts")
-	</div>
+            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
+        })
+    )
+    
+    <div class="contacts">
+        @Html.ActionLink("New Contact", "NewContact", "Contacts")
+        @(Html.Kendo().ListView<TelerikMvcWebMail.Models.ContactViewModel>()
+            .Name("contactsListView")
+            .TagName("div")
+            .ClientTemplateId("template")
+            .DataSource(dataSource => dataSource
+                .Model(model => model.Id("EmployeeID"))
+                .Create(create => create.Action("Contacts_Create", "Contacts"))
+                .Read(read => read.Action("Contacts_Read", "Contacts"))
+                .Update(update => update.Action("Contacts_Update", "Contacts"))
+                .Destroy(destroy => destroy.Action("Contacts_Destroy", "Contacts"))
+            )
+            .Editable()
+        )
+       
+    </div>
 </div>
