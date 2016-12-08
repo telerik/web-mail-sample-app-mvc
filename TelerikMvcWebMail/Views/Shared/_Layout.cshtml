@@ -64,6 +64,24 @@
 					items.Add().Text("Antonio Morandi");
 				})
 			)
+
+			@(Html.Kendo().Tooltip()
+				.For("#MainNaviagation > li:last")
+				.Position(TooltipPosition.Bottom)
+				.AutoHide(false)
+				.Width(170)
+				.Height(220)
+				.ContentTemplateId("tooltip-template")
+			)
+
+			<script id="tooltip-template" type="text/x-kendo-template">
+				<img src="http://demos.telerik.com/kendo-ui/content/web/Customers/PICCO.jpg" style="border-radius: 100%" />
+				<p>Antonio Morandi</p>
+				<p style="font-size: 11px">alabala.morandi@progress.com</p>
+				<br />	
+				<button id="primaryTextButton" class="k-primary">Sign Out</button>
+			</script>
+
 		</header>
 
 
