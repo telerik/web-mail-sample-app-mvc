@@ -1,4 +1,4 @@
-﻿<div class="new-mail-wrapper">
+﻿<div class="new-wrapper">
     @(Html.Kendo().Menu()
     .Name("newMailButtons")
     .Items(items =>
@@ -11,7 +11,7 @@
             .Text("Cancel");
     })
     )
-    <div class="new-mail-line">
+    <div class="new-line">
         <div class="new-mail-dropdown-wrapper">
             @Html.Label("newMailSender", "From")
             <br />
@@ -55,12 +55,12 @@
             )
         </div>
     </div>
-    <div class="new-mail-line">
+    <div class="new-line">
         <label for="to-textbox">To</label>
         <br/>
         <input type="text" class="k-input long-textbox to-textbox" name="to-textbox">
     </div>
-    <div class="new-mail-line">
+    <div class="new-line">
         <label for="subject-textbox">Subject</label>
         <br />
         <input type="text" class="k-input long-textbox subject-textbox" name="subject-textbox">

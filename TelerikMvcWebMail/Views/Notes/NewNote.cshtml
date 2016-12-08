@@ -2,5 +2,60 @@
     ViewBag.Title = "New Note";
 }
 
-<h2>NewNote</h2>
+<div class="new-wrapper">
+    <h2>Add Task</h2>
+    <div class="new-line">
+        @Html.Label("newNoteCategory", "Priority")
+        <br />
+        @(Html.Kendo().DropDownList()
+            .Name("newNoteCategory")
+            .BindTo(new List<SelectListItem>() {
+                new SelectListItem() {
+                    Text = "All",
+                    Value = "1"
+                },
+                new SelectListItem() {
+                    Text = "Personal",
+                    Value = "1"
+                },
+                new SelectListItem() {
+                    Text = "Work",
+                    Value = "1"
+                }
+            })
+            .Value("1")
+            .HtmlAttributes(new { style = "width: 200px;" })
+        )
+    </div>
+    <div class="new-line">
+        <label for="subject-textbox">Subject</label>
+        <br />
+        <input type="text" class="k-input long-textbox subject-textbox" name="subject-textbox">
+    </div>
 
+    @(Html.Kendo().Editor()
+        .Name("newNote")
+        .HtmlAttributes(new { style = "height: 500px;" })
+        .Resizable(resizable => resizable.Content(true).Toolbar(true))
+        .ImageBrowser(imageBrowser => imageBrowser
+            .Image("~/Content/UserFiles/Images/{0}")
+            .Read("Read", "ImageBrowser")
+            .Create("Create", "ImageBrowser")
+            .Destroy("Destroy", "ImageBrowser")
+            .Upload("Upload", "ImageBrowser")
+            .Thumbnail("Thumbnail", "ImageBrowser")
+        )
+    )
+    <div class="new-line">
+        @(Html.Kendo().Button()
+            .Name("addTask")
+            .HtmlAttributes(new { @class = "k-primary" })
+            .Tag("span")
+            .Content("Add Task"))
+
+        @(Html.Kendo().Button()
+            .Name("cancel")
+            .Tag("span")
+            .Content("Cancel"))
+    </div>
+</div>

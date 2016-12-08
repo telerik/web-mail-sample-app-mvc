@@ -188,14 +188,14 @@ html, body {
     padding: 0 0.5em;
 }
 
-/* NEW MAIL */
-.new-mail-wrapper {
+/* NEW MAIL / NOTE */
+.new-wrapper {
     padding: 20px;
     height: 100%;
     box-sizing: border-box;
 }
 
-.new-mail-line {
+.new-line {
     height: 50px;
     padding-top: 20px;
 }
