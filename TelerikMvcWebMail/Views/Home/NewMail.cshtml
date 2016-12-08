@@ -1,71 +1,87 @@
-﻿@(Html.Kendo().Menu()
+﻿<div class="new-mail-wrapper">
+    @(Html.Kendo().Menu()
     .Name("newMailButtons")
-    .Items(items => {
+    .Items(items =>
+    {
         items.Add()
-            .Text("Save");
+            .Text("Send");
         items.Add()
             .Text("Save");
         items.Add()
             .Text("Cancel");
     })
-)
-<br/>
-@Html.Label("newMailSender", "From")
-
-@(Html.Kendo().DropDownList()
-    .Name("newMailSender")
-    .BindTo(new List<SelectListItem>() {
-        new SelectListItem() {
-            Text = "Alabala.Morandi@progress.com",
-            Value = "1"
-        }
-    })
-    .Value("1")
-)
-
-@Html.Label("newMailPriority", "Priority")
-
-@(Html.Kendo().DropDownList()
-    .Name("newMailPriority")
-    .BindTo(new List<SelectListItem>() {
-        new SelectListItem() {
-            Text = "Normal",
-            Value = "1"
-        },
-        new SelectListItem() {
-            Text = "Urgent",
-            Value = "1"
-        },
-        new SelectListItem() {
-            Text = "High",
-            Value = "1"
-        },
-        new SelectListItem() {
-            Text = "Low",
-            Value = "1"
-        }
-    })
-    .Value("1")
-)
-<br/>
-<label for="to-textbox">To</label>
-<input type="text"class="k-input to-textbox" name="to-textbox" >
-<br />
-<label for="subject-textbox">Subject</label>
-<input type="text" class="k-input subject-textbox" name="subject-textbox">
-<br/>
-@(Html.Kendo().Upload()
-    .Name("files")
-    .Async(a => a
-        .Save("Save", "Upload")
-        .Remove("Remove", "Upload")
-        .AutoUpload(true)
     )
-    .Messages(m => m.Select("Add files ..."))
-)
-@(Html.Kendo().Editor()
+    <div class="new-mail-line">
+        <div class="new-mail-dropdown-wrapper">
+            @Html.Label("newMailSender", "From")
+            <br />
+            @(Html.Kendo().DropDownList()
+                .Name("newMailSender")
+                .BindTo(new List<SelectListItem>() {
+                    new SelectListItem() {
+                        Text = "Alabala.Morandi@progress.com",
+                        Value = "1"
+                    }
+                })
+                .Value("1")
+                .HtmlAttributes(new { style = "width: 280px;" })
+            )
+        </div>
+        <div class="new-mail-dropdown-wrapper">
+            @Html.Label("newMailPriority", "Priority")
+            <br />
+            @(Html.Kendo().DropDownList()
+                .Name("newMailPriority")
+                .BindTo(new List<SelectListItem>() {
+                    new SelectListItem() {
+                        Text = "Normal",
+                        Value = "1"
+                    },
+                    new SelectListItem() {
+                        Text = "Urgent",
+                        Value = "1"
+                    },
+                    new SelectListItem() {
+                        Text = "High",
+                        Value = "1"
+                    },
+                    new SelectListItem() {
+                        Text = "Low",
+                        Value = "1"
+                    }
+                })
+                .Value("1")
+                .HtmlAttributes(new { style = "width: 100px;" })
+            )
+        </div>
+    </div>
+    <div class="new-mail-line">
+        <label for="to-textbox">To</label>
+        <br/>
+        <input type="text" class="k-input new-mail-textbox to-textbox" name="to-textbox">
+    </div>
+    <div class="new-mail-line">
+        <label for="subject-textbox">Subject</label>
+        <br />
+        <input type="text" class="k-input new-mail-textbox subject-textbox" name="subject-textbox">
+    </div>
+    <div class="attachements-line">
+        <label for="files">Attachments</label>
+        @(Html.Kendo().Upload()
+            .Name("files")
+            .Async(a => a
+                .Save("Save", "Upload")
+                .Remove("Remove", "Upload")
+                .AutoUpload(true)
+            )
+            .Messages(m => m.Select("Add files ..."))
+        )
+    </div>
+
+
+    @(Html.Kendo().Editor()
       .Name("newMail")
-      .HtmlAttributes(new { style = "height:440px" })
+      .HtmlAttributes(new { style = "height: 500px;" })
       .Resizable(resizable => resizable.Content(true).Toolbar(true))
       .ImageBrowser(imageBrowser => imageBrowser
           .Image("~/Content/UserFiles/Images/{0}")
@@ -75,4 +91,5 @@
           .Upload("Upload", "ImageBrowser")
           .Thumbnail("Thumbnail", "ImageBrowser")
       )
-)
+    )
+</div>

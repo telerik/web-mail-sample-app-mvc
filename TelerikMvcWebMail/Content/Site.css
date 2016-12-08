@@ -184,6 +184,31 @@ html, body {
 }
 
 /* NEW MAIL */
+.new-mail-wrapper {
+    padding: 20px;
+    height: 100%;
+    box-sizing:border-box;
+}
+
+.new-mail-line {
+    height: 50px;
+    padding-top: 20px;
+}
+
+.attachements-line {
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.new-mail-dropdown-wrapper {
+    float: left;
+    margin-right: 20px;
+}
+
 .k-menu {
     display: inline-block;
+}
+
+.new-mail-textbox {
+    width: 100%;
 }
