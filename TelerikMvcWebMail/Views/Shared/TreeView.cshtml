@@ -1,5 +1,18 @@
 ﻿<h2>TreeView Partial View</h2>
 
+@{
+	var action = "New" + ViewBag.title.Remove(ViewBag.title.Length - 1);
+}
+
+<div class="new-view-button" onclick="location.href='@Url.Action(@action, @ViewBag.title)'">
+	<span class="icon icon-New">
+		<i class="fa fa-plus-circle"></i>
+		<span>
+			New @(ViewBag.title.Remove(ViewBag.title.Length - 1))
+		</span>
+	</span>
+</div>
+
 @(Html.Kendo().TreeView()
 	.Name("treeview")
 	.Items(treeview => {
