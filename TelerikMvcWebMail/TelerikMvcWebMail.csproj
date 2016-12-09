@@ -116,7 +116,7 @@
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NotesController.cs" />
+    <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -162,8 +162,8 @@
     <Content Include="Views\Shared\TreeView.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Notes\NewNote.cshtml" />
-    <Content Include="Views\Notes\Notes.cshtml" />
+    <Content Include="Views\Tasks\NewTask.cshtml" />
+    <Content Include="Views\Tasks\Tasks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Contacts\Contacts.cshtml" />

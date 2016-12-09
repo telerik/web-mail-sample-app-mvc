@@ -10,20 +10,20 @@ using TelerikMvcWebMail.Models;
 
 namespace TelerikMvcWebMail.Controllers
 {
-    public class NotesController : Controller
+    public class TasksController : Controller
     {
         // GET: /Notes/
-        public ActionResult Notes()
+        public ActionResult Tasks()
         {
             return View();
         }
 
-        public ActionResult NewNote()
+        public ActionResult NewTask()
         {
             return View();
         }
 
-        public ActionResult Notes_Read([DataSourceRequest] DataSourceRequest request, string search)
+        public ActionResult Tasks_Read([DataSourceRequest] DataSourceRequest request, string search)
         {
             var notesData = new List<NoteViewModel>();
             for (int i = 0; i < 20; i++)

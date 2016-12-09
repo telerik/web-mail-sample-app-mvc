@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Notes";
+    ViewBag.Title = "Tasks";
 }
 
 @model IEnumerable<TelerikMvcWebMail.Models.NoteViewModel>
@@ -16,7 +16,7 @@
             items.Add()
                .Type(CommandType.Button)
                .Text("New")
-               .Url(Url.Action("NewNote", "Notes"));
+			   .Url(Url.Action("NewTask", "Tasks"));
             items.Add().Type(CommandType.Button).Text("Delete");
             items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
         })
@@ -42,7 +42,7 @@
             .Selectable(s => s.Mode(GridSelectionMode.Multiple))
             .DataSource(dataSource => dataSource
                 .Ajax()
-                .Read(read => read.Action("Notes_Read", "Notes").Data("getSearch"))
+                .Read(read => read.Action("Tasks_Read", "Tasks").Data("getSearch"))
                 .Model(model => { model.Id(p => p.Id); })
             )
             .Events(e => e.Change("noteSelectionChanged"))
