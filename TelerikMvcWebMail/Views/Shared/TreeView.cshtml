@@ -1,21 +1,35 @@
 ﻿<h2>TreeView Partial View</h2>
 
 @{
-	var action = "New" + ViewBag.title.Remove(ViewBag.title.Length - 1);
+	var action = "";
+	var controller = "";
+	var newViewText = "";
+	if (ViewBag.title == "Mail")
+	{
+		action = "New" + ViewBag.title;
+		controller = "Home";
+		newViewText = ViewBag.title;
+	}
+	else
+	{
+		action = "New" + ViewBag.title.Remove(ViewBag.title.Length - 1);
+		controller = ViewBag.title;
+		newViewText = ViewBag.title.Remove(ViewBag.title.Length - 1);
+	}
 }
 
-<div class="new-view-button" onclick="location.href='@Url.Action(@action, @ViewBag.title)'">
+<div class="new-view-button" onclick="location.href='@Url.Action(@action, @controller)'">
 	<span class="icon icon-New">
 		<i class="fa fa-plus-circle"></i>
-		<span>
-			New @(ViewBag.title.Remove(ViewBag.title.Length - 1))
+		<span>New @newViewText
 		</span>
 	</span>
 </div>
 
 @(Html.Kendo().TreeView()
 	.Name("treeview")
-	.Items(treeview => {
+	.Items(treeview =>
+	{
 		treeview.Add().Text("Inbox (17)");
 		treeview.Add().Text("Junk (0)");
 		treeview.Add().Text("Drafts (0)");
@@ -23,7 +37,8 @@
 		treeview.Add().Text("NativeScript (1)");
 
 		treeview.Add().Text("Kend UI (3)")
-			.Items(item => {
+			.Items(item =>
+			{
 				item.Add().Text("Blog Comments (5)");
 				item.Add().Text("News (3)");
 			})
@@ -37,7 +52,7 @@
 </div>
 <div class="btn-new-node" onclick="addNewCategory()">Add New</div>
 
-<script>	
+<script>
 	function addNewCategory() {
 		var nodeContainer = $("#new-node-container")
 		if (nodeContainer.hasClass("hidden")) {

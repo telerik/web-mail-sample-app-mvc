@@ -226,6 +226,16 @@ html, body {
     overflow: auto;
 }
 
+/* NEW CONTACT */
+.new-contact-dropdown-wrapper, .new-contact-upload-wrapper {
+	display: inline-block;
+}
+
+.new-contact-upload-wrapper {
+	width: 400px;
+}
+
+
 .contact-card {
     float: left;
     width: 300px;
