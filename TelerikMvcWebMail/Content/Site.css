@@ -68,6 +68,8 @@ html, body {
 
     .header .home-btn {
         float: left;
+		font-size: 24px;
+		color: #fff
     }
 
 /* ASIDE */
@@ -93,6 +95,11 @@ html, body {
 
 #new-node-container {
     margin-left: 25px;
+}
+
+.new-view-button {
+	font-size: 20px;
+	color: dodgerblue;
 }
 
 /* TOOLBAR */
