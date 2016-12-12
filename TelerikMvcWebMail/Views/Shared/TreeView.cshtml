@@ -1,6 +1,4 @@
-﻿<h2>TreeView Partial View</h2>
-
-@{
+﻿@{
 	var action = "";
 	var controller = "";
 	var newViewText = "";
@@ -51,6 +49,25 @@
 	<input id="newNodeText" class="k-textbox" />
 </div>
 <div class="btn-new-node" onclick="addNewCategory()">Add New</div>
+
+<div class="about-and-source">
+    @(Html.Kendo().Menu()
+    .Name("aboutInfoMenu")
+    .Items(items =>
+    {
+        items.Add().Text("About This App").Action("About", "Home");
+        items.Add().Text("Download Source Code");
+    })
+    .Orientation(MenuOrientation.Vertical)
+    )
+
+    <p>
+        Copyright &copy; 2017 Progress Software Corporation and/or its subsidiaries or affiliates.
+    </p>
+    <p>
+        All Rights Reserved.
+    </p>
+</div>
 
 <script>
 	function addNewCategory() {

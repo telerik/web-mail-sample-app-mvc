@@ -1,100 +1,69 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>@ViewBag.Title - My Kendo UI MVC Application</title>
+    <title>@ViewBag.Title - My Kendo UI MVC Application</title>
 
-	<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
 
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-	<link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
-	<link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
-	<link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
-	<link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.metro.min.css" rel="stylesheet" type="text/css" />
-	<link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.dataviz.metro.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.metro.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.dataviz.metro.min.css" rel="stylesheet" type="text/css" />
 
-	<script src="http://cdn.kendostatic.com/2016.3.1118/js/jquery.min.js"></script>
-	<script src="http://cdn.kendostatic.com/2016.3.1118/js/kendo.all.min.js"></script>
-	<script src="http://cdn.kendostatic.com/2016.3.1118/js/kendo.aspnetmvc.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2016.3.1118/js/jquery.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2016.3.1118/js/kendo.all.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2016.3.1118/js/kendo.aspnetmvc.min.js"></script>
 </head>
 <body>
-	<div class="page-wrapper">
-		<nav class="slider">
-			<h2 class="logo">
-				WebMail Application
-			</h2>
-			@(Html.Kendo().Menu()
-				.Name("VerticalMenu")
-				.Items(items =>
-				{
-					items.Add().Text("Mail").Action("Index", "Home");
-					items.Add().Text("Contacts").Action("Contacts", "Contacts");
-					items.Add().Text("Calendar").Action("Calendar", "Calendar");
-					items.Add().Text("Tasks").Action("Tasks", "Tasks");
-				})
-				.Orientation(MenuOrientation.Vertical)
-			)
+    <script id="tooltip-template" type="text/x-kendo-template">
+        <img src="http://demos.telerik.com/kendo-ui/content/web/Customers/PICCO.jpg" style="border-radius: 100%" />
+        <p>Antonio Morandi</p>
+        <p style="font-size: 11px">alabala.morandi@progress.com</p>
+        <br />
+        <button id="primaryTextButton" class="k-primary">Sign Out</button>
+    </script>
 
-			@(Html.Kendo().Menu()
-				.Name("HelpMenu")
-				.Items(items =>
-				{
-					items.Add().Text("DOWNLOAD TRIAL");
-					items.Add().Text("DOWNLOAD SOURCE");
-				})
-				.Orientation(MenuOrientation.Vertical)
-			)
-		</nav>
+    <header class="header">
+        <nav class="navigation">
+            <h2 class="logo">
+                <i class="fa fa-bars"></i>
+                @(ViewBag.title)
+            </h2>
+            @(Html.Kendo().Menu()
+                .Name("mainMenu")
+                .Items(items =>
+                {
+                    items.Add().Text("Mail").Action("Index", "Home");
+                    items.Add().Text("Calendar").Action("Calendar", "Calendar");
+                    items.Add().Text("People").Action("Contacts", "Contacts");
+                    items.Add().Text("Tasks").Action("Tasks", "Tasks");
+                    items.Add().Text("Antonio Morandi");
+                })
+            )
 
-		<header class="header">
-			<div class="home-btn">
-				<span class="icon icon-Home">
-					<i class="fa fa-bars"></i>
-					<span class="text">
-						@(ViewBag.title)
-					</span>
-				</span>
-			</div>
-			@(Html.Kendo().Menu()
-				.Name("MainNaviagation")
-				.Items(items =>
-				{
-					items.Add().Text("About App").Action("About", "Home");
-					items.Add().Text("Download");
-					items.Add().Text("Antonio Morandi");
-				})
-			)
-
-			@(Html.Kendo().Tooltip()
-				.For("#MainNaviagation > li:last")
-				.Position(TooltipPosition.Bottom)
-				.AutoHide(false)
-				.Width(170)
-				.Height(220)
-				.ContentTemplateId("tooltip-template")
-			)
-
-			<script id="tooltip-template" type="text/x-kendo-template">
-				<img src="http://demos.telerik.com/kendo-ui/content/web/Customers/PICCO.jpg" style="border-radius: 100%" />
-				<p>Antonio Morandi</p>
-				<p style="font-size: 11px">alabala.morandi@progress.com</p>
-				<br />	
-				<button id="primaryTextButton" class="k-primary">Sign Out</button>
-			</script>
-
-		</header>
+            @(Html.Kendo().Tooltip()
+                .For("#mainMenu > li:last")
+                .Position(TooltipPosition.Bottom)
+                .AutoHide(false)
+                .Width(170)
+                .Height(220)
+                .ContentTemplateId("tooltip-template")
+            )
+        </nav>
+    </header>
 
 
-		<section class="content-wrapper main-content clear-fix">
-			@RenderBody()
-		</section>
+    <section class="content-wrapper main-content">
+        @RenderBody()
+    </section>
 
-	</div>
-
-	<script>
-		$('.home-btn').on("click", function () {
-			$('.slider').toggleClass('expanded');
-		});
-	</script>
+    <script>
+        $('.home-btn').on("click", function () {
+            $('.slider').toggleClass('expanded');
+        });
+    </script>
 </body>
 </html>

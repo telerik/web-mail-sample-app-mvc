@@ -1,4 +1,12 @@
-﻿<div class="new-wrapper">
+﻿@{
+    ViewBag.Title = "Mail";
+}
+
+<aside class="treeview-wrapper clearfix">
+    @{ Html.RenderPartial("TreeView"); }
+</aside>
+
+<div class="new-wrapper">
     @(Html.Kendo().Menu()
     .Name("newMailButtons")
     .Items(items =>

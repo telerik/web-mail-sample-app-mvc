@@ -2,6 +2,10 @@
     ViewBag.Title = "New Task";
 }
 
+<aside class="treeview-wrapper clearfix">
+    @{ Html.RenderPartial("TreeView"); }
+</aside>
+
 <div class="new-wrapper">
     <h2>Add Task</h2>
     <div class="new-line">

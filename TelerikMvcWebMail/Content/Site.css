@@ -8,69 +8,26 @@ html, body {
     min-width: 800px;
 }
 
-.page-wrapper {
-    height: 100%;
-    overflow: hidden;
-}
-
-.content-wrapper {
-    height: 94%;
-}
-
 .hidden {
     display: none;
 }
 
-/* SLIDER */
-.slider {
-    float: left;
-    width: 0;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-    background: #000;
-    transition: width 0.07s 0.07s ease;
-}
-
-    .slider.expanded {
-        width: 250px;
-    }
-
-    .slider .k-menu,
-    .slider .logo {
-        width: 250px;
-    }
-
-    .slider .logo {
-        text-transform: uppercase;
-        color: #8d8d8d;
-        font-size: 16px;
-        font-weight: 400;
-        margin: 16px auto;
-        text-align: center;
-    }
-
-#HelpMenu {
-    position: absolute;
-    bottom: 0;
-}
-
-/* HEADER */
+/* Styling header + navigation */
 .header {
-    width: 100%;
-    background-image: url('http://demos.telerik.com/aspnet-ajax/webmail/Images/backgrounds/header_mail.gif');
-    height: 60px;
+    background-color: #1C8BDD;
 }
 
-    .header .k-menu {
-        float: right;
-    }
+.navigation {
+    height: 50px;
+}
 
-    .header .home-btn {
-        float: left;
-		font-size: 24px;
-		color: #fff
-    }
+.navigation .logo {
+    display: inline-block;
+}
+
+.navigation .k-menu {
+    float: right;
+}
 
 /* ASIDE */
 .treeview-wrapper,
@@ -79,6 +36,12 @@ html, body {
     height: 100%;
     background-color: lightblue;
     width: 273px;
+}
+
+.about-and-source {
+    bottom: 0;
+    width: 273px;
+    position: absolute;
 }
 
 /* CONTENT */
@@ -100,11 +63,6 @@ html, body {
 .new-view-button {
 	font-size: 20px;
 	color: dodgerblue;
-}
-
-/* TOOLBAR */
-.content .k-toolbar {
-    /*height: 48px;*/
 }
 
 /* CHECKBOX LIST */
@@ -154,10 +112,8 @@ html, body {
     height: 87%;
 }
 
-.mail-grid,
-.mail-details {
-    height: 50%;
-    min-height: 250px;
+.mail-grid {
+    height: 450px;
 }
 
 .mail-grid {
@@ -198,8 +154,7 @@ html, body {
 /* NEW MAIL / NOTE */
 .new-wrapper {
     padding: 20px;
-    height: 100%;
-    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .new-line {
@@ -235,7 +190,6 @@ html, body {
 	width: 400px;
 }
 
-
 .contact-card {
     float: left;
     width: 300px;
@@ -245,12 +199,8 @@ html, body {
     position: relative;
 }
 
-.contact-list {
-    /*width: 300px;*/
-}
-
 .contact-details {
     float: left;
-    width: 59%;
+    width: 400px;
     height: 400px;
 }
