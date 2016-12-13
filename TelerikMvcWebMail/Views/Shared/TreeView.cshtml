@@ -1,25 +1,23 @@
 ﻿@{
-	var action = "";
-	var controller = "";
-	var newViewText = "";
-	if (ViewBag.title == "Mail")
+	var controller = ViewBag.title;
+	var action = "New" + ViewBag.title.Remove(ViewBag.title.Length - 1);
+	var newViewText = "New " + ViewBag.title.Remove(ViewBag.title.Length - 1); 
+
+	if (ViewBag.title == "Mails")
 	{
-		action = "New" + ViewBag.title;
 		controller = "Home";
-		newViewText = ViewBag.title;
 	}
-	else
+	else if (ViewBag.title.Contains("New"))
 	{
-		action = "New" + ViewBag.title.Remove(ViewBag.title.Length - 1);
-		controller = ViewBag.title;
-		newViewText = ViewBag.title.Remove(ViewBag.title.Length - 1);
+		String newViewModified = ViewBag.title.Insert(3, " ");
+		newViewText = newViewModified;
 	}
 }
 
 <div class="new-view-button" onclick="location.href='@Url.Action(@action, @controller)'">
 	<span class="icon icon-New">
 		<i class="fa fa-plus-circle"></i>
-		<span>New @newViewText
+		<span>@newViewText
 		</span>
 	</span>
 </div>
