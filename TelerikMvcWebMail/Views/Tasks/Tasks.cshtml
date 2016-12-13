@@ -9,18 +9,9 @@
 </aside>
 
 <div class="content">
-	@(Html.Kendo().ToolBar()
-        .Name("noteToolbar")
-        .Items(items =>
-        {
-            items.Add()
-               .Type(CommandType.Button)
-               .Text("New")
-			   .Url(Url.Action("NewTask", "Tasks"));
-            items.Add().Type(CommandType.Button).Text("Delete");
-            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
-        })
-	)
+	<div class="view-header-wrapper">	
+		<div class="btn-delete">Delete</div>
+	</div>
 	<div class="notes">
         <input type="text" class="k-input long-textbox search-textbox" placeholder="Search tasks ..." name="to-textbox">
 		@(Html.Kendo().Grid(Model)

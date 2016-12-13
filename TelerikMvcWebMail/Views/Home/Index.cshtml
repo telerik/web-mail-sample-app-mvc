@@ -13,11 +13,6 @@
         .Name("IndexToolbar")
         .Items(items =>
         {
-            items.Add()
-                .Type(CommandType.Button)
-                .Text("New")
-                .Url(Url.Action("NewMail", "Home"));
-
             items.Add().Type(CommandType.SplitButton).Text("Reply").MenuButtons(menuButtons =>
             {
                 menuButtons.Add().Text("Reply");
@@ -49,7 +44,6 @@
 
             items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft");
             items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyRight");
-            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
         })
     )
     <div class="inner-mail-content">

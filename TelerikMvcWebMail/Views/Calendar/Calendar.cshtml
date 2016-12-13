@@ -16,27 +16,12 @@
 	</div>
 </aside>
 
-
-
 <div class="content">
-	@(Html.Kendo().ToolBar()
-		.Name("calendarToolbar")
-		.Items(items =>
-		{
-			items.Add().Type(CommandType.Button).Text("Next");
-
-			items.Add().Type(CommandType.SplitButton).Text("Export").MenuButtons(menuButtons =>
-			{
-				menuButtons.Add().Text("Export to PDF").Id("exportPdf");
-				menuButtons.Add().Text("Export to Image").Id("exportImage"); 
-			});
-
-			items.Add().Type(CommandType.Button).Text("Import");
-
-			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-i-search");
-		})
-		.Events(e => e.Click("toolBarOnClick"))
-	)
+	<div class="view-header-wrapper">	
+		<div class="btn-export-pdf" onclick="onExportBtnClick('exportPdf')">Export to PDF</div>
+		<div class="btn-export-image" onclick="onExportBtnClick('exportImage')">Export to Image</div>
+		<div class="btn-import">Import</div>
+	</div>
 
 	@(Html.Kendo().Scheduler<TelerikMvcWebMail.Models.TaskViewModel>()
 		.Name("scheduler")
@@ -97,11 +82,11 @@
 		});
 	})
 
-	function toolBarOnClick(e) {
-		if (e.id == "exportPdf") {
+	function onExportBtnClick(e) {
+		if (e == "exportPdf") {
 			exportSchedulerToPdf($("#scheduler"), "Calendar.pdf");
 		}
-		else if (e.id == "exportImage") {
+		else if (e == "exportImage") {
 			exportSchedulerToImage($("#scheduler"), "Calendar.png")
 		}
 	}

@@ -48,27 +48,14 @@
 </aside>
 
 <div class="content">
-    @(Html.Kendo().ToolBar()
-        .Name("calendarToolbar")
-        .Items(items =>
-        {
-            items.Add().Type(CommandType.Button).Text("Next");
-
-            items.Add().Type(CommandType.SplitButton).Text("Export").MenuButtons(menuButtons =>
-            {
-                menuButtons.Add().Text("Export to PDF");
-            });
-
-            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-createTable");
-
-            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft").Click("changeToListDetails");
-            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyRight").Click("changeToContactsCards");
-        })
-    )
+	<div class="view-header-wrapper">	
+		<div class="btn-export-pdf">Export to PDF</div>
+		<div class="btn-cards" onclick="changeToContactsCards()">Cards (Placeholder text)</div>
+		<div class="btn-listdetails" onclick="changeToListDetails()">Vertical Panes (Placeholder text)</div>
+	</div>
 
     <div class="contacts">
-        @Html.ActionLink("New Contact", "NewContact", "Contacts")
-        <br />
+
         @(Html.Kendo().ListView<TelerikMvcWebMail.Models.ContactViewModel>()
             .Name("contactsListView")
             .TagName("div")
