@@ -69,7 +69,6 @@
             )
             .Editable()
             .Selectable()
-            .HtmlAttributes(new { style = "width:40%;float:left;" })
             .Events(e => e
                 .DataBound("onListViewDataBound")
                 .Change("onListViewSelectionChange")
@@ -87,7 +86,7 @@
 <script>
     function changeToListDetails() {
         var lvDiv = $('#contactsListView');
-        lvDiv.css('width', '300px');
+        lvDiv.css('width', '400px');
         $('.contact-details').css('display', 'block');
 
         var lv = lvDiv.data('kendoListView');

@@ -28,11 +28,6 @@ namespace TelerikMvcWebMail.Controllers
             var notesData = new List<NoteViewModel>();
             for (int i = 0; i < 20; i++)
             {
-                if (i % 5 == 0)
-                {
-                    Thread.Sleep(1000);
-                }
-
                 var note = new NoteViewModel()
                 {
                     CheckBoxCheked = false,

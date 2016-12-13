@@ -12,7 +12,11 @@ html, body {
     display: none;
 }
 
-/* Styling header + navigation */
+.k-menu {
+    display: inline-block;
+}
+
+/* HEADER + NAVIGATION */
 .header {
     background-color: #1C8BDD;
 }
@@ -89,18 +93,6 @@ html, body {
 }
 
 /* SCHEDULER */
-.content .k-scheduler {
-    position: absolute;
-    display: inline-block;
-    bottom: 0;
-    top: 110px;
-    overflow: auto;
-}
-
-.k-scheduler .k-scheduler-layout {
-    border: 1px solid #DDD;
-}
-
 .calendar-resource {
     background: #ccc;
     font-size: 18px;
@@ -112,34 +104,16 @@ html, body {
 
 
 /* MAIL */
-.inner-mail-content {
-    overflow: hidden;
-    position: relative;
-    height: 87%;
-}
-
 .mail-grid {
     height: 450px;
-}
-
-.mail-grid {
-    background-color: yellow;
 }
 
 .mail-details-header {
     padding: 1em 0.5em;
     margin-bottom: 1em;
+    height: 3em;
     background-color: orange;
 }
-
-    .mail-details-header:after {
-        visibility: hidden;
-        display: block;
-        font-size: 0;
-        content: " ";
-        clear: both;
-        height: 0;
-    }
 
     .mail-details-header .mail-subject {
         font-size: 2em;
@@ -178,24 +152,16 @@ html, body {
     margin-right: 20px;
 }
 
-.k-menu {
-    display: inline-block;
-}
-
-/* CONTACTS CARDS */
+/* CONTACTS */
 .contacts {
     overflow: auto;
 }
 
-
-/* NEW CONTACT */
-.new-contact-dropdown-wrapper, .new-contact-upload-wrapper {
-	display: inline-block;
-}
-
-.new-contact-upload-wrapper {
-	width: 400px;
-}
+    .contacts .k-listview {
+        width: 400px;
+        border: 0;
+        float: left;
+    }
 
 .contact-card {
     float: left;
@@ -210,4 +176,18 @@ html, body {
     float: left;
     width: 400px;
     height: 400px;
+}
+ 
+/* NEW CONTACT */
+.new-contact-dropdown-wrapper, .new-contact-upload-wrapper {
+	display: inline-block;
+}
+
+.new-contact-upload-wrapper {
+	width: 400px;
+}
+
+/* NOTES */
+.notes .k-grid-content {
+    height: auto !important;
 }
