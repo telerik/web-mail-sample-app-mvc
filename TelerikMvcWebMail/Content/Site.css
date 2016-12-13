@@ -83,6 +83,11 @@ html, body {
     width: 100%;
 }
 
+.view-header-wrapper div {
+	display: inline-block;
+	margin-right: 10px;
+}
+
 /* SCHEDULER */
 .content .k-scheduler {
     position: absolute;
@@ -104,6 +109,7 @@ html, body {
     .calendar-resource.selected {
         background: lightgreen;
     }
+
 
 /* MAIL */
 .inner-mail-content {
@@ -180,6 +186,7 @@ html, body {
 .contacts {
     overflow: auto;
 }
+
 
 /* NEW CONTACT */
 .new-contact-dropdown-wrapper, .new-contact-upload-wrapper {
