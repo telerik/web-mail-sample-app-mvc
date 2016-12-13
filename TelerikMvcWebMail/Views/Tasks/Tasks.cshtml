@@ -27,8 +27,6 @@
                 columns.Bound(p => p.Category).Title("Category");
                 
             })
-            .Filterable()
-            .Scrollable()
             .Selectable(s => s.Mode(GridSelectionMode.Multiple))
             .DataSource(dataSource => dataSource
                 .Ajax()
