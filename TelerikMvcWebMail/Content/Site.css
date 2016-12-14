@@ -98,9 +98,9 @@ html, body {
     font-size: 18px;
 }
 
-    .calendar-resource.selected {
-        background: lightgreen;
-    }
+.calendar-resource.selected {
+    background: lightgreen;
+}
 
 
 /* MAIL */
@@ -115,17 +115,17 @@ html, body {
     background-color: orange;
 }
 
-    .mail-details-header .mail-subject {
-        font-size: 2em;
-    }
+.mail-details-header .mail-subject {
+    font-size: 2em;
+}
 
-    .mail-details-header .mail-sender {
-        float: left;
-    }
+.mail-details-header .mail-sender {
+    float: left;
+}
 
-    .mail-details-header .mail-date {
-        float: right;
-    }
+.mail-details-header .mail-date {
+    float: right;
+}
 
 .mail-text {
     padding: 0 0.5em;
@@ -157,11 +157,11 @@ html, body {
     overflow: auto;
 }
 
-    .contacts .k-listview {
-        width: 400px;
-        border: 0;
-        float: left;
-    }
+.contacts .k-listview {
+    width: 400px;
+    border: 0;
+    float: left;
+}
 
 .contact-card {
     float: left;
@@ -191,3 +191,4 @@ html, body {
 .notes .k-grid-content {
     height: auto !important;
 }
+

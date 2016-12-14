@@ -49,16 +49,12 @@
 <div class="btn-new-node" onclick="addNewCategory()">Add New</div>
 
 <div class="about-and-source">
-    @(Html.Kendo().Menu()
-    .Name("aboutInfoMenu")
-    .Items(items =>
-    {
-        items.Add().Text("About This App").Action("About", "Home");
-        items.Add().Text("Download Source Code");
-    })
-    .Orientation(MenuOrientation.Vertical)
-    )
-
+	<div>
+		@Html.ActionLink("About This App", "About", "Home")
+	</div>
+	<div>
+		@Html.ActionLink("Download Source Code", "", "")
+	</div>
     <p>
         Copyright &copy; 2017 Progress Software Corporation and/or its subsidiaries or affiliates.
     </p>
