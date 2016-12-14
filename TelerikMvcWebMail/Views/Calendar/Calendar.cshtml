@@ -7,6 +7,8 @@
 <aside class="calendar-aside">
 	@(Html.Kendo().Calendar()
 		.Name("calendar")
+        .Value(new DateTime(2013, 6, 13))
+        .Events(e => e.Change("onCalenderChange"))
 	)
 
 	<div class="calendar-resources-list">	
@@ -118,6 +120,11 @@
 					fileName: fileName
 				});
 			});
+	}
+
+	function onCalenderChange(e) {
+	    var scheduler = $("#scheduler").data("kendoScheduler");
+	    scheduler.date(e.sender.current());
 	}
 </script>
 
