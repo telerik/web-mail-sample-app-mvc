@@ -49,7 +49,7 @@
 
 <div class="content">
 	<div class="view-header-wrapper">	
-		<div class="btn-export-pdf">Export to PDF</div>
+		<div class="btn-export-pdf" onclick="exportPeople()">Export to PDF</div>
 		<div class="btn-cards" onclick="changeToContactsCards()">Cards (Placeholder text)</div>
 		<div class="btn-listdetails" onclick="changeToListDetails()">Vertical Panes (Placeholder text)</div>
 	</div>
@@ -84,6 +84,22 @@
 </div>
 
 <script>
+    function exportPeople() {
+    	kendo.drawing.drawDOM($(".contacts"))
+            .then(function (group) {
+                return kendo.drawing.exportPDF(group, {
+                    paperSize: "auto",
+                    margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" }
+                });
+            })
+            .done(function (data) {
+                kendo.saveAs({
+                    dataURI: data,
+                    fileName: "People.pdf"
+                });
+            });
+    }
+
     function changeToListDetails() {
         var lvDiv = $('#contactsListView');
         lvDiv.css('width', '400px');
