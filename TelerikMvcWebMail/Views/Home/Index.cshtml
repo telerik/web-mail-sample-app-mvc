@@ -42,8 +42,8 @@
                 menuButtons.Add().Text("Print");
             });
 
-            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft");
-            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyRight");
+            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft").Click("changeToVerticalPanes");
+            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyRight").Click("changeToHorizontalPanes");
         })
     )
     <div class="inner-mail-content">
@@ -85,6 +85,16 @@
     </div>
 </div>
 <script>
+    function changeToVerticalPanes() {
+        $('.mail-grid').attr('style', "display: inline-block; width: 35%");
+        $('.mail-details').attr('style', "display: inline-block; vertical-align: top;");
+    }
+
+    function changeToHorizontalPanes() {
+        $('.mail-grid').attr('style', "display: block;");
+        $('.mail-details').attr('style', "display: block;");
+    }
+
     function mailSelectionChanged(e) {
         var selectedRows = this.select();
         $('input.chkbx').prop('checked', false);
