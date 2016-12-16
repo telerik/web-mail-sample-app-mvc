@@ -152,7 +152,7 @@ UpgradeLog*.htm
 *.orig
 
 # SQL Server files
-**/App_Data/*.mdf
+#**/App_Data/*.mdf
 **/App_Data/*.ldf
 **/App_Data/*.sdf
 
