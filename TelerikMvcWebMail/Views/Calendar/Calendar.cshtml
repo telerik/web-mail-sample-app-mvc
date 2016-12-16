@@ -2,12 +2,10 @@
     ViewBag.Title = "Calendar";
 }
 
-@model IEnumerable<TelerikMvcWebMail.Models.TaskViewModel>
-
 <aside class="calendar-aside">
 	@(Html.Kendo().Calendar()
 		.Name("calendar")
-        .Value(new DateTime(2013, 6, 13))
+        .Value(new DateTime(2015, 9, 1))
         .Events(e => e.Change("onCalenderChange"))
 	)
 
@@ -25,35 +23,52 @@
 		<div class="btn-import">Import</div>
 	</div>
 
-	@(Html.Kendo().Scheduler<TelerikMvcWebMail.Models.TaskViewModel>()
-		.Name("scheduler")
-		.Date(new DateTime(2013, 6, 13))
-		.ShowWorkHours(true)
-		.StartTime(new DateTime(2013, 6, 13, 7, 00, 00))
-		.Views(views =>
-		{
-			views.DayView();
-			views.WorkWeekView(workWeekView => workWeekView.Selected(true));
-			views.WeekView();
-			views.MonthView();
-			views.AgendaView();
-			views.TimelineView();
-		})
-		.Timezone("Etc/UTC")
-		.BindTo(Model)
-		.Resources(resource =>
-		{
-			resource.Add(m => m.OwnerID)
-				.Title("Owner")
-				.DataTextField("Text")
-				.DataValueField("Value")
-				.DataColorField("Color")
-				.BindTo(new[] {
-					new { Text = "Alex", Value = 1, Color = "#f8a398" } ,
-					new { Text = "Bob", Value = 2, Color = "#51a0ed" } ,
-					new { Text = "Charlie", Value = 3, Color = "#56ca85" }
-				});
-		})
+	@(Html.Kendo().Scheduler<TelerikMvcWebMail.Models.EventViewModel>()
+        .Name("scheduler")
+        .Date(new DateTime(2015, 9, 1))
+        .ShowWorkHours(true)
+        .StartTime(new DateTime(2015, 9, 1, 7, 00, 00))
+        .Views(views =>
+        {
+            views.DayView();
+            views.WorkWeekView(workWeekView => workWeekView.Selected(true));
+            views.WeekView();
+            views.MonthView();
+            views.AgendaView();
+            views.TimelineView();
+        })
+        .Timezone("Etc/UTC")
+        .DataSource(d => d
+            .Model(m =>
+            {
+                m.Id(f => f.TaskID);
+                m.Field(f => f.Title).DefaultValue("No title");
+                m.Field(f => f.CategoryID).DefaultValue(1);
+                m.Field(f => f.Title).DefaultValue("No title");
+                m.RecurrenceId(f => f.RecurrenceID);
+            })
+            .Read("Read", "Calendar")
+            .Create("Create", "Calendar")
+            .Destroy("Destroy", "Calendar")
+            .Update("Update", "Calendar")
+            .Filter(filters =>
+            {
+                filters.Add(model => model.CategoryID).IsEqualTo(1).Or().IsEqualTo(2);
+            })
+        )
+        .Resources(resource =>
+        {
+            resource.Add(m => m.CategoryID)
+                .Title("Owner")
+                .DataTextField("Text")
+                .DataValueField("Value")
+                .DataColorField("Color")
+                .BindTo(new[] {
+                    new { Text = "Alex", Value = 1, Color = "#f8a398" } ,
+                    new { Text = "Bob", Value = 2, Color = "#51a0ed" } ,
+                    new { Text = "Charlie", Value = 3, Color = "#56ca85" }
+                });
+        })
 	)
 </div>
 <script>
