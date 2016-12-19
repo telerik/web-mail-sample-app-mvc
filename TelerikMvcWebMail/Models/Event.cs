@@ -14,17 +14,27 @@ namespace TelerikMvcWebMail.Models
     
     public partial class Event
     {
-        public System.Guid ID { get; set; }
-        public string Title { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Event()
+        {
+            this.Events1 = new HashSet<Event>();
+        }
+    
+        public int TaskID { get; set; }
         public System.DateTime Start { get; set; }
         public System.DateTime End { get; set; }
-        public string RecurrenceRule { get; set; }
-        public Nullable<int> CategoryID { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
-        public string RecurrenceException { get; set; }
+        public Nullable<int> OwnerID { get; set; }
+        public bool IsAllDay { get; set; }
+        public string RecurrenceRule { get; set; }
         public Nullable<int> RecurrenceID { get; set; }
-        public Nullable<bool> IsAllDay { get; set; }
+        public string RecurrenceException { get; set; }
         public string StartTimezone { get; set; }
         public string EndTimezone { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Event> Events1 { get; set; }
+        public virtual Event Event1 { get; set; }
     }
 }

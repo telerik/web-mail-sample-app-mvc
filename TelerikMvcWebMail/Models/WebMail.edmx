@@ -23,20 +23,29 @@
         </EntityType>
         <EntityType Name="Events">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="TaskID" />
           </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Start" Type="datetime" Nullable="false" />
           <Property Name="End" Type="datetime" Nullable="false" />
-          <Property Name="RecurrenceRule" Type="nvarchar" MaxLength="1024" />
-          <Property Name="CategoryID" Type="int" />
-          <Property Name="Description" Type="nvarchar" MaxLength="1024" />
-          <Property Name="RecurrenceException" Type="nchar" MaxLength="1024" />
+          <Property Name="Title" Type="ntext" Nullable="false" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="OwnerID" Type="int" />
+          <Property Name="IsAllDay" Type="bit" Nullable="false" />
+          <Property Name="RecurrenceRule" Type="ntext" />
           <Property Name="RecurrenceID" Type="int" />
-          <Property Name="IsAllDay" Type="bit" />
-          <Property Name="StartTimezone" Type="nchar" MaxLength="1024" />
-          <Property Name="EndTimezone" Type="nchar" MaxLength="1024" />
+          <Property Name="RecurrenceException" Type="ntext" />
+          <Property Name="StartTimezone" Type="ntext" />
+          <Property Name="EndTimezone" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Folders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Category" Type="nchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Messages">
           <Key>
@@ -63,11 +72,28 @@
           <Property Name="NoteContent" Type="nvarchar" MaxLength="500" />
           <Property Name="Category" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_Tasks_Tasks">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Events1" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="Events1">
+              <PropertyRef Name="RecurrenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="WebMailModelStoreContainer">
           <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Folders" EntityType="Self.Folders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notes" EntityType="Self.Notes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tasks_Tasks" Association="Self.FK_Tasks_Tasks">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Events1" EntitySet="Events" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -92,20 +118,31 @@
         </EntityType>
         <EntityType Name="Event">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="TaskID" />
           </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Start" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="End" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="RecurrenceRule" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="CategoryID" Type="Int32" />
-          <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="RecurrenceException" Type="String" MaxLength="1024" FixedLength="true" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerID" Type="Int32" />
+          <Property Name="IsAllDay" Type="Boolean" Nullable="false" />
+          <Property Name="RecurrenceRule" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RecurrenceID" Type="Int32" />
-          <Property Name="IsAllDay" Type="Boolean" />
-          <Property Name="StartTimezone" Type="String" MaxLength="1024" FixedLength="true" Unicode="true" />
-          <Property Name="EndTimezone" Type="String" MaxLength="1024" FixedLength="true" Unicode="true" />
+          <Property Name="RecurrenceException" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartTimezone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EndTimezone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Events1" Relationship="Self.FK_Tasks_Tasks" FromRole="Events" ToRole="Events1" />
+          <NavigationProperty Name="Event1" Relationship="Self.FK_Tasks_Tasks" FromRole="Events1" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="Folder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -132,18 +169,35 @@
           <Property Name="NoteContent" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="WebMailEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_Tasks_Tasks">
+          <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+          <End Role="Events1" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="TaskID" />
+            </Principal>
+            <Dependent Role="Events1">
+              <PropertyRef Name="RecurrenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebMailEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Contacts" EntityType="Self.Contact" />
           <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="Folders" EntityType="Self.Folder" />
           <EntitySet Name="Messages" EntityType="Self.Message" />
           <EntitySet Name="Notes" EntityType="Self.Note" />
+          <AssociationSet Name="FK_Tasks_Tasks" Association="Self.FK_Tasks_Tasks">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Events1" EntitySet="Events" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WebMailModelStoreContainer" CdmEntityContainer="WebMailEntities">
+        <EntityContainerMapping StorageEntityContainer="WebMailModelStoreContainer" CdmEntityContainer="WebMailEntities1">
           <EntitySetMapping Name="Contacts">
             <EntityTypeMapping TypeName="WebMailModel.Contact">
               <MappingFragment StoreEntitySet="Contacts">
@@ -164,18 +218,28 @@
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="WebMailModel.Event">
               <MappingFragment StoreEntitySet="Events">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
                 <ScalarProperty Name="Start" ColumnName="Start" />
                 <ScalarProperty Name="End" ColumnName="End" />
-                <ScalarProperty Name="RecurrenceRule" ColumnName="RecurrenceRule" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="RecurrenceException" ColumnName="RecurrenceException" />
-                <ScalarProperty Name="RecurrenceID" ColumnName="RecurrenceID" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
                 <ScalarProperty Name="IsAllDay" ColumnName="IsAllDay" />
+                <ScalarProperty Name="RecurrenceRule" ColumnName="RecurrenceRule" />
+                <ScalarProperty Name="RecurrenceID" ColumnName="RecurrenceID" />
+                <ScalarProperty Name="RecurrenceException" ColumnName="RecurrenceException" />
                 <ScalarProperty Name="StartTimezone" ColumnName="StartTimezone" />
                 <ScalarProperty Name="EndTimezone" ColumnName="EndTimezone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Folders">
+            <EntityTypeMapping TypeName="WebMailModel.Folder">
+              <MappingFragment StoreEntitySet="Folders">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

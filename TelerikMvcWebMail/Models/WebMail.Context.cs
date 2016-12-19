@@ -13,10 +13,10 @@ namespace TelerikMvcWebMail.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WebMailEntities : DbContext
+    public partial class WebMailEntities1 : DbContext
     {
-        public WebMailEntities()
-            : base("name=WebMailEntities")
+        public WebMailEntities1()
+            : base("name=WebMailEntities1")
         {
         }
     
@@ -27,6 +27,7 @@ namespace TelerikMvcWebMail.Models
     
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<Folder> Folders { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Note> Notes { get; set; }
     }

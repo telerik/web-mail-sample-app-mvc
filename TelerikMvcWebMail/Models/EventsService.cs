@@ -10,10 +10,10 @@ namespace TelerikMvcWebMail.Models
 {
     public class EventsService : ISchedulerEventService<EventViewModel>
     {
-        private static bool UpdateDatabase = false;
-        private WebMailEntities entities;
+        //private static bool UpdateDatabase = false;
+        private WebMailEntities1 entities;
 
-        public EventsService(WebMailEntities entities)
+        public EventsService(WebMailEntities1 entities)
         {
             this.entities = entities;
         }
@@ -24,7 +24,7 @@ namespace TelerikMvcWebMail.Models
 
             result = entities.Events.Select(e => new EventViewModel
             {
-                TaskID = e.ID,
+                TaskID = e.TaskID,
                 Title = e.Title,
                 Start = e.Start,
                 End = e.End,
@@ -33,7 +33,7 @@ namespace TelerikMvcWebMail.Models
                 RecurrenceException = e.RecurrenceException,
                 StartTimezone = e.StartTimezone,
                 EndTimezone = e.EndTimezone,
-                CategoryID = e.CategoryID,
+                OwnerID = e.OwnerID,
                 Description = e.Description,
                 IsAllDay = e.IsAllDay
             }).ToList();
@@ -61,7 +61,7 @@ namespace TelerikMvcWebMail.Models
                 entities.Events.Add(entity);
                 entities.SaveChanges();
 
-                appointment.TaskID = entity.ID;
+                appointment.TaskID = entity.TaskID;
 
             }
         }

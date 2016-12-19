@@ -8,7 +8,7 @@ namespace TelerikMvcWebMail.Models
 {
     public class EventViewModel : Kendo.Mvc.UI.ISchedulerEvent
     {
-        public Guid TaskID { get; set; }
+        public int TaskID { get; set; }
 
         public string Title { get; set; }
 
@@ -52,7 +52,7 @@ namespace TelerikMvcWebMail.Models
 
         public bool? IsAllDay { get; set; }
 
-        public int? CategoryID { get; set; }
+        public int? OwnerID { get; set; }
 
         private bool isAllDay;
         bool ISchedulerEvent.IsAllDay
@@ -72,7 +72,7 @@ namespace TelerikMvcWebMail.Models
         {
             return new Event
             {
-                ID = TaskID,
+                TaskID = TaskID,
                 Title = Title,
                 Start = Start,
                 End = End,
@@ -82,8 +82,8 @@ namespace TelerikMvcWebMail.Models
                 StartTimezone = StartTimezone,
                 EndTimezone = EndTimezone,
                 RecurrenceID = RecurrenceID,
-                IsAllDay = IsAllDay,
-                CategoryID = CategoryID
+                IsAllDay = (IsAllDay != null) ? bool.Parse(IsAllDay.ToString()) : false,
+                OwnerID = OwnerID
             };
         }
     }
