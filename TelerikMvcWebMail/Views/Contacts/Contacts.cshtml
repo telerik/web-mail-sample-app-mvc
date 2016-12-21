@@ -4,11 +4,13 @@
     ViewBag.Title = "Contacts";
 }
 
+
 <script type="text/x-kendo-tmpl" id="list-template">
     <div class="contact-list k-widget">
-        <img src="@Url.Content("~/Content/web/Employees/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
+        <img src="@Url.Content("~/Content/contacts/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
         <span>#: Name #</span>
         <div class="edit-buttons">
+            <a class="k-button k-email-button" href="\\#"><span class="k-icon k-i-maximize"></span></a>
             <a class="k-button k-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
             <a class="k-button k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
         </div>
@@ -17,42 +19,82 @@
 
 <script type="text/x-kendo-tmpl" id="cards-template">
     <div class="contact-card k-widget">
-        <img src="@Url.Content("~/Content/web/Employees/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
+        <img src="@Url.Content("~/Content/contacts/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
         <h3>#: Name #</h3>
         <p>Country : #: Country # </p>
-        <p>Company : #: Company # </p>
         <p>City : #: City # </p>
+        <p>Company : #: Company # </p>
         <p>Phone : #: HomePhone # </p>
         <div class="edit-buttons">
+            <a class="k-button k-email-button" href="\\#"><span class="k-icon k-i-maximize"></span></a>
             <a class="k-button k-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
             <a class="k-button k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
         </div>
     </div>
 </script>
 
-<script type="text/x-kendo-tmpl" id="details-template">
-    <img src="@Url.Content("~/Content/web/Employees/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
-    <h3>#: Name #</h3>
-    <p>Country : #: Country # </p>
-    <p>Company : #: Company # </p>
-    <p>City : #: City # </p>
-    <p>Phone : #: HomePhone # </p>
-    <div class="edit-buttons">
-        <a class="k-button k-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
-        <a class="k-button k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
+<script type="text/x-kendo-tmpl" id="single-contact-template">
+    <div class="contact-view k-widget" uid="#: uid #">
+        <span class="hidden-email" style="display:none">#: Email #</span>
+        <img src="@Url.Content("~/Content/contacts/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
+        <h3>#: Name #</h3>
+        <p>Country : #: Country # </p>
+        <p>City : #: City # </p>
+        <p>Company : #: Company # </p>
+        <p>Phone : #: HomePhone # </p>
+        <div class="edit-buttons">
+            <a class="k-button k-single-email-button" href="\\#"><span class="k-icon k-i-maximize"></span></a>
+            <a class="k-button k-single-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
+            <a class="k-button k-single-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
+        </div>
     </div>
 </script>
 
 <aside class="treeview-wrapper">
-    @{ Html.RenderPartial("TreeView"); }
+    @(Html.Kendo().Button()
+        .Name("addNewContact")
+        .Icon("plus")
+        .Content("New Contact")
+        .HtmlAttributes(new { type = "button" })
+        .Events(ev => ev.Click("createNewContact"))
+    )
+
+    @(Html.Kendo().TreeView()
+        .Name("treeview")
+        .Items(treeview =>
+        {
+            treeview.Add().Text("Inbox (17)");
+            treeview.Add().Text("Junk (0)");
+            treeview.Add().Text("Drafts (0)");
+            treeview.Add().Text("Deleted (0)");
+            treeview.Add().Text("NativeScript (1)");
+            treeview.Add().Text("Kend UI (3)");
+            treeview.Add().Text("Sitefinity (7)");
+        })
+    )
+
+    <div class="about-and-source">
+        <div>
+            @Html.ActionLink("About This App", "About", "Home")
+        </div>
+        <div>
+            @Html.ActionLink("Download Source Code", "", "")
+        </div>
+        <p>
+            Copyright &copy; @DateTime.Now.Year Progress Software Corporation and/or its subsidiaries or affiliates.
+        </p>
+        <p>
+            All Rights Reserved.
+        </p>
+    </div>
 </aside>
 
 <div class="content">
-	<div class="view-header-wrapper">	
-		<div class="btn-export-pdf" onclick="exportPeople()">Export to PDF</div>
-		<div class="btn-cards" onclick="changeToContactsCards()">Cards (Placeholder text)</div>
-		<div class="btn-listdetails" onclick="changeToListDetails()">Vertical Panes (Placeholder text)</div>
-	</div>
+    <div class="view-header-wrapper">
+        <div class="btn-export-pdf" onclick="exportPeople()">Export to PDF</div>
+        <div class="btn-cards" onclick="changeToContactsCards()">Cards (Placeholder text)</div>
+        <div class="btn-listdetails" onclick="changeToListDetails()">Vertical Panes (Placeholder text)</div>
+    </div>
 
     <div class="contacts">
 
@@ -85,7 +127,7 @@
 
 <script>
     function exportPeople() {
-    	kendo.drawing.drawDOM($(".contacts"))
+        kendo.drawing.drawDOM($(".contacts"))
             .then(function (group) {
                 return kendo.drawing.exportPDF(group, {
                     paperSize: "auto",
@@ -124,14 +166,63 @@
         var listView = e.sender;
         var selectedItem = listView.select();
         listView.select(listView.element.children().first());
+
+        $('.k-email-button').on('click', createNewMail);
+    }
+
+    function createNewMail(e) {
+        var target = $(e.target);
+        var listVewItem = target.parents('.contact-list, .contact-card');
+        var listView = $('#contactsListView').data('kendoListView');
+        var dataItem = listView.dataItem(listVewItem);
+        var email = dataItem.Email;
+
+        debugger;
+        // Implement here create new email logic
+    };
+
+    function singleCreateNewMail(e) {
+        var target = $(e.target);
+        var singleItem = target.parents('.contact-view');
+        var email = singleItem.find('.hidden-email').text();
+
+        debugger;
+        // Implement here create new email logic
+    };
+
+    function singleEditClick(e) {
+        var uid = getItemUid(e);
+        var listView = $("#contactsListView").data("kendoListView");
+        listView.edit(listView.element.find('[data-uid="' + uid + '"]'));
+    }
+
+    function singleDeleteClick(e) {
+        var uid = getItemUid(e);
+        var listView = $("#contactsListView").data("kendoListView");
+        listView.remove(listView.element.find('[data-uid="' + uid + '"]'));
+    }
+
+    function getItemUid(e) {
+        var target = $(e.target);
+        var singleItem = target.parents('.contact-view');
+        return singleItem.attr('uid');
     }
 
     function onListViewSelectionChange(e) {
         var selecteditem = e.sender.select();
         var dataItem = e.sender.dataItem(selecteditem);
-        var template = kendo.template($('#details-template').html());
+        var template = kendo.template($('#single-contact-template').html());
         var result = template(dataItem);
         $(".contact-details").html(result);
+
+        $('.k-single-email-button').on('click', singleCreateNewMail);
+        $('.k-single-edit-button').on('click', singleEditClick);
+        $('.k-single-delete-button').on('click', singleDeleteClick);
+    }
+
+    function createNewContact() {
+        var listView = $("#contactsListView").data("kendoListView");
+        listView.add();
     }
 
 </script>

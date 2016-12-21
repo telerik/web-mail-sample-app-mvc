@@ -1,0 +1,31 @@
+﻿@model TelerikMvcWebMail.Models.ContactViewModel
+
+<div class="product-view k-widget">
+    <dl>
+        <dt>Contact Name</dt>
+        <dd>
+            @(Html.EditorFor(Model => Model.Name))
+            <span data-for="ProductName" class="k-invalid-msg"></span>
+        </dd>
+        <dt>Country</dt>
+        <dd>
+            @(Html.EditorFor(Model => Model.Country))
+        </dd>
+        <dt>City</dt>
+        <dd>
+            @(Html.EditorFor(Model => Model.City))
+        </dd>
+        <dt>Company</dt>
+        <dd>
+            @(Html.EditorFor(Model => Model.Company))
+        </dd>
+        <dt>Phone</dt>
+        <dd>
+            @(Html.EditorFor(Model => Model.HomePhone))
+        </dd>
+    </dl>
+    <div class="edit-buttons">
+        <a class="k-button k-button-icontext k-update-button" href="\\#"><span class="k-icon k-update"></span></a>
+        <a class="k-button k-button-icontext k-cancel-button" href="\\#"><span class="k-icon k-cancel"></span></a>
+    </div>
+</div>

@@ -212,6 +212,7 @@
     <Content Include="Images\heroAccent.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\contacts\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +248,9 @@
     <Content Include="Models\WebMail.edmx.diagram">
       <DependentUpon>WebMail.edmx</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Contacts\EditorTemplates\ContactViewModel.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

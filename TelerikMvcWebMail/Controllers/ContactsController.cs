@@ -20,7 +20,7 @@ namespace TelerikMvcWebMail.Controllers
 
         public ActionResult Contacts()
 		{
-			return View();
+			return View(contactsService.Read());
 		}
 
 		public ActionResult NewContact()
@@ -30,7 +30,7 @@ namespace TelerikMvcWebMail.Controllers
 
         public ActionResult Contacts_Read([DataSourceRequest] DataSourceRequest request)
         {
-            return Json(contactsService.GetAll().ToDataSourceResult(request));
+            return Json(contactsService.Read().ToDataSourceResult(request));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
