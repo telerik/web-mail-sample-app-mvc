@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -12,27 +14,7 @@ namespace TelerikMvcWebMail.Controllers
     {
         public ActionResult Index()
         {
-            var mailsData = new List<MailViewModel>();
-            for (int i = 0; i < 20; i++)
-            {
-                if (i % 5 == 0)
-                {
-                    Thread.Sleep(1000);
-                }
-
-                var mail = new MailViewModel()
-                {
-                    CheckBoxCheked = false,
-                    From = "Veselin Tsvetanov",
-                    Subject = i + "Check this mail!",
-                    Date = DateTime.Now,
-                    Text = "This is a simple mail with a simple content"
-                };
-
-                mailsData.Add(mail);
-            }
-
-            return View(mailsData);
+            return View();
         }
 
         public ActionResult NewMail()
@@ -45,6 +27,26 @@ namespace TelerikMvcWebMail.Controllers
             ViewBag.Message = "Your app description page.";
 
             return View();
+        }
+
+        public ActionResult Read([DataSourceRequest]DataSourceRequest request)
+        {
+            return Json(GetMails().ToDataSourceResult(request));
+        }
+
+        private static IEnumerable<MailViewModel> GetMails()
+        {
+            var northwind = new WebMailEntities1();
+
+            return northwind.Messages.Select(message => new MailViewModel
+            {
+                MailID = message.MessageID,
+                CheckBoxCheked = message.IsRead,
+                From = message.From,
+                Subject = message.Subject,
+                Date = message.Received,
+                Text = message.Body
+            });
         }
     }
 }

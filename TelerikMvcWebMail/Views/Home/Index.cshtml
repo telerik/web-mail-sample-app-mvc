@@ -67,9 +67,9 @@
                 .Groupable()
                 .Selectable(s => s.Mode(GridSelectionMode.Multiple))
                 .DataSource(dataSource => dataSource
-                    .Ajax()
-                    .ServerOperation(false)
-                    .Group(g => g.Add(p => p.Date))
+                .Ajax()
+                .PageSize(20)
+                .Read(read => read.Action("Read", "Home"))
                 )
                 .Events(e => e.Change("mailSelectionChanged"))
             )
