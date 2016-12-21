@@ -95,9 +95,8 @@
         <div class="btn-cards" onclick="changeToContactsCards()">Cards (Placeholder text)</div>
         <div class="btn-listdetails" onclick="changeToListDetails()">Vertical Panes (Placeholder text)</div>
     </div>
-
+    <input type="text" class="k-input search-textbox" placeholder="Search people ...">
     <div class="contacts">
-
         @(Html.Kendo().ListView<TelerikMvcWebMail.Models.ContactViewModel>()
             .Name("contactsListView")
             .TagName("div")
@@ -116,12 +115,8 @@
                 .Change("onListViewSelectionChange")
             )
         )
-
         <div class="contact-details k-widget">
-
         </div>
-
-
     </div>
 </div>
 
@@ -168,6 +163,14 @@
         listView.select(listView.element.children().first());
 
         $('.k-email-button').on('click', createNewMail);
+        $('.search-textbox').on('keyup', searchContacts);
+    }
+
+    function searchContacts(e) {
+        var text = $(e.target).val();
+
+        var listView = $("#contactsListView").data("kendoListView");
+        listView.dataSource.filter({ field: "Name", operator: "contains", value: text });
     }
 
     function createNewMail(e) {
