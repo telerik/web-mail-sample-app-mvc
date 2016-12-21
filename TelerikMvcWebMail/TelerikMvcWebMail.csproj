@@ -134,6 +134,7 @@
     <Compile Include="Models\Contact.cs">
       <DependentUpon>WebMail.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContactsService.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\Event.cs">
       <DependentUpon>WebMail.tt</DependentUpon>

@@ -8,33 +8,20 @@ namespace TelerikMvcWebMail.Models
 {
     public class ContactViewModel
     {
-        public int EmployeeID
+        public string EmployeeID
         {
             get;
             set;
         }
 
         [Required]
-        public string FirstName
+        public string Name
         {
             get;
             set;
         }
 
-        public string EmployeeName
-        {
-            get;
-            set;
-        }
-
-        [Required]
-        public string LastName
-        {
-            get;
-            set;
-        }
-
-        public string Title
+        public string Email
         {
             get;
             set;
@@ -52,7 +39,7 @@ namespace TelerikMvcWebMail.Models
             set;
         }
 
-        public string Address
+        public string Company
         {
             get;
             set;
@@ -62,6 +49,20 @@ namespace TelerikMvcWebMail.Models
         {
             get;
             set;
+        }
+
+        public Contact ToEntity()
+        {
+            return new Contact
+            {
+                City = City,
+                Company = Company,
+                Country = Country,
+                Email = Email,
+                Id = EmployeeID,
+                Name = Name,
+                Phone = HomePhone
+            };
         }
     }
 }

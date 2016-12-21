@@ -11,9 +11,14 @@ namespace TelerikMvcWebMail.Controllers
 {
     public class ContactsController : Controller
     {
-		//
-		// GET: /Contacts/
-		public ActionResult Contacts()
+        private ContactsService contactsService;
+
+        public ContactsController()
+        {
+            contactsService = new ContactsService(new WebMailEntities1());
+        }
+
+        public ActionResult Contacts()
 		{
 			return View();
 		}
@@ -25,60 +30,39 @@ namespace TelerikMvcWebMail.Controllers
 
         public ActionResult Contacts_Read([DataSourceRequest] DataSourceRequest request)
         {
-            var contacts = new List<ContactViewModel>();
-
-            for (int i = 0; i < 10; i++)
-            {
-                var currentContact = new ContactViewModel()
-                {
-                    EmployeeID = i,
-                    Address = "Some random adress, " + i,
-                    City = "Sofia",
-                    Country = "Bulgaria",
-                    FirstName = "Pesho",
-                    LastName = "Goshev",
-                    HomePhone = "+356 676 616 71"
-                };
-
-                contacts.Add(currentContact);
-            }
-
-            return Json(contacts.ToDataSourceResult(request));
+            return Json(contactsService.GetAll().ToDataSourceResult(request));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Contacts_Create([DataSourceRequest] DataSourceRequest request, ContactViewModel product)
+        public ActionResult Contacts_Create([DataSourceRequest] DataSourceRequest request, ContactViewModel contact)
         {
             var results = new List<ContactViewModel>();
 
-            //if (product != null && ModelState.IsValid)
-            //{
-            //    productService.Create(product);
-            //    results.Add(product);
-            //}
+            if (contact != null && ModelState.IsValid)
+            {
+                contactsService.Insert(contact);
+            }
 
-            //return Json(results.ToDataSourceResult(request, ModelState));
-
-            return Json(results);
+            return Json(new[] { contact }.ToDataSourceResult(request, ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Contacts_Update([DataSourceRequest] DataSourceRequest request, ContactViewModel product)
+        public ActionResult Contacts_Update([DataSourceRequest] DataSourceRequest request, ContactViewModel contact)
         {
-            if (product != null && ModelState.IsValid)
+            if (contact != null && ModelState.IsValid)
             {
-                //productService.Update(product);
+                contactsService.Update(contact);
             }
 
             return Json(ModelState.ToDataSourceResult());
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Contacts_Destroy([DataSourceRequest] DataSourceRequest request, ContactViewModel product)
+        public ActionResult Contacts_Destroy([DataSourceRequest] DataSourceRequest request, ContactViewModel contact)
         {
-            if (product != null)
+            if (contact != null)
             {
-                //productService.Destroy(product);
+                contactsService.Delete(contact);
             }
 
             return Json(ModelState.ToDataSourceResult());
