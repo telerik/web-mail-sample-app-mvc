@@ -1,31 +1,79 @@
 ﻿@model TelerikMvcWebMail.Models.ContactViewModel
 
-<div class="product-view k-widget">
+<div class="contact-edit-view k-widget">
+    <div class="new-line">
+        <h3>Create New Contact</h3>
+    </div>
+
+    <div class="new-contact-dropdown-wrapper">
+        @Html.Label("newContactFolder", "Folder")
+        <br />
+        @(Html.Kendo().DropDownListFor(Model => Model.Folder)
+            .BindTo(new List<SelectListItem>() {
+                new SelectListItem() {
+                    Text = "Favorites",
+                    Value = "Favorites"
+                }, new SelectListItem() {
+                    Text = "Friends",
+                    Value = "Friends"
+                }, new SelectListItem() {
+                    Text = "Work",
+                    Value = "Work"
+                }
+            })
+        )
+    </div>
+
+    <div class="new-contact-upload-wrapper">
+        @(Html.Kendo().Upload()
+        .Name("photos")
+        .Messages(m => m.DropFilesHere("Drop files here to upload").Select("Add Photo..."))
+        )
+    </div>
     <dl>
-        <dt>Contact Name</dt>
+        <dt>Title</dt>
+        <dd>
+            @(Html.EditorFor(Model => Model.Title))
+            <span data-for="ProductName" class="k-invalid-msg"></span>
+        </dd>
+        <dt>Name</dt>
         <dd>
             @(Html.EditorFor(Model => Model.Name))
             <span data-for="ProductName" class="k-invalid-msg"></span>
-        </dd>
-        <dt>Country</dt>
-        <dd>
-            @(Html.EditorFor(Model => Model.Country))
-        </dd>
-        <dt>City</dt>
-        <dd>
-            @(Html.EditorFor(Model => Model.City))
         </dd>
         <dt>Company</dt>
         <dd>
             @(Html.EditorFor(Model => Model.Company))
         </dd>
+        <dt>City</dt>
+        <dd>
+            @(Html.EditorFor(Model => Model.City))
+        </dd>
+        <dt>Country</dt>
+        <dd>
+            @(Html.EditorFor(Model => Model.Country))
+        </dd>
         <dt>Phone</dt>
         <dd>
             @(Html.EditorFor(Model => Model.HomePhone))
         </dd>
+        <dt>Email</dt>
+        <dd>
+            @(Html.EditorFor(Model => Model.Email))
+        </dd>
     </dl>
     <div class="edit-buttons">
-        <a class="k-button k-button-icontext k-update-button" href="\\#"><span class="k-icon k-update"></span></a>
-        <a class="k-button k-button-icontext k-cancel-button" href="\\#"><span class="k-icon k-cancel"></span></a>
+        <button type="button" class="k-button k-primary k-update-button" href="\\#">Save</button>
+        <button type="button" class="k-button k-cancel-button" href="\\#">Cancel</button>
     </div>
 </div>
+
+
+
+
+
+@*<div class="new-line">
+        <label for="title-textbox">Title</label>
+        <br />
+        <input type="text" class="k-input title-textbox" name="title-textbox">
+    </div>*@

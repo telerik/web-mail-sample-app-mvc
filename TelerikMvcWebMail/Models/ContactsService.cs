@@ -28,7 +28,9 @@ namespace TelerikMvcWebMail.Models
                 HomePhone = e.Phone,
                 Country = e.Country,
                 City = e.City,
-                Company = e.Company
+                Company = e.Company,
+                Folder = e.Folder,
+                Title = e.Title
             }).ToList();
 
             return result;

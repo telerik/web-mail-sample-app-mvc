@@ -21,6 +21,12 @@ namespace TelerikMvcWebMail.Models
             set;
         }
 
+        public string Title
+        {
+            get;
+            set;
+        }
+
         public string Email
         {
             get;
@@ -51,6 +57,8 @@ namespace TelerikMvcWebMail.Models
             set;
         }
 
+        public string Folder { get; set; }
+
         public Contact ToEntity()
         {
             return new Contact
@@ -61,7 +69,9 @@ namespace TelerikMvcWebMail.Models
                 Email = Email,
                 Id = EmployeeID,
                 Name = Name,
-                Phone = HomePhone
+                Phone = HomePhone,
+                Folder = Folder,
+                Title = Title
             };
         }
     }

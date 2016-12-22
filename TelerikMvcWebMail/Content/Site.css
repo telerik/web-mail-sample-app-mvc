@@ -179,12 +179,21 @@ html, body {
 }
  
 /* NEW CONTACT */
-.new-contact-dropdown-wrapper, .new-contact-upload-wrapper {
+.new-contact-dropdown-wrapper, 
+.new-contact-upload-wrapper {
 	display: inline-block;
 }
 
 .new-contact-upload-wrapper {
 	width: 400px;
+}
+
+.contact-edit-view {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    right: 0;
+    left: 273px;
 }
 
 /* NOTES */
