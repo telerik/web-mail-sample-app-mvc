@@ -12,7 +12,13 @@ namespace TelerikMvcWebMail.Controllers
 {
     public class TasksController : Controller
     {
-        // GET: /Notes/
+        private NotesService notesService;
+
+        public TasksController()
+        {
+            notesService = new NotesService(new WebMailEntities1());
+        }
+
         public ActionResult Tasks()
         {
             return View();
@@ -25,26 +31,42 @@ namespace TelerikMvcWebMail.Controllers
 
         public ActionResult Tasks_Read([DataSourceRequest] DataSourceRequest request, string search)
         {
-            var notesData = new List<NoteViewModel>();
-            for (int i = 0; i < 20; i++)
-            {
-                var note = new NoteViewModel()
-                {
-                    CheckBoxCheked = false,
-                    Subject = i + "Check this mail!",
-                    CreatedOn = DateTime.Now,
-                    Category = "Work"
-                };
+            return Json(notesService.Read().ToDataSourceResult(request));
+        }
 
-                notesData.Add(note);
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Tasks_Create([DataSourceRequest] DataSourceRequest request, NoteViewModel note)
+        {
+            var results = new List<NoteViewModel>();
+
+            if (note != null && ModelState.IsValid)
+            {
+                notesService.Insert(note);
             }
 
-            if (search != null && search != String.Empty)
+            return Json(new[] { note }.ToDataSourceResult(request, ModelState));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Tasks_Update([DataSourceRequest] DataSourceRequest request, NoteViewModel note)
+        {
+            if (note != null && ModelState.IsValid)
             {
-                notesData = notesData.FindAll(n => n.Subject.Contains(search));
+                notesService.Update(note);
             }
 
-            return Json(notesData.ToDataSourceResult(request));
+            return Json(ModelState.ToDataSourceResult());
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Tasks_Destroy([DataSourceRequest] DataSourceRequest request, NoteViewModel note)
+        {
+            if (note != null)
+            {
+                notesService.Delete(note);
+            }
+
+            return Json(ModelState.ToDataSourceResult());
         }
     }
 }

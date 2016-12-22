@@ -150,6 +150,7 @@
     <Compile Include="Models\Note.cs">
       <DependentUpon>WebMail.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\NotesService.cs" />
     <Compile Include="Models\NoteViewModel.cs" />
     <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\WebMail.Context.cs">
