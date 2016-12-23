@@ -12,6 +12,13 @@ namespace TelerikMvcWebMail.Controllers
 {
     public class HomeController : Controller
     {
+        private MailsService mailsService;
+
+        public HomeController()
+        {
+            mailsService = new MailsService(new WebMailEntities1());
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -31,22 +38,30 @@ namespace TelerikMvcWebMail.Controllers
 
         public ActionResult Read([DataSourceRequest]DataSourceRequest request)
         {
-            return Json(GetMails().ToDataSourceResult(request));
+            return Json(mailsService.Read().ToDataSourceResult(request));
         }
 
-        private static IEnumerable<MailViewModel> GetMails()
+        [ValidateInput(false)]
+        public ActionResult Update([DataSourceRequest] DataSourceRequest request, MailViewModel mail)
         {
-            var northwind = new WebMailEntities1();
-
-            return northwind.Messages.Select(message => new MailViewModel
+            if (mail != null && ModelState.IsValid)
             {
-                MailID = message.MessageID,
-                CheckBoxCheked = message.IsRead,
-                From = message.From,
-                Subject = message.Subject,
-                Date = message.Received,
-                Text = message.Body
-            });
+                mailsService.Update(mail);
+            }
+
+            return Json(new[] { mail }.ToDataSourceResult(request, ModelState));
         }
+
+        [ValidateInput(false)]
+        public ActionResult Create([DataSourceRequest] DataSourceRequest request, MailViewModel mail)
+        {
+            if (mail != null && ModelState.IsValid)
+            {
+                mailsService.Create(mail);
+            }
+
+            return Json(new[] { mail }.ToDataSourceResult(request, ModelState));
+        }
+
     }
 }

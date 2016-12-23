@@ -20,9 +20,9 @@
                 menuButtons.Add().Text("Forward");
             });
 
-            items.Add().Type(CommandType.Button).Text("Delete");
+            items.Add().Type(CommandType.Button).Text("Delete").Click("toolBarButtonClick");
 
-            items.Add().Type(CommandType.SplitButton).Text("Move").MenuButtons(menuButtons =>
+            items.Add().Type(CommandType.SplitButton).Click("toolBarButtonClick").Text("Move").MenuButtons(menuButtons =>
             {
                 menuButtons.Add().Text("Inbox");
                 menuButtons.Add().Text("Junk");
@@ -37,9 +37,9 @@
 
             items.Add().Type(CommandType.SplitButton).Text("More").MenuButtons(menuButtons =>
             {
-                menuButtons.Add().Text("Mark us read");
-                menuButtons.Add().Text("Mark as unread");
-                menuButtons.Add().Text("Print");
+                menuButtons.Add().Text("Reply").Url("/Home/NewMail");
+                menuButtons.Add().Text("Reply All").Url("/Home/NewMail");
+                menuButtons.Add().Text("Forward").Url("/Home/NewMail");
             });
 
             items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft").Click("changeToVerticalPanes");
@@ -48,30 +48,37 @@
     )
     <div class="inner-mail-content">
         <div class="mail-grid">
+            <input type="button" name="" value="test filter" onclick="testFilter()" />
+			<input type="button" name="" value="set field" onclick="setField()" />
             @(Html.Kendo().Grid(Model)
-                .Name("MailGrid")
-                .Columns(columns =>
-                {
-                    columns.Bound(p => p.CheckBoxCheked)
-                        .Title("")
-                        .Width(80)
-                        .ClientTemplate("<input type='checkbox' #= CheckBoxCheked ? checked='checked': '' # class='chkbx' />");
-                    columns.Bound(p => p.From).Title("From").Width(300);
-                    columns.Bound(p => p.Subject).Title("Subject");
-                    columns.Bound(p => p.Date).Title("Date").Width(300).Format("{0:g}");
-                })
-                .HtmlAttributes(new { style = "height: 100%;" })
-                .Sortable()
-                .Scrollable()
-                .Filterable()
-                .Groupable()
-                .Selectable(s => s.Mode(GridSelectionMode.Multiple))
-                .DataSource(dataSource => dataSource
-                .Ajax()
-                .PageSize(20)
-                .Read(read => read.Action("Read", "Home"))
-                )
-                .Events(e => e.Change("mailSelectionChanged"))
+				.Name("MailGrid")
+				.Columns(columns =>
+				{
+					columns.Bound(p => p.CheckBoxCheked)
+						.Title("")
+						.Width(80)
+						.ClientTemplate("<input type='checkbox' #= CheckBoxCheked ? checked='checked': '' # class='chkbx' />");
+					columns.Bound(p => p.From).Title("From").Width(300);
+					columns.Bound(p => p.Subject).Title("Subject");
+					columns.Bound(p => p.Date).Title("Date").Width(300).Format("{0:g}");
+				})
+				.HtmlAttributes(new { style = "height: 100%;" })
+				.Sortable()
+				.Scrollable()
+				.Filterable()
+				.Groupable()
+				.Selectable(s => s.Mode(GridSelectionMode.Multiple))
+				.DataSource(dataSource => dataSource
+					.Ajax()
+					.AutoSync(true)
+					.PageSize(20)
+					.Model(model => model.Id(p => p.MailID))
+					.Create(create => create.Action("Create", "Home"))
+					.Read(read => read.Action("Read", "Home"))
+					.Update(update => update.Action("Update", "Home"))
+					
+				)
+				.Events(e => e.Change("mailSelectionChanged"))
             )
         </div>
         <div class="mail-details">
@@ -85,6 +92,21 @@
     </div>
 </div>
 <script>
+	function toolBarButtonClick(e) {
+		var grid = $("#MailGrid").data("kendoGrid");
+		var selectedItem = grid.dataItem(grid.select());
+		
+		selectedItem.Folder = e.target.text();
+		selectedItem.dirty = true;
+		grid.dataSource.sync();
+	}
+
+    function testFilter(e) {
+        var grid = $("#MailGrid").data("kendoGrid");
+        grid.dataSource.filter({ field: "Folder", operator: "eq", value: "Junk" });
+        grid.refresh();
+    }
+
     function changeToVerticalPanes() {
         $('.mail-grid').attr('style', "display: inline-block; width: 35%");
         $('.mail-details').attr('style', "display: inline-block; vertical-align: top;");

@@ -143,6 +143,7 @@
     <Compile Include="Models\Folder.cs">
       <DependentUpon>WebMail.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MailsService.cs" />
     <Compile Include="Models\MailViewModel.cs" />
     <Compile Include="Models\Message.cs">
       <DependentUpon>WebMail.tt</DependentUpon>
