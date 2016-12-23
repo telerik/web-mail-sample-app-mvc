@@ -32,31 +32,7 @@ namespace TelerikMvcWebMail.Controllers
         public ActionResult Tasks_Read([DataSourceRequest] DataSourceRequest request, string search)
         {
             return Json(notesService.Read().ToDataSourceResult(request));
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Tasks_Create([DataSourceRequest] DataSourceRequest request, NoteViewModel note)
-        {
-            var results = new List<NoteViewModel>();
-
-            if (note != null && ModelState.IsValid)
-            {
-                notesService.Insert(note);
-            }
-
-            return Json(new[] { note }.ToDataSourceResult(request, ModelState));
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Tasks_Update([DataSourceRequest] DataSourceRequest request, NoteViewModel note)
-        {
-            if (note != null && ModelState.IsValid)
-            {
-                notesService.Update(note);
-            }
-
-            return Json(ModelState.ToDataSourceResult());
-        }
+        }      
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Tasks_Destroy([DataSourceRequest] DataSourceRequest request, NoteViewModel note)
@@ -67,6 +43,17 @@ namespace TelerikMvcWebMail.Controllers
             }
 
             return Json(ModelState.ToDataSourceResult());
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Tasks_Create(NoteViewModel note)
+        {
+            if (note != null && ModelState.IsValid)
+            {
+                notesService.Insert(note);
+            }
+
+            return View("Tasks");
         }
     }
 }

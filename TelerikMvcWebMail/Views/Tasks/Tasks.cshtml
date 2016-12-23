@@ -5,7 +5,26 @@
 @model IEnumerable<TelerikMvcWebMail.Models.NoteViewModel>
 
 <aside class="treeview-wrapper">
-	@{ Html.RenderPartial("TreeView"); }
+    @Html.ActionLink("Add Task", "NewTask")
+
+    @(Html.Kendo().TreeView()
+        .Name("tasksTreeView")
+    )
+
+    <div class="about-and-source">
+        <div>
+            @Html.ActionLink("About This App", "About", "Home")
+        </div>
+        <div>
+            @Html.ActionLink("Download Source Code", "", "")
+        </div>
+        <p>
+            Copyright &copy; @DateTime.Now.Year Progress Software Corporation and/or its subsidiaries or affiliates.
+        </p>
+        <p>
+            All Rights Reserved.
+        </p>
+    </div>
 </aside>
 
 <div class="content">
@@ -25,8 +44,9 @@
                 columns.Bound(p => p.Subject).Title("Subject");
                 columns.Bound(p => p.CreatedOn).Title("Created On").Width(300).Format("{0:g}");
                 columns.Bound(p => p.Category).Title("Category");
-                
+
             })
+            .Editable(e => e.Mode(GridEditMode.InLine))
             .Selectable(s => s.Mode(GridSelectionMode.Multiple))
             .DataSource(dataSource => dataSource
                 .Ajax()
@@ -34,9 +54,14 @@
                 .Create(create => create.Action("Tasks_Create", "Tasks"))
                 .Update(update => update.Action("Tasks_Update", "Tasks"))
                 .Destroy(destroy => destroy.Action("Tasks_Destroy", "Tasks"))
-                .Model(model => { model.Id(p => p.Id); })
+                .Model(model => {
+                    model.Id(p => p.Id);
+                    model.Field(p => p.Id).Editable(false);
+                    model.Field(p => p.CheckBoxCheked).Editable(false);
+                    model.Field(p => p.CreatedOn).Editable(false);
+                })
             )
-            .Events(e => e.Change("noteSelectionChanged"))
+            .Events(e => e.Change("noteSelectionChanged").DataBound("tasksGridDataBound"))
         )
 	</div>
 </div>
@@ -56,12 +81,53 @@
         };
     }
 
+    function createNewTask() {
+
+        var tasksGrid = $("#noteGrid").data("kendoGrid");
+        tasksGrid.addRow();
+    }
+
+    function tasksGridDataBound(e) {
+        var tasksGrid = e.sender;
+        var navigationTreeView = $('#tasksTreeView').data('kendoTreeView');
+        var gridData = tasksGrid.dataSource.data();
+        var numbers = { All: 0, Personal: 0, Work: 0 };
+        for (var i = 0; i < gridData.length; i++) {
+            var currentItemCategory = gridData[i].Category;
+            numbers[currentItemCategory] += 1;
+        }
+
+        var data = [{
+            text: "All " + numbers.All,
+        }, {
+            text: "Personal " + numbers.Personal,
+        }, {
+            text: "Work " + numbers.Work,
+        }];
+
+
+        var newDataSource = new kendo.data.HierarchicalDataSource({ data: data });
+
+        navigationTreeView.setDataSource(newDataSource);
+    }
+
     $(document).ready(function() {
         $(".search-textbox").on('keyup', function (e) {
             var text = $(e.target).val();
 
-            var notes = $("#noteGrid").data("kendoGrid");
-            notes.dataSource.filter({ field: "Subject", operator: "contains", value: text });
+            var tasksGrid = $("#noteGrid").data("kendoGrid");
+            tasksGrid.dataSource.filter({ field: "Subject", operator: "contains", value: text });
+        });
+
+        $('.btn-delete').on('click', function () {
+            var tasksGrid = $("#noteGrid").data("kendoGrid");
+
+            var checkboxesToBeDeleted = $('.chkbx:checkbox:checked');
+            var rows = checkboxesToBeDeleted.parents('tr[role="row"]');
+
+            for (var i = 0; i < rows.length; i++) {
+                tasksGrid.removeRow(rows[i]);
+            }
         });
     });
 </script>

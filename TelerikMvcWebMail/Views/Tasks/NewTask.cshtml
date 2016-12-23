@@ -16,18 +16,18 @@
             .BindTo(new List<SelectListItem>() {
                 new SelectListItem() {
                     Text = "All",
-                    Value = "1"
+                    Value = "All"
                 },
                 new SelectListItem() {
                     Text = "Personal",
-                    Value = "1"
+                    Value = "Personal"
                 },
                 new SelectListItem() {
                     Text = "Work",
-                    Value = "1"
+                    Value = "Work"
                 }
             })
-            .Value("1")
+            .Value("All")
             .HtmlAttributes(new { style = "width: 200px;" })
         )
     </div>
@@ -55,11 +55,41 @@
             .Name("addTask")
             .HtmlAttributes(new { @class = "k-primary" })
             .Tag("span")
-            .Content("Add Task"))
+            .Content("Add Task")
+            .Events(e => e.Click("addClick"))
+        )
 
         @(Html.Kendo().Button()
             .Name("cancel")
             .Tag("span")
-            .Content("Cancel"))
+            .Content("Cancel")
+            .Events(e => e.Click("cancelClick"))
+        )
     </div>
 </div>
+
+<script>
+    function addClick() {
+        var selectedCategory = $('#newNoteCategory').data('kendoDropDownList').value();
+        var subject = $('.subject-textbox').val();
+        var content = $('#newNote').data('kendoEditor').textarea.val();
+
+        $.ajax({
+            method: "POST",
+            url: "/Tasks/Tasks_Create",
+            data: {
+                note: {
+                    Category: selectedCategory,
+                    Subject: subject,
+                    Content: content
+                }
+            }
+        }).done(function (msg) {
+            window.location.href = "/Tasks/Tasks";
+        });
+    }
+
+    function cancelClick() {
+        window.location.href = "/Tasks/Tasks";
+    }
+</script>

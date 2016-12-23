@@ -45,6 +45,7 @@ namespace TelerikMvcWebMail.Models
             }
 
             var entity = note.ToEntity();
+            entity.DateCreated = DateTime.Now;
 
             entities.Notes.Add(entity);
             entities.SaveChanges();
@@ -67,7 +68,8 @@ namespace TelerikMvcWebMail.Models
 
         public void Delete(NoteViewModel note)
         {
-            var entity = note.ToEntity();
+            var entity = new Note();
+            entity.Id = note.Id;
             entities.Notes.Attach(entity);
             entities.Notes.Remove(entity);
             entities.SaveChanges();
