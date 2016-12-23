@@ -60,17 +60,7 @@
     )
 
     @(Html.Kendo().TreeView()
-        .Name("treeview")
-        .Items(treeview =>
-        {
-            treeview.Add().Text("Inbox (17)");
-            treeview.Add().Text("Junk (0)");
-            treeview.Add().Text("Drafts (0)");
-            treeview.Add().Text("Deleted (0)");
-            treeview.Add().Text("NativeScript (1)");
-            treeview.Add().Text("Kend UI (3)");
-            treeview.Add().Text("Sitefinity (7)");
-        })
+        .Name("contactsTreeView")
     )
 
     <div class="about-and-source">
@@ -160,7 +150,32 @@
     function onListViewDataBound(e) {
         var listView = e.sender;
         var selectedItem = listView.select();
-        listView.select(listView.element.children().first());
+
+        if (selectedItem.length === 0) {
+            listView.select(listView.element.children().first());
+        }
+
+        var navigationTreeView = $('#contactsTreeView').data('kendoTreeView');
+        var listViewData = listView.dataSource.data();
+        var numbers = { All: 0, Favorites: 0, Friends: 0, Work: 0 };
+        for (var i = 0; i < listViewData.length; i++) {
+            var currentItemCategory = listViewData[i].Folder;
+            numbers[currentItemCategory] += 1;
+        }
+
+        var data = [{
+            text: "All " + numbers.All,
+        }, {
+            text: "Favorites " + numbers.Favorites,
+        }, {
+            text: "Friends " + numbers.Friends,
+        }, {
+            text: "Work " + numbers.Work,
+        }];
+
+        var newDataSource = new kendo.data.HierarchicalDataSource({ data: data });
+
+        navigationTreeView.setDataSource(newDataSource);
 
         $('.k-email-button').on('click', createNewMail);
         $('.search-textbox').on('keyup', searchContacts);
