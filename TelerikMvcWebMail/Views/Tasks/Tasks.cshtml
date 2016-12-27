@@ -5,10 +5,12 @@
 @model IEnumerable<TelerikMvcWebMail.Models.NoteViewModel>
 
 <aside class="treeview-wrapper">
-    @Html.ActionLink("Add Task", "NewTask")
+    <span class="add-new-task" >Add Task</span>
+    @*@Html.ActionLink("Add Task", "NewTask")*@
 
     @(Html.Kendo().TreeView()
         .Name("tasksTreeView")
+        .Events(e => e.Select("selecttaskFolder"))
     )
 
     <div class="about-and-source">
@@ -61,12 +63,19 @@
                     model.Field(p => p.CreatedOn).Editable(false);
                 })
             )
-            .Events(e => e.Change("noteSelectionChanged").DataBound("tasksGridDataBound"))
+            .Events(e => e
+                .Change("noteSelectionChanged")
+                .DataBound("tasksGridDataBound")
+                .Remove("tasksGridItemRemove")
+            )
         )
 	</div>
 </div>
 
 <script>
+    var numbers;
+    var isInitialLoad = true;
+
     function noteSelectionChanged(e) {
         var selectedRows = this.select();
         $('input.chkbx').prop('checked', false);
@@ -75,40 +84,58 @@
         checkboxes.prop('checked', true);
     }
 
-    function getSearch() {
-        return {
-            search: $(".search-textbox").val()
-        };
-    }
-
     function createNewTask() {
-
         var tasksGrid = $("#noteGrid").data("kendoGrid");
         tasksGrid.addRow();
     }
 
-    function tasksGridDataBound(e) {
-        var tasksGrid = e.sender;
-        var navigationTreeView = $('#tasksTreeView').data('kendoTreeView');
-        var gridData = tasksGrid.dataSource.data();
-        var numbers = { All: 0, Personal: 0, Work: 0 };
+    function getinitialNumberOfItems(gridData) {
+        numbers = { All: 0, Personal: 0, Work: 0 };
+
         for (var i = 0; i < gridData.length; i++) {
             var currentItemCategory = gridData[i].Category;
             numbers[currentItemCategory] += 1;
         }
+    }
+
+    function tasksGridDataBound(e) {
+        var tasksGrid = e.sender;
+
+        if (isInitialLoad) {
+            isInitialLoad = false;
+            getinitialNumberOfItems(tasksGrid.dataSource.data());
+        }
 
         var data = [{
             text: "All " + numbers.All,
+            value: "All"
         }, {
             text: "Personal " + numbers.Personal,
+            value: "Personal"
         }, {
             text: "Work " + numbers.Work,
+            value: "Work"
         }];
 
-
         var newDataSource = new kendo.data.HierarchicalDataSource({ data: data });
-
+        var navigationTreeView = $('#tasksTreeView').data('kendoTreeView');
         navigationTreeView.setDataSource(newDataSource);
+    }
+
+    function tasksGridItemRemove(e) {
+        var removedItemValue = e.model.Category;
+        numbers[removedItemValue] -= 1;
+    }
+
+    function selecttaskFolder(e) {
+        var selectedText = e.sender.dataItem(e.node).value;
+
+        var tasksGrid = $("#noteGrid").data("kendoGrid");
+        if (!tasksGrid) {
+            window.location.href = "/Tasks/Tasks";
+        } else {
+            tasksGrid.dataSource.filter({ field: "Category", operator: "contains", value: selectedText });
+        }
     }
 
     $(document).ready(function() {
@@ -128,6 +155,10 @@
             for (var i = 0; i < rows.length; i++) {
                 tasksGrid.removeRow(rows[i]);
             }
+        });
+
+        $('.add-new-task').on('click', function (e) {
+            $(".content").load('@(Url.Action("NewTask", "Tasks"))');
         });
     });
 </script>

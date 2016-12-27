@@ -50,7 +50,7 @@
 				<input type="text" class="k-input password-textbox" name="password-textbox">
 			</div>
 			<div class="new-line">
-				 <button id="signInButton" class="k-primary">Sign In</button>
+				 <button id="signInButton" class="k-primary" onclick="location.href='@Url.Action("Index", "Home")';return false;">Sign In</button>
 			</div>
 			<div>
 				@Html.ActionLink("About This App", "About", "Home")

@@ -2,9 +2,31 @@
     ViewBag.Title = "NewTask";
 }
 
-<aside class="treeview-wrapper clearfix">
-    @{ Html.RenderPartial("TreeView"); }
-</aside>
+<script>
+    function addClick() {
+        var selectedCategory = $('#newNoteCategory').data('kendoDropDownList').value();
+        var subject = $('.subject-textbox').val();
+        var content = $('#newNote').data('kendoEditor').textarea.val();
+
+        $.ajax({
+            method: "POST",
+            url: "/Tasks/Tasks_Create",
+            data: {
+                note: {
+                    Category: selectedCategory,
+                    Subject: subject,
+                    Content: content
+                }
+            }
+        }).done(function (msg) {
+            window.location.href = "/Tasks/Tasks";
+        });
+    }
+
+    function cancelClick() {
+        window.location.href = "/Tasks/Tasks";
+    }
+</script>
 
 <div class="new-wrapper">
     <h2>Add Task</h2>
@@ -67,29 +89,3 @@
         )
     </div>
 </div>
-
-<script>
-    function addClick() {
-        var selectedCategory = $('#newNoteCategory').data('kendoDropDownList').value();
-        var subject = $('.subject-textbox').val();
-        var content = $('#newNote').data('kendoEditor').textarea.val();
-
-        $.ajax({
-            method: "POST",
-            url: "/Tasks/Tasks_Create",
-            data: {
-                note: {
-                    Category: selectedCategory,
-                    Subject: subject,
-                    Content: content
-                }
-            }
-        }).done(function (msg) {
-            window.location.href = "/Tasks/Tasks";
-        });
-    }
-
-    function cancelClick() {
-        window.location.href = "/Tasks/Tasks";
-    }
-</script>

@@ -26,7 +26,7 @@ namespace TelerikMvcWebMail.Controllers
 
         public ActionResult NewTask()
         {
-            return View();
+            return PartialView("NewTask");
         }
 
         public ActionResult Tasks_Read([DataSourceRequest] DataSourceRequest request, string search)
