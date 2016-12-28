@@ -98,7 +98,6 @@
                 .Read(read => read.Action("Contacts_Read", "Contacts"))
                 .Update(update => update.Action("Contacts_Update", "Contacts"))
                 .Destroy(destroy => destroy.Action("Contacts_Destroy", "Contacts"))
-                .Events(e => e.Sync("onListViewSync"))
             )
             .Editable()
             .Selectable()
@@ -151,34 +150,16 @@
         lv.refresh();
     }
 
-    function generateTreeViewNumbers(listView) {
-        var navigationTreeView = $('#contactsTreeView').data('kendoTreeView');
-        var listViewData = listView.dataSource.data();
+    function getInitialNumberOfItems(listViewData) {
         var numbers = { Favorites: 0, Friends: 0, Work: 0 };
         for (var i = 0; i < listViewData.length; i++) {
             var currentItemCategory = listViewData[i].Folder;
             numbers[currentItemCategory] += 1;
         }
 
-        var allNumber = numbers.Favorites + numbers.Friends + numbers.Work;
+        numbers.All = numbers.Favorites + numbers.Friends + numbers.Work;
 
-        var data = [{
-            text: "All " + allNumber,
-            value: "All"
-        }, {
-            text: "Favorites " + numbers.Favorites,
-            value: "Favorites"
-        }, {
-            text: "Friends " + numbers.Friends,
-            value: "Friends"
-        }, {
-            text: "Work " + numbers.Work,
-            value: "Work"
-        }];
-
-        var newDataSource = new kendo.data.HierarchicalDataSource({ data: data });
-
-        navigationTreeView.setDataSource(newDataSource);
+        return numbers;
     }
 
     function onListViewDataBound(e) {
@@ -189,14 +170,46 @@
             listView.select(listView.element.children().first());
         }
 
-        if (shouldChangeTreeViewNumbers) {
-            generateTreeViewNumbers(listView);
-        } else {
-            shouldChangeTreeViewNumbers = true;
-        }
+        $.ajax({
+            url: '@Url.Action("Contacts_Read", "Contacts")',
+            success: function (listViewData) {
+                var numbers = getInitialNumberOfItems(listViewData.Data);
+                var data = [{
+                    text: "All " + numbers.All,
+                    value: "All"
+                }, {
+                    text: "Favorites " + numbers.Favorites,
+                    value: "Favorites"
+                }, {
+                    text: "Friends " + numbers.Friends,
+                    value: "Friends"
+                }, {
+                    text: "Work " + numbers.Work,
+                    value: "Work"
+                }];
+
+                var newDataSource = new kendo.data.HierarchicalDataSource({ data: data });
+                var navigationTreeView = $('#contactsTreeView').data('kendoTreeView');
+                navigationTreeView.setDataSource(newDataSource);
+            }
+        });
 
         $('.k-email-button').on('click', createNewMail);
         $('.search-textbox').on('keyup', searchContacts);
+    }
+
+    function selectContactsFolder(e) {
+        var selectedText = e.sender.dataItem(e.node).value;
+
+        var contactsListView = $("#contactsListView").data("kendoListView");
+
+        if (selectedText === "All") {
+            contactsListView.dataSource.filter({});
+            shouldChangeTreeViewNumbers = true;
+        } else {
+            contactsListView.dataSource.filter({ field: "Folder", operator: "contains", value: selectedText });
+            shouldChangeTreeViewNumbers = false;
+        }
     }
 
     function searchContacts(e) {
@@ -260,24 +273,4 @@
         var listView = $("#contactsListView").data("kendoListView");
         listView.add();
     }
-
-    function selectContactsFolder(e) {
-        var selectedText = e.sender.dataItem(e.node).value;
-
-        var contactsListView = $("#contactsListView").data("kendoListView");
-
-        if (selectedText === "All") {
-            contactsListView.dataSource.filter({});
-            shouldChangeTreeViewNumbers = true;
-        } else {
-            contactsListView.dataSource.filter({ field: "Folder", operator: "contains", value: selectedText });
-            shouldChangeTreeViewNumbers = false;
-        }
-    }
-
-    function onListViewSync(e) {
-        var contactsListView = $("#contactsListView").data("kendoListView");
-        contactsListView.dataSource.filter({});
-    }
-
 </script>

@@ -110,8 +110,6 @@
     </div>
 </div>
 <script>
-    var numbers;
-    var isInitialLoad = true;
     var selected = Cookies.get('selected');
 
     function setSelectedNode(selected) {
@@ -125,16 +123,23 @@
 
     function toolBarButtonClick(e) {
         var grid = $("#MailGrid").data("kendoGrid");
-        var treeview = $("#mailsTreeView").data("kendoTreeView");
         var selectedItem = grid.dataItem(grid.select());
-        var dataItem = treeview.dataItem(treeview.select());
 
-        selectedItem.Folder = e.id;
-        selectedItem.dirty = true;
-        
-        grid.dataSource.sync();
-        grid.dataSource.filter({ field: "Folder", operator: "contains", value: dataItem.value });
-        grid.refresh();
+        if (selectedItem) {
+            selectedItem.Folder = e.id;
+            selectedItem.dirty = true;
+
+            grid.dataSource.sync();
+
+            var treeview = $("#mailsTreeView").data("kendoTreeView");
+            var dataItem = treeview.dataItem(treeview.select());
+
+            if (dataItem) {
+                grid.dataSource.filter({ field: "Folder", operator: "contains", value: dataItem.value });
+            }
+
+            //grid.refresh();
+        }
     }
 
     function changeToVerticalPanes() {
@@ -162,25 +167,22 @@
     }
 
     function getinitialNumberOfItems(gridData) {
-        numbers = { Inbox: 0, Junk: 0, Drafts: 0, Deleted: 0, NativeScript: 0, KendoUI: 0, Sitefinity: 0 };
+        var numbers = { Inbox: 0, Junk: 0, Drafts: 0, Deleted: 0, NativeScript: 0, KendoUI: 0, Sitefinity: 0 };
         for (var i = 0; i < gridData.length; i++) {
             var currentItemFolder = gridData[i].Folder;
             numbers[currentItemFolder] += 1;
         }
+
+        return numbers;
     }
 
     function mailGridDataBound(e) {
-        var tasksGrid = e.sender;
         var navigationTreeView = $('#mailsTreeView').data('kendoTreeView');
-
-        if (isInitialLoad) {
-            isInitialLoad = false;
-        }
 
         $.ajax({
             url: '@Url.Action("Read", "Home")',
             success: function (gridData) {
-                getinitialNumberOfItems(gridData.Data);
+                var numbers = getinitialNumberOfItems(gridData.Data);
                 var data = [{
                     text: "Inbox " + numbers.Inbox,
                     value: "Inbox"

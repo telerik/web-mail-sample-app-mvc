@@ -31,7 +31,7 @@ namespace TelerikMvcWebMail.Controllers
 
         public ActionResult Tasks_Read([DataSourceRequest] DataSourceRequest request, string search)
         {
-            return Json(notesService.Read().ToDataSourceResult(request));
+            return Json(notesService.Read().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }      
 
         [AcceptVerbs(HttpVerbs.Post)]

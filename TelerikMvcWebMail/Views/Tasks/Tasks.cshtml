@@ -66,16 +66,12 @@
             .Events(e => e
                 .Change("noteSelectionChanged")
                 .DataBound("tasksGridDataBound")
-                .Remove("tasksGridItemRemove")
             )
         )
 	</div>
 </div>
 
 <script>
-    var numbers;
-    var isInitialLoad = true;
-
     function noteSelectionChanged(e) {
         var selectedRows = this.select();
         $('input.chkbx').prop('checked', false);
@@ -84,47 +80,38 @@
         checkboxes.prop('checked', true);
     }
 
-    function createNewTask() {
-        var tasksGrid = $("#noteGrid").data("kendoGrid");
-        tasksGrid.addRow();
-    }
-
-    function getinitialNumberOfItems(gridData) {
-        numbers = { All: 0, Personal: 0, Work: 0 };
+    function getInitialNumberOfItems(gridData) {
+        var numbers = { All: 0, Personal: 0, Work: 0 };
 
         for (var i = 0; i < gridData.length; i++) {
             var currentItemCategory = gridData[i].Category;
             numbers[currentItemCategory] += 1;
         }
+
+        return numbers;
     }
 
     function tasksGridDataBound(e) {
-        var tasksGrid = e.sender;
+        $.ajax({
+            url: '@Url.Action("Tasks_Read", "Tasks")',
+            success: function (gridData) {
+                var numbers = getInitialNumberOfItems(gridData.Data);
+                var data = [{
+                    text: "All " + numbers.All,
+                    value: "All"
+                }, {
+                    text: "Personal " + numbers.Personal,
+                    value: "Personal"
+                }, {
+                    text: "Work " + numbers.Work,
+                    value: "Work"
+                }];
 
-        if (isInitialLoad) {
-            isInitialLoad = false;
-            getinitialNumberOfItems(tasksGrid.dataSource.data());
-        }
-
-        var data = [{
-            text: "All " + numbers.All,
-            value: "All"
-        }, {
-            text: "Personal " + numbers.Personal,
-            value: "Personal"
-        }, {
-            text: "Work " + numbers.Work,
-            value: "Work"
-        }];
-
-        var newDataSource = new kendo.data.HierarchicalDataSource({ data: data });
-        var navigationTreeView = $('#tasksTreeView').data('kendoTreeView');
-        navigationTreeView.setDataSource(newDataSource);
-    }
-
-    function tasksGridItemRemove(e) {
-        var removedItemValue = e.model.Category;
-        numbers[removedItemValue] -= 1;
+                var newDataSource = new kendo.data.HierarchicalDataSource({ data: data });
+                var navigationTreeView = $('#tasksTreeView').data('kendoTreeView');
+                navigationTreeView.setDataSource(newDataSource);
+            }
+        });
     }
 
     function selecttaskFolder(e) {

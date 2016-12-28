@@ -30,7 +30,7 @@ namespace TelerikMvcWebMail.Controllers
 
         public ActionResult Contacts_Read([DataSourceRequest] DataSourceRequest request)
         {
-            return Json(contactsService.Read().ToDataSourceResult(request));
+            return Json(contactsService.Read().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
