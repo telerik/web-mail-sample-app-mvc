@@ -26,7 +26,7 @@ namespace TelerikMvcWebMail.Controllers
 
         public ActionResult NewMail()
         {
-            return View();
+            return PartialView("NewMail");
         }
 
         public ActionResult About()
@@ -38,7 +38,7 @@ namespace TelerikMvcWebMail.Controllers
 
         public ActionResult Read([DataSourceRequest]DataSourceRequest request)
         {
-            return Json(mailsService.Read().ToDataSourceResult(request));
+            return Json(mailsService.Read().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         [ValidateInput(false)]

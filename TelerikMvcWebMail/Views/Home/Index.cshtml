@@ -5,7 +5,27 @@
 @model IEnumerable<TelerikMvcWebMail.Models.MailViewModel>
 
 <aside class="treeview-wrapper">
-    @{ Html.RenderPartial("TreeView"); }
+    <span class="add-new-mail" >New Mail</span>
+
+    @(Html.Kendo().TreeView()
+        .Name("mailsTreeView")
+        .Events(e => e.Select("selectMailFolder"))
+    )
+
+    <div class="about-and-source">
+        <div>
+            @Html.ActionLink("About This App", "About", "Home")
+        </div>
+        <div>
+            @Html.ActionLink("Download Source Code", "", "")
+        </div>
+        <p>
+            Copyright &copy; @DateTime.Now.Year Progress Software Corporation and/or its subsidiaries or affiliates.
+        </p>
+        <p>
+            All Rights Reserved.
+        </p>
+    </div>
 </aside>
 
 <div class="content">
@@ -20,14 +40,14 @@
                 menuButtons.Add().Text("Forward");
             });
 
-            items.Add().Type(CommandType.Button).Text("Delete").Click("toolBarButtonClick");
+            items.Add().Type(CommandType.Button).Text("Delete").Click("toolBarButtonClick").Id("Deleted");
 
             items.Add().Type(CommandType.SplitButton).Click("toolBarButtonClick").Text("Move").MenuButtons(menuButtons =>
             {
-                menuButtons.Add().Text("Inbox");
-                menuButtons.Add().Text("Junk");
-                menuButtons.Add().Text("Drafts");
-                menuButtons.Add().Text("Deleted");
+                menuButtons.Add().Text("Inbox").Id("Inbox");
+                menuButtons.Add().Text("Junk").Id("Junk");
+                menuButtons.Add().Text("Drafts").Id("Drafts");
+                menuButtons.Add().Text("Deleted").Id("Deleted");
             });
 
             items.Add().Type(CommandType.SplitButton).Text("Junk").MenuButtons(menuButtons =>
@@ -48,8 +68,6 @@
     )
     <div class="inner-mail-content">
         <div class="mail-grid">
-            <input type="button" name="" value="test filter" onclick="testFilter()" />
-			<input type="button" name="" value="set field" onclick="setField()" />
             @(Html.Kendo().Grid(Model)
 				.Name("MailGrid")
 				.Columns(columns =>
@@ -78,7 +96,7 @@
 					.Update(update => update.Action("Update", "Home"))
 					
 				)
-				.Events(e => e.Change("mailSelectionChanged"))
+				.Events(e => e.Change("mailSelectionChanged").DataBound("mailGridDataBound"))
             )
         </div>
         <div class="mail-details">
@@ -92,18 +110,30 @@
     </div>
 </div>
 <script>
-	function toolBarButtonClick(e) {
-		var grid = $("#MailGrid").data("kendoGrid");
-		var selectedItem = grid.dataItem(grid.select());
-		
-		selectedItem.Folder = e.target.text();
-		selectedItem.dirty = true;
-		grid.dataSource.sync();
-	}
+    var numbers;
+    var isInitialLoad = true;
+    var selected = Cookies.get('selected');
 
-    function testFilter(e) {
+    function setSelectedNode(selected) {
+        var treeview = $("#mailsTreeView").data("kendoTreeView");
+        if (selected) {
+            Cookies.remove('selected');
+            var node = $("#mailsTreeView").find('li').eq(selected);
+            treeview.select(node);
+        }
+    }
+
+    function toolBarButtonClick(e) {
         var grid = $("#MailGrid").data("kendoGrid");
-        grid.dataSource.filter({ field: "Folder", operator: "eq", value: "Junk" });
+        var treeview = $("#mailsTreeView").data("kendoTreeView");
+        var selectedItem = grid.dataItem(grid.select());
+        var dataItem = treeview.dataItem(treeview.select());
+
+        selectedItem.Folder = e.id;
+        selectedItem.dirty = true;
+        
+        grid.dataSource.sync();
+        grid.dataSource.filter({ field: "Folder", operator: "contains", value: dataItem.value });
         grid.refresh();
     }
 
@@ -117,31 +147,82 @@
         $('.mail-details').attr('style', "display: block;");
     }
 
+    function selectMailFolder(e) {
+        var dataItem = this.dataItem(e.node);
+        var selectedText = e.sender.dataItem(e.node).value;
+        Cookies.set('selected', kendo.stringify(dataItem.index));
+        selected = Cookies.get('selected');
+
+        var mailsGrid = $("#MailGrid").data("kendoGrid");
+        if (!mailsGrid) {
+            window.location.href = "/Home/Index";
+        } else {
+            mailsGrid.dataSource.filter({ field: "Folder", operator: "contains", value: selectedText });
+        }
+    }
+
+    function getinitialNumberOfItems(gridData) {
+        numbers = { Inbox: 0, Junk: 0, Drafts: 0, Deleted: 0, NativeScript: 0, KendoUI: 0, Sitefinity: 0 };
+        for (var i = 0; i < gridData.length; i++) {
+            var currentItemFolder = gridData[i].Folder;
+            numbers[currentItemFolder] += 1;
+        }
+    }
+
+    function mailGridDataBound(e) {
+        var tasksGrid = e.sender;
+        var navigationTreeView = $('#mailsTreeView').data('kendoTreeView');
+
+        if (isInitialLoad) {
+            isInitialLoad = false;
+        }
+
+        $.ajax({
+            url: '@Url.Action("Read", "Home")',
+            success: function (gridData) {
+                getinitialNumberOfItems(gridData.Data);
+                var data = [{
+                    text: "Inbox " + numbers.Inbox,
+                    value: "Inbox"
+                }, {
+                    text: "Junk " + numbers.Junk,
+                    value: "Junk"
+                }, {
+                    text: "Drafts " + numbers.Drafts,
+                    value: "Drafts"
+                }, {
+                    text: "Deleted " + numbers.Deleted,
+                    value: "Deleted"
+                }, {
+                    text: "NativeScript " + numbers.NativeScript,
+                    value: "NativeScript"
+                }, {
+                    text: "KendoUI " + numbers.KendoUI,
+                    value: "KendoUI"
+                }, {
+                    text: "Sitefinity " + numbers.Sitefinity,
+                    value: "Sitefinity"
+                }];
+
+                var newDataSource = new kendo.data.HierarchicalDataSource({ data: data });
+                navigationTreeView.setDataSource(newDataSource);
+
+                if (selected) {
+                    setSelectedNode(selected);
+                }
+            }
+        });
+    }
+
     function mailSelectionChanged(e) {
         var selectedRows = this.select();
         $('input.chkbx').prop('checked', false);
         
         var checkboxes = selectedRows.find('.chkbx');
         checkboxes.prop('checked', true);
-
-        if (selectedRows.length === 1) {
-            var dataItem = this.dataItem(selectedRows[0]);
-            populateDetailsView(dataItem);
-        }
     }
 
-    $(document).ready(function () {
-        $($('input.chkbx')[0]).prop('checked', true);
-
-        var gridData = $('#MailGrid').data('kendoGrid').dataSource;
-        var firstItem = gridData.data()[0];
-        populateDetailsView(firstItem);
+    $('.add-new-mail').on('click', function (e) {
+        $(".content").load('@(Url.Action("NewMail", "Home"))');
     });
-
-    function populateDetailsView(item) {
-        $('.mail-subject').text(item.Subject);
-        $('.mail-sender').text(item.From);
-        $('.mail-date').text(item.Date);
-        $('.mail-text').text(item.Text);
-    }
 </script>
