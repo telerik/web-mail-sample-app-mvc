@@ -30,41 +30,41 @@
 
 <div class="content">
     @(Html.Kendo().ToolBar()
-        .Name("IndexToolbar")
-        .Items(items =>
-        {
-            items.Add().Type(CommandType.SplitButton).Text("Reply").MenuButtons(menuButtons =>
-            {
-                menuButtons.Add().Text("Reply");
-                menuButtons.Add().Text("Reply All");
-                menuButtons.Add().Text("Forward");
-            });
+		.Name("IndexToolbar")
+		.Items(items =>
+		{
+			items.Add().Type(CommandType.SplitButton).Click("toolBarReplyButtonClick").Text("Reply").MenuButtons(menuButtons =>
+			{
+				menuButtons.Add().Text("Reply").Id("RE");
+				menuButtons.Add().Text("Reply All").Id("RE");
+				menuButtons.Add().Text("Forward").Id("FW");
+			});
 
-            items.Add().Type(CommandType.Button).Text("Delete").Click("toolBarButtonClick").Id("Deleted");
+			items.Add().Type(CommandType.Button).Text("Delete").Click("toolBarButtonClick").Id("Deleted");
 
-            items.Add().Type(CommandType.SplitButton).Click("toolBarButtonClick").Text("Move").MenuButtons(menuButtons =>
-            {
-                menuButtons.Add().Text("Inbox").Id("Inbox");
-                menuButtons.Add().Text("Junk").Id("Junk");
-                menuButtons.Add().Text("Drafts").Id("Drafts");
-                menuButtons.Add().Text("Deleted").Id("Deleted");
-            });
+			items.Add().Type(CommandType.SplitButton).Click("toolBarButtonClick").Text("Move").MenuButtons(menuButtons =>
+			{
+				menuButtons.Add().Text("Inbox").Id("Inbox");
+				menuButtons.Add().Text("Junk").Id("Junk");
+				menuButtons.Add().Text("Drafts").Id("Drafts");
+				menuButtons.Add().Text("Deleted").Id("Deleted");
+			});
 
-            items.Add().Type(CommandType.SplitButton).Text("Junk").MenuButtons(menuButtons =>
-            {
-                menuButtons.Add().Text("Report Spam");
-            });
+			items.Add().Type(CommandType.SplitButton).Click("toolBarButtonClick").Text("Junk").MenuButtons(menuButtons =>
+			{
+				menuButtons.Add().Text("Report Spam").Id("Junk");
+			});
 
-            items.Add().Type(CommandType.SplitButton).Text("More").MenuButtons(menuButtons =>
-            {
-                menuButtons.Add().Text("Reply").Url("/Home/NewMail");
-                menuButtons.Add().Text("Reply All").Url("/Home/NewMail");
-                menuButtons.Add().Text("Forward").Url("/Home/NewMail");
-            });
+			items.Add().Type(CommandType.SplitButton).Text("More").MenuButtons(menuButtons =>
+			{
+				menuButtons.Add().Text("Mark as read");
+				menuButtons.Add().Text("Mark as unread");
+				menuButtons.Add().Text("Print");
+			});
 
-            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft").Click("changeToVerticalPanes");
-            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyRight").Click("changeToHorizontalPanes");
-        })
+			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft").Click("changeToVerticalPanes");
+			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyRight").Click("changeToHorizontalPanes");
+		})
     )
     <div class="inner-mail-content">
         <div class="mail-grid">
@@ -137,9 +137,22 @@
             if (dataItem) {
                 grid.dataSource.filter({ field: "Folder", operator: "contains", value: dataItem.value });
             }
-
-            //grid.refresh();
         }
+    }
+
+    function toolBarReplyButtonClick(e) {
+    	$.ajax({
+    		url: "@Url.Action("NewMail", "Home", new { id = "placeholder"})".replace("placeholder", e.id),
+    		type: 'POST',
+    		contentType: 'application/json; charset=utf-8',
+    		dataType: "json",
+    		success: function (data) {
+    		},
+    		error: function (data) {
+    			console.log("Error: " + data.statusText);
+    		}
+    	});
+    	return false;
     }
 
     function changeToVerticalPanes() {
@@ -208,9 +221,11 @@
 
                 var newDataSource = new kendo.data.HierarchicalDataSource({ data: data });
                 navigationTreeView.setDataSource(newDataSource);
-
                 if (selected) {
                     setSelectedNode(selected);
+                }
+                else {
+                    setSelectedNode("0");
                 }
             }
         });
@@ -219,7 +234,7 @@
     function mailSelectionChanged(e) {
         var selectedRows = this.select();
         $('input.chkbx').prop('checked', false);
-        
+
         var checkboxes = selectedRows.find('.chkbx');
         checkboxes.prop('checked', true);
     }
@@ -227,4 +242,7 @@
     $('.add-new-mail').on('click', function (e) {
         $(".content").load('@(Url.Action("NewMail", "Home"))');
     });
+	$('.add-new-task').on('click', function (e) {
+		$(".content").load('@(Url.Action("NewTask", "Tasks"))');
+	});
 </script>
