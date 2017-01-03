@@ -1,0 +1,98 @@
+﻿@font-face {
+  font-family: 'WebComponentsIcons';
+  src: url("../fonts/WebComponentsIcons/WebComponentsIcons.woff") format("woff"), url("../fonts/WebComponentsIcons/WebComponentsIcons.ttf") format("truetype"), url("../fonts/WebComponentsIcons/WebComponentsIcons.svg#svgFontName") format("svg");
+  /* Legacy iOS */ }
+
+html {
+  height: 100%; }
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font: 14px/1 Segoe UI, 'Roboto', Myriad Pro, sans-serif;
+  color: #787878; }
+
+a {
+  color: inherit;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: none; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: normal; }
+
+.header {
+  padding: 16px;
+  color: #fff;
+  background: #2291e2;
+  font-size: 16px; }
+  .header:after {
+    content: "";
+    display: block;
+    clear: both; }
+
+.header h1 {
+  font: 24px Roboto;
+  float: left; }
+  .header h1:before {
+    content: "\e809";
+    font-family: WebComponentsIcons; }
+
+#mainMenu {
+  float: right;
+  font-family: Segoe UI Emoji;
+  color: inherit;
+  background: transparent;
+  border: 0; }
+  #mainMenu .k-item {
+    border: 0; }
+  #mainMenu .k-state-hover,
+  #mainMenu .k-state-hover .k-link,
+  #mainMenu .k-state-highlight {
+    color: inherit;
+    background: transparent; }
+  #mainMenu .k-link {
+    color: inherit; }
+
+.main-content {
+  display: flex;
+  flex: 1 0 auto; }
+
+.main-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  background: #fafafa; }
+  .main-sidebar .content {
+    flex: 1; }
+  .main-sidebar .new-mail {
+    display: inline-block;
+    padding: 15px;
+    font: 16px Roboto;
+    color: #0072c6; }
+    .main-sidebar .new-mail:before {
+      display: inline-block;
+      content: "\e11f";
+      margin: 0 5px 0 0;
+      font: 24px "WebComponentsIcons";
+      vertical-align: middle; }
+  .main-sidebar .footer {
+    padding: 15px;
+    font-size: 10px;
+    color: #b7b7b7; }
+    .main-sidebar .footer a {
+      color: #1e8edf;
+      font: 13px/26px Myriad Pro; }
+
+.main-section {
+  flex: 1;
+  box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.06); }
+

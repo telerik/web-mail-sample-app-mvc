@@ -1,18 +1,19 @@
 ﻿@{
-    ViewBag.Title = "Mails";
+    ViewBag.Title = "Mail";
 }
 
 @model IEnumerable<TelerikMvcWebMail.Models.MailViewModel>
 
-<aside class="treeview-wrapper">
-    <span class="add-new-mail" >New Mail</span>
-
-    @(Html.Kendo().TreeView()
+<aside class="main-sidebar">
+	<div class="content">
+		<span class="new-mail">New Mail</span>
+		@(Html.Kendo().TreeView()
         .Name("mailsTreeView")
         .Events(e => e.Select("selectMailFolder"))
-    )
+		)
+	</div>
 
-    <div class="about-and-source">
+    <div class="footer">
         <div>
             @Html.ActionLink("About This App", "About", "Home")
         </div>
@@ -28,7 +29,7 @@
     </div>
 </aside>
 
-<div class="content">
+<section class="main-section">
     @(Html.Kendo().ToolBar()
 		.Name("IndexToolbar")
 		.Items(items =>
@@ -108,7 +109,7 @@
             <p class="mail-text"></p>
         </div>
     </div>
-</div>
+</section>
 <script>
     var selected = Cookies.get('selected');
 

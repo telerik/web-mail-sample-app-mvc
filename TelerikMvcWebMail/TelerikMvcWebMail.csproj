@@ -176,7 +176,11 @@
     <Content Include="App_Data\WebMail_log.ldf">
       <DependentUpon>WebMail.mdf</DependentUpon>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\common.css">
+      <DependentUpon>common.scss</DependentUpon>
+    </Content>
+    <Content Include="Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Fonts\WebComponentsIcons\WebComponentsIcons.svg" />
     <Content Include="Global.asax" />
     <Content Include="Models\WebMail.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -189,10 +193,10 @@
       <LastGenOutput>WebMail.cs</LastGenOutput>
     </Content>
     <Content Include="packages.config" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -209,14 +213,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\Site_save.css" />
     <Content Include="favicon.ico" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\contacts\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +258,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Contacts\EditorTemplates\ContactViewModel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Fonts\WebComponentsIcons\WebComponentsIcons.eot" />
+    <Content Include="Fonts\WebComponentsIcons\WebComponentsIcons.ttf" />
+    <Content Include="Fonts\WebComponentsIcons\WebComponentsIcons.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\mail.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\calendar.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="Content\common.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

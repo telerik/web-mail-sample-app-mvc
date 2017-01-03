@@ -1,0 +1,149 @@
+﻿//#region Fonts
+    @font-face {
+      font-family: 'WebComponentsIcons';
+      src: url('../fonts/WebComponentsIcons/WebComponentsIcons.woff') format('woff'), /* Pretty Modern Browsers */
+           url('../fonts/WebComponentsIcons/WebComponentsIcons.ttf')  format('truetype'), /* Safari, Android, iOS */
+           url('../fonts/WebComponentsIcons/WebComponentsIcons.svg#svgFontName') format('svg'); /* Legacy iOS */
+    }
+//#endregion
+
+
+//#region variables
+
+$accent: #2291e2;
+
+//#endregion
+
+
+
+html {
+    height: 100%;
+}
+
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font: 14px/1 Segoe UI, 'Roboto', Myriad Pro, sans-serif;
+    color: #787878;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-weight: normal;
+}
+
+// Header
+.header {
+    padding: 16px;
+    color: #fff;
+    background: $accent;
+    font-size: 16px;
+
+    &:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+
+    .header h1 {
+        font: 24px Roboto;
+        float: left;
+
+        &:before {
+            content: "\e809";
+            font-family: WebComponentsIcons;
+        }
+    }
+
+    #mainMenu {
+        float: right;
+        font-family: Segoe UI Emoji;
+        color: inherit;
+        background: transparent;
+        border: 0;
+
+
+        .k-item {
+            border: 0;
+        }
+
+        .k-state-hover,
+        .k-state-hover .k-link,
+        .k-state-highlight {
+            color: inherit;
+            background: transparent;
+        }
+
+        .k-link {
+            color: inherit;
+        }
+    }
+
+// Content
+.main-content {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+// Sidebar
+.main-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    background: #fafafa;
+
+    .content {
+        flex: 1;
+    }
+
+        .new-mail {
+            display: inline-block;
+            padding: 15px;
+            font: 16px Roboto;
+            color: #0072c6;
+
+            &:before {
+                display: inline-block;
+                content: "\e11f";
+                margin: 0 5px 0 0;
+                font: 24px "WebComponentsIcons";
+                vertical-align: middle;
+            }
+        }
+
+
+    .footer {
+        padding: 15px;
+        font-size: 10px;
+        color: #b7b7b7;
+
+        a {
+            color: #1e8edf;
+            font: 13px/26px Myriad Pro;
+        }
+    }
+}
+
+// Section
+.main-section {
+    flex: 1;
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.06);
+}

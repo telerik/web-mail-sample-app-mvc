@@ -3,7 +3,7 @@
 <head>
     <title>@ViewBag.Title - My Kendo UI MVC Application</title>
 
-    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    @*<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />*@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -12,6 +12,9 @@
     <link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
     <link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.metro.min.css" rel="stylesheet" type="text/css" />
     <link href="http://cdn.kendostatic.com/2016.3.1118/styles/kendo.dataviz.metro.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+	@Styles.Render("~/Content/css")
 
     <script src="http://cdn.kendostatic.com/2016.3.1118/js/jquery.min.js"></script>
     <script src="http://cdn.kendostatic.com/2016.3.1118/js/kendo.all.min.js"></script>
@@ -29,11 +32,9 @@
     </script>
 
     <header class="header">
-        <nav class="navigation">
-            <h2 class="logo">
-                <i class="fa fa-bars"></i>
+            <h1 class="logo">
                 @(ViewBag.title)
-            </h2>
+            </h1>
             @(Html.Kendo().Menu()
                 .Name("mainMenu")
                 .Items(items =>
@@ -54,13 +55,12 @@
                 .Height(220)
                 .ContentTemplateId("tooltip-template")
             )
-        </nav>
     </header>
 
 
-    <section class="content-wrapper main-content">
+    <content class="main-content">
         @RenderBody()
-    </section>
+    </content>
 
     <script>
         $('.home-btn').on("click", function () {
