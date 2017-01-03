@@ -8,6 +8,11 @@ html, body {
     min-width: 800px;
 }
 
+/* ENSURE ALL EVENTS RENDER WHITE TEXT */
+.k-scheduler  .k-event-inverse {
+    color: #FFF;
+}
+
 .hidden {
     display: none;
 }
@@ -200,4 +205,3 @@ html, body {
 .notes .k-grid-content {
     height: auto !important;
 }
-
