@@ -41,7 +41,8 @@ h6 {
 
 .header h1 {
   font: 24px Roboto;
-  float: left; }
+  float: left;
+  line-height: 32px; }
   .header h1:before {
     content: "\e809";
     font-family: WebComponentsIcons; }
