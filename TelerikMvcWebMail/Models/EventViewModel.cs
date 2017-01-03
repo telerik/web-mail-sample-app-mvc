@@ -50,7 +50,7 @@ namespace TelerikMvcWebMail.Models
 
         public string RecurrenceException { get; set; }
 
-        public bool? IsAllDay { get; set; }
+        public bool IsAllDay { get; set; }
 
         public int? OwnerID { get; set; }
 
@@ -82,7 +82,7 @@ namespace TelerikMvcWebMail.Models
                 StartTimezone = StartTimezone,
                 EndTimezone = EndTimezone,
                 RecurrenceID = RecurrenceID,
-                IsAllDay = (IsAllDay != null) ? bool.Parse(IsAllDay.ToString()) : false,
+                IsAllDay = IsAllDay,
                 OwnerID = OwnerID
             };
         }

@@ -22,12 +22,12 @@ namespace TelerikMvcWebMail.Models
         {
             IList<EventViewModel> result = new List<EventViewModel>();
 
-            result = entities.Events.Select(e => new EventViewModel
+            result = entities.Events.ToList().Select(e => new EventViewModel
             {
                 TaskID = e.TaskID,
                 Title = e.Title,
-                Start = e.Start,
-                End = e.End,
+                Start = DateTime.SpecifyKind(e.Start, DateTimeKind.Utc),
+                End = DateTime.SpecifyKind(e.End, DateTimeKind.Utc),
                 RecurrenceRule = e.RecurrenceRule,
                 RecurrenceID = e.RecurrenceID,
                 RecurrenceException = e.RecurrenceException,
