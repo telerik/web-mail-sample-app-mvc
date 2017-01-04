@@ -142,18 +142,12 @@
     }
 
     function toolBarReplyButtonClick(e) {
-    	$.ajax({
-    		url: "@Url.Action("NewMail", "Home", new { id = "placeholder"})".replace("placeholder", e.id),
-    		type: 'POST',
-    		contentType: 'application/json; charset=utf-8',
-    		dataType: "json",
-    		success: function (data) {
-    		},
-    		error: function (data) {
-    			console.log("Error: " + data.statusText);
-    		}
-    	});
-    	return false;
+        var grid = $("#MailGrid").data("kendoGrid");
+        var selected = grid.dataItem(grid.select());
+        //var contact = selected.From;
+        var contact = "test";
+
+        $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0", @contact = "placeholder1"}))'.replace("placeholder0", e.id).replace("placeholder1", contact));
     }
 
     function changeToVerticalPanes() {
@@ -240,7 +234,7 @@
         checkboxes.prop('checked', true);
     }
 
-    $('.add-new-mail').on('click', function (e) {
+    $('.new-mail').on('click', function (e) {
         $(".content").load('@(Url.Action("NewMail", "Home"))');
     });
 	$('.add-new-task').on('click', function (e) {
