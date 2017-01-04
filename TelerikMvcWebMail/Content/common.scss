@@ -1,18 +1,12 @@
-﻿//#region Fonts
-    @font-face {
-      font-family: 'WebComponentsIcons';
-      src: url('../fonts/WebComponentsIcons/WebComponentsIcons.woff') format('woff'), /* Pretty Modern Browsers */
-           url('../fonts/WebComponentsIcons/WebComponentsIcons.ttf')  format('truetype'), /* Safari, Android, iOS */
-           url('../fonts/WebComponentsIcons/WebComponentsIcons.svg#svgFontName') format('svg'); /* Legacy iOS */
-    }
-//#endregion
+﻿@import '_variables.scss';
 
 
-//#region variables
-
-$accent: #2291e2;
-
-//#endregion
+@font-face {
+    font-family: 'WebComponentsIcons';
+    src: url('../fonts/WebComponentsIcons/WebComponentsIcons.woff') format('woff'), /* Pretty Modern Browsers */
+        url('../fonts/WebComponentsIcons/WebComponentsIcons.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/WebComponentsIcons/WebComponentsIcons.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
 
 
 
@@ -53,7 +47,7 @@ h6 {
 .header {
     padding: 16px;
     color: #fff;
-    background: $accent;
+    background: $header;
     font-size: 16px;
 
     &:after {
@@ -88,13 +82,44 @@ h6 {
 
         .k-state-hover,
         .k-state-hover .k-link,
+        .k-state-active,
         .k-state-highlight {
             color: inherit;
             background: transparent;
         }
 
+        .k-state-focused {
+            box-shadow: none;
+        }
+
+        .k-state-highlight:before {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            margin-left: -10px;
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent #fff;
+        }
+
         .k-link {
             color: inherit;
+        }
+
+        .image-wrapper {
+            display: inline-block;
+            height: 36px;
+            width: 36px;
+            overflow: hidden;
+            margin: -10px -5px;
+            border-radius: 50%;
+
+            img {
+                width: 120%;
+                margin-left: -10%;
+            }
         }
     }
 
@@ -137,7 +162,7 @@ h6 {
         color: #b7b7b7;
 
         a {
-            color: #1e8edf;
+            color: $accent;
             font: 13px/26px Myriad Pro;
         }
     }

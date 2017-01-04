@@ -6,5 +6,13 @@
   {
     "outputFile": "Content/main/common.css",
     "inputFile": "Content/main/common.scss"
+  },
+  {
+    "outputFile": "Content/calendar.css",
+    "inputFile": "Content/calendar.scss"
+  },
+  {
+    "outputFile": "Content/mail.css",
+    "inputFile": "Content/mail.scss"
   }
 ]

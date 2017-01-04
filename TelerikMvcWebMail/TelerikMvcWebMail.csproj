@@ -176,8 +176,14 @@
     <Content Include="App_Data\WebMail_log.ldf">
       <DependentUpon>WebMail.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\calendar.css">
+      <DependentUpon>calendar.scss</DependentUpon>
+    </Content>
     <Content Include="Content\common.css">
       <DependentUpon>common.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\mail.css">
+      <DependentUpon>mail.scss</DependentUpon>
     </Content>
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Fonts\WebComponentsIcons\WebComponentsIcons.svg" />
@@ -276,6 +282,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Content\common.scss" />
+    <Content Include="Content\_variables.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

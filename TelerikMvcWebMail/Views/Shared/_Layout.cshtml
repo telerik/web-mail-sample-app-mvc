@@ -15,6 +15,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 	@Styles.Render("~/Content/css")
+	@RenderSection("PageStyles", false)
 
     <script src="http://cdn.kendostatic.com/2016.3.1118/js/jquery.min.js"></script>
     <script src="http://cdn.kendostatic.com/2016.3.1118/js/kendo.all.min.js"></script>
@@ -31,6 +32,12 @@
         <button id="signInButton" class="k-primary" onclick="location.href='@Url.Action("SignIn", "SignIn")';return false;">Sign Out</button>
     </script>
 
+	<script type="text/kendo-ui" id="menu-item-template">
+		<span>
+			<img src='http://demos.telerik.com/kendo-ui/content/web/Customers/PICCO.jpg'/>
+		</span>
+	</script>
+
     <header class="header">
             <h1 class="logo">
                 @(ViewBag.title)
@@ -43,7 +50,7 @@
                     items.Add().Text("Calendar").Action("Calendar", "Calendar");
                     items.Add().Text("People").Action("Contacts", "Contacts");
                     items.Add().Text("Tasks").Action("Tasks", "Tasks");
-                    items.Add().Text("Antonio Morandi");
+                    items.Add().Text("<span class='image-wrapper'><img src='http://demos.telerik.com/kendo-ui/content/web/Customers/PICCO.jpg'/><span/>").Encoded(false);
                 })
             )
 

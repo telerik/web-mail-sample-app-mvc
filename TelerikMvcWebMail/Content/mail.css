@@ -1,0 +1,14 @@
+﻿.k-toolbar {
+  border: 0; }
+
+.k-toolbar .k-button {
+  border: 0; }
+  .k-toolbar .k-button:hover {
+    background: #1e8edf; }
+  .k-toolbar .k-button:active, .k-toolbar .k-button:focus:not(.k-state-disabled):not([disabled]) {
+    box-shadow: inset 0 0 0 1px #1e8edf; }
+
+.k-toolbar .k-split-button {
+  background: #1e8edf;
+  box-shadow: none; }
+

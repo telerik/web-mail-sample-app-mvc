@@ -57,11 +57,34 @@ h6 {
     border: 0; }
   #mainMenu .k-state-hover,
   #mainMenu .k-state-hover .k-link,
+  #mainMenu .k-state-active,
   #mainMenu .k-state-highlight {
     color: inherit;
     background: transparent; }
+  #mainMenu .k-state-focused {
+    box-shadow: none; }
+  #mainMenu .k-state-highlight:before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    margin-left: -10px;
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent #fff; }
   #mainMenu .k-link {
     color: inherit; }
+  #mainMenu .image-wrapper {
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+    overflow: hidden;
+    margin: -10px -5px;
+    border-radius: 50%; }
+    #mainMenu .image-wrapper img {
+      width: 120%;
+      margin-left: -10%; }
 
 .main-content {
   display: flex;

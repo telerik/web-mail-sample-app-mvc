@@ -2,6 +2,10 @@
     ViewBag.Title = "Mail";
 }
 
+@section PageStyles {
+	<link href="@Url.Content("~/Content/mail.css")" rel="stylesheet" type="text/css" />
+}
+
 @model IEnumerable<TelerikMvcWebMail.Models.MailViewModel>
 
 <aside class="main-sidebar">

@@ -1,2 +1,26 @@
-﻿body {
+﻿@import '_variables.scss';
+
+.k-toolbar {
+    border: 0;
+}
+
+.k-toolbar {
+
+    .k-button {
+        border: 0;
+
+        &:hover {
+            background: $accent;
+        }
+
+        &:active,
+        &:focus:not(.k-state-disabled):not([disabled]) {
+            box-shadow: inset 0 0 0 1px $accent;
+        }
+    }
+
+    .k-split-button {
+        background: $accent;
+        box-shadow: none;
+    }
 }
