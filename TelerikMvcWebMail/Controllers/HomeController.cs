@@ -27,7 +27,7 @@ namespace TelerikMvcWebMail.Controllers
         public ActionResult NewMail(string id, string contact)
         {
             ViewBag.ReplyButtonID = id;
-            ViewBag.ContactName = contact;
+            ViewBag.ContactName = HttpUtility.UrlDecode(contact);
 
             return PartialView("NewMail");
         }

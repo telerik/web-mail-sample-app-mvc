@@ -148,10 +148,16 @@
     function toolBarReplyButtonClick(e) {
         var grid = $("#MailGrid").data("kendoGrid");
         var selected = grid.dataItem(grid.select());
-        //var contact = selected.From;
-        var contact = "test";
+        //encodes the contacts names sent to the Action by replacing the empty spaces in them with %20
 
-        $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0", @contact = "placeholder1"}))'.replace("placeholder0", e.id).replace("placeholder1", contact));
+        if (!selected) {
+            $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0"}))'.replace("placeholder0", e.id));
+        }
+        else {
+            var contact = selected.From.replace(/ /g, '%20');
+
+            $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0", @contact = "placeholder1"}))'.replace("placeholder0", e.id).replace("placeholder1", contact));
+        }
     }
 
     function changeToVerticalPanes() {
@@ -239,9 +245,6 @@
     }
 
     $('.new-mail').on('click', function (e) {
-        $(".content").load('@(Url.Action("NewMail", "Home"))');
+        $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "RE"}))');
     });
-	$('.add-new-task').on('click', function (e) {
-		$(".content").load('@(Url.Action("NewTask", "Tasks"))');
-	});
 </script>
