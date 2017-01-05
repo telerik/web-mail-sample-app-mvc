@@ -112,7 +112,17 @@
 </div>
 
 <script>
+    var selectedContact = Cookies.get('selectedContact');
     var shouldChangeTreeViewNumbers = true;
+
+    function setSelectedNode(selected) {
+        var treeview = $("#contactsTreeView").data("kendoTreeView");
+        if (selected) {
+            Cookies.remove('selectedContact');
+            var node = $("#contactsTreeView").find('li').eq(selected);
+            treeview.select(node);
+        }
+    } 
 
     function exportPeople() {
         kendo.drawing.drawDOM($(".contacts"))
@@ -191,6 +201,13 @@
                 var newDataSource = new kendo.data.HierarchicalDataSource({ data: data });
                 var navigationTreeView = $('#contactsTreeView').data('kendoTreeView');
                 navigationTreeView.setDataSource(newDataSource);
+
+                if (selectedContact) {
+                    setSelectedNode(selectedContact);
+                }
+                else {
+                    setSelectedNode("0");
+                }
             }
         });
 
@@ -199,7 +216,11 @@
     }
 
     function selectContactsFolder(e) {
-        var selectedText = e.sender.dataItem(e.node).value;
+        debugger;
+        var dataItem = e.sender.dataItem(e.node);
+        var selectedText = dataItem.value;
+        Cookies.set('selectedContact', kendo.stringify(dataItem.index));
+        selectedContact = Cookies.get('selectedContact');
 
         var contactsListView = $("#contactsListView").data("kendoListView");
 

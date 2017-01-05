@@ -3,19 +3,19 @@
 }
 
 @section PageStyles {
-	<link href="@Url.Content("~/Content/mail.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/mail.css")" rel="stylesheet" type="text/css" />
 }
 
 @model IEnumerable<TelerikMvcWebMail.Models.MailViewModel>
 
 <aside class="main-sidebar">
-	<div class="content">
-		<span class="new-mail">New Mail</span>
-		@(Html.Kendo().TreeView()
+    <div class="content">
+        <span class="new-mail">New Mail</span>
+        @(Html.Kendo().TreeView()
         .Name("mailsTreeView")
         .Events(e => e.Select("selectMailFolder"))
-		)
-	</div>
+        )
+    </div>
 
     <div class="footer">
         <div>
@@ -35,73 +35,74 @@
 
 <section class="main-section">
     @(Html.Kendo().ToolBar()
-		.Name("IndexToolbar")
-		.Items(items =>
-		{
-			items.Add().Type(CommandType.SplitButton).Click("toolBarReplyButtonClick").Text("Reply").MenuButtons(menuButtons =>
-			{
-				menuButtons.Add().Text("Reply").Id("RE");
-				menuButtons.Add().Text("Reply All").Id("RE");
-				menuButtons.Add().Text("Forward").Id("FW");
-			});
+        .Name("IndexToolbar")
+        .Items(items =>
+        {
+            items.Add().Type(CommandType.SplitButton).Click("toolBarReplyButtonClick").Text("Reply").MenuButtons(menuButtons =>
+            {
+                menuButtons.Add().Text("Reply").Id("RE");
+                menuButtons.Add().Text("Reply All").Id("RE");
+                menuButtons.Add().Text("Forward").Id("FW");
+            });
 
-			items.Add().Type(CommandType.Button).Text("Delete").Click("toolBarButtonClick").Id("Deleted");
+            items.Add().Type(CommandType.Button).Text("Delete").Click("toolBarButtonClick").Id("Deleted");
 
-			items.Add().Type(CommandType.SplitButton).Click("toolBarButtonClick").Text("Move").MenuButtons(menuButtons =>
-			{
-				menuButtons.Add().Text("Inbox").Id("Inbox");
-				menuButtons.Add().Text("Junk").Id("Junk");
-				menuButtons.Add().Text("Drafts").Id("Drafts");
-				menuButtons.Add().Text("Deleted").Id("Deleted");
-			});
+            items.Add().Type(CommandType.SplitButton).Click("toolBarButtonClick").Text("Move").MenuButtons(menuButtons =>
+            {
+                menuButtons.Add().Text("Inbox").Id("Inbox");
+                menuButtons.Add().Text("Junk").Id("Junk");
+                menuButtons.Add().Text("Drafts").Id("Drafts");
+                menuButtons.Add().Text("Deleted").Id("Deleted");
+            });
 
-			items.Add().Type(CommandType.SplitButton).Click("toolBarButtonClick").Text("Junk").MenuButtons(menuButtons =>
-			{
-				menuButtons.Add().Text("Report Spam").Id("Junk");
-			});
+            items.Add().Type(CommandType.SplitButton).Click("toolBarButtonClick").Text("Junk").MenuButtons(menuButtons =>
+            {
+                menuButtons.Add().Text("Report Spam").Id("Junk");
+            });
 
-			items.Add().Type(CommandType.SplitButton).Text("More").MenuButtons(menuButtons =>
-			{
-				menuButtons.Add().Text("Mark as read");
-				menuButtons.Add().Text("Mark as unread");
-				menuButtons.Add().Text("Print");
-			});
+            items.Add().Type(CommandType.SplitButton).Text("More").MenuButtons(menuButtons =>
+            {
+                menuButtons.Add().Text("Mark as read");
+                menuButtons.Add().Text("Mark as unread");
+                menuButtons.Add().Text("Print");
+            });
 
-			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft").Click("changeToVerticalPanes");
-			items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyRight").Click("changeToHorizontalPanes");
-		})
+            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft").Click("changeToVerticalPanes");
+            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyRight").Click("changeToHorizontalPanes");
+        })
     )
     <div class="inner-mail-content">
         <div class="mail-grid">
             @(Html.Kendo().Grid(Model)
-				.Name("MailGrid")
-				.Columns(columns =>
-				{
-					columns.Bound(p => p.CheckBoxCheked)
-						.Title("")
-						.Width(80)
-						.ClientTemplate("<input type='checkbox' #= CheckBoxCheked ? checked='checked': '' # class='chkbx' />");
-					columns.Bound(p => p.From).Title("From").Width(300);
-					columns.Bound(p => p.Subject).Title("Subject");
-					columns.Bound(p => p.Date).Title("Date").Width(300).Format("{0:g}");
-				})
-				.HtmlAttributes(new { style = "height: 100%;" })
-				.Sortable()
-				.Scrollable()
-				.Filterable()
-				.Groupable()
-				.Selectable(s => s.Mode(GridSelectionMode.Multiple))
-				.DataSource(dataSource => dataSource
-					.Ajax()
-					.AutoSync(true)
-					.PageSize(20)
-					.Model(model => model.Id(p => p.MailID))
-					.Create(create => create.Action("Create", "Home"))
-					.Read(read => read.Action("Read", "Home"))
-					.Update(update => update.Action("Update", "Home"))
-					
-				)
-				.Events(e => e.Change("mailSelectionChanged").DataBound("mailGridDataBound"))
+                .Name("MailGrid")
+                .Columns(columns =>
+                {
+                    columns.Bound(p => p.CheckBoxCheked)
+                        .Title("")
+                        .Width(80)
+                        .ClientTemplate("<input type='checkbox' #= CheckBoxCheked ? checked='checked': '' # class='chkbx' />");
+                    columns.Bound(p => p.From).Title("From").Width(300);
+                    columns.Bound(p => p.Subject).Title("Subject");
+                    columns.Bound(p => p.Subject).Title("Subject").ClientTemplate("<p>#= Subject #</p><p>#= From #</p>");
+                    columns.Bound(p => p.Date).Title("Date").Width(300).Format("{0:g}");
+                })
+                .HtmlAttributes(new { style = "height: 100%;" })
+                .Sortable()
+                .Scrollable()
+                .Filterable()
+                .Groupable()
+                .Selectable(s => s.Mode(GridSelectionMode.Multiple))
+                .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .AutoSync(true)
+                    .PageSize(20)
+                    .Model(model => model.Id(p => p.MailID))
+                    .Create(create => create.Action("Create", "Home"))
+                    .Read(read => read.Action("Read", "Home"))
+                    .Update(update => update.Action("Update", "Home"))
+
+                )
+                .Events(e => e.Change("mailSelectionChanged").DataBound("mailGridDataBound"))
             )
         </div>
         <div class="mail-details">
@@ -128,20 +129,20 @@
 
     function toolBarButtonClick(e) {
         var grid = $("#MailGrid").data("kendoGrid");
-        var selectedItem = grid.dataItem(grid.select());
 
-        if (selectedItem) {
+        for (var i = 0; i < grid.select().length; i++) {
+            var selectedItem = grid.dataItem(grid.select()[i]);
             selectedItem.Folder = e.id;
             selectedItem.dirty = true;
+        }
 
-            grid.dataSource.sync();
+        grid.dataSource.sync();
 
-            var treeview = $("#mailsTreeView").data("kendoTreeView");
-            var dataItem = treeview.dataItem(treeview.select());
+        var treeview = $("#mailsTreeView").data("kendoTreeView");
+        var dataItem = treeview.dataItem(treeview.select());
 
-            if (dataItem) {
-                grid.dataSource.filter({ field: "Folder", operator: "contains", value: dataItem.value });
-            }
+        if (dataItem) {
+            grid.dataSource.filter({ field: "Folder", operator: "contains", value: dataItem.value });
         }
     }
 
@@ -242,6 +243,18 @@
 
         var checkboxes = selectedRows.find('.chkbx');
         checkboxes.prop('checked', true);
+
+        if (selectedRows.length === 1) {
+            var dataItem = this.dataItem(selectedRows[0]);
+            populateDetailsView(dataItem);
+        }
+    }
+
+    function populateDetailsView(item) {
+        $('.mail-subject').text(item.Subject);
+        $('.mail-sender').text(item.From);
+        $('.mail-date').text(item.Date);
+        $('.mail-text').html(item.Text);
     }
 
     $('.new-mail').on('click', function (e) {
