@@ -30,7 +30,8 @@ namespace TelerikMvcWebMail.Models
                 City = e.City,
                 Company = e.Company,
                 Folder = e.Folder,
-                Title = e.Title
+                Title = e.Title,
+                Email = e.Email
             }).ToList();
 
             return result;

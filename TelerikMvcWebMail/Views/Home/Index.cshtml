@@ -156,7 +156,7 @@
         }
         else {
             var contact = selected.From.replace(/ /g, '%20');
-
+            debugger;
             $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0", @contact = "placeholder1"}))'.replace("placeholder0", e.id).replace("placeholder1", contact));
         }
     }

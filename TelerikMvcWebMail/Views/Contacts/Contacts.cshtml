@@ -80,7 +80,7 @@
     </div>
 </aside>
 
-<div class="content">
+<div class="main-section">
     <div class="view-header-wrapper">
         <div class="btn-export-pdf" onclick="exportPeople()">Export to PDF</div>
         <div class="btn-cards" onclick="changeToContactsCards()">Cards (Placeholder text)</div>
@@ -248,6 +248,8 @@
         var email = dataItem.Email;
 
         debugger;
+
+        $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0", @contact = "placeholder1"}))'.replace("placeholder0", '').replace("placeholder1", email));
         // Implement here create new email logic
     };
 
