@@ -97,7 +97,7 @@ h6 {
   background: #fff;
   color: inherit;
   font-size: 12px;
-  top: 16px; }
+  top: 0; }
   .k-widget.k-tooltip .k-tooltip-content {
     padding-right: 0;
     padding: 0 30px; }
@@ -112,7 +112,7 @@ h6 {
       width: 102%;
       margin-top: -5%; }
   .k-widget.k-tooltip .k-callout-n {
-    top: -25px;
+    top: -9px;
     border-bottom-color: #fff;
     border-width: 0 9px 9px 9px; }
   .k-widget.k-tooltip span {
