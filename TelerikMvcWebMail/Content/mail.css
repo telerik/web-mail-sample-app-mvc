@@ -9,6 +9,11 @@
     box-shadow: inset 0 0 0 1px #1e8edf; }
 
 .k-toolbar .k-split-button {
+  margin: 0;
   background: #1e8edf;
   box-shadow: none; }
+
+.k-toolbar .k-button,
+.k-toolbar .k-split-button {
+  line-height: inherit; }
 

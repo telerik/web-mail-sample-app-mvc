@@ -20,7 +20,14 @@
     }
 
     .k-split-button {
+        margin: 0;
         background: $accent;
         box-shadow: none;
     }
+
+    .k-button,
+    .k-split-button {
+        line-height: inherit;
+    }
+
 }

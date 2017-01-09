@@ -45,7 +45,6 @@ h6 {
 
 // Header
 .header {
-    padding: 16px;
     color: #fff;
     background: $header;
     font-size: 16px;
@@ -57,14 +56,20 @@ h6 {
     }
 }
 
-    .header h1 {
+    .header .logo {
         font: 24px Roboto;
         float: left;
         line-height: 32px;
+        padding: 13px 16px;
 
         &:before {
             content: "\e809";
             font-family: WebComponentsIcons;
+            font-size: 1.3em;
+            line-height: 1;
+            margin-top: -4px;
+            vertical-align: middle;
+            display: inline-block;
         }
     }
 
@@ -80,8 +85,11 @@ h6 {
             border: 0;
         }
 
+        .k-state-hover .k-link {
+            background: rgba(255,255,255,0.2);
+        }
+
         .k-state-hover,
-        .k-state-hover .k-link,
         .k-state-active,
         .k-state-highlight {
             color: inherit;
@@ -96,7 +104,7 @@ h6 {
             content: "";
             display: block;
             position: absolute;
-            bottom: -16px;
+            bottom: 0;
             left: 50%;
             margin-left: -10px;
             border-width: 0 10px 10px 10px;
@@ -105,6 +113,7 @@ h6 {
         }
 
         .k-link {
+            padding: 20px;
             color: inherit;
         }
 
@@ -120,6 +129,58 @@ h6 {
                 width: 120%;
                 margin-left: -10%;
             }
+        }
+    }
+
+    .k-widget.k-tooltip {
+        background: #fff;
+        color: inherit;
+        font-size: 12px;
+        top: 16px;
+
+        .k-tooltip-content {
+            padding-right: 0;
+            padding: 0 30px;
+        }
+
+        .image-wrapper {
+            width: 100px;
+            height: 100px;
+            margin: 25px auto 10px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+
+            img {
+                width: 102%;
+                margin-top: -5%;
+            }
+        }
+
+        .k-callout-n {
+            top: -25px;
+            border-bottom-color: #fff;
+            border-width: 0 9px 9px 9px;
+        }
+
+        span {
+            display: block;
+        }
+
+
+
+        .name {
+            font-size: 15px;
+            margin: 5px;
+        }
+
+        #signInButton {
+            margin: 40px 0;
+            padding: 5px 30px;
+            white-space: nowrap;
+            font-size: 14px;
+            background: $accent;
+            border-color: $accent;
         }
     }
 

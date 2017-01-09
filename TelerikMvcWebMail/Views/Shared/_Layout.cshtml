@@ -24,12 +24,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.3/js.cookie.min.js"></script>
 </head>
 <body>
+	<script id="button-template" type="text/x-kendo-template">
+		
+	</script>
     <script id="tooltip-template" type="text/x-kendo-template">
-        <img src="http://demos.telerik.com/kendo-ui/content/web/Customers/PICCO.jpg" style="border-radius: 100%" />
-        <p>Antonio Morandi</p>
-        <p style="font-size: 11px">antonio.morandi@progress.com</p>
-        <br />
-        <button id="signInButton" class="k-primary" onclick="location.href='@Url.Action("SignIn", "SignIn")';return false;">Sign Out</button>
+		<div class="image-wrapper">
+			<img src="http://demos.telerik.com/kendo-ui/content/web/Customers/PICCO.jpg" style="border-radius: 100%" />
+		</div>
+        <span class="name">Antonio Morandi</span>
+        <span>antonio.morandi@progress.com</span>
+		@(Html.Kendo().Button()
+			.Name("signInButton")
+			.HtmlAttributes(new { @class = "k-primary" })
+			.Content("Sign Out")
+			.Events(ev => ev.Click("onClick"))
+			.ToClientTemplate()
+		)	
     </script>
 
 	<script type="text/kendo-ui" id="menu-item-template">
@@ -56,10 +66,7 @@
 
             @(Html.Kendo().Tooltip()
                 .For("#mainMenu > li:last")
-                .Position(TooltipPosition.Bottom)
                 .AutoHide(false)
-                .Width(170)
-                .Height(220)
                 .ContentTemplateId("tooltip-template")
             )
     </header>
@@ -73,6 +80,11 @@
         $('.home-btn').on("click", function () {
             $('.slider').toggleClass('expanded');
         });
+
+        function onClick(e) {
+        	location.href = '@Url.Action("SignIn", "SignIn")';
+        	return false;
+        }
     </script>
 </body>
 </html>
