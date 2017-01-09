@@ -6,6 +6,12 @@
     <link href="@Url.Content("~/Content/mail.css")" rel="stylesheet" type="text/css" />
 }
 
+<style>
+    .unread {
+        font-weight: bold;
+    }
+</style>
+
 @model IEnumerable<TelerikMvcWebMail.Models.MailViewModel>
 
 <aside class="main-sidebar">
@@ -53,6 +59,9 @@
                 menuButtons.Add().Text("Junk").Id("Junk");
                 menuButtons.Add().Text("Drafts").Id("Drafts");
                 menuButtons.Add().Text("Deleted").Id("Deleted");
+                menuButtons.Add().Text("NativeScript").Id("NativeScript");
+                menuButtons.Add().Text("KendoUI").Id("KendoUI");
+                menuButtons.Add().Text("Sitefinity").Id("Sitefinity");
             });
 
             items.Add().Type(CommandType.SplitButton).Click("toolBarButtonClick").Text("Junk").MenuButtons(menuButtons =>
@@ -60,11 +69,11 @@
                 menuButtons.Add().Text("Report Spam").Id("Junk");
             });
 
-            items.Add().Type(CommandType.SplitButton).Text("More").MenuButtons(menuButtons =>
+            items.Add().Type(CommandType.SplitButton).Click("toolBarMoreButtonClick").Text("More").MenuButtons(menuButtons =>
             {
-                menuButtons.Add().Text("Mark as read");
-                menuButtons.Add().Text("Mark as unread");
-                menuButtons.Add().Text("Print");
+                menuButtons.Add().Text("Mark as read").Id("read"); ;
+                menuButtons.Add().Text("Mark as unread").Id("unread"); ;
+                menuButtons.Add().Text("Print").Id("print"); ;
             });
 
             items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft").Click("changeToVerticalPanes");
@@ -156,8 +165,25 @@
         }
         else {
             var contact = selected.From.replace(/ /g, '%20');
-            debugger;
             $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0", @contact = "placeholder1"}))'.replace("placeholder0", e.id).replace("placeholder1", contact));
+        }
+    }
+
+    function toolBarMoreButtonClick(e) {
+        var grid = $("#MailGrid").data("kendoGrid");
+        var selectedRows = grid.select();
+
+        if (e.id == "read" || e.id == "unread") {
+            for (var i = 0; i < selectedRows.length; i++) {
+                var item = grid.dataItem(selectedRows[i]);
+                e.id == "read" ? item.CheckBoxCheked = true : item.CheckBoxCheked = false;
+                item.dirty = true;
+                e.id == "read" ? $(selectedRows[i]).addClass("read") : $(selectedRows[i]).addClass("unread");;
+            }
+            grid.dataSource.sync();
+        }
+        else if (e.id == "print") {
+          //TODO: add mail print functionality
         }
     }
 
@@ -197,6 +223,14 @@
 
     function mailGridDataBound(e) {
         var navigationTreeView = $('#mailsTreeView').data('kendoTreeView');
+        var grid = $('#MailGrid').data('kendoGrid');
+
+        for (var i = 0; i < grid.tbody.find(">tr").length; i++) {
+            var item = grid.dataItem(grid.tbody.find(">tr")[i]);
+            if (item.CheckBoxCheked == false) {
+                $(grid.tbody.find(">tr")[i]).addClass("unread")
+            }
+        }
 
         $.ajax({
             url: '@Url.Action("Read", "Home")',
@@ -239,6 +273,15 @@
 
     function mailSelectionChanged(e) {
         var selectedRows = this.select();
+
+        if (selectedRows.length == 1) {
+            var dataItem = e.sender.dataItem(selectedRows);
+            dataItem.CheckBoxCheked = true;
+            dataItem.dirty = true;
+            // TODO: implement grid selection persistence
+            //e.sender.dataSource.sync();
+        }
+
         $('input.chkbx').prop('checked', false);
 
         var checkboxes = selectedRows.find('.chkbx');
