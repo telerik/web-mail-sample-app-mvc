@@ -88,12 +88,13 @@
                 {
                     columns.Bound(p => p.CheckBoxCheked)
                         .Title("")
-                        .Width(80)
+                        .Width(60)
+                        .Filterable(false)
                         .ClientTemplate("<input type='checkbox' #= CheckBoxCheked ? checked='checked': '' # class='chkbx' />");
-                    columns.Bound(p => p.From).Title("From").Width(300);
+                    columns.Bound(p => p.From).Title("From");
                     columns.Bound(p => p.Subject).Title("Subject");
-                    columns.Bound(p => p.Subject).Title("Subject").ClientTemplate("<p>#= Subject #</p><p>#= From #</p>");
-                    columns.Bound(p => p.Date).Title("Date").Width(300).Format("{0:g}");
+                    columns.Bound(p => p.Subject).Title("Subject").ClientTemplate("<p>#= Subject #</p><p>#= From #</p>").Hidden(true);
+                    columns.Bound(p => p.Date).Title("Date").Format("{0:g}");
                 })
                 .HtmlAttributes(new { style = "height: 100%;" })
                 .Sortable()
@@ -188,11 +189,19 @@
     }
 
     function changeToVerticalPanes() {
+        var grid = $("#MailGrid").data("kendoGrid");
+        grid.hideColumn(1);
+        grid.hideColumn(2);
+        grid.showColumn(3);
         $('.mail-grid').attr('style', "display: inline-block; width: 35%");
         $('.mail-details').attr('style', "display: inline-block; vertical-align: top;");
     }
 
     function changeToHorizontalPanes() {
+        var grid = $("#MailGrid").data("kendoGrid");
+        grid.hideColumn(3);
+        grid.showColumn(1);
+        grid.showColumn(2);
         $('.mail-grid').attr('style', "display: block;");
         $('.mail-details').attr('style', "display: block;");
     }
@@ -223,12 +232,34 @@
 
     function mailGridDataBound(e) {
         var navigationTreeView = $('#mailsTreeView').data('kendoTreeView');
-        var grid = $('#MailGrid').data('kendoGrid');
+        var treeViewSelectedItem = navigationTreeView.select();
+        var grid = e.sender;
+        var gridDataSource = grid.dataSource;
 
         for (var i = 0; i < grid.tbody.find(">tr").length; i++) {
             var item = grid.dataItem(grid.tbody.find(">tr")[i]);
             if (item.CheckBoxCheked == false) {
                 $(grid.tbody.find(">tr")[i]).addClass("unread")
+            }
+        }
+
+        if (treeViewSelectedItem.length === 1) {
+            var treeViewDataItem = navigationTreeView.dataItem(treeViewSelectedItem);
+            var treeViewItemValue = treeViewDataItem.value;
+            var selectedRowsFromCoockie = Cookies.get('mailsSelectedRow' + treeViewItemValue);
+
+            if (selectedRowsFromCoockie) {
+                var selectedRowsArray = selectedRowsFromCoockie.split(',');
+
+                for (var i = 0; i < selectedRowsArray.length; i++) {
+                    currentRowId = selectedRowsArray[i];
+                    var dataItem = gridDataSource.get(currentRowId);
+                    if (dataItem) {
+                        var row = grid.tbody.find("tr[data-uid='" + dataItem.uid + "']");
+                        grid.select(row);
+                        grid.content.scrollTop(row.offset().top - grid.content.offset().top);
+                    }
+                }
             }
         }
 
@@ -274,12 +305,29 @@
     function mailSelectionChanged(e) {
         var selectedRows = this.select();
 
-        if (selectedRows.length == 1) {
+        var navigationTreeView = $('#mailsTreeView').data('kendoTreeView');
+        var selectedNode = navigationTreeView.select();
+        var selectedNodeData = navigationTreeView.dataItem(selectedNode);
+        var selectedNodeValue = selectedNodeData.value;
+
+        if (selectedRows.length === 1) {
             var dataItem = e.sender.dataItem(selectedRows);
             dataItem.CheckBoxCheked = true;
             dataItem.dirty = true;
+
+            Cookies.set('mailsSelectedRow' + selectedNodeValue, dataItem.MailID);
             // TODO: implement grid selection persistence
             //e.sender.dataSource.sync();
+        } else {
+            var selectedRowsIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                var selectedRow = selectedRows[i];
+                var dataItem = e.sender.dataItem(selectedRow);
+
+                selectedRowsIds.push(dataItem.MailID);
+            }
+
+            Cookies.set('mailsSelectedRow' + selectedNodeValue, selectedRowsIds.join());
         }
 
         $('input.chkbx').prop('checked', false);
