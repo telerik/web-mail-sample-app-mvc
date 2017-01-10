@@ -23,22 +23,38 @@
 .contacts {
     display: flex;
 
-    .k-state-selected {
-        color: inherit;
-        background: #fafafa;
-        border-color: #ebebeb;
-    }
+    .edit-buttons {
+        display: none;
+        position: absolute;
+        right: 15px;
+        top: 0;
 
-    .contact-details {
-        .details {
-            display: block;
-        }
-
-        .edit-buttons {
-            display: none;
+        .k-button {
+            border-radius: 50%;
         }
     }
 }
+
+    .contact-view {
+        position: relative;
+
+
+        &.k-state-selected {
+            color: inherit;
+            background: #fafafa;
+            border-color: #ebebeb;
+        }
+
+        img {
+            float: left;
+        }
+
+        &:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+    }
 
 
 /* List view - default */
@@ -46,14 +62,53 @@
 
     #contactsListView {
         flex: 0.3;
+        line-height: 50px;
+
+        .contact-view {
+            border-width: 0 0 1px;
+            line-height: 50px;
+
+            &:hover {
+                .edit-buttons {
+                    display: block;
+                }
+            }
+        }
+
+        img {
+            height: 50px;
+            margin-right: 16px;
+        }
+
+        .details {
+            display: none;
+        }
     }
 
-    .details {
-        display: none;
-    }
-
-    .contact-details {
+    .single-contact-details {
+        padding: 17px 15px;
         flex: 0.7;
+
+        .contact-view {
+            border: 0;
+        }
+
+        .header {
+            padding: 15px;
+            background: #fafafa;
+            font: 100 30px 'Segoe UI';
+
+            &:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+        }
+
+        img {
+            margin-right: 18px;
+            height: 70px;
+        }
     }
 }
 

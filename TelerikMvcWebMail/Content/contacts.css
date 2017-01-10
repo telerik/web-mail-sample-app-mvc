@@ -12,24 +12,58 @@
 
 .contacts {
   display: flex; }
-  .contacts .k-state-selected {
+  .contacts .edit-buttons {
+    display: none;
+    position: absolute;
+    right: 15px;
+    top: 0; }
+    .contacts .edit-buttons .k-button {
+      border-radius: 50%; }
+
+.contact-view {
+  position: relative; }
+  .contact-view.k-state-selected {
     color: inherit;
     background: #fafafa;
     border-color: #ebebeb; }
-  .contacts .contact-details .details {
-    display: block; }
-  .contacts .contact-details .edit-buttons {
-    display: none; }
+  .contact-view img {
+    float: left; }
+  .contact-view:after {
+    content: "";
+    display: block;
+    clear: both; }
 
 /* List view - default */
 .list-view #contactsListView {
-  flex: 0.3; }
+  flex: 0.3;
+  line-height: 50px; }
+  .list-view #contactsListView .contact-view {
+    border-width: 0 0 1px;
+    line-height: 50px; }
+    .list-view #contactsListView .contact-view:hover .edit-buttons {
+      display: block; }
+  .list-view #contactsListView img {
+    height: 50px;
+    margin-right: 16px; }
+  .list-view #contactsListView .details {
+    display: none; }
 
-.list-view .details {
-  display: none; }
-
-.list-view .contact-details {
+.list-view .single-contact-details {
+  padding: 17px 15px;
   flex: 0.7; }
+  .list-view .single-contact-details .contact-view {
+    border: 0; }
+  .list-view .single-contact-details .header {
+    padding: 15px;
+    background: #fafafa;
+    font: 100 30px 'Segoe UI'; }
+    .list-view .single-contact-details .header:after {
+      content: "";
+      display: block;
+      clear: both; }
+  .list-view .single-contact-details img {
+    margin-right: 18px;
+    height: 70px; }
 
 /* Card view */
 .card-view #contactsListView {

@@ -10,19 +10,21 @@
 
 <script type="text/x-kendo-tmpl" id="single-contact-template">
     <div class="contact-view k-widget" uid="#: uid #">
-        <span class="hidden-email" style="display:none">#: Email #</span>
-        <img src="@Url.Content("~/Content/contacts/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
-        <h3>#: Name #</h3>
+        <div class="header">
+            <span class="hidden-email" style="display:none">#: Email #</span>
+            <img src="@Url.Content("~/Content/contacts/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
+            <span>#: Name #</span>
+            <div class="edit-buttons">
+                <a class="k-button k-single-email-button" href="\\#"><span class="k-icon k-i-maximize"></span></a>
+                <a class="k-button k-single-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
+                <a class="k-button k-single-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
+            </div>
+        </div>
         <div class="details">
             <p>Country : #: Country # </p>
             <p>City : #: City # </p>
             <p>Company : #: Company # </p>
             <p>Phone : #: HomePhone # </p>
-        </div>
-        <div class="edit-buttons">
-            <a class="k-button k-single-email-button" href="\\#"><span class="k-icon k-i-maximize"></span></a>
-            <a class="k-button k-single-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
-            <a class="k-button k-single-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
         </div>
     </div>
 </script>
@@ -74,7 +76,7 @@
                 .Change("onListViewSelectionChange")
             )
         )
-        <div class="contact-details k-widget">
+        <div class="single-contact-details k-widget">
         </div>
     </div>
 </div>
@@ -256,7 +258,7 @@
         var dataItem = e.sender.dataItem(selecteditem);
         var template = kendo.template($('#single-contact-template').html());
         var result = template(dataItem);
-        $(".contact-details").html(result);
+        $(".single-contact-details").html(result);
 
         $('.k-single-email-button').on('click', singleCreateNewMail);
         $('.k-single-edit-button').on('click', singleEditClick);
