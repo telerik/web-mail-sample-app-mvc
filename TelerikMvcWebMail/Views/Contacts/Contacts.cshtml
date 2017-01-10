@@ -50,34 +50,21 @@
     </div>
 </script>
 
-<aside class="treeview-wrapper">
-    @(Html.Kendo().Button()
+<aside class="main-sidebar">
+    <div class="content">
+        @(Html.Kendo().Button()
         .Name("addNewContact")
         .Icon("plus")
         .Content("New Contact")
         .HtmlAttributes(new { type = "button" })
         .Events(ev => ev.Click("createNewContact"))
-    )
-
-    @(Html.Kendo().TreeView()
+        )
+        @(Html.Kendo().TreeView()
         .Name("contactsTreeView")
         .Events(e => e.Select("selectContactsFolder"))
-    )
-
-    <div class="about-and-source">
-        <div>
-            @Html.ActionLink("About This App", "About", "Home")
-        </div>
-        <div>
-            @Html.ActionLink("Download Source Code", "", "")
-        </div>
-        <p>
-            Copyright &copy; @DateTime.Now.Year Progress Software Corporation and/or its subsidiaries or affiliates.
-        </p>
-        <p>
-            All Rights Reserved.
-        </p>
+        )
     </div>
+    @Html.Partial("SidebarFooter")
 </aside>
 
 <div class="main-section">

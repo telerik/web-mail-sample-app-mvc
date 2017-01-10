@@ -81,21 +81,21 @@
     }
 }
 
-.k-scheduler .k-scheduler-toolbar ul li.k-state-hover,
+.k-scheduler .k-scheduler-toolbar ul li.k-state-hover {
+    color: inherit;
+    background: $hover;
+    border-color: $hover;
+
+    .k-link {
+        color: inherit;
+    }
+}
+
 .k-scheduler .k-scheduler-toolbar .k-state-selected {
-    border-color: $accent;
     background: $accent;
+    border-color: $accent;
 }
 
-
-/*.calendar-resource {
-    background: #ccc;
-    font-size: 18px;
-}
-
-.calendar-resource.selected {
-    background: lightgreen;
-}
 .k-scheduler  .k-event-inverse {
     color: #FFF;
-}*/
+}
