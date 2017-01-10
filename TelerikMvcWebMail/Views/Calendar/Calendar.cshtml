@@ -3,43 +3,40 @@
 }
 
 @section PageStyles {
-	<link href="@Url.Content("~/Content/calendar.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/calendar.css")" rel="stylesheet" type="text/css" />
 }
-
 <aside class="main-sidebar">
-	<div class="content">
-		@(Html.Kendo().Button()
+    <div class="content">
+        @(Html.Kendo().Button()
         .Name("addNewEvent")
         .Content("New Event")
         .HtmlAttributes(new { type = "button", @class = "new-btn" })
         .Events(ev => ev.Click("createNewEvent"))
-		)
-		@(Html.Kendo().Calendar()
-		.Name("calendar")
-		.Value(new DateTime(2013, 6, 24))
-		.Events(e => e.Change("onCalenderChange"))
-		)
-		<div class="calendar-resources-list">
-			<div class="calendar-resource selected" data-resource-value="1">Personal</div>
-			<div class="calendar-resource selected" data-resource-value="2">Work</div>
-			<div class="calendar-resource selected" data-resource-value="3">Development</div>
-			<div class="calendar-resource selected" data-resource-value="4">Design</div>
-			<div class="calendar-resource selected" data-resource-value="5">Marketing</div>
-		</div>
-	</div>
-	@Html.Partial("SidebarFooter")
+        )
+        @(Html.Kendo().Calendar()
+        .Name("calendar")
+        .Value(new DateTime(2013, 6, 24))
+        .Events(e => e.Change("onCalenderChange"))
+        )
+        <div class="calendar-resources-list">
+            <div class="resource presonal selected" data-resource-value="1">Personal</div>
+            <div class="resource work selected" data-resource-value="2">Work</div>
+            <div class="resource development selected" data-resource-value="3">Development</div>
+            <div class="resource design selected" data-resource-value="4">Design</div>
+            <div class="resource marketing selected" data-resource-value="5">Marketing</div>
+        </div>
+    </div>
+    @Html.Partial("SidebarFooter")
 </aside>
-
 <section class="main-section">
-	<div class="toolbar">	
-		<span class="btn btn-export-pdf" onclick="onExportBtnClick('exportPdf')">Export to PDF</span>
-		<span class="btn btn-export-image" onclick="onExportBtnClick('exportImage')">Export to Image</span>
-		<span class="btn btn-import">Import</span>
-	</div>
-
-	@(Html.Kendo().Scheduler<TelerikMvcWebMail.Models.EventViewModel>()
+    <div class="toolbar">
+        <span class="btn btn-export-pdf" onclick="onExportBtnClick('exportPdf')">Export to PDF</span>
+        <span class="btn btn-export-image" onclick="onExportBtnClick('exportImage')">Export to Image</span>
+        <span class="btn btn-import">Import</span>
+    </div>
+    @(Html.Kendo().Scheduler<TelerikMvcWebMail.Models.EventViewModel>()
         .Name("scheduler")
-        .Date(new DateTime(2013,6,24))
+        .Date(new DateTime(2013, 6, 24))
         .StartTime(new DateTime(2013, 6, 24, 7, 00, 00))
         .ShowWorkHours(true)
         .Views(views =>
@@ -89,83 +86,81 @@
                     new { Text = "Marketing", Value = 5, Color = "#FFC600" }
                 });
         })
-	)
+    )
 </section>
 <script>
-	$('.calendar-resource').on("click", function () {
-		$(this).toggleClass('selected');
-	});
+    $('.resource').on("click", function () {
+        $(this).toggleClass('selected');
+    });
 
-	$(function () {
-		$(".calendar-resources-list > div").click(function (e) {
-			var selected = $.map($(".calendar-resources-list > div.selected"), function (div) {
-				return parseInt($(div).attr("data-resource-value"));
-			});
+    $(function () {
+        $(".calendar-resources-list > div").click(function (e) {
+            var selected = $.map($(".calendar-resources-list > div.selected"), function (div) {
+                return parseInt($(div).attr("data-resource-value"));
+            });
 
-			var filter = {
-				logic: "or",
-				filters: $.map(selected, function (value) {
-					return {
-						operator: "eq",
-						field: "OwnerID",
-						value: value
-					};
-				})
-			};
+            var filter = {
+                logic: "or",
+                filters: $.map(selected, function (value) {
+                    return {
+                        operator: "eq",
+                        field: "OwnerID",
+                        value: value
+                    };
+                })
+            };
 
-			var scheduler = $("#scheduler").data("kendoScheduler");
+            var scheduler = $("#scheduler").data("kendoScheduler");
 
-			scheduler.dataSource.filter(filter);
-		});
-	})
+            scheduler.dataSource.filter(filter);
+        });
+    })
 
-	function onExportBtnClick(e) {
-		if (e == "exportPdf") {
-			exportSchedulerToPdf($("#scheduler"), "Calendar.pdf");
-		}
-		else if (e == "exportImage") {
-			exportSchedulerToImage($("#scheduler"), "Calendar.png")
-		}
-	}
+    function onExportBtnClick(e) {
+        if (e == "exportPdf") {
+            exportSchedulerToPdf($("#scheduler"), "Calendar.pdf");
+        }
+        else if (e == "exportImage") {
+            exportSchedulerToImage($("#scheduler"), "Calendar.png")
+        }
+    }
 
-	function exportSchedulerToPdf(content, fileName) {
-		kendo.drawing.drawDOM(content)
-			.then(function (group) {
-				return kendo.drawing.exportPDF(group, {
-					paperSize: "auto",
-					margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" }
-				});
-			})
-			.done(function (data) {
-				kendo.saveAs({
-					dataURI: data,
-					fileName: fileName
-				});
-			});
-	}
+    function exportSchedulerToPdf(content, fileName) {
+        kendo.drawing.drawDOM(content)
+        .then(function (group) {
+            return kendo.drawing.exportPDF(group, {
+                paperSize: "auto",
+                margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" }
+            });
+        })
+        .done(function (data) {
+            kendo.saveAs({
+                dataURI: data,
+                fileName: fileName
+            });
+        });
+    }
 
-	function exportSchedulerToImage(content, fileName) {
-		kendo.drawing.drawDOM(content)
-			.then(function (group) {
-				return kendo.drawing.exportImage(group);
-			})
-			.done(function (data) {
-				kendo.saveAs({
-					dataURI: data,
-					fileName: fileName
-				});
-			});
-	}
+    function exportSchedulerToImage(content, fileName) {
+        kendo.drawing.drawDOM(content)
+            .then(function (group) {
+                return kendo.drawing.exportImage(group);
+            })
+            .done(function (data) {
+                kendo.saveAs({
+                    dataURI: data,
+                    fileName: fileName
+                });
+            });
+    }
 
-	function onCalenderChange(e) {
-	    var scheduler = $("#scheduler").data("kendoScheduler");
-	    scheduler.date(e.sender.current());
-	}
+    function onCalenderChange(e) {
+        var scheduler = $("#scheduler").data("kendoScheduler");
+        scheduler.date(e.sender.current());
+    }
 
-	function createNewEvent() {
-	    var scheduler = $("#scheduler").data("kendoScheduler");
-	    scheduler.addEvent();
-	}
+    function createNewEvent() {
+        var scheduler = $("#scheduler").data("kendoScheduler");
+        scheduler.addEvent();
+    }
 </script>
-
-

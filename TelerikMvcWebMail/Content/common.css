@@ -131,6 +131,8 @@ h6 {
 .main-content {
   display: flex;
   flex: 1 0 auto; }
+  .main-content .k-state-hover {
+    background: #1e8edf; }
 
 .main-section {
   flex: 1;

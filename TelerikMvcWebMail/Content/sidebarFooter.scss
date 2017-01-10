@@ -11,20 +11,21 @@
         flex: 1;
     }
 
-        .new-btn {
-            display: inline-block;
-            padding: 15px;
-            font: 16px Roboto;
-            color: #0072c6;
+    .new-btn {
+        display: inline-block;
+        padding: 13px 16px;
+        font: 16px Roboto;
+        color: #0072c6;
+        cursor: pointer;
 
-            &:before {
-                display: inline-block;
-                content: "\e11f";
-                margin: 0 5px 0 0;
-                font: 24px "WebComponentsIcons";
-                vertical-align: middle;
-            }
+        &:before {
+            display: inline-block;
+            content: "\e11f";
+            margin: 0 5px 0 0;
+            font: 24px "WebComponentsIcons";
+            vertical-align: middle;
         }
+    }
 
 
     .footer {

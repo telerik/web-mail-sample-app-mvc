@@ -4,8 +4,8 @@
 @font-face {
     font-family: 'WebComponentsIcons';
     src: url('../fonts/WebComponentsIcons/WebComponentsIcons.woff') format('woff'), /* Pretty Modern Browsers */
-        url('../fonts/WebComponentsIcons/WebComponentsIcons.ttf')  format('truetype'), /* Safari, Android, iOS */
-        url('../fonts/WebComponentsIcons/WebComponentsIcons.svg#svgFontName') format('svg'); /* Legacy iOS */
+    url('../fonts/WebComponentsIcons/WebComponentsIcons.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/WebComponentsIcons/WebComponentsIcons.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
 
@@ -56,138 +56,142 @@ h6 {
     }
 }
 
-    .header .logo {
-        font: 24px Roboto;
-        float: left;
-        line-height: 32px;
-        padding: 13px 16px;
+.header .logo {
+    font: 24px Roboto;
+    float: left;
+    line-height: 32px;
+    padding: 13px 16px;
 
-        &:before {
-            content: "\e809";
-            font-family: WebComponentsIcons;
-            font-size: 1.3em;
-            line-height: 1;
-            margin-top: -4px;
-            vertical-align: middle;
-            display: inline-block;
-        }
+    &:before {
+        content: "\e809";
+        font-family: WebComponentsIcons;
+        font-size: 1.3em;
+        line-height: 1;
+        margin-top: -4px;
+        vertical-align: middle;
+        display: inline-block;
+    }
+}
+
+#mainMenu {
+    float: right;
+    font-family: Segoe UI Emoji;
+    color: inherit;
+    background: transparent;
+    border: 0;
+
+
+    .k-item {
+        border: 0;
     }
 
-    #mainMenu {
-        float: right;
-        font-family: Segoe UI Emoji;
+    .k-state-hover .k-link {
+        background: rgba(255,255,255,0.2);
+    }
+
+    .k-state-hover,
+    .k-state-active,
+    .k-state-highlight {
         color: inherit;
         background: transparent;
-        border: 0;
-
-
-        .k-item {
-            border: 0;
-        }
-
-        .k-state-hover .k-link {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .k-state-hover,
-        .k-state-active,
-        .k-state-highlight {
-            color: inherit;
-            background: transparent;
-        }
-
-        .k-state-focused {
-            box-shadow: none;
-        }
-
-        .k-state-highlight:before {
-            content: "";
-            display: block;
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            margin-left: -10px;
-            border-width: 0 10px 10px 10px;
-            border-style: solid;
-            border-color: transparent transparent #fff;
-        }
-
-        .k-link {
-            padding: 20px;
-            color: inherit;
-        }
-
-        .image-wrapper {
-            display: inline-block;
-            height: 36px;
-            width: 36px;
-            overflow: hidden;
-            margin: -10px -5px;
-            border-radius: 50%;
-
-            img {
-                width: 120%;
-                margin-left: -10%;
-            }
-        }
     }
 
-    .k-widget.k-tooltip {
-        background: #fff;
+    .k-state-focused {
+        box-shadow: none;
+    }
+
+    .k-state-highlight:before {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        margin-left: -10px;
+        border-width: 0 10px 10px 10px;
+        border-style: solid;
+        border-color: transparent transparent #fff;
+    }
+
+    .k-link {
+        padding: 20px;
         color: inherit;
-        font-size: 12px;
-        top: 0;
+    }
 
-        .k-tooltip-content {
-            padding-right: 0;
-            padding: 0 30px;
-        }
+    .image-wrapper {
+        display: inline-block;
+        height: 36px;
+        width: 36px;
+        overflow: hidden;
+        margin: -10px -5px;
+        border-radius: 50%;
 
-        .image-wrapper {
-            width: 100px;
-            height: 100px;
-            margin: 25px auto 10px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.15);
-
-            img {
-                width: 102%;
-                margin-top: -5%;
-            }
-        }
-
-        .k-callout-n {
-            top: -9px;
-            border-bottom-color: #fff;
-            border-width: 0 9px 9px 9px;
-        }
-
-        span {
-            display: block;
-        }
-
-
-
-        .name {
-            font-size: 15px;
-            margin: 5px;
-        }
-
-        #signInButton {
-            margin: 40px 0;
-            padding: 5px 30px;
-            white-space: nowrap;
-            font-size: 14px;
-            background: $accent;
-            border-color: $accent;
+        img {
+            width: 120%;
+            margin-left: -10%;
         }
     }
+}
+
+.k-widget.k-tooltip {
+    background: #fff;
+    color: inherit;
+    font-size: 12px;
+    top: 0;
+
+    .k-tooltip-content {
+        padding-right: 0;
+        padding: 0 30px;
+    }
+
+    .image-wrapper {
+        width: 100px;
+        height: 100px;
+        margin: 25px auto 10px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+
+        img {
+            width: 102%;
+            margin-top: -5%;
+        }
+    }
+
+    .k-callout-n {
+        top: -9px;
+        border-bottom-color: #fff;
+        border-width: 0 9px 9px 9px;
+    }
+
+    span {
+        display: block;
+    }
+
+
+
+    .name {
+        font-size: 15px;
+        margin: 5px;
+    }
+
+    #signInButton {
+        margin: 40px 0;
+        padding: 5px 30px;
+        white-space: nowrap;
+        font-size: 14px;
+        background: $accent;
+        border-color: $accent;
+    }
+}
 
 // Content
 .main-content {
     display: flex;
     flex: 1 0 auto;
+
+    .k-state-hover {
+        background: $accent;
+    }
 }
 
 // Section
@@ -196,6 +200,7 @@ h6 {
     box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.06);
 
     .toolbar {
+
         .btn {
             display: inline-block;
             padding: 10px 16px;

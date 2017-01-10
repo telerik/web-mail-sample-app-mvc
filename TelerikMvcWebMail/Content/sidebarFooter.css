@@ -7,9 +7,10 @@
     flex: 1; }
   .main-sidebar .new-btn {
     display: inline-block;
-    padding: 15px;
+    padding: 13px 16px;
     font: 16px Roboto;
-    color: #0072c6; }
+    color: #0072c6;
+    cursor: pointer; }
     .main-sidebar .new-btn:before {
       display: inline-block;
       content: "\e11f";
