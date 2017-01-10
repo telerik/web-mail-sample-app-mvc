@@ -18,5 +18,9 @@
   {
     "outputFile": "Content/sidebarFooter.css",
     "inputFile": "Content/sidebarFooter.scss"
+  },
+  {
+    "outputFile": "Content/contacts.css",
+    "inputFile": "Content/contacts.scss"
   }
 ]

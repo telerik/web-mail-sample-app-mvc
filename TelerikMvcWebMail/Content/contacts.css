@@ -1,0 +1,45 @@
+﻿.btn:before {
+  font-family: WebComponentsIcons; }
+
+.btn.selected {
+  color: #1e8edf; }
+
+.btn-cards:before {
+  content: "\e02a"; }
+
+.btn-listdetails:before {
+  content: "\e029"; }
+
+.contacts {
+  display: flex; }
+  .contacts .k-state-selected {
+    color: inherit;
+    background: #fafafa;
+    border-color: #ebebeb; }
+  .contacts .contact-details .details {
+    display: block; }
+  .contacts .contact-details .edit-buttons {
+    display: none; }
+
+/* List view - default */
+.list-view #contactsListView {
+  flex: 0.3; }
+
+.list-view .details {
+  display: none; }
+
+.list-view .contact-details {
+  flex: 0.7; }
+
+/* Card view */
+.card-view #contactsListView {
+  flex: none;
+  width: 100%; }
+
+.card-view .contact-view {
+  float: left;
+  width: 33.2%; }
+
+.card-view .details {
+  display: block; }
+

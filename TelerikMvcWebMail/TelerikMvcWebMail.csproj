@@ -182,6 +182,9 @@
     <Content Include="Content\common.css">
       <DependentUpon>common.scss</DependentUpon>
     </Content>
+    <Content Include="Content\contacts.css">
+      <DependentUpon>contacts.scss</DependentUpon>
+    </Content>
     <Content Include="Content\mail.css">
       <DependentUpon>mail.scss</DependentUpon>
     </Content>
@@ -288,6 +291,7 @@
     <Content Include="Content\_variables.scss" />
     <Content Include="Views\Shared\SidebarFooter.cshtml" />
     <Content Include="Content\sidebarFooter.scss" />
+    <Content Include="Content\contacts.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

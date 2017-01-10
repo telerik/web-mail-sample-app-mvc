@@ -1,0 +1,76 @@
+﻿@import '_variables.scss';
+
+.btn {
+
+    &:before {
+        font-family: WebComponentsIcons;
+    }
+
+    &.selected {
+        color: $accent;
+    }
+
+}
+
+    .btn-cards:before {
+        content: "\e02a";
+    }
+
+    .btn-listdetails:before {
+        content: "\e029";
+    }
+
+.contacts {
+    display: flex;
+
+    .k-state-selected {
+        color: inherit;
+        background: #fafafa;
+        border-color: #ebebeb;
+    }
+
+    .contact-details {
+        .details {
+            display: block;
+        }
+
+        .edit-buttons {
+            display: none;
+        }
+    }
+}
+
+
+/* List view - default */
+.list-view {
+
+    #contactsListView {
+        flex: 0.3;
+    }
+
+    .details {
+        display: none;
+    }
+
+    .contact-details {
+        flex: 0.7;
+    }
+}
+
+/* Card view */
+.card-view {
+
+    #contactsListView {
+        flex: none;
+        width: 100%;
+    }
+
+    .contact-view {
+        float: left;
+        width: 33.2%;
+    }
+
+    .details {
+        display: block;
+    }
+}

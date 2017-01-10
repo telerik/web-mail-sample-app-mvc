@@ -4,44 +4,21 @@
     ViewBag.Title = "Contacts";
 }
 
-
-<script type="text/x-kendo-tmpl" id="list-template">
-    <div class="contact-list k-widget">
-        <img src="@Url.Content("~/Content/contacts/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
-        <span>#: Name #</span>
-        <div class="edit-buttons">
-            <a class="k-button k-email-button" href="\\#"><span class="k-icon k-i-maximize"></span></a>
-            <a class="k-button k-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
-            <a class="k-button k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
-        </div>
-    </div>
-</script>
-
-<script type="text/x-kendo-tmpl" id="cards-template">
-    <div class="contact-card k-widget">
-        <img src="@Url.Content("~/Content/contacts/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
-        <h3>#: Name #</h3>
-        <p>Country : #: Country # </p>
-        <p>City : #: City # </p>
-        <p>Company : #: Company # </p>
-        <p>Phone : #: HomePhone # </p>
-        <div class="edit-buttons">
-            <a class="k-button k-email-button" href="\\#"><span class="k-icon k-i-maximize"></span></a>
-            <a class="k-button k-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
-            <a class="k-button k-delete-button" href="\\#"><span class="k-icon k-delete"></span></a>
-        </div>
-    </div>
-</script>
+@section PageStyles {
+    <link href="@Url.Content("~/Content/contacts.css")" rel="stylesheet" type="text/css" />
+}
 
 <script type="text/x-kendo-tmpl" id="single-contact-template">
     <div class="contact-view k-widget" uid="#: uid #">
         <span class="hidden-email" style="display:none">#: Email #</span>
         <img src="@Url.Content("~/Content/contacts/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
         <h3>#: Name #</h3>
-        <p>Country : #: Country # </p>
-        <p>City : #: City # </p>
-        <p>Company : #: Company # </p>
-        <p>Phone : #: HomePhone # </p>
+        <div class="details">
+            <p>Country : #: Country # </p>
+            <p>City : #: City # </p>
+            <p>Company : #: Company # </p>
+            <p>Phone : #: HomePhone # </p>
+        </div>
         <div class="edit-buttons">
             <a class="k-button k-single-email-button" href="\\#"><span class="k-icon k-i-maximize"></span></a>
             <a class="k-button k-single-edit-button" href="\\#"><span class="k-icon k-edit"></span></a>
@@ -69,16 +46,20 @@
 
 <div class="main-section">
     <div class="toolbar">
-        <span class="btn btn-export-pdf" onclick="exportPeople()">Export to PDF</span>
-        <span class="btn btn-cards" onclick="changeToContactsCards()">Cards (Placeholder text)</span>
-        <span class="btn btn-listdetails" onclick="changeToListDetails()">Vertical Panes (Placeholder text)</span>
+        <div class="left">
+            <span class="btn btn-export-pdf" onclick="exportPeople()">Export to PDF</span>
+        </div>
+        <div class="right">
+            <span class="btn btn-listdetails" onclick="changeToListDetails(this)" title="Display vertical panes"></span>
+            <span class="btn btn-cards" onclick="changeToContactsCards(this)" title="Display cards"></span>
+        </div>
     </div>
     <input type="text" class="k-input search-textbox" placeholder="Search people ...">
     <div class="contacts">
         @(Html.Kendo().ListView<TelerikMvcWebMail.Models.ContactViewModel>()
             .Name("contactsListView")
             .TagName("div")
-            .ClientTemplateId("list-template")
+            .ClientTemplateId("single-contact-template")
             .DataSource(dataSource => dataSource
                 .Model(model => model.Id("EmployeeID"))
                 .Create(create => create.Action("Contacts_Create", "Contacts"))
@@ -127,24 +108,27 @@
             });
     }
 
-    function changeToListDetails() {
-        var lvDiv = $('#contactsListView');
-        lvDiv.css('width', '400px');
-        $('.contact-details').css('display', 'block');
+    function changeToListDetails(e) {
+        var contactsElement = $('.contacts');
+        contactsElement.removeClass("card-view");
+        contactsElement.addClass("list-view");
 
-        var lv = lvDiv.data('kendoListView');
-        lv.setOptions({ template: kendo.template($('#list-template').html()) });
-        lv.refresh();
+        updateSelectedViewButton(e);
     }
 
-    function changeToContactsCards() {
-        var lvDiv = $('#contactsListView');
-        lvDiv.css('width', '100%');
-        $('.contact-details').css('display', 'none');
+    function changeToContactsCards(e) {
+        var contactsElement = $('.contacts');
+        contactsElement.removeClass("list-view");
+        contactsElement.addClass("card-view");
 
-        var lv = lvDiv.data('kendoListView');
-        lv.setOptions({ template: kendo.template($('#cards-template').html()) });
-        lv.refresh();
+        updateSelectedViewButton(e);
+    }
+
+    function updateSelectedViewButton(element) {
+        var selectedClass = "selected";
+
+        $(".toolbar ." + selectedClass).removeClass(selectedClass);
+        $(element).addClass(selectedClass);
     }
 
     function getInitialNumberOfItems(listViewData) {
