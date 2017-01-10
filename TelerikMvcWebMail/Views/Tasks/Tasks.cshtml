@@ -4,29 +4,16 @@
 
 @model IEnumerable<TelerikMvcWebMail.Models.NoteViewModel>
 
-<aside class="treeview-wrapper">
-    <span class="add-new-task" >Add Task</span>
-    @*@Html.ActionLink("Add Task", "NewTask")*@
-
-    @(Html.Kendo().TreeView()
+<aside class="main-sidebar">
+	<div class="content">
+		<span class="new-btn">Add Task</span>
+		@*@Html.ActionLink("Add Task", "NewTask")*@
+		@(Html.Kendo().TreeView()
         .Name("tasksTreeView")
         .Events(e => e.Select("selecttaskFolder"))
-    )
-
-    <div class="about-and-source">
-        <div>
-            @Html.ActionLink("About This App", "About", "Home")
-        </div>
-        <div>
-            @Html.ActionLink("Download Source Code", "", "")
-        </div>
-        <p>
-            Copyright &copy; @DateTime.Now.Year Progress Software Corporation and/or its subsidiaries or affiliates.
-        </p>
-        <p>
-            All Rights Reserved.
-        </p>
-    </div>
+		)
+	</div>
+	@Html.Partial("SidebarFooter")
 </aside>
 
 <div class="content">

@@ -5,12 +5,12 @@
   background: #fafafa; }
   .main-sidebar .content {
     flex: 1; }
-  .main-sidebar .new-mail {
+  .main-sidebar .new-btn {
     display: inline-block;
     padding: 15px;
     font: 16px Roboto;
     color: #0072c6; }
-    .main-sidebar .new-mail:before {
+    .main-sidebar .new-btn:before {
       display: inline-block;
       content: "\e11f";
       margin: 0 5px 0 0;

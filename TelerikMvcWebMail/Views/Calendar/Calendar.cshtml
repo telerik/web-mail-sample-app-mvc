@@ -2,27 +2,26 @@
     ViewBag.Title = "Calendar";
 }
 
-<aside class="calendar-aside">
-    @(Html.Kendo().Button()
+<aside class="main-sidebar">
+	<div class="content">
+		@(Html.Kendo().Button()
         .Name("addNewEvent")
-        .Icon("plus")
         .Content("New Event")
-        .HtmlAttributes(new { type = "button" })
+        .HtmlAttributes(new { type = "button", @class = "new-btn" })
         .Events(ev => ev.Click("createNewEvent"))
-    )
-
-	@(Html.Kendo().Calendar()
-        .Name("calendar")
-        .Value(new DateTime(2013, 6, 24))
-        .Events(e => e.Change("onCalenderChange"))
-	)
-
-	<div class="calendar-resources-list">	
-		<div class="calendar-resource selected" data-resource-value="1">Personal</div>
-		<div class="calendar-resource selected" data-resource-value="2">Work</div>
-        <div class="calendar-resource selected" data-resource-value="3">Development</div>
-        <div class="calendar-resource selected" data-resource-value="4">Design</div>
-		<div class="calendar-resource selected" data-resource-value="5">Marketing</div>
+		)
+		@(Html.Kendo().Calendar()
+		.Name("calendar")
+		.Value(new DateTime(2013, 6, 24))
+		.Events(e => e.Change("onCalenderChange"))
+		)
+		<div class="calendar-resources-list">
+			<div class="calendar-resource selected" data-resource-value="1">Personal</div>
+			<div class="calendar-resource selected" data-resource-value="2">Work</div>
+			<div class="calendar-resource selected" data-resource-value="3">Development</div>
+			<div class="calendar-resource selected" data-resource-value="4">Design</div>
+			<div class="calendar-resource selected" data-resource-value="5">Marketing</div>
+		</div>
 	</div>
 	@Html.Partial("SidebarFooter")
 </aside>
