@@ -135,4 +135,14 @@ h6 {
 .main-section {
   flex: 1;
   box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.06); }
+  .main-section .toolbar .btn {
+    display: inline-block;
+    padding: 10px 16px;
+    line-height: 1.42857;
+    cursor: pointer; }
+    .main-section .toolbar .btn:hover {
+      background: #ebebeb; }
+    .main-section .toolbar .btn:active {
+      color: #fff;
+      background: #1e8edf; }
 

@@ -30,11 +30,11 @@
 	@Html.Partial("SidebarFooter")
 </aside>
 
-<div class="content">
-	<div class="view-header-wrapper">	
-		<div class="btn-export-pdf" onclick="onExportBtnClick('exportPdf')">Export to PDF</div>
-		<div class="btn-export-image" onclick="onExportBtnClick('exportImage')">Export to Image</div>
-		<div class="btn-import">Import</div>
+<section class="main-section">
+	<div class="toolbar">	
+		<span class="btn btn-export-pdf" onclick="onExportBtnClick('exportPdf')">Export to PDF</span>
+		<span class="btn btn-export-image" onclick="onExportBtnClick('exportImage')">Export to Image</span>
+		<span class="btn btn-import">Import</span>
 	</div>
 
 	@(Html.Kendo().Scheduler<TelerikMvcWebMail.Models.EventViewModel>()
@@ -90,7 +90,7 @@
                 });
         })
 	)
-</div>
+</section>
 <script>
 	$('.calendar-resource').on("click", function () {
 		$(this).toggleClass('selected');
