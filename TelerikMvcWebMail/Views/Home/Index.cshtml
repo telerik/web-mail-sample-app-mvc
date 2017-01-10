@@ -165,12 +165,25 @@
                 var item = grid.dataItem(selectedRows[i]);
                 e.id == "read" ? item.CheckBoxCheked = true : item.CheckBoxCheked = false;
                 item.dirty = true;
-                e.id == "read" ? $(selectedRows[i]).addClass("read") : $(selectedRows[i]).addClass("unread");;
+                e.id == "read" ? $(selectedRows[i]).removeClass("unread") : $(selectedRows[i]).addClass("unread");;
             }
+
             grid.dataSource.sync();
         }
         else if (e.id == "print") {
-          //TODO: add mail print functionality
+            kendo.drawing.drawDOM($(".mail-details"))
+                .then(function (group) {
+                    return kendo.drawing.exportPDF(group, {
+                        paperSize: "auto",
+                        margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" }
+                    });
+                })
+                .done(function (data) {
+                     kendo.saveAs({
+                        dataURI: data,
+                        fileName: "Mail.pdf"
+                    });
+                });
         }
     }
 
@@ -295,26 +308,41 @@
         var selectedNode = navigationTreeView.select();
         var selectedNodeData = navigationTreeView.dataItem(selectedNode);
         var selectedNodeValue = selectedNodeData.value;
-
         if (selectedRows.length === 1) {
             var dataItem = e.sender.dataItem(selectedRows);
-            dataItem.CheckBoxCheked = true;
-            dataItem.dirty = true;
 
-            Cookies.set('mailsSelectedRow' + selectedNodeValue, dataItem.MailID);
-            // TODO: implement grid selection persistence
-            //e.sender.dataSource.sync();
-        } else {
-            var selectedRowsIds = [];
-            for (var i = 0; i < selectedRows.length; i++) {
-                var selectedRow = selectedRows[i];
-                var dataItem = e.sender.dataItem(selectedRow);
-
-                selectedRowsIds.push(dataItem.MailID);
+            if (!dataItem.CheckBoxCheked) {
+                dataItem.CheckBoxCheked = true;
+                dataItem.dirty = true;
+                $(selectedRows[0]).removeClass("unread");
+                e.sender.dataSource.sync();
             }
+            //Cookies.set('mailsSelectedRow' + selectedNodeValue, dataItem.MailID);
+        } else {
+            //var selectedRowsIds = [];
+            //debugger;
+            //for (var i = 0; i < selectedRows.length; i++) {
+            //    var selectedRow = selectedRows[i];
+            //    var dataItem = e.sender.dataItem(selectedRow);
 
-            Cookies.set('mailsSelectedRow' + selectedNodeValue, selectedRowsIds.join());
+            //    selectedRowsIds.push(dataItem.MailID);
+            //}
+
+            //Cookies.set('mailsSelectedRow' + selectedNodeValue, selectedRowsIds.join());
         }
+        var selectedRowsIds = [];
+
+        var firstRowDataItem = e.sender.dataItem(e.sender.tbody.find("tr:first"));
+        selectedRowsIds.push(firstRowDataItem.MailID);
+
+        for (var i = 0; i < selectedRows.length; i++) {
+            var selectedRow = selectedRows[i];
+            var dataItem = e.sender.dataItem(selectedRow);
+
+            selectedRowsIds.push(dataItem.MailID);
+        }
+
+        Cookies.set('mailsSelectedRow' + selectedNodeValue, selectedRowsIds.join());
 
         $('input.chkbx').prop('checked', false);
 
