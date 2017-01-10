@@ -132,32 +132,6 @@ h6 {
   display: flex;
   flex: 1 0 auto; }
 
-.main-sidebar {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  background: #fafafa; }
-  .main-sidebar .content {
-    flex: 1; }
-  .main-sidebar .new-mail {
-    display: inline-block;
-    padding: 15px;
-    font: 16px Roboto;
-    color: #0072c6; }
-    .main-sidebar .new-mail:before {
-      display: inline-block;
-      content: "\e11f";
-      margin: 0 5px 0 0;
-      font: 24px "WebComponentsIcons";
-      vertical-align: middle; }
-  .main-sidebar .footer {
-    padding: 15px;
-    font-size: 10px;
-    color: #b7b7b7; }
-    .main-sidebar .footer a {
-      color: #1e8edf;
-      font: 13px/26px Myriad Pro; }
-
 .main-section {
   flex: 1;
   box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.06); }

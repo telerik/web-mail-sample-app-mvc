@@ -28,7 +28,8 @@ namespace TelerikMvcWebMail
             //));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/common.css"));
+                "~/Content/common.css",
+                "~/Content/sidebarFooter.css"));
 
             bundles.IgnoreList.Clear();
         }

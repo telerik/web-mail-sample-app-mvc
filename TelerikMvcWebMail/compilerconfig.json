@@ -14,5 +14,9 @@
   {
     "outputFile": "Content/mail.css",
     "inputFile": "Content/mail.scss"
+  },
+  {
+    "outputFile": "Content/sidebarFooter.css",
+    "inputFile": "Content/sidebarFooter.scss"
   }
 ]

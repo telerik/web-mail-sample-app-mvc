@@ -190,45 +190,6 @@ h6 {
     flex: 1 0 auto;
 }
 
-// Sidebar
-.main-sidebar {
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-    background: #fafafa;
-
-    .content {
-        flex: 1;
-    }
-
-        .new-mail {
-            display: inline-block;
-            padding: 15px;
-            font: 16px Roboto;
-            color: #0072c6;
-
-            &:before {
-                display: inline-block;
-                content: "\e11f";
-                margin: 0 5px 0 0;
-                font: 24px "WebComponentsIcons";
-                vertical-align: middle;
-            }
-        }
-
-
-    .footer {
-        padding: 15px;
-        font-size: 10px;
-        color: #b7b7b7;
-
-        a {
-            color: $accent;
-            font: 13px/26px Myriad Pro;
-        }
-    }
-}
-
 // Section
 .main-section {
     flex: 1;

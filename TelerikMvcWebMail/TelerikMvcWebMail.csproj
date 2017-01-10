@@ -185,6 +185,9 @@
     <Content Include="Content\mail.css">
       <DependentUpon>mail.scss</DependentUpon>
     </Content>
+    <Content Include="Content\sidebarFooter.css">
+      <DependentUpon>sidebarFooter.scss</DependentUpon>
+    </Content>
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Fonts\WebComponentsIcons\WebComponentsIcons.svg" />
     <Content Include="Global.asax" />
@@ -283,6 +286,8 @@
     </None>
     <Content Include="Content\common.scss" />
     <Content Include="Content\_variables.scss" />
+    <Content Include="Views\Shared\SidebarFooter.cshtml" />
+    <Content Include="Content\sidebarFooter.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

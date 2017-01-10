@@ -22,21 +22,7 @@
         .Events(e => e.Select("selectMailFolder"))
         )
     </div>
-
-    <div class="footer">
-        <div>
-            @Html.ActionLink("About This App", "About", "Home")
-        </div>
-        <div>
-            @Html.ActionLink("Download Source Code", "", "")
-        </div>
-        <p>
-            Copyright &copy; @DateTime.Now.Year Progress Software Corporation and/or its subsidiaries or affiliates.
-        </p>
-        <p>
-            All Rights Reserved.
-        </p>
-    </div>
+	@Html.Partial("SidebarFooter")
 </aside>
 
 <section class="main-section">
