@@ -44,6 +44,11 @@
   .main-sidebar .resource.selected {
     color: #fff; }
 
+.k-scheduler .k-scheduler-toolbar ul li.k-state-hover,
+.k-scheduler .k-scheduler-toolbar .k-state-selected {
+  border-color: #1e8edf;
+  background: #1e8edf; }
+
 /*.calendar-resource {
     background: #ccc;
     font-size: 18px;

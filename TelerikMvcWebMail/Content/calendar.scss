@@ -81,6 +81,12 @@
     }
 }
 
+.k-scheduler .k-scheduler-toolbar ul li.k-state-hover,
+.k-scheduler .k-scheduler-toolbar .k-state-selected {
+    border-color: $accent;
+    background: $accent;
+}
+
 
 /*.calendar-resource {
     background: #ccc;
