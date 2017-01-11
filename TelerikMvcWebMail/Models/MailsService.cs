@@ -19,8 +19,8 @@ namespace TelerikMvcWebMail.Models
         {
             return entities.Messages.Select(message => new MailViewModel
             {
-                MailID = message.MessageID,
-                CheckBoxCheked = message.IsRead,
+                ID = message.MessageID,
+                IsRead = message.IsRead,
                 From = message.From,
                 Subject = message.Subject,
                 Date = message.Received,
@@ -37,15 +37,15 @@ namespace TelerikMvcWebMail.Models
             entity.From = mail.From;
             entity.Subject = mail.Subject;
             entity.Received = mail.Date;
-            entity.IsRead = mail.CheckBoxCheked;
+            entity.IsRead = mail.IsRead;
             //entity.To = mail.To;
             entity.Folder = mail.Folder;
-            entity.MessageID = mail.MailID;
+            entity.MessageID = mail.ID;
 
             entities.Messages.Add(entity);
             entities.SaveChanges();
 
-            mail.MailID = entity.MessageID;
+            mail.ID = entity.MessageID;
         }
 
         public void Update(MailViewModel mail)

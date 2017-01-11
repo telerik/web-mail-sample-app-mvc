@@ -14,16 +14,7 @@
 
 @model IEnumerable<TelerikMvcWebMail.Models.MailViewModel>
 
-<aside class="main-sidebar">
-    <div class="content">
-        <span class="new-btn">New Mail</span>
-        @(Html.Kendo().TreeView()
-        .Name("mailsTreeView")
-        .Events(e => e.Select("selectMailFolder"))
-        )
-    </div>
-	@Html.Partial("SidebarFooter")
-</aside>
+@Html.Partial("Sidebar")
 
 <section class="main-section">
     @(Html.Kendo().ToolBar()
@@ -69,14 +60,14 @@
     <div class="inner-mail-content">
         <div class="mail-grid">
             @(Html.Kendo().Grid(Model)
-                .Name("MailGrid")
+                .Name("mainWidget")
                 .Columns(columns =>
                 {
-                    columns.Bound(p => p.CheckBoxCheked)
+                    columns.Bound(p => p.IsRead)
                         .Title("")
                         .Width(60)
                         .Filterable(false)
-                        .ClientTemplate("<input type='checkbox' #= CheckBoxCheked ? checked='checked': '' # class='chkbx' />");
+                        .ClientTemplate("<input type='checkbox' class='chkbx' />");
                     columns.Bound(p => p.From).Title("From");
                     columns.Bound(p => p.Subject).Title("Subject");
                     columns.Bound(p => p.Subject).Title("Subject").ClientTemplate("<p>#= Subject #</p><p>#= From #</p>").Hidden(true);
@@ -92,7 +83,7 @@
                     .Ajax()
                     .AutoSync(true)
                     .PageSize(20)
-                    .Model(model => model.Id(p => p.MailID))
+                    .Model(model => model.Id(p => p.ID))
                     .Create(create => create.Action("Create", "Home"))
                     .Read(read => read.Action("Read", "Home"))
                     .Update(update => update.Action("Update", "Home"))
@@ -112,19 +103,8 @@
     </div>
 </section>
 <script>
-    var selected = Cookies.get('selected');
-
-    function setSelectedNode(selected) {
-        var treeview = $("#mailsTreeView").data("kendoTreeView");
-        if (selected) {
-            Cookies.remove('selected');
-            var node = $("#mailsTreeView").find('li').eq(selected);
-            treeview.select(node);
-        }
-    }
-
     function toolBarButtonClick(e) {
-        var grid = $("#MailGrid").data("kendoGrid");
+        var grid = $("#mainWidget").data("kendoGrid");
 
         for (var i = 0; i < grid.select().length; i++) {
             var selectedItem = grid.dataItem(grid.select()[i]);
@@ -134,7 +114,7 @@
 
         grid.dataSource.sync();
 
-        var treeview = $("#mailsTreeView").data("kendoTreeView");
+        var treeview = $("#navigationTreeView").data("kendoTreeView");
         var dataItem = treeview.dataItem(treeview.select());
 
         if (dataItem) {
@@ -143,7 +123,7 @@
     }
 
     function toolBarReplyButtonClick(e) {
-        var grid = $("#MailGrid").data("kendoGrid");
+        var grid = $("#mainWidget").data("kendoGrid");
         var selected = grid.dataItem(grid.select());
         //encodes the contacts names sent to the Action by replacing the empty spaces in them with %20
 
@@ -157,15 +137,19 @@
     }
 
     function toolBarMoreButtonClick(e) {
-        var grid = $("#MailGrid").data("kendoGrid");
+        var grid = $("#mainWidget").data("kendoGrid");
         var selectedRows = grid.select();
 
         if (e.id == "read" || e.id == "unread") {
             for (var i = 0; i < selectedRows.length; i++) {
                 var item = grid.dataItem(selectedRows[i]);
-                e.id == "read" ? item.CheckBoxCheked = true : item.CheckBoxCheked = false;
+                e.id == "read" ? item.IsRead = true : item.IsRead = false;
                 item.dirty = true;
                 e.id == "read" ? $(selectedRows[i]).removeClass("unread") : $(selectedRows[i]).addClass("unread");;
+            }
+
+            if (e.id == "unread") {
+                Cookies.set('markedAsUnread', 'marked');
             }
 
             grid.dataSource.sync();
@@ -188,7 +172,7 @@
     }
 
     function changeToVerticalPanes() {
-        var grid = $("#MailGrid").data("kendoGrid");
+        var grid = $("#mainWidget").data("kendoGrid");
         grid.hideColumn(1);
         grid.hideColumn(2);
         grid.showColumn(3);
@@ -197,7 +181,7 @@
     }
 
     function changeToHorizontalPanes() {
-        var grid = $("#MailGrid").data("kendoGrid");
+        var grid = $("#mainWidget").data("kendoGrid");
         grid.hideColumn(3);
         grid.showColumn(1);
         grid.showColumn(2);
@@ -205,13 +189,13 @@
         $('.mail-details').attr('style', "display: block;");
     }
 
-    function selectMailFolder(e) {
+    function selectFolder(e) {
         var dataItem = this.dataItem(e.node);
         var selectedText = e.sender.dataItem(e.node).value;
         Cookies.set('selected', kendo.stringify(dataItem.index));
         selected = Cookies.get('selected');
 
-        var mailsGrid = $("#MailGrid").data("kendoGrid");
+        var mailsGrid = $("#mainWidget").data("kendoGrid");
         if (!mailsGrid) {
             window.location.href = "/Home/Index";
         } else {
@@ -230,37 +214,16 @@
     }
 
     function mailGridDataBound(e) {
-        var navigationTreeView = $('#mailsTreeView').data('kendoTreeView');
-        var treeViewSelectedItem = navigationTreeView.select();
         var grid = e.sender;
-        var gridDataSource = grid.dataSource;
 
         for (var i = 0; i < grid.tbody.find(">tr").length; i++) {
             var item = grid.dataItem(grid.tbody.find(">tr")[i]);
-            if (item.CheckBoxCheked == false) {
+            if (item.IsRead == false) {
                 $(grid.tbody.find(">tr")[i]).addClass("unread")
             }
         }
 
-        if (treeViewSelectedItem.length === 1) {
-            var treeViewDataItem = navigationTreeView.dataItem(treeViewSelectedItem);
-            var treeViewItemValue = treeViewDataItem.value;
-            var selectedRowsFromCoockie = Cookies.get('mailsSelectedRow' + treeViewItemValue);
-
-            if (selectedRowsFromCoockie) {
-                var selectedRowsArray = selectedRowsFromCoockie.split(',');
-
-                for (var i = 0; i < selectedRowsArray.length; i++) {
-                    currentRowId = selectedRowsArray[i];
-                    var dataItem = gridDataSource.get(currentRowId);
-                    if (dataItem) {
-                        var row = grid.tbody.find("tr[data-uid='" + dataItem.uid + "']");
-                        grid.select(row);
-                        grid.content.scrollTop(row.offset().top - grid.content.offset().top);
-                    }
-                }
-            }
-        }
+        polulateSelectedRows(grid);
 
         $.ajax({
             url: '@Url.Action("Read", "Home")',
@@ -289,14 +252,7 @@
                     value: "Sitefinity"
                 }];
 
-                var newDataSource = new kendo.data.HierarchicalDataSource({ data: data });
-                navigationTreeView.setDataSource(newDataSource);
-                if (selected) {
-                    setSelectedNode(selected);
-                }
-                else {
-                    setSelectedNode("0");
-                }
+                populateNavigationTree(data);
             }
         });
     }
@@ -304,55 +260,20 @@
     function mailSelectionChanged(e) {
         var selectedRows = this.select();
 
-        var navigationTreeView = $('#mailsTreeView').data('kendoTreeView');
-        var selectedNode = navigationTreeView.select();
-        var selectedNodeData = navigationTreeView.dataItem(selectedNode);
-        var selectedNodeValue = selectedNodeData.value;
-        if (selectedRows.length === 1) {
-            var dataItem = e.sender.dataItem(selectedRows);
-
-            if (!dataItem.CheckBoxCheked) {
-                dataItem.CheckBoxCheked = true;
-                dataItem.dirty = true;
-                $(selectedRows[0]).removeClass("unread");
-                e.sender.dataSource.sync();
-            }
-            //Cookies.set('mailsSelectedRow' + selectedNodeValue, dataItem.MailID);
-        } else {
-            //var selectedRowsIds = [];
-            //debugger;
-            //for (var i = 0; i < selectedRows.length; i++) {
-            //    var selectedRow = selectedRows[i];
-            //    var dataItem = e.sender.dataItem(selectedRow);
-
-            //    selectedRowsIds.push(dataItem.MailID);
-            //}
-
-            //Cookies.set('mailsSelectedRow' + selectedNodeValue, selectedRowsIds.join());
-        }
-        var selectedRowsIds = [];
-
-        var firstRowDataItem = e.sender.dataItem(e.sender.tbody.find("tr:first"));
-        selectedRowsIds.push(firstRowDataItem.MailID);
-
-        for (var i = 0; i < selectedRows.length; i++) {
-            var selectedRow = selectedRows[i];
-            var dataItem = e.sender.dataItem(selectedRow);
-
-            selectedRowsIds.push(dataItem.MailID);
-        }
-
-        Cookies.set('mailsSelectedRow' + selectedNodeValue, selectedRowsIds.join());
-
-        $('input.chkbx').prop('checked', false);
-
-        var checkboxes = selectedRows.find('.chkbx');
-        checkboxes.prop('checked', true);
+        selectionChanged(e.sender, 'mailsSelectedRow');
+        checkSelectedCheckbox(selectedRows);
 
         if (selectedRows.length === 1) {
             var dataItem = this.dataItem(selectedRows[0]);
             populateDetailsView(dataItem);
         }
+    }
+
+    function checkSelectedCheckbox(selectedRows) {
+        $('input.chkbx').prop('checked', false);
+
+        var checkboxes = selectedRows.find('.chkbx');
+        checkboxes.prop('checked', true);
     }
 
     function populateDetailsView(item) {

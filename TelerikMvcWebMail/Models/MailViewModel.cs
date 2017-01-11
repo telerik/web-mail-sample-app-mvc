@@ -8,9 +8,9 @@ namespace TelerikMvcWebMail.Models
 {
     public class MailViewModel
     {
-        public int MailID { get; set; }
+        public int ID { get; set; }
 
-        public bool? CheckBoxCheked { get; set; }
+        public bool? IsRead { get; set; }
 
         public string From { get; set; }
 
@@ -31,10 +31,10 @@ namespace TelerikMvcWebMail.Models
                 From = From,
                 Subject = Subject,
                 Received = Date,
-                IsRead = CheckBoxCheked,
+                IsRead = IsRead,
                 //To = To;
                 Folder = Folder,
-                MessageID = MailID
+                MessageID = ID
             };
         }
     }

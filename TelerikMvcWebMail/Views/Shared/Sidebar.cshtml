@@ -27,6 +27,9 @@
 </aside>
 <script>
     var selected = Cookies.get('selected');
+    var marked = false;
+    var savedScroll = 0;
+
 
     function setSelectedNode(selected) {
         var treeview = $("#navigationTreeView").data("kendoTreeView");
@@ -34,8 +37,6 @@
             Cookies.remove('selected');
             var node = $("#navigationTreeView").find('li').eq(selected);
             treeview.select(node);
-
-            Cookies.set('navigated', 'navigated');
         }
     }
 
@@ -73,9 +74,11 @@
                         var row = widget.tbody.find("tr[data-uid='" + dataItem.uid + "']");
                         widget.select(row);
 
-                        if (Cookies.get('navigated') === 'navigated') {
-                            Cookies.set('navigated', '');
+                        if (!marked) {
                             widget.content.scrollTop(row.offset().top - widget.content.offset().top);
+                        } else {
+                            marked = false;
+                            widget.content.scrollTop(savedScroll);
                         }
                     }
                 }
@@ -115,10 +118,15 @@
             if (Cookies.get('markedAsUnread') === 'marked') {
                 Cookies.set('markedAsUnread', '');
             } else if (!dataItem.IsRead) {
+                marked = true;
+                savedScroll = widget.content.scrollTop();
+
                 dataItem.IsRead = true;
                 dataItem.dirty = true;
                 selectedRows.removeClass("unread");
                 widget.dataSource.sync();
+
+                
             }
 
             Cookies.set(selectedRowPrefix + selectedNodeValue, dataItem.ID);

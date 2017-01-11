@@ -292,6 +292,7 @@
     <Content Include="Views\Shared\SidebarFooter.cshtml" />
     <Content Include="Content\sidebarFooter.scss" />
     <Content Include="Content\contacts.scss" />
+    <Content Include="Views\Shared\Sidebar.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
