@@ -17,6 +17,12 @@
       margin: 0 5px 0 0;
       font: 24px "WebComponentsIcons";
       vertical-align: middle; }
+  .main-sidebar .k-treeview .k-item {
+    padding: 0; }
+  .main-sidebar .k-treeview .k-in {
+    display: block;
+    margin: 0;
+    padding: 10px 15px; }
   .main-sidebar .footer {
     padding: 15px;
     font-size: 10px;

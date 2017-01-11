@@ -31,3 +31,85 @@
     }
 
 }
+
+.k-input.search-textbox {
+    width: 100%;
+    padding: 6px 15px;
+    box-sizing: border-box;
+    border: none;
+    font-style: italic;
+
+    &:focus {
+        font-style: normal;
+    }
+}
+
+.k-grid {
+
+    .k-grouping-header {
+        padding-left: 15px;
+    }
+
+    th.k-header,
+    td {
+        border: 0;
+        border-bottom: 1px solid #ebebeb;
+    }
+
+    td {
+        padding: .5em .6em;
+        position: relative;
+    }
+
+    .k-grid-content {
+        cursor: pointer;
+    }
+
+    .k-alt {
+        background: transparent;
+    }
+
+    .k-state-selected,
+    .k-state-selected:hover,
+    tr:hover {
+        color: inherit;
+        background: #fafafa;
+    }
+
+    .k-state-selected td:first-child:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        border-left: 4px solid $accent;
+    }
+}
+
+.mail-details {
+    padding: 30px;
+
+    .mail-subject {
+        margin: 0;
+        font-weight: 300;
+        font-size: 38px;
+        color: #000;
+    }
+
+    .mail-sender-wrapper {
+        margin: 25px 0;
+    }
+
+        label {
+            font-weight: 700;
+            margin-right: 5px;
+            color: #333333;
+        }
+
+    .mail-text {
+        margin: 0;
+        padding: 10px 0 30px;
+        color: #333333;
+        border-bottom: 1px solid #ededed;
+    }
+}

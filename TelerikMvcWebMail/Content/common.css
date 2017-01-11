@@ -29,6 +29,17 @@ h6 {
   margin: 0;
   font-weight: normal; }
 
+html .k-state-selected {
+  background: #1e8edf; }
+
+html .k-state-hover,
+html .k-state-hover:hover {
+  color: inherit;
+  background: #e6e6e6; }
+
+html .k-state-selected.k-state-focused {
+  box-shadow: none; }
+
 .main-header {
   color: #fff;
   background: #2291e2;
@@ -131,8 +142,6 @@ h6 {
 .main-content {
   display: flex;
   flex: 1 0 auto; }
-  .main-content .k-state-hover {
-    background: #1e8edf; }
 
 .main-section {
   flex: 1;

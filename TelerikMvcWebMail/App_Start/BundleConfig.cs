@@ -29,7 +29,7 @@ namespace TelerikMvcWebMail
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/common.css",
-                "~/Content/sidebarFooter.css"));
+                "~/Content/sidebar.css"));
 
             bundles.IgnoreList.Clear();
         }

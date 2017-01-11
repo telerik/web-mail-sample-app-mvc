@@ -19,6 +19,7 @@
 <section class="main-section">
     @(Html.Kendo().ToolBar()
         .Name("IndexToolbar")
+        .HtmlAttributes(new { @class = "toolbar" })
         .Items(items =>
         {
             items.Add().Type(CommandType.SplitButton).Click("toolBarReplyButtonClick").Text("Reply").MenuButtons(menuButtons =>
@@ -59,7 +60,7 @@
     )
     <div class="inner-mail-content">
         <div class="mail-grid">
-            <input type="text" class="k-input long-textbox search-textbox" placeholder="Search mail ..." name="to-textbox">
+            <input type="text" class="k-input search-textbox" placeholder="Search mail ..." name="to-textbox">
             @(Html.Kendo().Grid(Model)
                 .Name("mainWidget")
                 .Columns(columns =>
@@ -94,9 +95,12 @@
         </div>
         <div class="mail-details">
             <div class="mail-details-header">
-                <p class="mail-subject"></p>
-                <p class="mail-sender"></p>
+                <h2 class="mail-subject"></h2>
                 <p class="mail-date"></p>
+                <p class="mail-sender-wrapper">
+                    <label>To:</label>
+                    <span class="mail-sender"></span>
+                </p>
             </div>
             <p class="mail-text"></p>
         </div>

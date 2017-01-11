@@ -1,6 +1,5 @@
 ﻿@import '_variables.scss';
 
-// Sidebar
 .main-sidebar {
     display: flex;
     flex-direction: column;
@@ -25,6 +24,21 @@
             font: 24px "WebComponentsIcons";
             vertical-align: middle;
         }
+    }
+
+    .k-treeview {
+
+        .k-item {
+            padding: 0;
+        }
+
+        .k-in {
+            display: block;
+            margin: 0;
+            padding: 10px 15px;
+        }
+
+
     }
 
 

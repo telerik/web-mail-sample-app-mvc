@@ -26,5 +26,9 @@
   {
     "outputFile": "Content/signIn.css",
     "inputFile": "Content/signIn.scss"
+  },
+  {
+    "outputFile": "Content/sidebar.css",
+    "inputFile": "Content/sidebar.scss"
   }
 ]

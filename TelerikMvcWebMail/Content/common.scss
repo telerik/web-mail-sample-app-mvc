@@ -43,6 +43,25 @@ h6 {
     font-weight: normal;
 }
 
+html {
+
+    .k-state-selected {
+        background: $accent;
+    }
+
+    .k-state-hover,
+    .k-state-hover:hover {
+        color: inherit;
+        background: $hover;
+    }
+
+    .k-state-selected.k-state-focused {
+        box-shadow: none;
+    }
+
+}
+
+
 // Header
 .main-header {
     color: #fff;
@@ -188,10 +207,6 @@ h6 {
 .main-content {
     display: flex;
     flex: 1 0 auto;
-
-    .k-state-hover {
-        background: $accent;
-    }
 }
 
 // Section

@@ -188,8 +188,8 @@
     <Content Include="Content\mail.css">
       <DependentUpon>mail.scss</DependentUpon>
     </Content>
-    <Content Include="Content\sidebarFooter.css">
-      <DependentUpon>sidebarFooter.scss</DependentUpon>
+    <Content Include="Content\sidebar.css">
+      <DependentUpon>sidebar.scss</DependentUpon>
     </Content>
     <Content Include="Content\signIn.css">
       <DependentUpon>signIn.scss</DependentUpon>
@@ -293,10 +293,10 @@
     <Content Include="Content\common.scss" />
     <Content Include="Content\_variables.scss" />
     <Content Include="Views\Shared\SidebarFooter.cshtml" />
-    <Content Include="Content\sidebarFooter.scss" />
     <Content Include="Content\contacts.scss" />
     <Content Include="Views\Shared\Sidebar.cshtml" />
     <Content Include="Content\signIn.scss" />
+    <Content Include="Content\sidebar.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
