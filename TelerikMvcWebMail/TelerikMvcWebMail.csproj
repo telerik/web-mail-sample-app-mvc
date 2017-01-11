@@ -295,11 +295,8 @@
     <Content Include="Views\Shared\SidebarFooter.cshtml" />
     <Content Include="Content\sidebarFooter.scss" />
     <Content Include="Content\contacts.scss" />
-<<<<<<< HEAD
     <Content Include="Views\Shared\Sidebar.cshtml" />
-=======
     <Content Include="Content\signIn.scss" />
->>>>>>> feat: style Sign In page
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
