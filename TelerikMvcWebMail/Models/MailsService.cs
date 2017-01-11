@@ -26,7 +26,8 @@ namespace TelerikMvcWebMail.Models
                 Subject = message.Subject,
                 Date = message.Received,
                 Text = message.Body,
-                Folder = message.Folder
+                Folder = message.Folder,
+                Email = message.Email
             });
 
             return result;
@@ -44,6 +45,7 @@ namespace TelerikMvcWebMail.Models
             entity.To = mail.To;
             entity.Folder = mail.Folder;
             entity.MessageID = mail.ID;
+            entity.Email = mail.Email;
 
             entities.Messages.Add(entity);
             entities.SaveChanges();

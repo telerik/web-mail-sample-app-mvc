@@ -1,7 +1,7 @@
 ﻿@using TelerikMvcWebMail.Models
 
 @{
-    ViewBag.Title = "Contacts";
+    ViewBag.Title = "Contact";
 }
 
 @section PageStyles {
@@ -29,24 +29,9 @@
     </div>
 </script>
 
-<aside class="main-sidebar">
-    <div class="content">
-        @(Html.Kendo().Button()
-        .Name("addNewContact")
-        .Icon("plus")
-        .Content("New Contact")
-        .HtmlAttributes(new { type = "button" })
-        .Events(ev => ev.Click("createNewContact"))
-        )
-        @(Html.Kendo().TreeView()
-        .Name("contactsTreeView")
-        .Events(e => e.Select("selectContactsFolder"))
-        )
-    </div>
-    @Html.Partial("SidebarFooter")
-</aside>
+@Html.Partial("Sidebar")
 
-<div class="main-section">
+<section class="main-section">
     <div class="toolbar">
         <div class="left">
             <span class="btn btn-export-pdf" onclick="exportPeople()">Export to PDF</span>
@@ -59,7 +44,7 @@
     <input type="text" class="k-input search-textbox" placeholder="Search people ...">
     <div class="contacts list-view">
         @(Html.Kendo().ListView<TelerikMvcWebMail.Models.ContactViewModel>()
-            .Name("contactsListView")
+            .Name("mainWidget")
             .TagName("div")
             .ClientTemplateId("single-contact-template")
             .DataSource(dataSource => dataSource
@@ -75,25 +60,14 @@
                 .DataBound("onListViewDataBound")
                 .Change("onListViewSelectionChange")
             )
+            .HtmlAttributes(new { @class = "contactsListView" })
         )
         <div class="single-contact-details k-widget">
         </div>
     </div>
-</div>
+</section>
 
 <script>
-    var selectedContact = Cookies.get('selectedContact');
-    var shouldChangeTreeViewNumbers = true;
-
-    function setSelectedNode(selected) {
-        var treeview = $("#contactsTreeView").data("kendoTreeView");
-        if (selected) {
-            Cookies.remove('selectedContact');
-            var node = $("#contactsTreeView").find('li').eq(selected);
-            treeview.select(node);
-        }
-    } 
-
     function exportPeople() {
         kendo.drawing.drawDOM($(".contacts"))
             .then(function (group) {
@@ -171,16 +145,7 @@
                     value: "Work"
                 }];
 
-                var newDataSource = new kendo.data.HierarchicalDataSource({ data: data });
-                var navigationTreeView = $('#contactsTreeView').data('kendoTreeView');
-                navigationTreeView.setDataSource(newDataSource);
-
-                if (selectedContact) {
-                    setSelectedNode(selectedContact);
-                }
-                else {
-                    setSelectedNode("0");
-                }
+                populateNavigationTree(data);
             }
         });
 
@@ -188,42 +153,38 @@
         $('.search-textbox').on('keyup', searchContacts);
     }
 
-    function selectContactsFolder(e) {
-        debugger;
-        var dataItem = e.sender.dataItem(e.node);
-        var selectedText = dataItem.value;
-        Cookies.set('selectedContact', kendo.stringify(dataItem.index));
-        selectedContact = Cookies.get('selectedContact');
+    function selectFolder(e) {
+        var dataItem = this.dataItem(e.node);
+        var selectedText = e.sender.dataItem(e.node).value;
+        Cookies.set('selected', kendo.stringify(dataItem.index));
+        selected = Cookies.get('selected');
 
-        var contactsListView = $("#contactsListView").data("kendoListView");
+        var contactsListView = $("#mainWidget").data("kendoListView");
 
-        if (selectedText === "All") {
+        if (!contactsListView) {
+            window.location.href = "/Contacts/Contacts";
+        } else if (selectedText === "All") {
             contactsListView.dataSource.filter({});
-            shouldChangeTreeViewNumbers = true;
         } else {
             contactsListView.dataSource.filter({ field: "Folder", operator: "contains", value: selectedText });
-            shouldChangeTreeViewNumbers = false;
         }
     }
 
     function searchContacts(e) {
         var text = $(e.target).val();
 
-        var listView = $("#contactsListView").data("kendoListView");
+        var listView = $("#mainWidget").data("kendoListView");
         listView.dataSource.filter({ field: "Name", operator: "contains", value: text });
     }
 
     function createNewMail(e) {
         var target = $(e.target);
         var listVewItem = target.parents('.contact-list, .contact-card');
-        var listView = $('#contactsListView').data('kendoListView');
+        var listView = $('#mainWidget').data('kendoListView');
         var dataItem = listView.dataItem(listVewItem);
         var email = dataItem.Email;
 
-        debugger;
-
-        $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0", @contact = "placeholder1"}))'.replace("placeholder0", '').replace("placeholder1", email));
-        // Implement here create new email logic
+        openNewMailView(email);
     };
 
     function singleCreateNewMail(e) {
@@ -231,19 +192,22 @@
         var singleItem = target.parents('.contact-view');
         var email = singleItem.find('.hidden-email').text();
 
-        debugger;
-        // Implement here create new email logic
+        openNewMailView(email);
     };
+
+    function openNewMailView(email) {
+        $(".main-section").load('@(Url.Action("NewMail", "Home", new {@mailTo = "placeholder1"}))'.replace("placeholder1", email));
+    }
 
     function singleEditClick(e) {
         var uid = getItemUid(e);
-        var listView = $("#contactsListView").data("kendoListView");
+        var listView = $("#mainWidget").data("kendoListView");
         listView.edit(listView.element.find('[data-uid="' + uid + '"]'));
     }
 
     function singleDeleteClick(e) {
         var uid = getItemUid(e);
-        var listView = $("#contactsListView").data("kendoListView");
+        var listView = $("#mainWidget").data("kendoListView");
         listView.remove(listView.element.find('[data-uid="' + uid + '"]'));
     }
 
@@ -266,7 +230,7 @@
     }
 
     function createNewContact() {
-        var listView = $("#contactsListView").data("kendoListView");
+        var listView = $("#mainWidget").data("kendoListView");
         listView.add();
     }
 </script>

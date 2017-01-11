@@ -24,10 +24,14 @@ namespace TelerikMvcWebMail.Controllers
             return View();
         }
 
-        public ActionResult NewMail(string id, string contact)
+        public ActionResult NewMail(string id, string subject, string mailTo)
         {
-            ViewBag.ReplyButtonID = id;
-            ViewBag.ContactName = HttpUtility.UrlDecode(contact);
+            if (!String.IsNullOrEmpty(id))
+            {
+                ViewBag.ReplyButtonID = id + ":";
+            }
+            ViewBag.MailTo = mailTo;
+            ViewBag.Subject = HttpUtility.UrlDecode(subject);
 
             return PartialView("NewMail");
         }

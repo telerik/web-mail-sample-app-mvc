@@ -82,6 +82,7 @@
                 .Sortable()
                 .Scrollable()
                 .Groupable()
+                .Pageable(p => p.Enabled(false))
                 .Selectable(s => s.Mode(GridSelectionMode.Multiple))
                 .DataSource(dataSource => dataSource
                     .Ajax()
@@ -174,8 +175,10 @@
             $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0"}))'.replace("placeholder0", id));
         }
         else {
-            var contact = selected.From.replace(/ /g, '%20');
-            $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0", @contact = "placeholder1"}))'.replace("placeholder0", id).replace("placeholder1", contact));
+            var subject = selected.Subject.replace(/ /g, '%20');
+            var mailTo = selected.Email;
+            debugger;
+            $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0", @subject = "placeholder2" }))'.replace("placeholder0", id).replace("placeholder2", subject));
         }
     }
 
@@ -326,7 +329,7 @@
     }
 
     $('.new-Mail').on('click', function (e) {
-        $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "RE"}))');
+        $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = ""}))');
     });
 
     $(".search-textbox").on('keyup', function (e) {

@@ -34,18 +34,18 @@
     clear: both; }
 
 /* List view - default */
-.list-view #contactsListView {
+.list-view .contactsListView {
   flex: 0.3;
   line-height: 50px; }
-  .list-view #contactsListView .contact-view {
+  .list-view .contactsListView .contact-view {
     border-width: 0 0 1px;
     line-height: 50px; }
-    .list-view #contactsListView .contact-view:hover .edit-buttons {
+    .list-view .contactsListView .contact-view:hover .edit-buttons {
       display: block; }
-  .list-view #contactsListView img {
+  .list-view .contactsListView img {
     height: 50px;
     margin-right: 16px; }
-  .list-view #contactsListView .details {
+  .list-view .contactsListView .details {
     display: none; }
 
 .list-view .single-contact-details {
@@ -66,7 +66,7 @@
     height: 70px; }
 
 /* Card view */
-.card-view #contactsListView {
+.card-view .contactsListView {
   flex: none;
   width: 100%; }
 
