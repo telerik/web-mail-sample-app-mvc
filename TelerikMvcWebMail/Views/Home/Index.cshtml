@@ -16,7 +16,7 @@
 
 @Html.Partial("Sidebar")
 
-<section class="main-section">
+<section class="main-section horizontal">
     @(Html.Kendo().Menu()
         .Name("mailMenu")
         .Items(items =>
@@ -56,12 +56,12 @@
                     children.Add().Text("Mark as unread").HtmlAttributes(new { @id = "unread", @operation = "readUnread" });
                     children.Add().Text("Print").HtmlAttributes(new { @id = "FW", @operation = "print" });
                 });
+            items.Add().HtmlAttributes(new { @id = "horizontalPanes", @operation = "changeView", @class = "iconsOnly selected" });
             items.Add().HtmlAttributes(new { @id = "verticalPanes", @operation = "changeView", @class = "iconsOnly" });
-            items.Add().HtmlAttributes(new { @id = "horizontalPanes", @operation = "changeView", @class = "iconsOnly" });
         })
         .Events(e => e.Select("mailMenuSelect"))
     )
-    <div class="inner-mail-content">
+    <div class="mails-section">
         <div class="mail-grid">
             <input type="text" class="k-input search-textbox" placeholder="Search mail ..." name="to-textbox">
             @(Html.Kendo().Grid(Model)
@@ -75,10 +75,9 @@
                         .ClientTemplate("<input type='checkbox' class='chkbx' />");
                     columns.Bound(p => p.From).Title("From");
                     columns.Bound(p => p.Subject).Title("Subject");
-                    columns.Bound(p => p.Subject).Title("Subject").ClientTemplate("<p>#= Subject #</p><p>#= From #</p>").Hidden(true);
-                    columns.Bound(p => p.Date).Title("Date").Format("{0:g}");
+                    columns.Bound(p => p.Subject).Title("Subject").ClientTemplate("<p>#= From #</p><p>#= Subject #</p>").Hidden(true);
+                    columns.Bound(p => p.Date).HtmlAttributes(new { @class = "date" }).Title("Date").Format("{0:g}");
                 })
-                .HtmlAttributes(new { style = "height: 100%;" })
                 .Sortable()
                 .Scrollable()
                 .Groupable()
@@ -143,7 +142,7 @@
                 mailPrint();
                 break;
             case "changeView":
-                e.item.id == "verticalPanes" ? changeToVerticalPanes() : changeToHorizontalPanes();
+                e.item.id == "verticalPanes" ? changeToVerticalPanes(e) : changeToHorizontalPanes(e);
                 break;
         }
     }
@@ -216,22 +215,34 @@
             });
     }
 
-    function changeToVerticalPanes() {
+    function changeToVerticalPanes(e) {
         var grid = $("#mainWidget").data("kendoGrid");
         grid.hideColumn(1);
         grid.hideColumn(2);
         grid.showColumn(3);
-        $('.mail-grid').attr('style', "display: inline-block; width: 35%");
-        $('.mail-details').attr('style', "display: inline-block; vertical-align: top;");
+        updateSelectedClasses(e.item);
+        $('.main-section').addClass("vertical");
+        $('.main-section').removeClass("horizontal");
+        //debugger;
+        grid.refresh();
     }
 
-    function changeToHorizontalPanes() {
+    function changeToHorizontalPanes(e) {
         var grid = $("#mainWidget").data("kendoGrid");
         grid.hideColumn(3);
         grid.showColumn(1);
         grid.showColumn(2);
-        $('.mail-grid').attr('style', "display: block;");
-        $('.mail-details').attr('style', "display: block;");
+        updateSelectedClasses(e.item);
+        $('.main-section').addClass("horizontal");
+        $('.main-section').removeClass("vertical");
+        grid.refresh();
+    }
+
+    function updateSelectedClasses(btnElement) {
+        var selectedClass = "selected";
+
+        $(".k-item." + selectedClass).removeClass(selectedClass);
+        $(btnElement).addClass(selectedClass);
     }
 
     function selectFolder(e) {

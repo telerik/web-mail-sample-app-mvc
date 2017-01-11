@@ -10,16 +10,18 @@
 
 
 
-html {
+html,
+body {
     height: 100%;
+    box-sizing: border-box;
 }
 
 
 body {
-    min-height: 100%;
     display: flex;
     flex-direction: column;
     margin: 0;
+    padding-top: 61px;
     font: 14px/1 Segoe UI, 'Roboto', Myriad Pro, sans-serif;
     color: #787878;
 }
@@ -41,6 +43,10 @@ h5,
 h6 {
     margin: 0;
     font-weight: normal;
+}
+
+p {
+    margin: 0;
 }
 
 html {
@@ -65,6 +71,10 @@ html {
 
 // Header
 .main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     color: #fff;
     background: $header;
     font-size: 16px;
@@ -208,6 +218,7 @@ html {
 .main-content {
     display: flex;
     flex: 1 0 auto;
+    height: 100%;
 }
 
 // Section

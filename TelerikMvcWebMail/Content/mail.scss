@@ -1,5 +1,48 @@
 ﻿@import '_variables.scss';
 
+
+
+.main-section.vertical {
+    display: flex;
+    flex-direction: column;
+
+    .mails-section {
+        flex: 1;
+        display: flex;
+    }
+
+        .mail-grid {
+            flex: 0.3;
+            border-right: 1px solid #ebebeb;
+        }
+
+        .k-grid {
+            height: calc(100% - 31px);
+            box-sizing: border-box;
+        }
+
+        .mail-details {
+            flex: 0.7;
+        }
+
+        td.date {
+            width: 60px;
+        }
+}
+
+
+.main-section.horizontal {
+
+    .k-grid {
+        height: 270px;
+        border-bottom: 1px solid #ebebeb;
+    }
+
+    .mail-text {
+        border-bottom: 1px solid #ededed;
+    }
+}
+
 #mailMenu {
     border-width: 0 0 1px;
 
@@ -54,6 +97,10 @@
             background-position: -16px -32px;
         }
     }
+
+    .selected {
+        color: $accent;
+    }
 }
 
 .k-input.search-textbox {
@@ -69,9 +116,16 @@
 }
 
 .k-grid {
+    border: 0;
+    border-top: 1px solid #ebebeb;
 
     .k-grouping-header {
         padding-left: 15px;
+        border-color: #ebebeb;
+    }
+
+    .k-grid-header {
+        border-color: #ebebeb;
     }
 
     th.k-header,
@@ -86,7 +140,13 @@
     }
 
     .k-grid-content {
+        white-space: nowrap;
         cursor: pointer;
+
+        p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 
     .k-alt {
@@ -114,7 +174,7 @@
     padding: 30px;
 
     .mail-subject {
-        margin: 0;
+        margin: 0 0 10px;
         font-weight: 300;
         font-size: 38px;
         color: #000;
@@ -134,6 +194,5 @@
         margin: 0;
         padding: 10px 0 30px;
         color: #333333;
-        border-bottom: 1px solid #ededed;
     }
 }

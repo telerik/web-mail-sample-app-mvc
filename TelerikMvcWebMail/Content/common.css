@@ -3,14 +3,16 @@
   src: url("../fonts/WebComponentsIcons/WebComponentsIcons.woff") format("woff"), url("../fonts/WebComponentsIcons/WebComponentsIcons.ttf") format("truetype"), url("../fonts/WebComponentsIcons/WebComponentsIcons.svg#svgFontName") format("svg");
   /* Legacy iOS */ }
 
-html {
-  height: 100%; }
+html,
+body {
+  height: 100%;
+  box-sizing: border-box; }
 
 body {
-  min-height: 100%;
   display: flex;
   flex-direction: column;
   margin: 0;
+  padding-top: 61px;
   font: 14px/1 Segoe UI, 'Roboto', Myriad Pro, sans-serif;
   color: #787878; }
 
@@ -29,6 +31,9 @@ h6 {
   margin: 0;
   font-weight: normal; }
 
+p {
+  margin: 0; }
+
 html .k-state-selected {
   background: #1e8edf; }
 
@@ -42,6 +47,10 @@ html .k-state-selected.k-state-focused {
   box-shadow: none; }
 
 .main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   color: #fff;
   background: #2291e2;
   font-size: 16px; }
@@ -142,7 +151,8 @@ html .k-state-selected.k-state-focused {
 
 .main-content {
   display: flex;
-  flex: 1 0 auto; }
+  flex: 1 0 auto;
+  height: 100%; }
 
 .main-section {
   flex: 1;
