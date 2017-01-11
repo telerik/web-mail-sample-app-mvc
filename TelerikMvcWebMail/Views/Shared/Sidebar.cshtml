@@ -4,7 +4,7 @@
 
 <aside class="main-sidebar">
     <div class="content">
-        <span class="new-btn">New Mail</span>
+        <span class="new-btn new-@(ViewBag.Title)">New @(ViewBag.Title)</span>
         @(Html.Kendo().TreeView()
         .Name("navigationTreeView")
         .Events(e => e.Select("selectFolder"))

@@ -325,7 +325,7 @@
         $('.mail-text').html(item.Text);
     }
 
-    $('.new-mail').on('click', function (e) {
+    $('.new-Mail').on('click', function (e) {
         $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "RE"}))');
     });
 
