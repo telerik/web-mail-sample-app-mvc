@@ -56,8 +56,8 @@
                     children.Add().Text("Mark as unread").HtmlAttributes(new { @id = "unread", @operation = "readUnread" });
                     children.Add().Text("Print").HtmlAttributes(new { @id = "FW", @operation = "print" });
                 });
-            items.Add().SpriteCssClasses("k-tool-icon k-justifyLeft").HtmlAttributes(new { @id = "verticalPanes", @operation = "changeView" });
-            items.Add().SpriteCssClasses("k-tool-icon k-justifyRight").HtmlAttributes(new { @id = "horizontalPanes", @operation = "changeView" });
+            items.Add().HtmlAttributes(new { @id = "verticalPanes", @operation = "changeView", @class = "iconsOnly" });
+            items.Add().HtmlAttributes(new { @id = "horizontalPanes", @operation = "changeView", @class = "iconsOnly" });
         })
         .Events(e => e.Select("mailMenuSelect"))
     )

@@ -37,6 +37,7 @@ html .k-state-hover:hover {
   color: inherit;
   background: #e6e6e6; }
 
+html .k-state-focused,
 html .k-state-selected.k-state-focused {
   box-shadow: none; }
 
