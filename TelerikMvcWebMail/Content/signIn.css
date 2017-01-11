@@ -1,9 +1,9 @@
-﻿html {
+﻿html,
+body {
   height: 100%; }
 
 body {
   display: flex;
-  min-height: 100%;
   margin: 0;
   font: 13px/1 Segoe UI, 'Roboto', Myriad Pro, sans-serif;
   color: #787878;
@@ -13,7 +13,7 @@ body {
   width: 355px;
   display: flex;
   flex-direction: column;
-  padding: 130px 165px 45px 45px;
+  padding: 130px 140px 45px 45px;
   color: #fff;
   font-weight: 100;
   background-color: #006dbd;
@@ -30,17 +30,19 @@ body {
     margin: 5px 0; }
 
 .footer {
-  font-size: 10px; }
+  font-size: 12px;
+  line-height: 1.33em; }
 
 .content {
-  padding: 200px 150px 30px; }
+  padding: 130px 150px 30px; }
   .content h2 {
+    margin: 0 0 30px;
     font-weight: 600;
     font-size: 24px;
     color: #000; }
   .content label {
     display: block;
-    margin: 15px 0 5px; }
+    padding: 15px 0 5px; }
   .content input {
     width: 230px;
     padding: 12px;
