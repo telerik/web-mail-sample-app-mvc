@@ -59,6 +59,7 @@
     )
     <div class="inner-mail-content">
         <div class="mail-grid">
+            <input type="text" class="k-input long-textbox search-textbox" placeholder="Search mail ..." name="to-textbox">
             @(Html.Kendo().Grid(Model)
                 .Name("mainWidget")
                 .Columns(columns =>
@@ -76,7 +77,6 @@
                 .HtmlAttributes(new { style = "height: 100%;" })
                 .Sortable()
                 .Scrollable()
-                .Filterable()
                 .Groupable()
                 .Selectable(s => s.Mode(GridSelectionMode.Multiple))
                 .DataSource(dataSource => dataSource
@@ -285,5 +285,16 @@
 
     $('.new-mail').on('click', function (e) {
         $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "RE"}))');
+    });
+
+    $(".search-textbox").on('keyup', function (e) {
+        var text = $(e.target).val();
+        var tasksGrid = $("#mainWidget").data("kendoGrid");
+
+        if (text === null || text == '') {
+            tasksGrid.dataSource.filter({});
+        } else {
+            tasksGrid.dataSource.filter({ field: "Subject", operator: "contains", value: text });
+        }
     });
 </script>
