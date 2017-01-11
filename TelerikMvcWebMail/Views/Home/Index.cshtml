@@ -17,46 +17,49 @@
 @Html.Partial("Sidebar")
 
 <section class="main-section">
-    @(Html.Kendo().ToolBar()
-        .Name("IndexToolbar")
-        .HtmlAttributes(new { @class = "toolbar" })
+    @(Html.Kendo().Menu()
+        .Name("mailMenu")
         .Items(items =>
         {
-            items.Add().Type(CommandType.SplitButton).Click("toolBarReplyButtonClick").Text("Reply").MenuButtons(menuButtons =>
-            {
-                menuButtons.Add().Text("Reply").Id("RE");
-                menuButtons.Add().Text("Reply All").Id("RE");
-                menuButtons.Add().Text("Forward").Id("FW");
-            });
-
-            items.Add().Type(CommandType.Button).Text("Delete").Click("toolBarButtonClick").Id("Deleted");
-
-            items.Add().Type(CommandType.SplitButton).Click("toolBarButtonClick").Text("Move").MenuButtons(menuButtons =>
-            {
-                menuButtons.Add().Text("Inbox").Id("Inbox");
-                menuButtons.Add().Text("Junk").Id("Junk");
-                menuButtons.Add().Text("Drafts").Id("Drafts");
-                menuButtons.Add().Text("Deleted").Id("Deleted");
-                menuButtons.Add().Text("NativeScript").Id("NativeScript");
-                menuButtons.Add().Text("KendoUI").Id("KendoUI");
-                menuButtons.Add().Text("Sitefinity").Id("Sitefinity");
-            });
-
-            items.Add().Type(CommandType.SplitButton).Click("toolBarButtonClick").Text("Junk").MenuButtons(menuButtons =>
-            {
-                menuButtons.Add().Text("Report Spam").Id("Junk");
-            });
-
-            items.Add().Type(CommandType.SplitButton).Click("toolBarMoreButtonClick").Text("More").MenuButtons(menuButtons =>
-            {
-                menuButtons.Add().Text("Mark as read").Id("read"); ;
-                menuButtons.Add().Text("Mark as unread").Id("unread"); ;
-                menuButtons.Add().Text("Print").Id("print"); ;
-            });
-
-            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyLeft").Click("changeToVerticalPanes");
-            items.Add().Type(CommandType.Button).SpriteCssClass("k-tool-icon k-justifyRight").Click("changeToHorizontalPanes");
+            items.Add()
+                .Text("Reply")
+                .Items(children =>
+                {
+                    children.Add().Text("Reply").HtmlAttributes(new { @id = "RE", @operation = "replyForward" });
+                    children.Add().Text("Reply All").HtmlAttributes(new { @id = "RE", @operation = "replyForward" });
+                    children.Add().Text("Forward").HtmlAttributes(new { @id = "FW", @operation = "replyForward" });
+                });
+            items.Add().Text("Delete").HtmlAttributes(new { @id = "Deleted", @operation = "moveDelete" });
+            items.Add()
+                .Text("Move")
+                .Items(children =>
+                {
+                    children.Add().Text("Inbox").HtmlAttributes(new { @id = "Inbox", @operation = "moveDelete" });
+                    children.Add().Text("Junk").HtmlAttributes(new { @id = "Junk", @operation = "moveDelete" });
+                    children.Add().Text("Drafts").HtmlAttributes(new { @id = "Drafts", @operation = "moveDelete" });
+                    children.Add().Text("Deleted").HtmlAttributes(new { @id = "Deleted", @operation = "moveDelete" });
+                    children.Add().Text("NativeScript").HtmlAttributes(new { @id = "NativeScript", @operation = "moveDelete" });
+                    children.Add().Text("KendoUI").HtmlAttributes(new { @id = "KendoUI", @operation = "moveDelete" });
+                    children.Add().Text("Sitefinity").HtmlAttributes(new { @id = "Sitefinity", @operation = "moveDelete" });
+                });
+            items.Add()
+                .Text("Junk")
+                .Items(children =>
+                {
+                    children.Add().Text("Report Spam").HtmlAttributes(new { @id = "Junk", @operation = "moveDelete" });
+                });
+            items.Add()
+                .Text("More")
+                .Items(children =>
+                {
+                    children.Add().Text("Mark as read").HtmlAttributes(new { @id = "read", @operation = "readUnread" });
+                    children.Add().Text("Mark as unread").HtmlAttributes(new { @id = "unread", @operation = "readUnread" });
+                    children.Add().Text("Print").HtmlAttributes(new { @id = "FW", @operation = "print" });
+                });
+            items.Add().SpriteCssClasses("k-tool-icon k-justifyLeft").HtmlAttributes(new { @id = "verticalPanes", @operation = "changeView" });
+            items.Add().SpriteCssClasses("k-tool-icon k-justifyRight").HtmlAttributes(new { @id = "horizontalPanes", @operation = "changeView" });
         })
+        .Events(e => e.Select("mailMenuSelect"))
     )
     <div class="inner-mail-content">
         <div class="mail-grid">
@@ -104,15 +107,52 @@
             </div>
             <p class="mail-text"></p>
         </div>
+        @(Html.Kendo().ContextMenu()
+            .Name("mailContextMenu")
+            .Target("#mainWidget")
+            .Orientation(ContextMenuOrientation.Vertical)
+            .Items(items =>
+            {
+                items.Add().Text("Reply").HtmlAttributes(new { @id = "RE", @operation = "replyForward" });
+                items.Add().Text("Reply All").HtmlAttributes(new { @id = "RE", @operation = "replyForward" });
+                items.Add().Text("Forward").HtmlAttributes(new { @id = "FW", @operation = "replyForward" });
+                items.Add().Text("Mark as unread").HtmlAttributes(new { @id = "unread", @operation = "readUnread" });
+                items.Add().Text("Mark as read").HtmlAttributes(new { @id = "read", @operation = "readUnread" });
+                items.Add().Text("Delete").HtmlAttributes(new { @id = "Deleted", @operation = "moveDelete" });
+                items.Add().Text("Junk").HtmlAttributes(new { @id = "Junk", @operation = "moveDelete" });
+                items.Add().Text("Print").HtmlAttributes(new { @id = "print", @operation = "print" });
+            })
+            .Events(e => e.Select("mailMenuSelect"))
+        )
     </div>
 </section>
 <script>
-    function toolBarButtonClick(e) {
+    function mailMenuSelect(e) {
+        switch (e.item.getAttribute("operation")) {
+            case "replyForward":
+                mailReplyForward(e.item.id);
+                break;
+            case "moveDelete":
+                mailMoveDelete(e.item.id);
+                break;
+            case "readUnread":
+                mailMarkAsReadUnread(e.item.id);
+                break;
+            case "print":
+                mailPrint();
+                break;
+            case "changeView":
+                e.item.id == "verticalPanes" ? changeToVerticalPanes() : changeToHorizontalPanes();
+                break;
+        }
+    }
+
+    function mailMoveDelete(id) {
         var grid = $("#mainWidget").data("kendoGrid");
 
         for (var i = 0; i < grid.select().length; i++) {
             var selectedItem = grid.dataItem(grid.select()[i]);
-            selectedItem.Folder = e.id;
+            selectedItem.Folder = id;
             selectedItem.dirty = true;
         }
 
@@ -126,53 +166,51 @@
         }
     }
 
-    function toolBarReplyButtonClick(e) {
+    function mailReplyForward(id) {
         var grid = $("#mainWidget").data("kendoGrid");
         var selected = grid.dataItem(grid.select());
-        //encodes the contacts names sent to the Action by replacing the empty spaces in them with %20
 
         if (!selected) {
-            $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0"}))'.replace("placeholder0", e.id));
+            $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0"}))'.replace("placeholder0", id));
         }
         else {
             var contact = selected.From.replace(/ /g, '%20');
-            $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0", @contact = "placeholder1"}))'.replace("placeholder0", e.id).replace("placeholder1", contact));
+            $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0", @contact = "placeholder1"}))'.replace("placeholder0", id).replace("placeholder1", contact));
         }
     }
 
-    function toolBarMoreButtonClick(e) {
+    function mailMarkAsReadUnread(id) {
         var grid = $("#mainWidget").data("kendoGrid");
         var selectedRows = grid.select();
 
-        if (e.id == "read" || e.id == "unread") {
-            for (var i = 0; i < selectedRows.length; i++) {
-                var item = grid.dataItem(selectedRows[i]);
-                e.id == "read" ? item.IsRead = true : item.IsRead = false;
-                item.dirty = true;
-                e.id == "read" ? $(selectedRows[i]).removeClass("unread") : $(selectedRows[i]).addClass("unread");;
-            }
-
-            if (e.id == "unread") {
-                Cookies.set('markedAsUnread', 'marked');
-            }
-
-            grid.dataSource.sync();
+        for (var i = 0; i < selectedRows.length; i++) {
+            var item = grid.dataItem(selectedRows[i]);
+            id == "read" ? item.IsRead = true : item.IsRead = false;
+            item.dirty = true;
+            id == "read" ? $(selectedRows[i]).removeClass("unread") : $(selectedRows[i]).addClass("unread");;
         }
-        else if (e.id == "print") {
-            kendo.drawing.drawDOM($(".mail-details"))
-                .then(function (group) {
-                    return kendo.drawing.exportPDF(group, {
-                        paperSize: "auto",
-                        margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" }
-                    });
-                })
-                .done(function (data) {
-                     kendo.saveAs({
-                        dataURI: data,
-                        fileName: "Mail.pdf"
-                    });
+
+        if (id == "unread") {
+            Cookies.set('markedAsUnread', 'marked');
+        }
+
+        grid.dataSource.sync();
+    }
+
+    function mailPrint() {
+        kendo.drawing.drawDOM($(".mail-details"))
+            .then(function (group) {
+                return kendo.drawing.exportPDF(group, {
+                    paperSize: "auto",
+                    margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" }
                 });
-        }
+            })
+            .done(function (data) {
+                kendo.saveAs({
+                    dataURI: data,
+                    fileName: "Mail.pdf"
+                });
+            });
     }
 
     function changeToVerticalPanes() {
