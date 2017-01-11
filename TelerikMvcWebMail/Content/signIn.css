@@ -9,6 +9,11 @@ body {
   color: #787878;
   background: #fafafa; }
 
+a {
+  color: inherit; }
+  a, a:hover {
+    text-decoration: none; }
+
 .sidebar {
   width: 355px;
   display: flex;
