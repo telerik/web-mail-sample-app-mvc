@@ -1,0 +1,60 @@
+﻿html {
+  height: 100%; }
+
+body {
+  display: flex;
+  min-height: 100%;
+  margin: 0;
+  font: 13px/1 Segoe UI, 'Roboto', Myriad Pro, sans-serif;
+  color: #787878;
+  background: #fafafa; }
+
+.sidebar {
+  width: 355px;
+  display: flex;
+  flex-direction: column;
+  padding: 130px 165px 45px 45px;
+  color: #fff;
+  font-weight: 100;
+  background-color: #006dbd;
+  background-image: linear-gradient(90deg, #2594e5, #006dbd);
+  box-sizing: border-box; }
+
+.header {
+  flex: 1; }
+  .header h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 24px; }
+  .header p {
+    margin: 5px 0; }
+
+.footer {
+  font-size: 10px; }
+
+.content {
+  padding: 200px 150px 30px; }
+  .content h2 {
+    font-weight: 600;
+    font-size: 24px;
+    color: #000; }
+  .content label {
+    display: block;
+    margin: 15px 0 5px; }
+  .content input {
+    width: 230px;
+    padding: 12px;
+    border: 1px solid #ebebeb; }
+  .content button {
+    margin: 20px 0 30px;
+    padding: 10px 20px;
+    border: 0;
+    color: #fff;
+    background: #1e8edf; }
+  .content a,
+  .content a:hover {
+    display: inline-block;
+    margin: 10px 0;
+    color: #1e8edf;
+    text-decoration: none; }
+

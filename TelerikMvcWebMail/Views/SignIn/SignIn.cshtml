@@ -1,64 +1,42 @@
 ﻿@{
-	Layout = null;
+    Layout = null;
 }
-
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width" />
-	<title>SignIn</title>
-	<style>
-		.signin-wrapper > div {
-			display: inline-block;
-			vertical-align: top;
-		}
-
-		.signin-left {
-			width: 20%;
-		}
-
-		.new-line {
-			height: 50px;
-			padding-top: 20px;
-		}
-	</style>
+    <meta name="viewport" content="width=device-width" />
+    <title>SignIn</title>
+    <link type="text/css" href="~/Content/signIn.css" rel="stylesheet" />
 </head>
 <body>
-	<div class="signin-wrapper">
-		<div class="signin-left">
-			<h2>WebMail</h2>
-			<p>ASP.NET MVC Demo App</p>
-			<div class="copyright-wrapper">
-				<p>
-					Copyright &copy; @DateTime.Now.Year Progress Software Corporation and/or its subsidiaries or affiliates.
-				</p>
-				<p>
-					All Rights Reserved.
-				</p>
-			</div>
-		</div>
-		<div class="signin-right">
-			<h2>Sign In</h2>
-			<div class="new-line">
-				<label for="username-textbox">Username</label>
-				<br />
-				<input type="text" class="k-input username-textbox" name="username-textbox">
-			</div>
-			<div class="new-line">
-				<label for="password-textbox">Password</label>
-				<br />
-				<input type="text" class="k-input password-textbox" name="password-textbox">
-			</div>
-			<div class="new-line">
-				 <button id="signInButton" class="k-primary" onclick="location.href='@Url.Action("Index", "Home")';return false;">Sign In</button>
-			</div>
-			<div>
-				@Html.ActionLink("About This App", "About", "Home")
-			</div>
-			<div>
-				@Html.ActionLink("Download Source Code", "SignIn", "SignIn")
-			</div>
-		</div>
-	</div>
+    <div class="sidebar">
+        <div class="header">
+            <h1>WebMail</h1>
+            <p>ASP.NET MVC Demo App</p>
+        </div>
+        <div class="footer">
+            <p>
+                Copyright &copy; @DateTime.Now.Year Progress Software Corporation and/or its subsidiaries or affiliates.
+            </p>
+            <p>
+                All Rights Reserved.
+            </p>
+        </div>
+    </div>
+    <div class="content">
+        <h2>Sign In</h2>
+        <label for="username-textbox">Username</label>
+        <input type="text" class="k-input username-textbox" name="username-textbox">
+        <label for="password-textbox">Password</label>
+        <input type="text" class="k-input password-textbox" name="password-textbox">
+        <br />
+        <button id="signInButton" class="k-primary" onclick="location.href='@Url.Action("Index", "Home")';return false;">Sign In</button>
+        <div>
+            @Html.ActionLink("About This App", "About", "Home")
+        </div>
+        <div>
+            @Html.ActionLink("Download Source Code", "SignIn", "SignIn")
+        </div>
+    </div>
 </body>
 </html>

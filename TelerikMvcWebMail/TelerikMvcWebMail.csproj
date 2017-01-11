@@ -191,6 +191,9 @@
     <Content Include="Content\sidebarFooter.css">
       <DependentUpon>sidebarFooter.scss</DependentUpon>
     </Content>
+    <Content Include="Content\signIn.css">
+      <DependentUpon>signIn.scss</DependentUpon>
+    </Content>
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Fonts\WebComponentsIcons\WebComponentsIcons.svg" />
     <Content Include="Global.asax" />
@@ -292,7 +295,11 @@
     <Content Include="Views\Shared\SidebarFooter.cshtml" />
     <Content Include="Content\sidebarFooter.scss" />
     <Content Include="Content\contacts.scss" />
+<<<<<<< HEAD
     <Content Include="Views\Shared\Sidebar.cshtml" />
+=======
+    <Content Include="Content\signIn.scss" />
+>>>>>>> feat: style Sign In page
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
