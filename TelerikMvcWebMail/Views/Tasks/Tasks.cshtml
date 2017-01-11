@@ -4,17 +4,7 @@
 
 @model IEnumerable<TelerikMvcWebMail.Models.NoteViewModel>
 
-<aside class="main-sidebar">
-	<div class="content">
-		<span class="new-btn">Add Task</span>
-		@*@Html.ActionLink("Add Task", "NewTask")*@
-		@(Html.Kendo().TreeView()
-        .Name("tasksTreeView")
-        .Events(e => e.Select("selecttaskFolder"))
-		)
-	</div>
-	@Html.Partial("SidebarFooter")
-</aside>
+@Html.Partial("Sidebar")
 
 <div class="content">
 	<div class="toolbar">	
@@ -23,7 +13,7 @@
 	<div class="notes">
         <input type="text" class="k-input long-textbox search-textbox" placeholder="Search tasks ..." name="to-textbox">
 		@(Html.Kendo().Grid(Model)
-            .Name("noteGrid")
+            .Name("mainWidget")
             .Columns(columns =>
             {
                 columns.Bound(p => p.CheckBoxCheked)
@@ -94,17 +84,18 @@
                     value: "Work"
                 }];
 
-                var newDataSource = new kendo.data.HierarchicalDataSource({ data: data });
-                var navigationTreeView = $('#tasksTreeView').data('kendoTreeView');
-                navigationTreeView.setDataSource(newDataSource);
+                populateNavigationTree(data);
             }
         });
     }
 
-    function selecttaskFolder(e) {
+    function selectFolder(e) {
+        var dataItem = this.dataItem(e.node);
         var selectedText = e.sender.dataItem(e.node).value;
+        Cookies.set('selected', kendo.stringify(dataItem.index));
+        selected = Cookies.get('selected');
 
-        var tasksGrid = $("#noteGrid").data("kendoGrid");
+        var tasksGrid = $("#mainWidget").data("kendoGrid");
         if (!tasksGrid) {
             window.location.href = "/Tasks/Tasks";
         } else {
@@ -116,12 +107,12 @@
         $(".search-textbox").on('keyup', function (e) {
             var text = $(e.target).val();
 
-            var tasksGrid = $("#noteGrid").data("kendoGrid");
+            var tasksGrid = $("#mainWidget").data("kendoGrid");
             tasksGrid.dataSource.filter({ field: "Subject", operator: "contains", value: text });
         });
 
         $('.btn-delete').on('click', function () {
-            var tasksGrid = $("#noteGrid").data("kendoGrid");
+            var tasksGrid = $("#mainWidget").data("kendoGrid");
 
             var checkboxesToBeDeleted = $('.chkbx:checkbox:checked');
             var rows = checkboxesToBeDeleted.parents('tr[role="row"]');

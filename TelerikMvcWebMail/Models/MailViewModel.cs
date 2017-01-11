@@ -23,6 +23,8 @@ namespace TelerikMvcWebMail.Models
 
         public string Folder { get; set; }
 
+        public string To { get; set; }
+
         internal Message ToEntity()
         {
             return new Message
@@ -32,7 +34,7 @@ namespace TelerikMvcWebMail.Models
                 Subject = Subject,
                 Received = Date,
                 IsRead = IsRead,
-                //To = To;
+                To = To,
                 Folder = Folder,
                 MessageID = ID
             };

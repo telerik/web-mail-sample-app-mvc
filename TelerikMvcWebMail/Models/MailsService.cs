@@ -17,16 +17,19 @@ namespace TelerikMvcWebMail.Models
 
         public IEnumerable<MailViewModel> Read()
         {
-            return entities.Messages.Select(message => new MailViewModel
+            var result = entities.Messages.Select(message => new MailViewModel
             {
                 ID = message.MessageID,
                 IsRead = message.IsRead,
                 From = message.From,
+                To = message.To,
                 Subject = message.Subject,
                 Date = message.Received,
                 Text = message.Body,
                 Folder = message.Folder
             });
+
+            return result;
         }
 
         public void Create(MailViewModel mail)
@@ -38,7 +41,7 @@ namespace TelerikMvcWebMail.Models
             entity.Subject = mail.Subject;
             entity.Received = mail.Date;
             entity.IsRead = mail.IsRead;
-            //entity.To = mail.To;
+            entity.To = mail.To;
             entity.Folder = mail.Folder;
             entity.MessageID = mail.ID;
 

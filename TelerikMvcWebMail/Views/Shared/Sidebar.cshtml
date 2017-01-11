@@ -27,20 +27,6 @@
         }
     }
 
-    function selectFolder(e) {
-        var dataItem = this.dataItem(e.node);
-        var selectedText = e.sender.dataItem(e.node).value;
-        Cookies.set('selected', kendo.stringify(dataItem.index));
-        selected = Cookies.get('selected');
-
-        var mailsGrid = $("#mainWidget").data("kendoGrid");
-        if (!mailsGrid) {
-            window.location.href = "/Home/Index";
-        } else {
-            mailsGrid.dataSource.filter({ field: "Folder", operator: "contains", value: selectedText });
-        }
-    }
-
     function polulateSelectedRows(widget) {
         var navigationTreeView = $('#navigationTreeView').data('kendoTreeView');
         var treeViewSelectedItem = navigationTreeView.select();
@@ -84,7 +70,6 @@
         else {
             setSelectedNode("0");
         }
-
     }
 
     function selectionChanged(widget, selectedRowPrefix) {
