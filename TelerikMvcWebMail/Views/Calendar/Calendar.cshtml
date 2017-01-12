@@ -21,10 +21,10 @@
         )
         <div class="calendar-resources-list">
             <div class="resource presonal selected" data-resource-value="1">Personal</div>
-            <div class="resource work selected" data-resource-value="2">Work</div>
-            <div class="resource development selected" data-resource-value="3">Development</div>
-            <div class="resource design selected" data-resource-value="4">Design</div>
-            <div class="resource marketing selected" data-resource-value="5">Marketing</div>
+            <div class="resource work" data-resource-value="2">Work</div>
+            <div class="resource development" data-resource-value="3">Development</div>
+            <div class="resource design" data-resource-value="4">Design</div>
+            <div class="resource marketing" data-resource-value="5">Marketing</div>
         </div>
     </div>
     @Html.Partial("SidebarFooter")
@@ -65,11 +65,7 @@
             .Filter(filters =>
             {
                 filters.Add(model => model.OwnerID)
-                    .IsEqualTo(1)
-                    .Or().IsEqualTo(2)
-                    .Or().IsEqualTo(3)
-                    .Or().IsEqualTo(4)
-                    .Or().IsEqualTo(5);
+                    .IsEqualTo(1);
             })
         )
         .Resources(resource =>
@@ -110,6 +106,10 @@
                     };
                 })
             };
+            
+            if (filter.filters.length === 0) {
+                filter = { field: "OwnerID", operator: "eq", value: "7" };
+            }
 
             var scheduler = $("#scheduler").data("kendoScheduler");
 
