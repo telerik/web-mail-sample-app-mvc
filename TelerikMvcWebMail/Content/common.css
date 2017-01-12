@@ -34,13 +34,50 @@ h6 {
 p {
   margin: 0; }
 
-html .k-state-selected {
-  background: #1e8edf; }
+html .k-primary,
+html .k-state-selected,
+html .k-list .k-state-selected {
+  background: #1e8edf;
+  border-color: #1e8edf; }
 
 html .k-state-hover,
 html .k-state-hover:hover {
   color: inherit;
+  border-color: #e6e6e6;
   background: #e6e6e6; }
+  html .k-state-hover .k-link,
+  html .k-state-hover:hover .k-link {
+    color: inherit; }
+  html .k-state-hover .k-i-arrow-w,
+  html .k-state-hover:hover .k-i-arrow-w {
+    background-position: 0 -48px; }
+  html .k-state-hover .k-i-arrow-e,
+  html .k-state-hover:hover .k-i-arrow-e {
+    background-position: 0 -16px; }
+  html .k-state-hover .k-i-arrow-s,
+  html .k-state-hover:hover .k-i-arrow-s {
+    background-position: 0 -32px; }
+  html .k-state-hover .k-i-close,
+  html .k-state-hover:hover .k-i-close {
+    background-position: -32px -16px; }
+
+html .k-button:hover {
+  color: inherit;
+  background: #e6e6e6;
+  border-color: #e6e6e6; }
+
+html .k-dropdown-wrap.k-state-hover {
+  background: #e6e6e6;
+  border-color: #e6e6e6; }
+  html .k-dropdown-wrap.k-state-hover .k-input {
+    color: inherit; }
+
+html .k-dropdown-wrap.k-state-focused {
+  color: #fff;
+  background: #1e8edf; }
+
+html .k-textbox:hover {
+  border-color: #1e8edf; }
 
 html .k-state-focused,
 html .k-state-selected.k-state-focused {

@@ -13,20 +13,6 @@
         .k-nav-today {
             background: transparent;
         }
-
-        .k-state-hover {
-            background: $accent;
-        }
-
-        .k-state-selected {
-            color: inherit;
-            background: transparent;
-            box-shadow: 0 0 0 1px $accent inset;
-
-            a {
-                color: inherit;
-            }
-        }
     }
 
     .resource {
@@ -81,21 +67,73 @@
     }
 }
 
-.k-scheduler .k-scheduler-toolbar ul li.k-state-hover {
-    color: inherit;
-    background: $hover;
-    border-color: $hover;
+.k-scheduler  {
 
-    .k-link {
-        color: inherit;
+    .k-event-inverse {
+        color: #FFF;
+    }
+
+    .k-scheduler-toolbar {
+
+        .k-state-selected {
+            background: $accent;
+            border-color: $accent;
+        }
+
+        ul li.k-state-hover {
+            color: inherit;
+            background: $hover;
+            border-color: $hover;
+
+            .k-link {
+                color: inherit;
+            }
+        }
     }
 }
 
-.k-scheduler .k-scheduler-toolbar .k-state-selected {
-    background: $accent;
-    border-color: $accent;
+/*Scheduler advanced form*/
+.k-picker-wrap.k-state-hover:hover {
+    .k-i-calendar {
+        background-position: -48px -176px;
+    }
+
+    .k-i-clock {
+        background-position: -48px -192px;
+    }
 }
 
-.k-scheduler  .k-event-inverse {
-    color: #FFF;
+.k-link:not(.k-state-disabled):hover {
+
+    & > .k-i-calendar {
+        background-position: -32px -176px;
+    }
+
+    & > .k-i-clock {
+        background-position: -32px -192px;
+    }
+
+}
+
+
+
+.k-calendar {
+
+    .k-today,
+    td.k-state-focused,
+    td.k-state-hover.k-state-focused {
+        box-shadow: inset 0 0 0 1px $accent;
+    }
+
+    .k-nav-fast.k-state-hover,
+    .k-other-month.k-state-hover .k-link {
+        color: inherit;
+        background: $hover;
+    }
+
+    .k-state-selected,
+    td.k-state-selected.k-state-hover {
+        color: #fff;
+        background: $accent;
+    }
 }

@@ -51,14 +51,66 @@ p {
 
 html {
 
-    .k-state-selected {
+    .k-primary,
+    .k-state-selected,
+    .k-list .k-state-selected {
         background: $accent;
+        border-color: $accent;
     }
 
     .k-state-hover,
     .k-state-hover:hover {
         color: inherit;
+        border-color: $hover;
         background: $hover;
+
+        .k-link {
+            color: inherit;
+        }
+
+        .k-i-arrow-w {
+            background-position: 0 -48px;
+        }
+
+        .k-i-arrow-e {
+            background-position: 0 -16px;
+        }
+
+        .k-i-arrow-s {
+            background-position: 0 -32px;
+        }
+
+        .k-i-close {
+            background-position: -32px -16px;
+        }
+
+    }
+
+    .k-button:hover {
+        color: inherit;
+        background: $hover;
+        border-color: $hover;
+    }
+
+    .k-dropdown-wrap {
+
+        &.k-state-hover {
+            background: $hover;
+            border-color: $hover;
+
+            .k-input {
+                color: inherit;
+            }
+        }
+
+        &.k-state-focused {
+            color: #fff;
+            background: $accent;
+        }
+    }
+
+    .k-textbox:hover {
+        border-color: $accent;
     }
 
     .k-state-focused,
