@@ -66,6 +66,7 @@
 
             @(Html.Kendo().Tooltip()
                 .For("#mainMenu > li:last")
+                .ShowOn(TooltipShowOnEvent.Click)
                 .AutoHide(false)
                 .ContentTemplateId("tooltip-template")
             )
