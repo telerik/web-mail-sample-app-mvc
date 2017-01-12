@@ -211,7 +211,9 @@
     }
 
     function mailPrint() {
-        kendo.drawing.drawDOM($(".mail-details"))
+        var grid = $("#mainWidget").data("kendoGrid");
+        if (grid.select().length != 0) {
+            kendo.drawing.drawDOM($(".mail-details"))
             .then(function (group) {
                 return kendo.drawing.exportPDF(group, {
                     paperSize: "auto",
@@ -224,6 +226,7 @@
                     fileName: "Mail.pdf"
                 });
             });
+        }
     }
 
     function changeToVerticalPanes(e) {
