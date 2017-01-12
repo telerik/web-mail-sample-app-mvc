@@ -1,14 +1,19 @@
 ﻿@import '_variables.scss';
 
-
-
-.main-section.vertical {
+.main-section {
     display: flex;
     flex-direction: column;
+}
+
+.mails-section {
+    display: flex;
+    height: calc(100% - 3em);
+}
+
+.main-section.vertical {
 
     .mails-section {
         flex: 1;
-        display: flex;
     }
 
         .mail-grid {
@@ -25,17 +30,31 @@
             flex: 0.7;
         }
 
-        td.date {
+        td.date,
+        [data-field="Date"] {
             width: 60px;
         }
 }
 
 
+
 .main-section.horizontal {
+
+    .mails-section{
+        flex-direction: column;
+    }
 
     .k-grid {
         height: 270px;
         border-bottom: 1px solid #ebebeb;
+    }
+
+    .k-grid-content {
+        height: 203px !important;
+    }
+
+    .mail-details {
+        overflow: auto;
     }
 
     .mail-text {
@@ -44,6 +63,7 @@
 }
 
 #mailMenu {
+    flex-shrink: 0;
     border-width: 0 0 1px;
 
     & > .k-item {
@@ -134,6 +154,8 @@
     }
 
     .k-grid-header {
+        /*width: 100%;*/
+        box-sizing: border-box;
         border-color: #ebebeb;
     }
 

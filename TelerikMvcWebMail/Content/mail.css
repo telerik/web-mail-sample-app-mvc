@@ -1,28 +1,47 @@
-﻿.main-section.vertical {
+﻿.main-section {
   display: flex;
   flex-direction: column; }
-  .main-section.vertical .mails-section {
-    flex: 1;
-    display: flex; }
-  .main-section.vertical .mail-grid {
-    flex: 0.3;
-    border-right: 1px solid #ebebeb; }
-  .main-section.vertical .k-grid {
-    height: calc(100% - 31px);
-    box-sizing: border-box; }
-  .main-section.vertical .mail-details {
-    flex: 0.7; }
-  .main-section.vertical td.date {
-    width: 60px; }
+
+.mails-section {
+  display: flex;
+  height: calc(100% - 3em); }
+
+.main-section.vertical .mails-section {
+  flex: 1; }
+
+.main-section.vertical .mail-grid {
+  flex: 0.3;
+  border-right: 1px solid #ebebeb; }
+
+.main-section.vertical .k-grid {
+  height: calc(100% - 31px);
+  box-sizing: border-box; }
+
+.main-section.vertical .mail-details {
+  flex: 0.7; }
+
+.main-section.vertical td.date,
+.main-section.vertical [data-field="Date"] {
+  width: 60px; }
+
+.main-section.horizontal .mails-section {
+  flex-direction: column; }
 
 .main-section.horizontal .k-grid {
   height: 270px;
   border-bottom: 1px solid #ebebeb; }
 
+.main-section.horizontal .k-grid-content {
+  height: 203px !important; }
+
+.main-section.horizontal .mail-details {
+  overflow: auto; }
+
 .main-section.horizontal .mail-text {
   border-bottom: 1px solid #ededed; }
 
 #mailMenu {
+  flex-shrink: 0;
   border-width: 0 0 1px; }
   #mailMenu > .k-item {
     border: 0;
@@ -77,6 +96,8 @@
     padding-left: 15px;
     border-color: #ebebeb; }
   .k-grid .k-grid-header {
+    /*width: 100%;*/
+    box-sizing: border-box;
     border-color: #ebebeb; }
   .k-grid th.k-header,
   .k-grid td {
