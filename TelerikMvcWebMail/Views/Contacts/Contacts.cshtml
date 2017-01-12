@@ -229,8 +229,8 @@
         $('.k-single-delete-button').on('click', singleDeleteClick);
     }
 
-    function createNewContact() {
+    $('.new-Contact').on('click', function (e) {
         var listView = $("#mainWidget").data("kendoListView");
         listView.add();
-    }
+    });
 </script>
