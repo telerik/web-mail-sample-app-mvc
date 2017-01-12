@@ -9,9 +9,9 @@ namespace TelerikMvcWebMail.Models
     public class NotesService
     {
         //private static bool UpdateDatabase = false;
-        private WebMailEntities1 entities;
+        private WebMailEntities entities;
 
-        public NotesService(WebMailEntities1 entities)
+        public NotesService(WebMailEntities entities)
         {
             this.entities = entities;
         }

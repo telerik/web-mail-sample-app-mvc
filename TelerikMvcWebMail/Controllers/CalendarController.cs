@@ -15,7 +15,7 @@ namespace TelerikMvcWebMail.Controllers
 
         public CalendarController()
         {
-            eventsService = new EventsService(new WebMailEntities1());
+            eventsService = new EventsService(new WebMailEntities());
         }
 
 		//

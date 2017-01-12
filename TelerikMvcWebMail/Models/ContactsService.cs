@@ -10,9 +10,9 @@ namespace TelerikMvcWebMail.Models
     public class ContactsService
     {
         //private static bool UpdateDatabase = false;
-        private WebMailEntities1 entities;
+        private WebMailEntities entities;
 
-        public ContactsService(WebMailEntities1 entities)
+        public ContactsService(WebMailEntities entities)
         {
             this.entities = entities;
         }

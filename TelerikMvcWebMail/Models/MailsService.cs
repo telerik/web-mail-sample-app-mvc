@@ -8,9 +8,9 @@ namespace TelerikMvcWebMail.Models
 {
     public class MailsService
     {
-        private WebMailEntities1 entities;
+        private WebMailEntities entities;
 
-        public MailsService(WebMailEntities1 entities)
+        public MailsService(WebMailEntities entities)
         {
             this.entities = entities;
         }

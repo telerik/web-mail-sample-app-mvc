@@ -16,7 +16,7 @@ namespace TelerikMvcWebMail.Controllers
 
         public HomeController()
         {
-            mailsService = new MailsService(new WebMailEntities1());
+            mailsService = new MailsService(new WebMailEntities());
         }
 
         public ActionResult Index()

@@ -15,7 +15,7 @@ namespace TelerikMvcWebMail.Controllers
 
         public ContactsController()
         {
-            contactsService = new ContactsService(new WebMailEntities1());
+            contactsService = new ContactsService(new WebMailEntities());
         }
 
         public ActionResult Index()
