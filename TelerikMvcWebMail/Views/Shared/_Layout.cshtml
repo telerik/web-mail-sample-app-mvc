@@ -57,9 +57,9 @@
                 .Items(items =>
                 {
                     items.Add().Text("Mail").Action("Index", "Home");
-                    items.Add().Text("Calendar").Action("Calendar", "Calendar");
-                    items.Add().Text("People").Action("Contacts", "Contacts");
-                    items.Add().Text("Tasks").Action("Tasks", "Tasks");
+                    items.Add().Text("Calendar").Action("Index", "Calendar");
+                    items.Add().Text("People").Action("Index", "Contacts");
+                    items.Add().Text("Tasks").Action("Index", "Tasks");
                     items.Add().Text("<span class='image-wrapper'><img src='http://demos.telerik.com/kendo-ui/content/web/Customers/PICCO.jpg'/><span/>").Encoded(false);
                 })
             )
@@ -82,7 +82,7 @@
         });
 
         function onClick(e) {
-        	location.href = '@Url.Action("SignIn", "SignIn")';
+        	location.href = '@Url.Action("Index", "SignIn")';
         	return false;
         }
     </script>

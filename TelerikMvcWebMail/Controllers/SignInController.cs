@@ -10,9 +10,9 @@ namespace TelerikMvcWebMail.Controllers
     {
         //
         // GET: /SignIn/
-        public ActionResult SignIn()
+        public ActionResult Index()
         {
-            return View();
+            return View("SignIn");
         }
 	}
 }

@@ -20,9 +20,9 @@ namespace TelerikMvcWebMail.Controllers
 
 		//
 		// GET: /Calendar/
-		public ActionResult Calendar()
+		public ActionResult Index()
 		{
-			return View();
+			return View("Calendar");
 		}
 
         public virtual JsonResult Read([DataSourceRequest] DataSourceRequest request)

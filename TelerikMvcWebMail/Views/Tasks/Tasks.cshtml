@@ -99,7 +99,7 @@
 
         var tasksGrid = $("#mainWidget").data("kendoGrid");
         if (!tasksGrid) {
-            window.location.href = "/Tasks/Tasks";
+            window.location.href = "/Tasks/Index";
         } else if (selectedText == 'All') {
             tasksGrid.dataSource.filter({});
         } else {

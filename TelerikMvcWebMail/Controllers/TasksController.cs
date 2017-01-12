@@ -19,9 +19,9 @@ namespace TelerikMvcWebMail.Controllers
             notesService = new NotesService(new WebMailEntities1());
         }
 
-        public ActionResult Tasks()
+        public ActionResult Index()
         {
-            return View();
+            return View("Tasks");
         }
 
         public ActionResult NewTask()

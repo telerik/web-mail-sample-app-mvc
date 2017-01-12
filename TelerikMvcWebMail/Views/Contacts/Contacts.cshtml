@@ -162,7 +162,7 @@
         var contactsListView = $("#mainWidget").data("kendoListView");
 
         if (!contactsListView) {
-            window.location.href = "/Contacts/Contacts";
+            window.location.href = "/Contacts/Index";
         } else if (selectedText === "All") {
             contactsListView.dataSource.filter({});
         } else {

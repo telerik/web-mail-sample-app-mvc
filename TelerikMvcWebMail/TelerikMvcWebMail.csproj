@@ -246,7 +246,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Contacts\Contacts.cshtml" />
-    <Content Include="Views\Contacts\NewContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\NewMail.cshtml" />
