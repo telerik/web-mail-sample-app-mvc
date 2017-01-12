@@ -16,6 +16,10 @@
     .unread {
         font-weight: bold;
     }
+
+    tbody:empty:before {
+        content:'NO MAILS TO DISPLAY IN THIS CATEGORY';
+    }
 </style>
 
 @model IEnumerable<TelerikMvcWebMail.Models.MailViewModel>
@@ -102,6 +106,7 @@
                 .Events(e => e.Change("mailSelectionChanged").DataBound("mailGridDataBound"))
             )
         </div>
+        <div class="noData-message">Select a row to display mail details</div>
         <div class="mail-details">
             <div class="mail-details-header">
                 <h2 class="mail-subject"></h2>
@@ -229,7 +234,6 @@
         updateSelectedClasses(e.item);
         $('.main-section').addClass("vertical");
         $('.main-section').removeClass("horizontal");
-        //debugger;
         grid.refresh();
     }
 
@@ -317,6 +321,14 @@
                 populateNavigationTree(data);
             }
         });
+        if (grid.select().length == 0) {
+            $(".noData-message").show();
+            $(".mail-details").hide();
+        }
+        else {
+            $(".noData-message").hide();
+            $(".mail-details").show();
+        }
     }
 
     function mailSelectionChanged(e) {
@@ -329,6 +341,9 @@
             var dataItem = this.dataItem(selectedRows[0]);
             populateDetailsView(dataItem);
         }
+
+        $(".noData-message").hide();
+        $(".mail-details").show();
     }
 
     function checkSelectedCheckbox(selectedRows) {
