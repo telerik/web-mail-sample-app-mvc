@@ -9,8 +9,9 @@ namespace TelerikMvcWebMail.Models
 {
     public class ContactsService
     {
-        //private static bool UpdateDatabase = false;
         private WebMailEntities entities;
+
+        private static bool UpdateDatabase = true;
 
         public ContactsService(WebMailEntities entities)
         {
@@ -19,20 +20,28 @@ namespace TelerikMvcWebMail.Models
 
         public IList<ContactViewModel> GetAll()
         {
-            IList<ContactViewModel> result = new List<ContactViewModel>();
+            IList<ContactViewModel> result = HttpContext.Current.Session["Contacts"] as IList<ContactViewModel>;
 
-            result = entities.Contacts.Select(e => new ContactViewModel
+            if (result == null || UpdateDatabase)
             {
-                EmployeeID = e.Id,
-                Name = e.Name,
-                HomePhone = e.Phone,
-                Country = e.Country,
-                City = e.City,
-                Company = e.Company,
-                Folder = e.Folder,
-                Title = e.Title,
-                Email = e.Email
-            }).ToList();
+                result = entities.Contacts.Select(e => new ContactViewModel
+                {
+                    EmployeeID = e.Id,
+                    Name = e.Name,
+                    HomePhone = e.Phone,
+                    Country = e.Country,
+                    City = e.City,
+                    Company = e.Company,
+                    Folder = e.Folder,
+                    Title = e.Title,
+                    Email = e.Email
+                }).ToList();
+
+                if (!UpdateDatabase)
+                {
+                    HttpContext.Current.Session["Contacts"] = result;
+                }
+            }
 
             return result;
         }
@@ -49,12 +58,20 @@ namespace TelerikMvcWebMail.Models
                 contact.Name = "New contact";
             }
 
-            var entity = contact.ToEntity();
+            if (!UpdateDatabase)
+            {
+                contact.EmployeeID = Guid.NewGuid().ToString();
+                GetAll().Insert(0, contact);
+            }
+            else
+            {
+                var entity = contact.ToEntity();
 
-            entities.Contacts.Add(entity);
-            entities.SaveChanges();
+                entities.Contacts.Add(entity);
+                entities.SaveChanges();
 
-            contact.EmployeeID = entity.Id;
+                contact.EmployeeID = entity.Id;
+            }
         }
 
         public void Update(ContactViewModel contact)
@@ -64,18 +81,48 @@ namespace TelerikMvcWebMail.Models
                 contact.Name = "";
             }
 
-            var entity = contact.ToEntity();
-            entities.Contacts.Attach(entity);
-            entities.Entry(entity).State = EntityState.Modified;
-            entities.SaveChanges();
+            if (!UpdateDatabase)
+            {
+                var target = One(e => e.EmployeeID == contact.EmployeeID);
+
+                if (target != null)
+                {
+                    target.Folder = contact.Folder;
+                    target.City = contact.City;
+                    target.Company = contact.Company;
+                    target.Country = contact.Country;
+                    target.Email = contact.Email;
+                    target.HomePhone = contact.HomePhone;
+                    target.Name = contact.Name;
+                    target.Title = contact.Title;
+                }
+            }
+            else
+            {
+                var entity = contact.ToEntity();
+                entities.Contacts.Attach(entity);
+                entities.Entry(entity).State = EntityState.Modified;
+                entities.SaveChanges();
+            }
         }
 
         public void Delete(ContactViewModel contact)
         {
-            var entity = contact.ToEntity();
-            entities.Contacts.Attach(entity);
-            entities.Contacts.Remove(entity);
-            entities.SaveChanges();
+            if (!UpdateDatabase)
+            {
+                var target = One(p => p.EmployeeID == contact.EmployeeID);
+                if (target != null)
+                {
+                    GetAll().Remove(target);
+                }
+            }
+            else
+            {
+                var entity = contact.ToEntity();
+                entities.Contacts.Attach(entity);
+                entities.Contacts.Remove(entity);
+                entities.SaveChanges();
+            }
         }
 
         public ContactViewModel One(Func<ContactViewModel, bool> predicate)

@@ -26,7 +26,8 @@ namespace TelerikMvcWebMail.Models
                 Category = Category,
                 DateCreated = CreatedOn,
                 Subject = Subject,
-                NoteContent = Content
+                NoteContent = Content,
+                Id = Id
             };
         }
     }

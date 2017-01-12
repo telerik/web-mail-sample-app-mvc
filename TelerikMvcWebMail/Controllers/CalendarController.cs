@@ -18,8 +18,6 @@ namespace TelerikMvcWebMail.Controllers
             eventsService = new EventsService(new WebMailEntities());
         }
 
-		//
-		// GET: /Calendar/
 		public ActionResult Index()
 		{
 			return View("Calendar");

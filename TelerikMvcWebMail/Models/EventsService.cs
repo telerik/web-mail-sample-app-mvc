@@ -10,7 +10,8 @@ namespace TelerikMvcWebMail.Models
 {
     public class EventsService : ISchedulerEventService<EventViewModel>
     {
-        //private static bool UpdateDatabase = false;
+        private static bool UpdateDatabase = true;
+        
         private WebMailEntities entities;
 
         public EventsService(WebMailEntities entities)
@@ -20,23 +21,31 @@ namespace TelerikMvcWebMail.Models
 
         public IList<EventViewModel> GetAll()
         {
-            IList<EventViewModel> result = new List<EventViewModel>();
+            IList<EventViewModel> result = HttpContext.Current.Session["Events"] as IList<EventViewModel>;
 
-            result = entities.Events.ToList().Select(e => new EventViewModel
+            if (result == null || UpdateDatabase)
             {
-                TaskID = e.TaskID,
-                Title = e.Title,
-                Start = DateTime.SpecifyKind(e.Start, DateTimeKind.Utc),
-                End = DateTime.SpecifyKind(e.End, DateTimeKind.Utc),
-                RecurrenceRule = e.RecurrenceRule,
-                RecurrenceID = e.RecurrenceID,
-                RecurrenceException = e.RecurrenceException,
-                StartTimezone = e.StartTimezone,
-                EndTimezone = e.EndTimezone,
-                OwnerID = e.OwnerID,
-                Description = e.Description,
-                IsAllDay = e.IsAllDay
-            }).ToList();
+                result = entities.Events.ToList().Select(task => new EventViewModel
+                {
+                    TaskID = task.TaskID,
+                    Title = task.Title,
+                    Start = DateTime.SpecifyKind(task.Start, DateTimeKind.Utc),
+                    End = DateTime.SpecifyKind(task.End, DateTimeKind.Utc),
+                    StartTimezone = task.StartTimezone,
+                    EndTimezone = task.EndTimezone,
+                    Description = task.Description,
+                    IsAllDay = task.IsAllDay,
+                    RecurrenceRule = task.RecurrenceRule,
+                    RecurrenceException = task.RecurrenceException,
+                    RecurrenceID = task.RecurrenceID,
+                    OwnerID = task.OwnerID
+                }).ToList();
+
+                if (!UpdateDatabase)
+                {
+                    HttpContext.Current.Session["Events"] = result;
+                }
+            }
 
             return result;
         }
@@ -50,19 +59,29 @@ namespace TelerikMvcWebMail.Models
         {
             if (ValidateModel(appointment, modelState))
             {
-
                 if (string.IsNullOrEmpty(appointment.Title))
                 {
                     appointment.Title = "";
                 }
 
-                var entity = appointment.ToEntity();
+                if (!UpdateDatabase)
+                {
+                    var first = GetAll().OrderByDescending(e => e.TaskID).FirstOrDefault();
+                    var id = (first != null) ? first.TaskID : 0;
 
-                entities.Events.Add(entity);
-                entities.SaveChanges();
+                    appointment.TaskID = id + 1;
 
-                appointment.TaskID = entity.TaskID;
+                    GetAll().Insert(0, appointment);
+                }
+                else
+                {
+                    var entity = appointment.ToEntity();
 
+                    entities.Events.Add(entity);
+                    entities.SaveChanges();
+
+                    appointment.TaskID = entity.TaskID;
+                }
             }
         }
 
@@ -75,28 +94,67 @@ namespace TelerikMvcWebMail.Models
                     appointment.Title = "";
                 }
 
-                var entity = appointment.ToEntity();
-                entities.Events.Attach(entity);
-                entities.Entry(entity).State = EntityState.Modified;
-                entities.SaveChanges();
+                if (!UpdateDatabase)
+                {
+                    var target = One(e => e.TaskID == appointment.TaskID);
+
+                    if (target != null)
+                    {
+                        target.Title = appointment.Title;
+                        target.Start = appointment.Start;
+                        target.End = appointment.End;
+                        target.StartTimezone = appointment.StartTimezone;
+                        target.EndTimezone = appointment.EndTimezone;
+                        target.Description = appointment.Description;
+                        target.IsAllDay = appointment.IsAllDay;
+                        target.RecurrenceRule = appointment.RecurrenceRule;
+                        target.RecurrenceException = appointment.RecurrenceException;
+                        target.RecurrenceID = appointment.RecurrenceID;
+                        target.OwnerID = appointment.OwnerID;
+                    }
+                }
+                else
+                {
+                    var entity = appointment.ToEntity();
+                    entities.Events.Attach(entity);
+                    entities.Entry(entity).State = EntityState.Modified;
+                    entities.SaveChanges();
+                }
             }
         }
 
         public void Delete(EventViewModel appointment, ModelStateDictionary modelState)
         {
-            var entity = appointment.ToEntity();
-            entities.Events.Attach(entity);
+            if (!UpdateDatabase)
+            {
+                var target = One(p => p.TaskID == appointment.TaskID);
+                if (target != null)
+                {
+                    GetAll().Remove(target);
 
-            // Change id to take int value!!!!!
-            //var recurrenceExceptions = entities.Events.Where(t => t.RecurrenceID == appointment.TaskID);
+                    var recurrenceExceptions = GetAll().Where(m => m.RecurrenceID == appointment.TaskID).ToList();
 
-            //foreach (var recurrenceException in recurrenceExceptions)
-            //{
-            //    db.Tasks.Remove(recurrenceException);
-            //}
+                    foreach (var recurrenceException in recurrenceExceptions)
+                    {
+                        GetAll().Remove(recurrenceException);
+                    }
+                }
+            }
+            else
+            {
+                var entity = appointment.ToEntity();
+                entities.Events.Attach(entity);
 
-            entities.Events.Remove(entity);
-            entities.SaveChanges();
+                var recurrenceExceptions = entities.Events.Where(t => t.RecurrenceID == appointment.TaskID);
+
+                foreach (var recurrenceException in recurrenceExceptions)
+                {
+                    entities.Events.Remove(recurrenceException);
+                }
+
+                entities.Events.Remove(entity);
+                entities.SaveChanges();
+            }
         }
 
         private bool ValidateModel(EventViewModel appointment, ModelStateDictionary modelState)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Collections.Generic;
 using System.Web;
 
 namespace TelerikMvcWebMail.Models
@@ -10,55 +11,99 @@ namespace TelerikMvcWebMail.Models
     {
         private WebMailEntities entities;
 
+        private static bool UpdateDatabase = true;
+
         public MailsService(WebMailEntities entities)
         {
             this.entities = entities;
         }
 
-        public IEnumerable<MailViewModel> Read()
+        public IList<MailViewModel> Read()
         {
-            var result = entities.Messages.Select(message => new MailViewModel
+            IList<MailViewModel> result = HttpContext.Current.Session["Mails"] as IList<MailViewModel>;
+
+            if (result == null || UpdateDatabase)
             {
-                ID = message.MessageID,
-                IsRead = message.IsRead,
-                From = message.From,
-                To = message.To,
-                Subject = message.Subject,
-                Date = message.Received,
-                Text = message.Body,
-                Folder = message.Folder,
-                Email = message.Email
-            });
+                result = entities.Messages.Select(message => new MailViewModel
+                {
+                    ID = message.MessageID,
+                    IsRead = message.IsRead,
+                    From = message.From,
+                    To = message.To,
+                    Subject = message.Subject,
+                    Date = message.Received,
+                    Text = message.Body,
+                    Folder = message.Folder,
+                    Email = message.Email
+                }).ToList();
+
+                if (!UpdateDatabase)
+                {
+                    HttpContext.Current.Session["Mails"] = result;
+                }
+            }
 
             return result;
         }
 
         public void Create(MailViewModel mail)
         {
-            var entity = new Message();
+            if (!UpdateDatabase)
+            {
+                var first = Read().OrderByDescending(e => e.ID).FirstOrDefault();
+                var id = (first != null) ? first.ID : 0;
 
-            entity.Body = mail.Text;
-            entity.From = mail.From;
-            entity.Subject = mail.Subject;
-            entity.Received = mail.Date;
-            entity.IsRead = mail.IsRead;
-            entity.To = mail.To;
-            entity.Folder = mail.Folder;
-            entity.MessageID = mail.ID;
-            entity.Email = mail.Email;
+                mail.ID = id + 1;
 
-            entities.Messages.Add(entity);
-            entities.SaveChanges();
+                Read().Insert(0, mail);
+            }
+            else
+            {
+                var entity = mail.ToEntity();
 
-            mail.ID = entity.MessageID;
+                entities.Messages.Add(entity);
+                entities.SaveChanges();
+
+                mail.ID = entity.MessageID;
+            }
         }
 
         public void Update(MailViewModel mail)
         {
-            var entity = mail.ToEntity();
-            entities.Messages.Attach(entity);
-            entities.Entry(entity).State = EntityState.Modified;
-            entities.SaveChanges();
+            if (!UpdateDatabase)
+            {
+                var target = One(e => e.ID == mail.ID);
+
+                if (target != null)
+                {
+                    target.Text = mail.Text;
+                    target.From = mail.From;
+                    target.Subject = mail.Subject;
+                    target.Date = mail.Date;
+                    target.IsRead = mail.IsRead;
+                    target.To = mail.To;
+                    target.Folder = mail.Folder;
+                    target.ID = mail.ID;
+                    target.Email = mail.Email;
+                }
+            }
+            else
+            {
+                var entity = mail.ToEntity();
+                entities.Messages.Attach(entity);
+                entities.Entry(entity).State = EntityState.Modified;
+                entities.SaveChanges();
+            }
+        }
+
+        public MailViewModel One(Func<MailViewModel, bool> predicate)
+        {
+            return Read().FirstOrDefault(predicate);
+        }
+
+        public void Dispose()
+        {
+            entities.Dispose();
         }
     }
 }
