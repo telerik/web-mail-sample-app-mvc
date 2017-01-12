@@ -138,6 +138,13 @@
     </div>
 </section>
 <script>
+    $(document).ready(function () {
+        var treeview = $("#navigationTreeView").data("kendoTreeView");
+        if (treeview.select().length == 0) {
+            filterGrid("Inbox");
+        }
+    });
+
     function mailMenuSelect(e) {
         switch (e.item.getAttribute("operation")) {
             case "replyForward":
@@ -264,6 +271,10 @@
         Cookies.set('selected', kendo.stringify(dataItem.index));
         selected = Cookies.get('selected');
 
+        filterGrid(selectedText);
+    }
+
+    function filterGrid(selectedText) {
         var mailsGrid = $("#mainWidget").data("kendoGrid");
         if (!mailsGrid) {
             window.location.href = "/Home/Index";
