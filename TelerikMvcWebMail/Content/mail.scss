@@ -1,1 +1,230 @@
-﻿
+﻿@import '_variables.scss';
+
+.main-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.mails-section {
+    display: flex;
+    height: calc(100% - 3em);
+}
+
+.main-section.vertical {
+
+    .mails-section {
+        flex: 1;
+    }
+
+        .mail-grid {
+            flex: 0.3;
+            border-right: 1px solid #ebebeb;
+        }
+
+        .k-grid {
+            height: calc(100% - 31px);
+            box-sizing: border-box;
+        }
+
+        .mail-details {
+            flex: 0.7;
+        }
+
+        td.date,
+        [data-field="Date"] {
+            width: 60px;
+        }
+}
+
+
+
+.main-section.horizontal {
+
+    .mails-section{
+        flex-direction: column;
+    }
+
+    .k-grid {
+        height: 270px;
+        border-bottom: 1px solid #ebebeb;
+    }
+
+    .k-grid-content {
+        height: 203px !important; 
+    }
+
+    .mail-details {
+        overflow: auto;
+    }
+
+    .mail-text {
+        border-bottom: 1px solid #ededed;
+    }
+}
+
+#mailMenu {
+    flex-shrink: 0;
+    border-width: 0 0 1px;
+
+    & > .k-item {
+        border: 0;
+        float: left;
+
+        .k-link {
+            padding-top: .8em;
+            padding-bottom: .8em;
+        }
+
+        &.iconsOnly {
+            float: right;
+
+                .k-link:before {
+                    display: block;
+                    font-family: WebComponentsIcons;
+                    text-align: center;
+                }
+        }
+
+        &#horizontalPanes {
+            .k-link:before {
+                content: "\e02c";
+                transform: rotate(180deg);
+            }
+        }
+
+        &#verticalPanes {
+            .k-link:before {
+                content: "\e029";
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .k-state-hover > .k-link {
+        color: inherit;
+        background: $hover;
+
+        & > .k-i-arrow-s {
+            background-position: 0 -32px;
+        }
+    }
+
+    .k-link.k-state-active {
+        color: #fff;
+        background: $accent;
+
+        & > .k-i-arrow-s {
+            background-position: -16px -32px;
+        }
+    }
+
+    .selected {
+        color: $accent;
+    }
+}
+
+#mailContextMenu {
+    white-space: nowrap;
+
+    .k-state-hover .k-link {
+        color: inherit;
+        background: $hover;
+    }
+}
+
+.k-input.search-textbox {
+    width: 100%;
+    padding: 6px 15px;
+    box-sizing: border-box;
+    border: none;
+    font-style: italic;
+
+    &:focus {
+        font-style: normal;
+    }
+}
+
+.k-grid {
+    border: 0;
+    border-top: 1px solid #ebebeb;
+
+    .k-grouping-header {
+        padding-left: 15px;
+        border-color: #ebebeb;
+    }
+
+    .k-grid-header {
+        /*width: 100%;*/
+        box-sizing: border-box;
+        border-color: #ebebeb;
+    }
+
+    th.k-header,
+    td {
+        border: 0;
+        border-bottom: 1px solid #ebebeb;
+    }
+
+    td {
+        padding: .5em .6em;
+        position: relative;
+    }
+
+    .k-grid-content {
+        white-space: nowrap;
+        cursor: pointer;
+
+        p {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .k-alt {
+        background: transparent;
+    }
+
+    .k-state-selected,
+    .k-state-selected:hover,
+    tr:hover {
+        color: inherit;
+        background: #fafafa;
+    }
+
+    .k-state-selected td:first-child:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        border-left: 4px solid $accent;
+    }
+}
+
+.mail-details {
+    padding: 30px;
+
+    .mail-subject {
+        margin: 0 0 10px;
+        font-weight: 300;
+        font-size: 38px;
+        color: #000;
+    }
+
+    .mail-sender-wrapper {
+        margin: 25px 0;
+    }
+
+        label {
+            font-weight: 700;
+            margin-right: 5px;
+            color: #333333;
+        }
+
+    .mail-text {
+        margin: 0;
+        padding: 10px 0 30px;
+        color: #333333;
+    }
+}
