@@ -55,6 +55,12 @@
   #mailMenu .selected {
     color: #1e8edf; }
 
+#mailContextMenu {
+  white-space: nowrap; }
+  #mailContextMenu .k-state-hover .k-link {
+    color: inherit;
+    background: #e6e6e6; }
+
 .k-input.search-textbox {
   width: 100%;
   padding: 6px 15px;

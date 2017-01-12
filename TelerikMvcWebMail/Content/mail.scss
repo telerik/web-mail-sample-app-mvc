@@ -103,6 +103,15 @@
     }
 }
 
+#mailContextMenu {
+    white-space: nowrap;
+
+    .k-state-hover .k-link {
+        color: inherit;
+        background: $hover;
+    }
+}
+
 .k-input.search-textbox {
     width: 100%;
     padding: 6px 15px;
