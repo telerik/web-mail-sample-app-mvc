@@ -345,12 +345,12 @@
 
     $(".search-textbox").on('keyup', function (e) {
         var text = $(e.target).val();
-        var tasksGrid = $("#mainWidget").data("kendoGrid");
+        var mailGrid = $("#mainWidget").data("kendoGrid");
 
         if (text === null || text == '') {
-            tasksGrid.dataSource.filter({});
+            mailGrid.dataSource.filter({});
         } else {
-            tasksGrid.dataSource.filter({ field: "Subject", operator: "contains", value: text });
+            mailGrid.dataSource.filter({ field: "Subject", operator: "contains", value: text });
         }
     });
 </script>

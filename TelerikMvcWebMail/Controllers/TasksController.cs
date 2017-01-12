@@ -12,11 +12,11 @@ namespace TelerikMvcWebMail.Controllers
 {
     public class TasksController : Controller
     {
-        private NotesService notesService;
+        private TasksService tasksService;
 
         public TasksController()
         {
-            notesService = new NotesService(new WebMailEntities());
+            tasksService = new TasksService(new WebMailEntities());
         }
 
         public ActionResult Index()
@@ -31,26 +31,26 @@ namespace TelerikMvcWebMail.Controllers
 
         public ActionResult Tasks_Read([DataSourceRequest] DataSourceRequest request, string search)
         {
-            return Json(notesService.Read().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            return Json(tasksService.Read().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }      
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Tasks_Destroy([DataSourceRequest] DataSourceRequest request, NoteViewModel note)
+        public ActionResult Tasks_Destroy([DataSourceRequest] DataSourceRequest request, TaskViewModel task)
         {
-            if (note != null)
+            if (task != null)
             {
-                notesService.Delete(note);
+                tasksService.Delete(task);
             }
 
             return Json(ModelState.ToDataSourceResult());
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Tasks_Create(NoteViewModel note)
+        public ActionResult Tasks_Create(TaskViewModel task)
         {
-            if (note != null && ModelState.IsValid)
+            if (task != null && ModelState.IsValid)
             {
-                notesService.Insert(note);
+                tasksService.Insert(task);
             }
 
             return View("Tasks");

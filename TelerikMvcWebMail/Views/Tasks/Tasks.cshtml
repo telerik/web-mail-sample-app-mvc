@@ -2,7 +2,7 @@
     ViewBag.Title = "Task";
 }
 
-@model IEnumerable<TelerikMvcWebMail.Models.NoteViewModel>
+@model IEnumerable<TelerikMvcWebMail.Models.TaskViewModel>
 
 @Html.Partial("Sidebar")
 
@@ -41,7 +41,7 @@
                 })
             )
             .Events(e => e
-                .Change("noteSelectionChanged")
+                .Change("taskSelectionChanged")
                 .DataBound("tasksGridDataBound")
             )
         )
@@ -49,7 +49,7 @@
 </div>
 
 <script>
-    function noteSelectionChanged(e) {
+    function taskSelectionChanged(e) {
         var selectedRows = this.select();
         $('input.chkbx').prop('checked', false);
 

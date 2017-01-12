@@ -88,13 +88,5 @@
       .Name("newMail")
       .HtmlAttributes(new { style = "height: 500px;" })
       .Resizable(resizable => resizable.Content(true).Toolbar(true))
-      .ImageBrowser(imageBrowser => imageBrowser
-          .Image("~/Content/UserFiles/Images/{0}")
-          .Read("Read", "ImageBrowser")
-          .Create("Create", "ImageBrowser")
-          .Destroy("Destroy", "ImageBrowser")
-          .Upload("Upload", "ImageBrowser")
-          .Thumbnail("Thumbnail", "ImageBrowser")
-      )
     )
 </div>

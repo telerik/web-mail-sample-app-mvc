@@ -5,7 +5,7 @@ using System.Web;
 
 namespace TelerikMvcWebMail.Models
 {
-    public class NoteViewModel
+    public class TaskViewModel
     {
         public int Id { get; set; }
 

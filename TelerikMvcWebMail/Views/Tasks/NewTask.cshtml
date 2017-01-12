@@ -4,15 +4,15 @@
 
 <script>
     function addClick() {
-        var selectedCategory = $('#newNoteCategory').data('kendoDropDownList').value();
+        var selectedCategory = $('#newTaskCategory').data('kendoDropDownList').value();
         var subject = $('.subject-textbox').val();
-        var content = $('#newNote').data('kendoEditor').textarea.val();
+        var content = $('#newTask').data('kendoEditor').textarea.val();
 
         $.ajax({
             method: "POST",
             url: "/Tasks/Tasks_Create",
             data: {
-                note: {
+                task: {
                     Category: selectedCategory,
                     Subject: subject,
                     Content: content
@@ -31,10 +31,10 @@
 <div class="new-wrapper">
     <h2>Add Task</h2>
     <div class="new-line">
-        @Html.Label("newNoteCategory", "Priority")
+        @Html.Label("newTaskCategory", "Priority")
         <br />
         @(Html.Kendo().DropDownList()
-            .Name("newNoteCategory")
+            .Name("newTaskCategory")
             .BindTo(new List<SelectListItem>() {
                 new SelectListItem() {
                     Text = "All",
@@ -60,17 +60,9 @@
     </div>
 
     @(Html.Kendo().Editor()
-        .Name("newNote")
+        .Name("newTask")
         .HtmlAttributes(new { style = "height: 500px;" })
         .Resizable(resizable => resizable.Content(true).Toolbar(true))
-        .ImageBrowser(imageBrowser => imageBrowser
-            .Image("~/Content/UserFiles/Images/{0}")
-            .Read("Read", "ImageBrowser")
-            .Create("Create", "ImageBrowser")
-            .Destroy("Destroy", "ImageBrowser")
-            .Upload("Upload", "ImageBrowser")
-            .Thumbnail("Thumbnail", "ImageBrowser")
-        )
     )
     <div class="new-line">
         @(Html.Kendo().Button()

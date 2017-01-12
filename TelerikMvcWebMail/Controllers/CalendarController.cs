@@ -30,34 +30,34 @@ namespace TelerikMvcWebMail.Controllers
             return Json(eventsService.GetAll().ToDataSourceResult(request));
         }
 
-        public virtual JsonResult Destroy([DataSourceRequest] DataSourceRequest request, EventViewModel task)
+        public virtual JsonResult Destroy([DataSourceRequest] DataSourceRequest request, EventViewModel appointment)
         {
             if (ModelState.IsValid)
             {
-                eventsService.Delete(task, ModelState);
+                eventsService.Delete(appointment, ModelState);
             }
 
-            return Json(new[] { task }.ToDataSourceResult(request, ModelState));
+            return Json(new[] { appointment }.ToDataSourceResult(request, ModelState));
         }
 
-        public virtual JsonResult Create([DataSourceRequest] DataSourceRequest request, EventViewModel task)
+        public virtual JsonResult Create([DataSourceRequest] DataSourceRequest request, EventViewModel appointment)
         {
             if (ModelState.IsValid)
             {
-                eventsService.Insert(task, ModelState);
+                eventsService.Insert(appointment, ModelState);
             }
 
-            return Json(new[] { task }.ToDataSourceResult(request, ModelState));
+            return Json(new[] { appointment }.ToDataSourceResult(request, ModelState));
         }
 
-        public virtual JsonResult Update([DataSourceRequest] DataSourceRequest request, EventViewModel task)
+        public virtual JsonResult Update([DataSourceRequest] DataSourceRequest request, EventViewModel appointment)
         {
             if (ModelState.IsValid)
             {
-                eventsService.Update(task, ModelState);
+                eventsService.Update(appointment, ModelState);
             }
 
-            return Json(new[] { task }.ToDataSourceResult(request, ModelState));
+            return Json(new[] { appointment }.ToDataSourceResult(request, ModelState));
         }
 
         protected override void Dispose(bool disposing)
