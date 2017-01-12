@@ -86,7 +86,7 @@
                 .DataSource(dataSource => dataSource
                     .Ajax()
                     .AutoSync(true)
-                    .PageSize(20)
+                    .PageSize(100)
                     .Model(model => model.Id(p => p.ID))
                     .Create(create => create.Action("Create", "Home"))
                     .Read(read => read.Action("Read", "Home"))
@@ -176,8 +176,8 @@
         else {
             var subject = selected.Subject.replace(/ /g, '%20');
             var mailTo = selected.Email;
-            debugger;
-            $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0", @subject = "placeholder2" }))'.replace("placeholder0", id).replace("placeholder2", subject));
+
+            $(".main-section").load('@(Url.Action("NewMail", "Home", new { @id = "placeholder0", @mailTo = "placeholder1", @subject = "placeholder2" }))'.replace("placeholder0", id).replace("placeholder1", mailTo).replace("placeholder2", subject).replace('&amp;', '&'));
         }
     }
 
