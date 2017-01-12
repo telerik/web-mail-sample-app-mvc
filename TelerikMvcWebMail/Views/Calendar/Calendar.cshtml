@@ -8,12 +8,8 @@
 
 <aside class="main-sidebar">
     <div class="content">
-        @(Html.Kendo().Button()
-        .Name("addNewEvent")
-        .Content("New Event")
-        .HtmlAttributes(new { type = "button", @class = "new-btn" })
-        .Events(ev => ev.Click("createNewEvent"))
-        )
+        <span class="new-btn new-Event">New Event</span>
+        
         @(Html.Kendo().Calendar()
         .Name("calendar")
         .Value(new DateTime(2013, 6, 24))
@@ -90,6 +86,11 @@
         $(this).toggleClass('selected');
     });
 
+    $('.new-Event').on('click', function (e) {
+        var scheduler = $("#scheduler").data("kendoScheduler");
+        scheduler.addEvent();
+    });
+
     $(function () {
         $(".calendar-resources-list > div").click(function (e) {
             var selected = $.map($(".calendar-resources-list > div.selected"), function (div) {
@@ -158,10 +159,5 @@
     function onCalenderChange(e) {
         var scheduler = $("#scheduler").data("kendoScheduler");
         scheduler.date(e.sender.current());
-    }
-
-    function createNewEvent() {
-        var scheduler = $("#scheduler").data("kendoScheduler");
-        scheduler.addEvent();
     }
 </script>

@@ -110,6 +110,7 @@
     white-space: nowrap;
     cursor: pointer; }
     .k-grid .k-grid-content p {
+      max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis; }
   .k-grid .k-alt {
