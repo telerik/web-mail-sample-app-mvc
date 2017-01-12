@@ -4,7 +4,7 @@
 
 <div class="footer">
     <div>
-        @Html.ActionLink("About This App", "About", "Home")
+        <span id="btn-about">About This App</span>
     </div>
     <div>
         @Html.ActionLink("Download Source Code", "", "")
@@ -16,3 +16,30 @@
         All Rights Reserved.
     </p>
 </div>
+
+<div>
+    @(Html.Kendo().Window()
+        .Name("aboutWindow")
+        .Title("")
+        .Content("loading...")
+        .Iframe(true)
+        .Modal(true)
+        .LoadContentFrom("About", "Home")
+        .Width(1000)
+        .Height(930)
+        .Actions(actions => actions.Close())
+        .Draggable(true)
+        .Visible(false)
+    )
+</div>
+<script>
+    $(document).ready(function () {
+        $("#btn-about").on("click", function () {
+            var window = $("#aboutWindow").data("kendoWindow");
+            window.open();
+            window.center();
+        });
+    });
+</script>
+
+
