@@ -52,9 +52,9 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Kendo.Mvc, Version=2016.3.1118.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+    <Reference Include="Kendo.Mvc, Version=2017.1.18.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\R1 2017 118\Kendo.Mvc.dll</HintPath>
+      <HintPath>..\lib\R1 2017 112\Kendo.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -183,6 +183,11 @@
     <Content Include="Content\contacts.css">
       <DependentUpon>contacts.scss</DependentUpon>
     </Content>
+    <Content Include="Content\Kendo\2017.1.112\kendo.common.min.css" />
+    <Content Include="Content\Kendo\2017.1.112\kendo.dataviz.metro.min.css" />
+    <Content Include="Content\Kendo\2017.1.112\kendo.dataviz.min.css" />
+    <Content Include="Content\Kendo\2017.1.112\kendo.metro.min.css" />
+    <Content Include="Content\Kendo\2017.1.112\kendo.mobile.all.min.css" />
     <Content Include="Content\mail.css">
       <DependentUpon>mail.scss</DependentUpon>
     </Content>
@@ -210,6 +215,10 @@
     <Content Include="Fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\Kendo\2017.1.112\jquery.min.js" />
+    <Content Include="Scripts\Kendo\2017.1.112\kendo.all.min.js" />
+    <Content Include="Scripts\Kendo\2017.1.112\kendo.aspnetmvc.min.js" />
+    <Content Include="Scripts\Kendo\2017.1.112\kendo.timezones.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -233,7 +242,10 @@
     <Content Include="Images\heroAccent.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripts\" />
+    <Folder Include="Content\Kendo\2017.1.112\fonts\" />
+    <Folder Include="Content\Kendo\2017.1.112\images\" />
+    <Folder Include="Content\Kendo\2017.1.112\Metro\" />
+    <Folder Include="Content\Kendo\2017.1.112\textures\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\TreeView.cshtml" />
@@ -294,6 +306,10 @@
     <Content Include="Views\Shared\Sidebar.cshtml" />
     <Content Include="Content\signIn.scss" />
     <Content Include="Content\sidebar.scss" />
+    <Content Include="Scripts\Kendo\2017.1.112\jquery.min.map" />
+    <Content Include="Scripts\Kendo\2017.1.112\kendo.all.min.js.map" />
+    <Content Include="Scripts\Kendo\2017.1.112\kendo.aspnetmvc.min.js.map" />
+    <Content Include="Scripts\Kendo\2017.1.112\kendo.timezones.min.js.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
