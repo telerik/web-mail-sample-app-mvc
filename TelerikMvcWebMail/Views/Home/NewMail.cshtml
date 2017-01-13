@@ -3,6 +3,24 @@
     ViewBag.Title = "NewMail";
 }
 
+<script>
+    function newMailMenuSelect(e) {
+        var dialog = $("#newMailDialog").data("kendoDialog");
+        var itemText = $(e.item).children(".k-link").text();
+
+        if (itemText == "Send") {
+            dialog.content("This is a Demo Application and your mail will not be send successfully. To develop further this functionality, please visit a help link SmptClient Class.");
+            dialog.open();
+        }
+        else if (itemText == "Save") {
+            dialog.content("This is a Demo Application and mail saving functionality is not available.");
+            dialog.open();
+        }
+        else if (itemText == "Cancel") {
+            window.location.href = "/Home/Index/";
+        }
+    }
+</script>
 <div class="new-wrapper">
     @(Html.Kendo().Menu()
     .Name("newMailButtons")
@@ -15,6 +33,16 @@
         items.Add()
             .Text("Cancel");
     })
+    .Events(e => e.Select("newMailMenuSelect"))
+    )
+    @(Html.Kendo().Dialog()
+        .Name("newMailDialog")
+        .Visible(false)
+        .Title("")
+        .Actions(actions =>
+        {
+            actions.Add().Text("OK").Primary(true);
+        })
     )
     <div class="new-line">
         <div class="new-mail-dropdown-wrapper">
