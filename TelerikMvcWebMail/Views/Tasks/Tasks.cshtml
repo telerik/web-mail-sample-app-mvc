@@ -19,7 +19,8 @@
                 columns.Bound(p => p.CheckBoxCheked)
                     .Title("")
                     .Width(80)
-                    .ClientTemplate("<input type='checkbox' #= CheckBoxCheked ? checked='checked': '' # class='chkbx' />");
+                    .ClientTemplate("<input type='checkbox' #= CheckBoxCheked ? checked='checked': '' # class='chkbx' />")
+                    .HeaderTemplate("<input type='checkbox' class='master-checkbox' />");
                 columns.Bound(p => p.Subject).Title("Subject");
                 columns.Bound(p => p.CreatedOn).Title("Created On").Width(300).Format("{0:g}");
                 columns.Bound(p => p.Category).Title("Category");
@@ -71,6 +72,8 @@
     }
 
     function tasksGridDataBound(e) {
+        bindCheckboxes();
+
         $.ajax({
             url: '@Url.Action("Tasks_Read", "Tasks")',
             success: function (gridData) {
@@ -87,6 +90,20 @@
                 }];
 
                 populateNavigationTree(data);
+            }
+        });
+    }
+
+    function bindCheckboxes() {
+        $('.chkbx').on('change', function (e) {
+            var target = $(e.target);
+            var checked = e.target.checked;
+            var checkedRow = $(target).parents('tr');
+
+            if (checked) {
+                checkedRow.addClass('k-state-selected');
+            } else {
+                checkedRow.removeClass('k-state-selected');
             }
         });
     }
@@ -128,6 +145,17 @@
 
         $('.new-Task').on('click', function (e) {
             $(".main-section").load('@(Url.Action("NewTask", "Tasks"))');
+        });
+
+        $('.master-checkbox').on('change', function(e) {
+            var checked = e.target.checked;
+            var tasksGrid = $("#mainWidget").data("kendoGrid");
+
+            if (checked) {
+                tasksGrid.select('tr');
+            } else {
+                tasksGrid.clearSelection();
+            }
         });
     });
 </script>
