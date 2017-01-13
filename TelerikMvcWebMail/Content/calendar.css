@@ -37,31 +37,48 @@
     color: #fff; }
 
 .k-scheduler .k-event-inverse {
-  color: #FFF; }
+  color: #fff; }
 
 .k-scheduler .k-scheduler-toolbar .k-state-selected {
   background: #1e8edf;
   border-color: #1e8edf; }
 
 .k-scheduler .k-scheduler-toolbar ul li.k-state-hover {
-  color: inherit;
-  background: #e6e6e6;
-  border-color: #e6e6e6; }
-  .k-scheduler .k-scheduler-toolbar ul li.k-state-hover .k-link {
-    color: inherit; }
+  background: #4ba5e5;
+  border-color: #4ba5e5; }
 
-/*Scheduler advanced form*/
-.k-picker-wrap.k-state-hover:hover .k-i-calendar {
-  background-position: -48px -176px; }
+.k-scheduler .k-nav-current.k-state-hover .k-link {
+  color: #787878; }
 
-.k-picker-wrap.k-state-hover:hover .k-i-clock {
-  background-position: -48px -192px; }
+.k-popup-edit-form.k-scheduler-edit-form .k-dropdown-wrap.k-state-hover {
+  background: #4ba5e5;
+  border-color: #4ba5e5; }
 
-.k-link:not(.k-state-disabled):hover > .k-i-calendar {
-  background-position: -32px -176px; }
+.k-popup-edit-form.k-scheduler-edit-form .k-dropdown-wrap.k-state-focused {
+  color: #fff;
+  border-color: #1e8edf;
+  background: #1e8edf; }
 
-.k-link:not(.k-state-disabled):hover > .k-i-clock {
-  background-position: -32px -192px; }
+.k-button:hover {
+  background: #4ba5e5;
+  border-color: #4ba5e5; }
+
+.k-button:focus:not(.k-state-disabled):not([disabled]) {
+  color: #fff;
+  border-color: #1e8edf;
+  background: #1e8edf;
+  box-shadow: 0 0 0 1px #1e8edf inset; }
+
+.k-picker-wrap.k-state-focused, .k-picker-wrap.k-state-focused.k-state-hover {
+  color: #fff;
+  border-color: #1e8edf;
+  background: #1e8edf; }
+
+.k-numeric-wrap.k-state-focused {
+  background: #1e8edf; }
+
+.k-numeric-wrap .k-link.k-state-selected {
+  background: #1e8edf; }
 
 .k-calendar .k-today,
 .k-calendar td.k-state-focused,

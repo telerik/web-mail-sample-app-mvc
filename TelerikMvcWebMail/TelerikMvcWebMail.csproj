@@ -236,7 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site_save.css" />
-    <Content Include="favicon.ico" />
+    <Content Include="favicon-progress.ico" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />

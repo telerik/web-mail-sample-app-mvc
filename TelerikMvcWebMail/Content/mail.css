@@ -68,6 +68,7 @@
       background-position: 0 -32px; }
   #mailMenu .k-link.k-state-active {
     color: #fff;
+    border-color: #1e8edf;
     background: #1e8edf; }
     #mailMenu .k-link.k-state-active > .k-i-arrow-s {
       background-position: -16px -32px; }

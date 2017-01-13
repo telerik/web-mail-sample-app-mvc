@@ -110,8 +110,7 @@
     }
 
     .k-link.k-state-active {
-        color: #fff;
-        background: $accent;
+        @include selected;
 
         & > .k-i-arrow-s {
             background-position: -16px -32px;

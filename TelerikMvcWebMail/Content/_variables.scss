@@ -1,3 +1,10 @@
 ﻿$header: #2291e2;
 $accent: #1e8edf;
 $hover: #e6e6e6;
+$hover-primary: #4ba5e5;
+
+@mixin selected {
+    color: #fff;
+    border-color: $accent;
+    background: $accent;
+}

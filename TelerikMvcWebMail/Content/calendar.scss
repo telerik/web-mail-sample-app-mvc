@@ -70,7 +70,7 @@
 .k-scheduler  {
 
     .k-event-inverse {
-        color: #FFF;
+        color: #fff;
     }
 
     .k-scheduler-toolbar {
@@ -81,41 +81,61 @@
         }
 
         ul li.k-state-hover {
-            color: inherit;
-            background: $hover;
-            border-color: $hover;
+            background: $hover-primary;
+            border-color: $hover-primary;
+        }
+    }
 
-            .k-link {
-                color: inherit;
-            }
+    .k-nav-current.k-state-hover .k-link {
+        color: #787878;
+    }
+}
+
+.k-popup-edit-form.k-scheduler-edit-form {
+
+    .k-dropdown-wrap {
+
+        &.k-state-hover {
+            background: $hover-primary;
+            border-color: $hover-primary;
+        }
+
+        &.k-state-focused {
+            @include selected;
         }
     }
 }
 
-/*Scheduler advanced form*/
-.k-picker-wrap.k-state-hover:hover {
-    .k-i-calendar {
-        background-position: -48px -176px;
+.k-button {
+
+    &:hover {
+        background: $hover-primary;
+        border-color: $hover-primary;
     }
 
-    .k-i-clock {
-        background-position: -48px -192px;
+    &:focus:not(.k-state-disabled):not([disabled]) {
+        @include selected;
+        box-shadow: 0 0 0 1px $accent inset;
     }
 }
 
-.k-link:not(.k-state-disabled):hover {
+.k-picker-wrap {
 
-    & > .k-i-calendar {
-        background-position: -32px -176px;
+    &.k-state-focused,
+    &.k-state-focused.k-state-hover {
+        @include selected;
     }
-
-    & > .k-i-clock {
-        background-position: -32px -192px;
-    }
-
 }
 
+.k-numeric-wrap {
+    &.k-state-focused {
+        background: $accent;
+    }
 
+    .k-link.k-state-selected {
+        background: $accent;
+    }
+}
 
 .k-calendar {
 
