@@ -69,6 +69,7 @@
                 .ShowOn(TooltipShowOnEvent.Click)
                 .AutoHide(false)
                 .ContentTemplateId("tooltip-template")
+                .Events(e => e.Show("tooltipShow").Hide("tooltipHide"))
             )
     </header>
 
@@ -83,8 +84,21 @@
         });
 
         function onClick(e) {
-        	location.href = '@Url.Action("Index", "SignIn")';
-        	return false;
+            location.href = '@Url.Action("Index", "SignIn")';
+            return false;
+        }
+
+        function closeToolTip(e) {
+            var tooltip = $("#mainMenu > li:last").data("kendoTooltip");
+            tooltip.hide();
+        }
+
+        function tooltipShow(e) {
+            document.body.addEventListener("mouseup", closeToolTip);
+        }
+
+        function tooltipHide(e) {
+            document.body.removeEventListener("mouseup", closeToolTip);
         }
     </script>
 </body>
