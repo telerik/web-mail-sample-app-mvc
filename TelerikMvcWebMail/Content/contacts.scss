@@ -1,10 +1,13 @@
 ﻿@import '_variables.scss';
 
+
+.main-section {
+    display: flex;
+    flex-direction: column;
+}
+
 .btn {
 
-    &:before {
-        font-family: WebComponentsIcons;
-    }
 
     &.selected {
         color: $accent;
@@ -20,7 +23,15 @@
         content: "\e029";
     }
 
-.contacts {
+    .search-textbox[type=text] {
+        width: 100%;
+        padding: 5px;
+        border-width: 0;
+        box-sizing: border-box;
+    }
+
+
+.inner-section {
     display: flex;
 
     .edit-buttons {
@@ -31,23 +42,45 @@
 
         .k-button {
             border-radius: 50%;
+
+            .icon:before {
+                font: 16px WebComponentsIcons;
+            }
+        }
+
+        .i-mail:before {
+            content: "\e809";
+        }
+
+        .i-edit:before {
+            content: "\e10b";
+        }
+
+        .i-delete:before {
+            content: "\e10c";
         }
     }
 }
 
     .contact-view {
         position: relative;
+        cursor: pointer;
 
-
+        &:hover,
         &.k-state-selected {
             color: inherit;
             background: #fafafa;
             border-color: #ebebeb;
         }
 
-        img {
+        .image-wrapper {
             float: left;
+            overflow: hidden;
         }
+
+            img {
+                width: 100%;
+            }
 
         &:after {
             content: "";
@@ -56,16 +89,31 @@
         }
     }
 
+    .label {
+        display: block;
+        font-size: 11px;
+        margin-top: 10px;
+        color: #999999;
+    }
+
+    .details .column {
+            float: left;
+            padding: 0 60px 0 15px;
+    }
+
 
 /* List view - default */
 .list-view {
 
-    .contactsListView {
+    .list-view-inner {
         flex: 0.3;
-        line-height: 50px;
+        overflow: auto;
 
         .contact-view {
+            line-height: 50px;
+            font-size: 15px;
             border-width: 0 0 1px;
+            border-color: #ebebeb;
             line-height: 50px;
 
             &:hover {
@@ -73,15 +121,29 @@
                     display: block;
                 }
             }
-        }
 
-        img {
-            height: 50px;
-            margin-right: 16px;
+            &.k-state-selected {
+                color: #000;
+
+                &:before {
+                    content: "";
+                    display: block;
+
+                }
+            }
         }
 
         .details {
             display: none;
+        }
+    }
+
+    .contactsListView {
+
+        .image-wrapper {
+            width: 50px;
+            height: 50px;
+            margin-right: 16px;
         }
     }
 
@@ -91,12 +153,32 @@
 
         .contact-view {
             border: 0;
+            cursor: default;
+            color: #000;
+
+            &:hover {
+                background: transparent;
+            }
         }
 
         .header {
+            margin-bottom: 15px;
             padding: 15px;
             background: #fafafa;
-            font: 100 30px 'Segoe UI';
+
+            & > span {
+                font: 100 30px 'Segoe UI';
+            }
+
+            &:hover {
+
+                .edit-buttons {
+                    display: block;
+                    right: auto;
+                    left: 105px;
+                    top: 60px;
+                }
+            }
 
             &:after {
                 content: "";
@@ -105,15 +187,20 @@
             }
         }
 
-        img {
-            margin-right: 18px;
+        .image-wrapper {
+            width: 70px;
             height: 70px;
+            margin-right: 18px;
         }
     }
 }
 
 /* Card view */
 .card-view {
+
+    .single-contact-details {
+        display: none;
+    }
 
     #contactsListView {
         flex: none;

@@ -60,6 +60,10 @@ html .k-icon:hover {
   background: #4ba5e5;
   border-color: #4ba5e5; }
 
+.k-button:active, .k-button:active:hover {
+  background: #1e8edf;
+  border-color: #1e8edf; }
+
 .k-button:focus:not(.k-state-disabled):not([disabled]) {
   color: #fff;
   border-color: #1e8edf;

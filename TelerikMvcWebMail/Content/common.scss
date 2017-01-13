@@ -225,6 +225,15 @@ p {
 
         .right {
             float: right;
+
+            .btn {
+                padding: 9px;
+                width: (20/14)*1em;
+
+                &:before {
+                    font: 16px WebComponentsIcons;
+                }
+            }
         }
 
         &:after {
@@ -235,8 +244,10 @@ p {
 
         .btn {
             display: inline-block;
-            padding: 10px 16px;
+            padding: 9px 16px;
             line-height: (20/14);
+            height: (20/14)*1em;
+            text-align: center;
             cursor: pointer;
 
             &:hover {
@@ -256,4 +267,12 @@ p {
     display: flex;
     height: calc(100% - 3em);
     overflow: auto;
+}
+
+.k-input.search-textbox {
+    font-style: italic;
+
+    &:focus {
+        font-style: normal;
+    }
 }

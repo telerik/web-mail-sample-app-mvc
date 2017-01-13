@@ -96,6 +96,12 @@ html {
         border-color: $hover-primary;
     }
 
+    &:active,
+    &:active:hover {
+        background: $accent;
+        border-color: $accent;
+    }
+
     &:focus:not(.k-state-disabled):not([disabled]) {
         @include selected;
         box-shadow: 0 0 0 1px $accent inset;

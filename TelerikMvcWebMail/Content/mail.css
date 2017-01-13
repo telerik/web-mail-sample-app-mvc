@@ -50,6 +50,7 @@
     #mailMenu > .k-item.iconsOnly {
       float: right; }
       #mailMenu > .k-item.iconsOnly .k-link:before {
+        font-size: 16px;
         display: block;
         font-family: WebComponentsIcons;
         text-align: center; }
@@ -73,10 +74,7 @@
   width: 100%;
   padding: 6px 15px;
   box-sizing: border-box;
-  border: none;
-  font-style: italic; }
-  .k-input.search-textbox:focus {
-    font-style: normal; }
+  border: none; }
 
 .k-grid {
   border: 0;

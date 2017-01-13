@@ -1,5 +1,6 @@
-﻿.btn:before {
-  font-family: WebComponentsIcons; }
+﻿.main-section {
+  display: flex;
+  flex-direction: column; }
 
 .btn.selected {
   color: #1e8edf; }
@@ -10,62 +11,115 @@
 .btn-listdetails:before {
   content: "\e029"; }
 
-.contacts {
+.search-textbox[type=text] {
+  width: 100%;
+  padding: 5px;
+  border-width: 0;
+  box-sizing: border-box; }
+
+.inner-section {
   display: flex; }
-  .contacts .edit-buttons {
+  .inner-section .edit-buttons {
     display: none;
     position: absolute;
     right: 15px;
     top: 0; }
-    .contacts .edit-buttons .k-button {
+    .inner-section .edit-buttons .k-button {
       border-radius: 50%; }
+      .inner-section .edit-buttons .k-button .icon:before {
+        font: 16px WebComponentsIcons; }
+    .inner-section .edit-buttons .i-mail:before {
+      content: "\e809"; }
+    .inner-section .edit-buttons .i-edit:before {
+      content: "\e10b"; }
+    .inner-section .edit-buttons .i-delete:before {
+      content: "\e10c"; }
 
 .contact-view {
-  position: relative; }
-  .contact-view.k-state-selected {
+  position: relative;
+  cursor: pointer; }
+  .contact-view:hover, .contact-view.k-state-selected {
     color: inherit;
     background: #fafafa;
     border-color: #ebebeb; }
+  .contact-view .image-wrapper {
+    float: left;
+    overflow: hidden; }
   .contact-view img {
-    float: left; }
+    width: 100%; }
   .contact-view:after {
     content: "";
     display: block;
     clear: both; }
 
+.label {
+  display: block;
+  font-size: 11px;
+  margin-top: 10px;
+  color: #999999; }
+
+.details .column {
+  float: left;
+  padding: 0 60px 0 15px; }
+
 /* List view - default */
-.list-view .contactsListView {
+.list-view .list-view-inner {
   flex: 0.3;
-  line-height: 50px; }
-  .list-view .contactsListView .contact-view {
+  overflow: auto; }
+  .list-view .list-view-inner .contact-view {
+    line-height: 50px;
+    font-size: 15px;
     border-width: 0 0 1px;
+    border-color: #ebebeb;
     line-height: 50px; }
-    .list-view .contactsListView .contact-view:hover .edit-buttons {
+    .list-view .list-view-inner .contact-view:hover .edit-buttons {
       display: block; }
-  .list-view .contactsListView img {
-    height: 50px;
-    margin-right: 16px; }
-  .list-view .contactsListView .details {
+    .list-view .list-view-inner .contact-view.k-state-selected {
+      color: #000; }
+      .list-view .list-view-inner .contact-view.k-state-selected:before {
+        content: "";
+        display: block; }
+  .list-view .list-view-inner .details {
     display: none; }
+
+.list-view .contactsListView .image-wrapper {
+  width: 50px;
+  height: 50px;
+  margin-right: 16px; }
 
 .list-view .single-contact-details {
   padding: 17px 15px;
   flex: 0.7; }
   .list-view .single-contact-details .contact-view {
-    border: 0; }
+    border: 0;
+    cursor: default;
+    color: #000; }
+    .list-view .single-contact-details .contact-view:hover {
+      background: transparent; }
   .list-view .single-contact-details .header {
+    margin-bottom: 15px;
     padding: 15px;
-    background: #fafafa;
-    font: 100 30px 'Segoe UI'; }
+    background: #fafafa; }
+    .list-view .single-contact-details .header > span {
+      font: 100 30px 'Segoe UI'; }
+    .list-view .single-contact-details .header:hover .edit-buttons {
+      display: block;
+      right: auto;
+      left: 105px;
+      top: 60px; }
     .list-view .single-contact-details .header:after {
       content: "";
       display: block;
       clear: both; }
-  .list-view .single-contact-details img {
-    margin-right: 18px;
-    height: 70px; }
+  .list-view .single-contact-details .image-wrapper {
+    width: 70px;
+    height: 70px;
+    margin-right: 18px; }
 
 /* Card view */
+.card-view .single-contact-details {
+  display: none; }
+
 .card-view #contactsListView {
   flex: none;
   width: 100%; }

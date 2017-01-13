@@ -156,14 +156,21 @@ p {
       float: left; }
     .main-section .toolbar .right {
       float: right; }
+      .main-section .toolbar .right .btn {
+        padding: 9px;
+        width: 1.42857em; }
+        .main-section .toolbar .right .btn:before {
+          font: 16px WebComponentsIcons; }
     .main-section .toolbar:after {
       content: "";
       display: block;
       clear: both; }
     .main-section .toolbar .btn {
       display: inline-block;
-      padding: 10px 16px;
+      padding: 9px 16px;
       line-height: 1.42857;
+      height: 1.42857em;
+      text-align: center;
       cursor: pointer; }
       .main-section .toolbar .btn:hover {
         background: #ebebeb; }
@@ -175,4 +182,9 @@ p {
   display: flex;
   height: calc(100% - 3em);
   overflow: auto; }
+
+.k-input.search-textbox {
+  font-style: italic; }
+  .k-input.search-textbox:focus {
+    font-style: normal; }
 

@@ -12,19 +12,25 @@
     <div class="contact-view k-widget" uid="#: uid #">
         <div class="header">
             <span class="hidden-email" style="display:none">#: Email #</span>
-            <img src="@Url.Content("~/Content/contacts/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
+            <span class="image-wrapper">
+                <img src="@Url.Content("~/Content/contacts/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" />
+            </span>
             <span>#: Name #</span>
             <div class="edit-buttons">
-                <span class="k-button k-single-email-button" ><span class="k-icon k-i-maximize"></span></span>
-                <span class="k-button k-single-edit-button" ><span class="k-icon k-edit"></span></span>
-                <span class="k-button k-single-delete-button" ><span class="k-icon k-delete"></span></span>
+                <span class="k-button k-single-email-button" ><span class="icon i-mail"></span></span>
+                <span class="k-button k-single-edit-button" ><span class="icon i-edit"></span></span>
+                <span class="k-button k-single-delete-button" ><span class="icon i-delete"></span></span>
             </div>
         </div>
         <div class="details">
-            <p>Country : #: Country # </p>
-            <p>City : #: City # </p>
-            <p>Company : #: Company # </p>
-            <p>Phone : #: HomePhone # </p>
+            <div class="column">
+                <p><span class="label">Country</span>#: Country # </p>
+                <p><span class="label">City</span>#: City # </p>
+            </div>
+            <div class="column">
+                <p><span class="label">Company</span>#: Company # </p>
+                <p><span class="label">Phone</span>#: HomePhone # </p>
+            </div>
         </div>
     </div>
 </script>
@@ -41,9 +47,10 @@
             <span class="btn btn-cards" onclick="changeToContactsCards(this)" title="Display cards"></span>
         </div>
     </div>
-    <input type="text" class="k-input search-textbox" placeholder="Search people ...">
-    <div class="contacts list-view">
-        @(Html.Kendo().ListView<TelerikMvcWebMail.Models.ContactViewModel>()
+    <div class="inner-section list-view">
+        <div class="list-view-inner">
+            <input type="text" class="k-input search-textbox" placeholder="Search people ...">
+            @(Html.Kendo().ListView<TelerikMvcWebMail.Models.ContactViewModel>()
             .Name("mainWidget")
             .TagName("div")
             .ClientTemplateId("single-contact-template")
@@ -61,7 +68,8 @@
                 .Change("onListViewSelectionChange")
             )
             .HtmlAttributes(new { @class = "contactsListView" })
-        )
+            )
+        </div>
         <div class="single-contact-details k-widget">
         </div>
     </div>
@@ -69,7 +77,7 @@
 
 <script>
     function exportPeople() {
-        kendo.drawing.drawDOM($(".contacts"))
+        kendo.drawing.drawDOM($(".inner-section"))
             .then(function (group) {
                 return kendo.drawing.exportPDF(group, {
                     paperSize: "auto",
@@ -85,7 +93,7 @@
     }
 
     function changeToListDetails(e) {
-        var contactsElement = $('.contacts');
+        var contactsElement = $('.inner-section');
         contactsElement.removeClass("card-view");
         contactsElement.addClass("list-view");
 
@@ -93,7 +101,7 @@
     }
 
     function changeToContactsCards(e) {
-        var contactsElement = $('.contacts');
+        var contactsElement = $('.inner-section');
         contactsElement.removeClass("list-view");
         contactsElement.addClass("card-view");
 
