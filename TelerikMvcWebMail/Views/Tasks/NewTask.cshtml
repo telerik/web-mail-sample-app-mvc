@@ -29,9 +29,9 @@
 </script>
 
 <div class="new-wrapper">
-    <h2>Add Task</h2>
+    <h2>Add New Task</h2>
     <div class="new-line">
-        @Html.Label("newTaskCategory", "Priority")
+        @Html.Label("newTaskCategory", "Category")
         <br />
         @(Html.Kendo().DropDownList()
             .Name("newTaskCategory")
@@ -62,7 +62,6 @@
     @(Html.Kendo().Editor()
         .Name("newTask")
         .HtmlAttributes(new { style = "height: 500px;" })
-        .Resizable(resizable => resizable.Content(true).Toolbar(true))
     )
     <div class="new-line">
         @(Html.Kendo().Button()
