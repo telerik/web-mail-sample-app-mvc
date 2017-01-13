@@ -14,6 +14,7 @@
         .Name("calendar")
         .Value(new DateTime(2013, 6, 24))
         .Events(e => e.Change("onCalenderChange"))
+        .Footer(false)
         )
         <div class="calendar-resources-list">
             <div class="resource presonal selected" data-resource-value="1">Personal</div>
@@ -29,7 +30,6 @@
     <div class="toolbar">
         <span class="btn btn-export-pdf" onclick="onExportBtnClick('exportPdf')">Export to PDF</span>
         <span class="btn btn-export-image" onclick="onExportBtnClick('exportImage')">Export to Image</span>
-        <span class="btn btn-import">Import</span>
     </div>
     @(Html.Kendo().Scheduler<TelerikMvcWebMail.Models.EventViewModel>()
         .Name("scheduler")
@@ -46,6 +46,7 @@
             views.TimelineView();
         })
         .Timezone("Etc/UTC")
+        .Selectable(true)
         .DataSource(d => d
             .Model(m =>
             {
@@ -79,6 +80,10 @@
                     new { Text = "Marketing", Value = 5, Color = "#FFC600" }
                 });
         })
+        .Events(e => e.
+            Edit("onSchedulerEdit")
+            .Change("onSchedulerChange")
+        )
     )
 </section>
 <script>
@@ -159,5 +164,44 @@
     function onCalenderChange(e) {
         var scheduler = $("#scheduler").data("kendoScheduler");
         scheduler.date(e.sender.current());
+    }
+
+    function onSchedulerChange(e) {
+        var calendar = $('#calendar').data('kendoCalendar');
+        calendar.value(e.slots[0].start);
+    }
+
+    function onSchedulerEdit(e) {
+        var scheduler = e.sender;
+        var selectedSlot = scheduler.select();
+
+        if (selectedSlot && selectedSlot.start && selectedSlot.end) {
+            populateDateTimePickers(e.container, selectedSlot);
+        }
+    }
+
+    function populateDateTimePickers(container, selectedSlot) {
+        var startInputs = container.find("[data-container-for=start]").find("input");
+        var endInputs = container.find("[data-container-for=end]").find("input");
+
+        var startDate = new Date(selectedSlot.start);
+
+        startInputs.each(function () {
+            var element = $(this);
+            var widgetType = element.is("[data-role=datepicker]") ? "kendoDatePicker" : "kendoDateTimePicker";
+
+            element.data(widgetType).value(startDate);
+            element.data(widgetType).trigger("change");
+        });
+
+        var endDate = new Date(selectedSlot.end);
+
+        endInputs.each(function () {
+            var element = $(this);
+            var widgetType = element.is("[data-role=datepicker]") ? "kendoDatePicker" : "kendoDateTimePicker";
+
+            element.data(widgetType).value(endDate);
+            element.data(widgetType).trigger("change");
+        });
     }
 </script>
