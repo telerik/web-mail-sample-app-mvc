@@ -50,38 +50,6 @@ p {
     margin: 0;
 }
 
-html {
-
-    .k-primary,
-    .k-state-selected,
-    .k-list .k-state-selected {
-        @include selected;
-    }
-
-    .k-state-hover,
-    .k-state-hover:hover {
-        color: inherit;
-        border-color: $hover;
-        background: $hover;
-        box-shadow: none;
-
-        .k-link {
-            color: inherit;
-        }
-
-    }
-
-    .k-textbox:hover {
-        border-color: $accent;
-    }
-
-    .k-state-focused,
-    .k-state-selected.k-state-focused {
-        box-shadow: none;
-    }
-
-}
-
 .k-tooltip-button {
     display: none;
 }
@@ -103,24 +71,26 @@ html {
         display: block;
         clear: both;
     }
-}
 
-.main-header .logo {
-    font: 24px Roboto;
-    float: left;
-    line-height: 32px;
-    padding: 13px 16px;
+    .logo {
+        font: 24px Roboto;
+        float: left;
+        line-height: 32px;
+        padding: 13px 16px;
 
-    &:before {
-        content: "\e809";
-        font-family: WebComponentsIcons;
-        font-size: 1.3em;
-        line-height: 1;
-        margin-top: -4px;
-        vertical-align: middle;
-        display: inline-block;
+        &:before {
+            content: "\e809";
+            font-family: WebComponentsIcons;
+            font-size: 1.3em;
+            line-height: 1;
+            margin-top: -4px;
+            vertical-align: middle;
+            display: inline-block;
+        }
     }
 }
+
+
 
 #mainMenu {
     float: right;
@@ -182,8 +152,6 @@ html {
 }
 
 .k-widget.k-tooltip {
-    background: #fff;
-    color: inherit;
     font-size: 12px;
     top: 0;
 
@@ -241,9 +209,11 @@ html {
     overflow: auto;
 }
 
-// Section
+// Main Section
 .main-section {
     flex: 1;
+    position: relative;
+    background: #fff;
     box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.06);
 
     .toolbar {
@@ -279,4 +249,11 @@ html {
             }
         }
     }
+}
+
+// Inner Section
+.inner-section {
+    display: flex;
+    height: calc(100% - 3em);
+    overflow: auto;
 }

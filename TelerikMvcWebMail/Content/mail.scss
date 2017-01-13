@@ -5,14 +5,13 @@
     flex-direction: column;
 }
 
-.mails-section {
-    display: flex;
-    height: calc(100% - 3em);
+.inner-section {
+    overflow: visible;
 }
 
 .main-section.vertical {
 
-    .mails-section {
+    .inner-section {
         flex: 1;
     }
 
@@ -40,7 +39,7 @@
 
 .main-section.horizontal {
 
-    .mails-section{
+    .inner-section{
         flex-direction: column;
     }
 
@@ -63,7 +62,6 @@
 }
 
 #mailMenu {
-    flex-shrink: 0;
     border-width: 0 0 1px;
 
     & > .k-item {
@@ -100,21 +98,8 @@
         }
     }
 
-    .k-state-hover > .k-link {
-        color: inherit;
-        background: $hover;
-
-        & > .k-i-arrow-s {
-            background-position: 0 -32px;
-        }
-    }
-
     .k-link.k-state-active {
         @include selected;
-
-        & > .k-i-arrow-s {
-            background-position: -16px -32px;
-        }
     }
 
     .selected {
@@ -124,11 +109,6 @@
 
 #mailContextMenu {
     white-space: nowrap;
-
-    .k-state-hover .k-link {
-        color: inherit;
-        background: $hover;
-    }
 }
 
 .k-input.search-textbox {

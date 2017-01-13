@@ -30,5 +30,9 @@
   {
     "outputFile": "Content/sidebar.css",
     "inputFile": "Content/sidebar.scss"
+  },
+  {
+    "outputFile": "Content/metroThemeCustomization.css",
+    "inputFile": "Content/metroThemeCustomization.scss"
   }
 ]

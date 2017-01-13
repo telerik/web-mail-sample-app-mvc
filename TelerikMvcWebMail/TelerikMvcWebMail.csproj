@@ -191,6 +191,9 @@
     <Content Include="Content\mail.css">
       <DependentUpon>mail.scss</DependentUpon>
     </Content>
+    <Content Include="Content\metroThemeCustomization.css">
+      <DependentUpon>metroThemeCustomization.scss</DependentUpon>
+    </Content>
     <Content Include="Content\sidebar.css">
       <DependentUpon>sidebar.scss</DependentUpon>
     </Content>
@@ -310,6 +313,7 @@
     <Content Include="Scripts\Kendo\2017.1.112\kendo.all.min.js.map" />
     <Content Include="Scripts\Kendo\2017.1.112\kendo.aspnetmvc.min.js.map" />
     <Content Include="Scripts\Kendo\2017.1.112\kendo.timezones.min.js.map" />
+    <Content Include="Content\metroThemeCustomization.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

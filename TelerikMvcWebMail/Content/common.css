@@ -35,30 +35,6 @@ h6 {
 p {
   margin: 0; }
 
-html .k-primary,
-html .k-state-selected,
-html .k-list .k-state-selected {
-  color: #fff;
-  border-color: #1e8edf;
-  background: #1e8edf; }
-
-html .k-state-hover,
-html .k-state-hover:hover {
-  color: inherit;
-  border-color: #e6e6e6;
-  background: #e6e6e6;
-  box-shadow: none; }
-  html .k-state-hover .k-link,
-  html .k-state-hover:hover .k-link {
-    color: inherit; }
-
-html .k-textbox:hover {
-  border-color: #1e8edf; }
-
-html .k-state-focused,
-html .k-state-selected.k-state-focused {
-  box-shadow: none; }
-
 .k-tooltip-button {
   display: none; }
 
@@ -75,20 +51,19 @@ html .k-state-selected.k-state-focused {
     content: "";
     display: block;
     clear: both; }
-
-.main-header .logo {
-  font: 24px Roboto;
-  float: left;
-  line-height: 32px;
-  padding: 13px 16px; }
-  .main-header .logo:before {
-    content: "\e809";
-    font-family: WebComponentsIcons;
-    font-size: 1.3em;
-    line-height: 1;
-    margin-top: -4px;
-    vertical-align: middle;
-    display: inline-block; }
+  .main-header .logo {
+    font: 24px Roboto;
+    float: left;
+    line-height: 32px;
+    padding: 13px 16px; }
+    .main-header .logo:before {
+      content: "\e809";
+      font-family: WebComponentsIcons;
+      font-size: 1.3em;
+      line-height: 1;
+      margin-top: -4px;
+      vertical-align: middle;
+      display: inline-block; }
 
 #mainMenu {
   float: right;
@@ -132,8 +107,6 @@ html .k-state-selected.k-state-focused {
       margin-left: -10%; }
 
 .k-widget.k-tooltip {
-  background: #fff;
-  color: inherit;
   font-size: 12px;
   top: 0; }
   .k-widget.k-tooltip .k-tooltip-content {
@@ -174,6 +147,8 @@ html .k-state-selected.k-state-focused {
 
 .main-section {
   flex: 1;
+  position: relative;
+  background: #fff;
   box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.06); }
   .main-section .toolbar {
     border-bottom: 1px solid #ebebeb; }
@@ -195,4 +170,9 @@ html .k-state-selected.k-state-focused {
       .main-section .toolbar .btn:active {
         color: #fff;
         background: #1e8edf; }
+
+.inner-section {
+  display: flex;
+  height: calc(100% - 3em);
+  overflow: auto; }
 
