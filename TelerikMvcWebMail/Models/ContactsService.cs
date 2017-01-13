@@ -53,6 +53,8 @@ namespace TelerikMvcWebMail.Models
 
         public void Insert(ContactViewModel contact)
         {
+            contact.EmployeeID = Guid.NewGuid().ToString().Substring(0, 5);
+
             if (string.IsNullOrEmpty(contact.Name))
             {
                 contact.Name = "New contact";
@@ -60,7 +62,6 @@ namespace TelerikMvcWebMail.Models
 
             if (!UpdateDatabase)
             {
-                contact.EmployeeID = Guid.NewGuid().ToString();
                 GetAll().Insert(0, contact);
             }
             else
