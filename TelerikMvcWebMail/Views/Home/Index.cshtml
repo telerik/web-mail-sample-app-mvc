@@ -140,7 +140,14 @@
 <script>
     $(document).ready(function () {
         var treeview = $("#navigationTreeView").data("kendoTreeView");
-        if (treeview.select().length == 0) {
+        if (!Cookies.get('selected')) {
+            Cookies.remove('selectedNodeText');
+        }
+
+        if (Cookies.get('selectedNodeText')) {
+            filterGrid(Cookies.get('selectedNodeText'));
+        }
+        else if (treeview.select().length == 0) {
             filterGrid("Inbox");
         }
     });
@@ -269,7 +276,10 @@
         var dataItem = this.dataItem(e.node);
         var selectedText = e.sender.dataItem(e.node).value;
         Cookies.set('selected', kendo.stringify(dataItem.index));
+        Cookies.set('selectedNodeText', selectedText);
+
         selected = Cookies.get('selected');
+        selectedNodeText = Cookies.get('selectedNodeText');
 
         filterGrid(selectedText);
     }
