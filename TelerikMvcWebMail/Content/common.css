@@ -59,6 +59,9 @@ html .k-state-focused,
 html .k-state-selected.k-state-focused {
   box-shadow: none; }
 
+.k-tooltip-button {
+  display: none; }
+
 .main-header {
   position: fixed;
   top: 0;
