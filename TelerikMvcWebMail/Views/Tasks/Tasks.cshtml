@@ -16,10 +16,10 @@
             .Name("mainWidget")
             .Columns(columns =>
             {
-                columns.Bound(p => p.CheckBoxCheked)
+                columns.Bound(p => p.Id)
                     .Title("")
                     .Width(80)
-                    .ClientTemplate("<input type='checkbox' #= CheckBoxCheked ? checked='checked': '' # class='chkbx' />")
+                    .ClientTemplate("<input type='checkbox' class='chkbx' />")
                     .HeaderTemplate("<input type='checkbox' class='master-checkbox' />");
                 columns.Bound(p => p.Subject).Title("Subject");
                 columns.Bound(p => p.CreatedOn).Title("Created On").Width(300).Format("{0:g}");
@@ -37,7 +37,6 @@
                 .Model(model => {
                     model.Id(p => p.Id);
                     model.Field(p => p.Id).Editable(false);
-                    model.Field(p => p.CheckBoxCheked).Editable(false);
                     model.Field(p => p.CreatedOn).Editable(false);
                 })
             )
@@ -51,8 +50,16 @@
 
 <script>
     function taskSelectionChanged(e) {
+        var mailsInView = this.dataSource.view().length;
         var selectedRows = this.select();
+
         $('input.chkbx').prop('checked', false);
+
+        if (mailsInView > selectedRows.length) {
+            $('input.master-checkbox').prop('checked', false);
+        } else {
+            $('input.master-checkbox').prop('checked', true);
+        }
 
         var checkboxes = selectedRows.find('.chkbx');
         checkboxes.prop('checked', true);
@@ -98,12 +105,23 @@
         $('.chkbx').on('change', function (e) {
             var target = $(e.target);
             var checked = e.target.checked;
+            var tasksGrid = $("#mainWidget").data("kendoGrid");
+            var selectedRows = tasksGrid.select();
             var checkedRow = $(target).parents('tr');
 
             if (checked) {
                 checkedRow.addClass('k-state-selected');
+                selectedRows.add(checkedRow);
+                tasksGrid.select(selectedRows);
             } else {
+                var resultSelection = $.map(selectedRows, function (row) {
+                    if ($(row).attr('data-uid') !== checkedRow.attr('data-uid')) {
+                        return row;
+                    }
+                });
+
                 checkedRow.removeClass('k-state-selected');
+                tasksGrid.select(resultSelection);
             }
         });
     }

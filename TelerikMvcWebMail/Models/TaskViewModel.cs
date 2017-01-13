@@ -9,8 +9,6 @@ namespace TelerikMvcWebMail.Models
     {
         public int Id { get; set; }
 
-        public bool CheckBoxCheked { get; set; }
-
         public string Subject { get; set; }
 
         public DateTime? CreatedOn { get; set; }
