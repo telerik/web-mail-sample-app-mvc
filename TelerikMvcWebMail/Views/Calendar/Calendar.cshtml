@@ -35,8 +35,6 @@
         @(Html.Kendo().Scheduler<TelerikMvcWebMail.Models.EventViewModel>()
             .Name("scheduler")
             .Date(new DateTime(2013, 6, 24))
-            .StartTime(new DateTime(2013, 6, 24, 7, 00, 00))
-            .ShowWorkHours(true)
             .Views(views =>
             {
                 views.DayView();
