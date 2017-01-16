@@ -3,16 +3,11 @@
     ViewBag.Title = "NewMail";
 }
 
-<<<<<<< HEAD
 @Scripts.Render("~/Scripts/new-task.js")
-=======
+
 @section PageStyles {
     <link href="@Url.Content("~/Content/mailNew.css")" rel="stylesheet" type="text/css" />
 }
-
-<link href="@Url.Content("~/Content/mailNew.css")" rel="stylesheet" type="text/css" />
->>>>>>> feat: add styles to the "New Mail" page
-
 <script>
     function newMailMenuSelect(e) {
         var dialog = $("#newMailDialog").data("kendoDialog");
