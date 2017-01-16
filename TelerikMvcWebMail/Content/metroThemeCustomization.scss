@@ -33,6 +33,10 @@ html {
         box-shadow: none;
     }
 
+    .k-list > .k-state-focused {
+        box-shadow: 0 0 0 1px $accent inset;
+    }
+
     .k-icon,
     .k-icon:hover {
         color: inherit;
@@ -97,11 +101,13 @@ html {
     }
 
     &:active,
-    &:active:hover {
+    &:active:hover,
+    &.k-state-focused {
         background: $accent;
         border-color: $accent;
     }
 
+    &.k-state-focused,
     &:focus:not(.k-state-disabled):not([disabled]) {
         @include selected;
         box-shadow: 0 0 0 1px $accent inset;
@@ -143,5 +149,13 @@ html {
     td.k-state-selected.k-state-hover {
         color: #fff;
         background: $accent;
+    }
+}
+
+.k-dropdown-wrap {
+
+    &.k-state-focused {
+        background: $accent;
+        border-color: $accent;
     }
 }

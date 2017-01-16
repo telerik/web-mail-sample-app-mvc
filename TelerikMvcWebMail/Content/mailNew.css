@@ -1,0 +1,38 @@
+﻿.k-menu.k-header {
+  border: 0; }
+  .k-menu.k-header .k-item {
+    border: 0; }
+    .k-menu.k-header .k-item .k-link {
+      padding: 9px 16px; }
+
+.inner-section {
+  padding: 15px;
+  display: block; }
+
+.form-wrapper {
+  width: 300px;
+  float: left; }
+
+label {
+  display: block;
+  padding: 15px 0 5px; }
+
+.long-textbox {
+  width: 100%; }
+
+.k-upload {
+  background: #fafafa;
+  margin-bottom: 15px; }
+
+.k-webkit .k-editor-toolbar li {
+  padding: 0; }
+
+table.k-editor {
+  border-spacing: 10px; }
+  table.k-editor .k-editable-area {
+    border: 0; }
+
+.inner-section .k-state-hover:hover {
+  color: #fff;
+  background: #1e8edf; }
+

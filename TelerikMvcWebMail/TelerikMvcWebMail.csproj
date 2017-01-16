@@ -191,6 +191,9 @@
     <Content Include="Content\mail.css">
       <DependentUpon>mail.scss</DependentUpon>
     </Content>
+    <Content Include="Content\mailNew.css">
+      <DependentUpon>mailNew.scss</DependentUpon>
+    </Content>
     <Content Include="Content\metroThemeCustomization.css">
       <DependentUpon>metroThemeCustomization.scss</DependentUpon>
     </Content>
@@ -324,6 +327,7 @@
     <Content Include="Content\metroThemeCustomization.scss" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Content\tasks.scss" />
+    <Content Include="Content\mailNew.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

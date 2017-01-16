@@ -9,7 +9,7 @@
   .main-sidebar .content {
     flex: 1; }
   .main-sidebar .new-btn {
-    display: inline-block;
+    display: block;
     padding: 13px 16px;
     font: 16px Roboto;
     color: #0072c6;

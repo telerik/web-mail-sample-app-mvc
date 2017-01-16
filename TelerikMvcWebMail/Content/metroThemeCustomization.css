@@ -23,6 +23,9 @@ html .k-state-focused,
 html .k-state-selected.k-state-focused {
   box-shadow: none; }
 
+html .k-list > .k-state-focused {
+  box-shadow: 0 0 0 1px #1e8edf inset; }
+
 html .k-icon,
 html .k-icon:hover {
   color: inherit; }
@@ -60,11 +63,11 @@ html .k-icon:hover {
   background: #4ba5e5;
   border-color: #4ba5e5; }
 
-.k-button:active, .k-button:active:hover {
+.k-button:active, .k-button:active:hover, .k-button.k-state-focused {
   background: #1e8edf;
   border-color: #1e8edf; }
 
-.k-button:focus:not(.k-state-disabled):not([disabled]) {
+.k-button.k-state-focused, .k-button:focus:not(.k-state-disabled):not([disabled]) {
   color: #fff;
   border-color: #1e8edf;
   background: #1e8edf;
@@ -94,4 +97,8 @@ html .k-icon:hover {
 .k-calendar td.k-state-selected.k-state-hover {
   color: #fff;
   background: #1e8edf; }
+
+.k-dropdown-wrap.k-state-focused {
+  background: #1e8edf;
+  border-color: #1e8edf; }
 

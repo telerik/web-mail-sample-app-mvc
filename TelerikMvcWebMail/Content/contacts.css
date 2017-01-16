@@ -32,6 +32,8 @@
       content: "\e10b"; }
     .inner-section .edit-buttons .i-delete:before {
       content: "\e10c"; }
+  .inner-section .k-pdf-export.list-view-inner {
+    overflow: visible; }
 
 .contacts-list {
   border: 0; }

@@ -57,6 +57,10 @@
             content: "\e10c";
         }
     }
+
+    .k-pdf-export.list-view-inner {
+        overflow: visible;
+    }
 }
 
     .contacts-list {
@@ -261,3 +265,4 @@
         }
     }
 }
+

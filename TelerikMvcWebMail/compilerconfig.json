@@ -38,5 +38,9 @@
   {
     "outputFile": "Content/tasks.css",
     "inputFile": "Content/tasks.scss"
+  },
+  {
+    "outputFile": "Content/mailNew.css",
+    "inputFile": "Content/mailNew.scss"
   }
 ]
