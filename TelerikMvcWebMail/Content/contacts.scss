@@ -101,6 +101,21 @@
             padding: 0 60px 0 15px;
     }
 
+        .header {
+
+            &:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+        }
+
+        .image-wrapper {
+            width: 70px;
+            height: 70px;
+            margin-right: 18px;
+        }
+
 
 /* List view - default */
 .list-view {
@@ -166,7 +181,7 @@
             padding: 15px;
             background: #fafafa;
 
-            & > span {
+            .name {
                 font: 100 30px 'Segoe UI';
             }
 
@@ -179,18 +194,6 @@
                     top: 60px;
                 }
             }
-
-            &:after {
-                content: "";
-                display: block;
-                clear: both;
-            }
-        }
-
-        .image-wrapper {
-            width: 70px;
-            height: 70px;
-            margin-right: 18px;
         }
     }
 }
@@ -210,9 +213,25 @@
     .contact-view {
         float: left;
         width: 33.2%;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .header {
+
+        .name {
+            display: inline-block;
+            padding-top: 15px;
+            font-weight: 100;
+            font-size: 18px;
+        }
     }
 
     .details {
         display: block;
+
+        .column {
+            padding-left: 0;
+        }
     }
 }
