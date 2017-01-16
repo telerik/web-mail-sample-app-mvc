@@ -1,13 +1,10 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "NewMail";
 }
 
 @Scripts.Render("~/Scripts/new-task.js")
+@Styles.Render("~/Content/mailNew.css")
 
-@section PageStyles {
-    <link href="@Url.Content("~/Content/mailNew.css")" rel="stylesheet" type="text/css" />
-}
 <script>
     function newMailMenuSelect(e) {
         var dialog = $("#newMailDialog").data("kendoDialog");
