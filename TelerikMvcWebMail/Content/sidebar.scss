@@ -50,9 +50,10 @@
         font-size: 10px;
         color: #b7b7b7;
 
-        a {
+        .links {
             color: $accent;
             font: 13px/26px Myriad Pro;
+            margin-bottom: 20px
         }
     }
 }

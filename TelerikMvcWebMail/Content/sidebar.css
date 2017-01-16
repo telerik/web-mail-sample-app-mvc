@@ -30,7 +30,8 @@
     padding: 15px;
     font-size: 10px;
     color: #b7b7b7; }
-    .main-sidebar .footer a {
+    .main-sidebar .footer .links {
       color: #1e8edf;
-      font: 13px/26px Myriad Pro; }
+      font: 13px/26px Myriad Pro;
+      margin-bottom: 20px; }
 
