@@ -21,13 +21,17 @@
   display: flex; }
   .inner-section .edit-buttons {
     display: none;
-    position: absolute;
-    right: 15px;
-    top: 0; }
+    position: absolute; }
     .inner-section .edit-buttons .k-button {
-      border-radius: 50%; }
+      display: inline-block;
+      width: 1.14286em;
+      line-height: 1.14286;
+      padding: 2px;
+      border-radius: 50%;
+      box-sizing: content-box;
+      border-width: 2px; }
       .inner-section .edit-buttons .k-button .icon:before {
-        font: 16px WebComponentsIcons; }
+        font: 13px WebComponentsIcons; }
     .inner-section .edit-buttons .i-mail:before {
       content: "\e809"; }
     .inner-section .edit-buttons .i-edit:before {
@@ -42,6 +46,8 @@
     color: inherit;
     background: #fafafa;
     border-color: #ebebeb; }
+  .contact-view:hover .edit-buttons {
+    display: block; }
   .contact-view .image-wrapper {
     float: left;
     overflow: hidden; }
@@ -82,8 +88,6 @@
     border-width: 0 0 1px;
     border-color: #ebebeb;
     line-height: 50px; }
-    .list-view .list-view-inner .contact-view:hover .edit-buttons {
-      display: block; }
     .list-view .list-view-inner .contact-view.k-state-selected {
       color: #000; }
       .list-view .list-view-inner .contact-view.k-state-selected:before {
@@ -96,6 +100,10 @@
   width: 50px;
   height: 50px;
   margin-right: 16px; }
+
+.list-view .contactsListView .edit-buttons {
+  right: 15px;
+  top: 0; }
 
 .list-view .single-contact-details {
   padding: 17px 15px;
@@ -110,13 +118,11 @@
     margin-bottom: 15px;
     padding: 15px;
     background: #fafafa; }
-    .list-view .single-contact-details .header .name {
-      font: 100 30px 'Segoe UI'; }
-    .list-view .single-contact-details .header:hover .edit-buttons {
-      display: block;
-      right: auto;
+    .list-view .single-contact-details .header .edit-buttons {
       left: 105px;
       top: 60px; }
+    .list-view .single-contact-details .header .name {
+      font: 100 30px 'Segoe UI'; }
 
 /* Card view */
 .card-view .single-contact-details {
@@ -134,9 +140,14 @@
 
 .card-view .header .name {
   display: inline-block;
-  padding-top: 15px;
+  padding-top: 7px;
   font-weight: 100;
   font-size: 18px; }
+
+.card-view .header .edit-buttons {
+  display: block;
+  top: 50px;
+  left: 100px; }
 
 .card-view .details {
   display: block; }

@@ -37,14 +37,18 @@
     .edit-buttons {
         display: none;
         position: absolute;
-        right: 15px;
-        top: 0;
 
         .k-button {
+            display: inline-block;
+            width: (16/14)*1em;
+            line-height: (16/14);
+            padding: 2px;
             border-radius: 50%;
+            box-sizing: content-box;
+            border-width: 2px;
 
             .icon:before {
-                font: 16px WebComponentsIcons;
+                font: 13px WebComponentsIcons;
             }
         }
 
@@ -71,6 +75,13 @@
             color: inherit;
             background: #fafafa;
             border-color: #ebebeb;
+        }
+
+        &:hover {
+
+            .edit-buttons {
+                display: block;
+            }
         }
 
         .image-wrapper {
@@ -131,12 +142,6 @@
             border-color: #ebebeb;
             line-height: 50px;
 
-            &:hover {
-                .edit-buttons {
-                    display: block;
-                }
-            }
-
             &.k-state-selected {
                 color: #000;
 
@@ -160,6 +165,11 @@
             height: 50px;
             margin-right: 16px;
         }
+
+        .edit-buttons {
+            right: 15px;
+            top: 0;
+        }
     }
 
     .single-contact-details {
@@ -181,19 +191,15 @@
             padding: 15px;
             background: #fafafa;
 
+            .edit-buttons {
+                left: 105px;
+                top: 60px;
+            }
+
             .name {
                 font: 100 30px 'Segoe UI';
             }
 
-            &:hover {
-
-                .edit-buttons {
-                    display: block;
-                    right: auto;
-                    left: 105px;
-                    top: 60px;
-                }
-            }
         }
     }
 }
@@ -221,9 +227,15 @@
 
         .name {
             display: inline-block;
-            padding-top: 15px;
+            padding-top: 7px;
             font-weight: 100;
             font-size: 18px;
+        }
+
+        .edit-buttons {
+            display: block;
+            top: 50px;
+            left: 100px;
         }
     }
 
