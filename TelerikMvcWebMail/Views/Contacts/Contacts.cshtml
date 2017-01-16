@@ -51,25 +51,27 @@
     </div>
     <div class="inner-section list-view">
         <div class="list-view-inner">
-            <input type="text" class="k-input search-textbox" placeholder="Search people ...">
+            <span class="searchbox">
+                <input type="text" class="k-input search-textbox" placeholder="Search people ...">
+            </span>
             @(Html.Kendo().ListView<TelerikMvcWebMail.Models.ContactViewModel>()
-                .Name("mainWidget")
-                .TagName("div")
-                .ClientTemplateId("single-contact-template")
-                .DataSource(dataSource => dataSource
-                    .Model(model => model.Id("EmployeeID"))
-                    .Create(create => create.Action("Contacts_Create", "Contacts"))
-                    .Read(read => read.Action("Contacts_Read", "Contacts"))
-                    .Update(update => update.Action("Contacts_Update", "Contacts"))
-                    .Destroy(destroy => destroy.Action("Contacts_Destroy", "Contacts"))
-                )
-                .Editable()
-                .Selectable()
-                .Events(e => e
-                    .DataBound("onListViewDataBound")
-                    .Change("onListViewSelectionChange")
-                )
-                .HtmlAttributes(new { @class = "contactsListView" })
+            .Name("mainWidget")
+            .TagName("div")
+            .ClientTemplateId("single-contact-template")
+            .DataSource(dataSource => dataSource
+                .Model(model => model.Id("EmployeeID"))
+                .Create(create => create.Action("Contacts_Create", "Contacts"))
+                .Read(read => read.Action("Contacts_Read", "Contacts"))
+                .Update(update => update.Action("Contacts_Update", "Contacts"))
+                .Destroy(destroy => destroy.Action("Contacts_Destroy", "Contacts"))
+            )
+            .Editable()
+            .Selectable()
+            .Events(e => e
+                .DataBound("onListViewDataBound")
+                .Change("onListViewSelectionChange")
+            )
+            .HtmlAttributes(new { @class = "contacts-list" })
             )
         </div>
         <div class="single-contact-details k-widget">

@@ -181,16 +181,8 @@ tbody:empty:before {
     white-space: nowrap;
 }
 
-.k-input.search-textbox {
-    width: 100%;
-    padding: 6px 15px;
-    box-sizing: border-box;
-    border: none;
-}
-
 .k-grid {
     border: 0;
-    border-top: 1px solid #ebebeb;
 
     .k-grouping-header {
         padding-left: 15px;

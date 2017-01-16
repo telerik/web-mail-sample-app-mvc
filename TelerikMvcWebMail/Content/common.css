@@ -183,8 +183,23 @@ p {
   height: calc(100% - 3em);
   overflow: auto; }
 
-.k-input.search-textbox {
-  font-style: italic; }
-  .k-input.search-textbox:focus {
-    font-style: normal; }
+.searchbox {
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #ebebeb; }
+  .searchbox:before {
+    content: "\e13e";
+    display: inline-block;
+    margin: 0 5px 0 16px;
+    font: 16px WebComponentsIcons;
+    vertical-align: middle; }
+  .searchbox .search-textbox {
+    width: calc(100% - 50px);
+    padding: 6px;
+    border: none;
+    font-style: italic;
+    vertical-align: middle;
+    box-sizing: border-box; }
+    .searchbox .search-textbox:focus {
+      font-style: normal; }
 

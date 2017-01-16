@@ -23,13 +23,6 @@
         content: "\e029";
     }
 
-    .search-textbox[type=text] {
-        width: 100%;
-        padding: 5px;
-        border-width: 0;
-        box-sizing: border-box;
-    }
-
 
 .inner-section {
     display: flex;
@@ -65,6 +58,10 @@
         }
     }
 }
+
+    .contacts-list {
+        border: 0;
+    }
 
     .contact-view {
         position: relative;
@@ -135,6 +132,7 @@
     .list-view-inner {
         flex: 0.3;
         overflow: auto;
+        border-right: 1px solid #ebebeb;
 
         .contact-view {
             line-height: 50px;
@@ -159,7 +157,7 @@
         }
     }
 
-    .contactsListView {
+    .contacts-list {
 
         .image-wrapper {
             width: 50px;
@@ -210,11 +208,15 @@
 /* Card view */
 .card-view {
 
+    .list-view-inner {
+        flex: 1;
+    }
+
     .single-contact-details {
         display: none;
     }
 
-    .contactsListView {
+    .contacts-list {
         border-color: #ebebeb;
     }
 
@@ -228,6 +230,10 @@
         &.k-state-selected,
         &:hover {
             color: #000;
+        }
+
+        &:last-child {
+            border-right: 1px solid #ebebeb;
         }
     }
 

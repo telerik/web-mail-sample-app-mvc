@@ -269,10 +269,29 @@ p {
     overflow: auto;
 }
 
-.k-input.search-textbox {
-    font-style: italic;
+.searchbox {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #ebebeb;
 
-    &:focus {
-        font-style: normal;
+    &:before {
+        content: "\e13e";
+        display: inline-block;
+        margin: 0 5px 0 16px;
+        font: 16px WebComponentsIcons;
+        vertical-align: middle;
+    }
+
+    .search-textbox {
+        width: calc(100% - 50px);
+        padding: 6px;
+        border: none;
+        font-style: italic;
+        vertical-align: middle;
+        box-sizing: border-box;
+
+        &:focus {
+            font-style: normal;
+        }
     }
 }
