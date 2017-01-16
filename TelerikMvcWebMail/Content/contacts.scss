@@ -69,6 +69,7 @@
     .contact-view {
         position: relative;
         cursor: pointer;
+        border-color: #ebebeb;
 
         &:hover,
         &.k-state-selected {
@@ -175,6 +176,7 @@
     .single-contact-details {
         padding: 17px 15px;
         flex: 0.7;
+        border: 0;
 
         .contact-view {
             border: 0;
@@ -192,6 +194,7 @@
             background: #fafafa;
 
             .edit-buttons {
+                display: block;
                 left: 105px;
                 top: 60px;
             }
@@ -211,16 +214,21 @@
         display: none;
     }
 
-    #contactsListView {
-        flex: none;
-        width: 100%;
+    .contactsListView {
+        border-color: #ebebeb;
     }
 
     .contact-view {
         float: left;
-        width: 33.2%;
+        width: 33.33333333%;
         padding: 15px;
         box-sizing: border-box;
+        border-width: 0 0 1px 1px;
+
+        &.k-state-selected,
+        &:hover {
+            color: #000;
+        }
     }
 
     .header {

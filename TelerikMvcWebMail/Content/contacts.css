@@ -41,7 +41,8 @@
 
 .contact-view {
   position: relative;
-  cursor: pointer; }
+  cursor: pointer;
+  border-color: #ebebeb; }
   .contact-view:hover, .contact-view.k-state-selected {
     color: inherit;
     background: #fafafa;
@@ -107,7 +108,8 @@
 
 .list-view .single-contact-details {
   padding: 17px 15px;
-  flex: 0.7; }
+  flex: 0.7;
+  border: 0; }
   .list-view .single-contact-details .contact-view {
     border: 0;
     cursor: default;
@@ -119,6 +121,7 @@
     padding: 15px;
     background: #fafafa; }
     .list-view .single-contact-details .header .edit-buttons {
+      display: block;
       left: 105px;
       top: 60px; }
     .list-view .single-contact-details .header .name {
@@ -128,15 +131,17 @@
 .card-view .single-contact-details {
   display: none; }
 
-.card-view #contactsListView {
-  flex: none;
-  width: 100%; }
+.card-view .contactsListView {
+  border-color: #ebebeb; }
 
 .card-view .contact-view {
   float: left;
-  width: 33.2%;
+  width: 33.33333333%;
   padding: 15px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  border-width: 0 0 1px 1px; }
+  .card-view .contact-view.k-state-selected, .card-view .contact-view:hover {
+    color: #000; }
 
 .card-view .header .name {
   display: inline-block;
