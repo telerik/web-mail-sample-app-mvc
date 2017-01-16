@@ -34,5 +34,9 @@
   {
     "outputFile": "Content/metroThemeCustomization.css",
     "inputFile": "Content/metroThemeCustomization.scss"
+  },
+  {
+    "outputFile": "Content/tasks.css",
+    "inputFile": "Content/tasks.scss"
   }
 ]

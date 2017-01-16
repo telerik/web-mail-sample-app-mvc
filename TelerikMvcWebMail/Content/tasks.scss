@@ -1,0 +1,10 @@
+﻿@import '_variables.scss'; 
+
+.k-grid {
+    border-width: 0 0 1px;
+    border-color: #ebebeb;
+
+    tr:hover {
+        background: $accent;
+    }
+}

@@ -200,6 +200,9 @@
     <Content Include="Content\signIn.css">
       <DependentUpon>signIn.scss</DependentUpon>
     </Content>
+    <Content Include="Content\tasks.css">
+      <DependentUpon>tasks.scss</DependentUpon>
+    </Content>
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Fonts\WebComponentsIcons\WebComponentsIcons.svg" />
     <Content Include="Global.asax" />
@@ -319,6 +322,7 @@
     <Content Include="Scripts\Kendo\2017.1.112\kendo.timezones.min.js.map" />
     <Content Include="Content\metroThemeCustomization.scss" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Content\tasks.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

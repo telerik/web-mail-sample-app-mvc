@@ -2,6 +2,10 @@
     ViewBag.Title = "Task";
 }
 
+@section PageStyles {
+    <link type="text/css" href="@Url.Content("~/Content/tasks.css")" rel="stylesheet" />
+}
+
 @Scripts.Render("~/Scripts/tasks.js")
 
 @model IEnumerable<TelerikMvcWebMail.Models.TaskViewModel>
@@ -9,11 +13,13 @@
 @Html.Partial("Sidebar")
 
 <div class="main-section">
-	<div class="toolbar">	
-		<span class="btn-delete">Delete</span>
+	<div class="toolbar">
+		<span class="btn btn-delete">Delete</span>
 	</div>
 	<div class="notes">
-        <input type="text" class="k-input long-textbox search-textbox" placeholder="Search tasks ..." name="to-textbox">
+        <span class="searchbox">
+            <input type="text" class="k-input long-textbox search-textbox" placeholder="Search tasks ..." name="to-textbox">
+        </span>
 		@(Html.Kendo().Grid(Model)
             .Name("mainWidget")
             .Columns(columns =>
