@@ -204,7 +204,7 @@
     };
 
     function openNewMailView(email) {
-        $(".main-section").load('@(Url.Action("NewMail", "Home", new {@mailTo = "placeholder1"}))'.replace("placeholder1", email));
+        $(".main-section").load('@(Url.Action("NewMail", "Home", new {@mailTo = "placeholder1", fromView = "Contacts"}))'.replace("placeholder1", email).replace('&amp;', '&'));
     }
 
     function singleEditClick(e) {

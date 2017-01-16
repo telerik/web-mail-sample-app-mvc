@@ -24,7 +24,7 @@ namespace TelerikMvcWebMail.Controllers
             return View();
         }
 
-        public ActionResult NewMail(string id, string mailTo, string subject)
+        public ActionResult NewMail(string id, string mailTo, string subject, string fromView)
         {
             var idString = "";
 
@@ -34,6 +34,8 @@ namespace TelerikMvcWebMail.Controllers
             }
             ViewBag.MailTo = mailTo;
             ViewBag.Subject = idString + HttpUtility.UrlDecode(subject);
+
+            ViewBag.FromView = fromView;
 
             return PartialView("NewMail");
         }

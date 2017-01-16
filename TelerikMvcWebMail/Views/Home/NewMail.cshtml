@@ -17,7 +17,11 @@
             dialog.open();
         }
         else if (itemText == "Cancel") {
-            window.location.href = "/Home/Index/";
+            if ("@(ViewBag.FromView)" && "@(ViewBag.FromView)" === "Contacts") {
+                window.location.href = "/Contacts/Index/";
+            } else {
+                window.location.href = "/Home/Index/";
+            }
         }
     }
 </script>
