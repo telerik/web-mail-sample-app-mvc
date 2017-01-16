@@ -85,7 +85,7 @@ tbody:empty:before {
     }
 
         .mail-grid {
-            flex: 0.3;
+            flex: 0.34;
             border-right: 1px solid #ebebeb;
         }
 
@@ -121,7 +121,7 @@ tbody:empty:before {
         height: 203px !important; 
     }
 
-    .mail-details {
+    .mail-details-wrapper {
         overflow: auto;
     }
 

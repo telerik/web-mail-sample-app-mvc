@@ -55,7 +55,7 @@ tbody:empty:before {
   flex: 1; }
 
 .main-section.vertical .mail-grid {
-  flex: 0.3;
+  flex: 0.34;
   border-right: 1px solid #ebebeb; }
 
 .main-section.vertical .k-grid {
@@ -79,7 +79,7 @@ tbody:empty:before {
 .main-section.horizontal .k-grid-content {
   height: 203px !important; }
 
-.main-section.horizontal .mail-details {
+.main-section.horizontal .mail-details-wrapper {
   overflow: auto; }
 
 .main-section.horizontal .mail-text {
