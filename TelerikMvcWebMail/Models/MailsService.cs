@@ -11,7 +11,7 @@ namespace TelerikMvcWebMail.Models
     {
         private WebMailEntities entities;
 
-        private static bool UpdateDatabase = true;
+        private static bool UpdateDatabase = false;
 
         public MailsService(WebMailEntities entities)
         {

@@ -229,6 +229,7 @@
     <Content Include="Scripts\Kendo\2017.1.112\kendo.timezones.min.js" />
     <Content Include="Scripts\layout.js" />
     <Content Include="Scripts\mails.js" />
+    <Content Include="Scripts\new-mail.js" />
     <Content Include="Scripts\new-task.js" />
     <Content Include="Scripts\sidebar-footer.js" />
     <Content Include="Scripts\sidebar.js" />

@@ -10,7 +10,7 @@ namespace TelerikMvcWebMail.Models
     {
         private WebMailEntities entities;
 
-        private static bool UpdateDatabase = true;
+        private static bool UpdateDatabase = false;
 
         public TasksService(WebMailEntities entities)
         {

@@ -10,7 +10,7 @@ namespace TelerikMvcWebMail.Models
 {
     public class EventsService : ISchedulerEventService<EventViewModel>
     {
-        private static bool UpdateDatabase = true;
+        private static bool UpdateDatabase = false;
         
         private WebMailEntities entities;
 
