@@ -6,7 +6,7 @@
 });
 
 function exportPeople() {
-    kendo.drawing.drawDOM($(".inner-section"))
+    kendo.drawing.drawDOM($(".inner-section > .list-view-inner"))
         .then(function (group) {
             return kendo.drawing.exportPDF(group, {
                 paperSize: "auto",
