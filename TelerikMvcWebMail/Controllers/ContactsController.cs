@@ -41,9 +41,13 @@ namespace TelerikMvcWebMail.Controllers
             if (contact != null && ModelState.IsValid)
             {
                 contactsService.Insert(contact);
-            }
 
-            return Json(new[] { contact }.ToDataSourceResult(request, ModelState));
+                return Json(new[] { contact }.ToDataSourceResult(request, ModelState));
+            }
+            else
+            {
+                return Json(ModelState.ToDataSourceResult());
+            }
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
