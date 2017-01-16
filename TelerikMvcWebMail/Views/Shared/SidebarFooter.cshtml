@@ -2,6 +2,8 @@
     Layout = null;
 }
 
+@Scripts.Render("~/Scripts/sidebar-footer.js")
+
 <div class="footer">
     <div>
         <span id="btn-about">About This App</span>
@@ -32,14 +34,3 @@
         .Visible(false)
     )
 </div>
-<script>
-    $(document).ready(function () {
-        $("#btn-about").on("click", function () {
-            var window = $("#aboutWindow").data("kendoWindow");
-            window.open();
-            window.center();
-        });
-    });
-</script>
-
-

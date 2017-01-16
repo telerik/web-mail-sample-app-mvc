@@ -218,10 +218,18 @@
     <Content Include="Fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\calendar.js" />
+    <Content Include="Scripts\contacts.js" />
     <Content Include="Scripts\Kendo\2017.1.112\jquery.min.js" />
     <Content Include="Scripts\Kendo\2017.1.112\kendo.all.min.js" />
     <Content Include="Scripts\Kendo\2017.1.112\kendo.aspnetmvc.min.js" />
     <Content Include="Scripts\Kendo\2017.1.112\kendo.timezones.min.js" />
+    <Content Include="Scripts\layout.js" />
+    <Content Include="Scripts\mails.js" />
+    <Content Include="Scripts\new-task.js" />
+    <Content Include="Scripts\sidebar-footer.js" />
+    <Content Include="Scripts\sidebar.js" />
+    <Content Include="Scripts\tasks.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -232,7 +240,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -249,9 +256,6 @@
     <Folder Include="Content\Kendo\2017.1.112\images\" />
     <Folder Include="Content\Kendo\2017.1.112\Metro\" />
     <Folder Include="Content\Kendo\2017.1.112\textures\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\TreeView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Tasks\NewTask.cshtml" />
@@ -314,6 +318,7 @@
     <Content Include="Scripts\Kendo\2017.1.112\kendo.aspnetmvc.min.js.map" />
     <Content Include="Scripts\Kendo\2017.1.112\kendo.timezones.min.js.map" />
     <Content Include="Content\metroThemeCustomization.scss" />
+    <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

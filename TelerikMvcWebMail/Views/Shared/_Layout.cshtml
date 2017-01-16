@@ -12,10 +12,10 @@
     <link href="~/Content/Kendo/2017.1.112/kendo.dataviz.min.css" rel="stylesheet" />
     <link href="~/Content/Kendo/2017.1.112/kendo.metro.min.css" rel="stylesheet" />
     <link href="~/Content/Kendo/2017.1.112/kendo.dataviz.metro.min.css" rel="stylesheet" />
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-	@Styles.Render("~/Content/css")
-	@RenderSection("PageStyles", false)
+    @Styles.Render("~/Content/css")
+    @RenderSection("PageStyles", false)
 
     <script src="~/Scripts/Kendo/2017.1.112/jquery.min.js"></script>
     <script src="~/Scripts/Kendo/2017.1.112/kendo.all.min.js"></script>
@@ -24,35 +24,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.3/js.cookie.min.js"></script>
 </head>
 <body>
-	<script id="button-template" type="text/x-kendo-template">
-		
-	</script>
+    @Scripts.Render("~/Scripts/layout.js")
+
+    <script id="button-template" type="text/x-kendo-template">
+    </script>
     <script id="tooltip-template" type="text/x-kendo-template">
-		<div class="image-wrapper">
-			<img src="http://demos.telerik.com/kendo-ui/content/web/Customers/PICCO.jpg" style="border-radius: 100%" />
-		</div>
+        <div class="image-wrapper">
+            <img src="http://demos.telerik.com/kendo-ui/content/web/Customers/PICCO.jpg" style="border-radius: 100%" />
+        </div>
         <span class="name">Antonio Morandi</span>
         <span>antonio.morandi@progress.com</span>
-		@(Html.Kendo().Button()
-			.Name("signInButton")
-			.HtmlAttributes(new { @class = "k-primary" })
-			.Content("Sign Out")
-			.Events(ev => ev.Click("onClick"))
-			.ToClientTemplate()
-		)	
+        @(Html.Kendo().Button()
+            .Name("signInButton")
+            .HtmlAttributes(new { @class = "k-primary" })
+            .Content("Sign Out")
+            .Events(ev => ev.Click("onClick"))
+            .ToClientTemplate()
+        )
     </script>
 
-	<script type="text/kendo-ui" id="menu-item-template">
-		<span>
-			<img src='http://demos.telerik.com/kendo-ui/content/web/Customers/PICCO.jpg'/>
-		</span>
-	</script>
+    <script type="text/kendo-ui" id="menu-item-template">
+        <span>
+            <img src='http://demos.telerik.com/kendo-ui/content/web/Customers/PICCO.jpg' />
+        </span>
+    </script>
 
     <header class="main-header">
-            <h1 class="logo">
-                WebMail
-            </h1>
-            @(Html.Kendo().Menu()
+        <h1 class="logo">
+            WebMail
+        </h1>
+        @(Html.Kendo().Menu()
                 .Name("mainMenu")
                 .Items(items =>
                 {
@@ -62,44 +63,20 @@
                     items.Add().Text("Tasks").Action("Index", "Tasks");
                     items.Add().Text("<span class='image-wrapper'><img src='http://demos.telerik.com/kendo-ui/content/web/Customers/PICCO.jpg'/><span/>").Encoded(false);
                 })
-            )
+        )
 
-            @(Html.Kendo().Tooltip()
+        @(Html.Kendo().Tooltip()
                 .For("#mainMenu > li:last")
                 .ShowOn(TooltipShowOnEvent.Click)
                 .AutoHide(false)
                 .ContentTemplateId("tooltip-template")
                 .Events(e => e.Show("tooltipShow").Hide("tooltipHide"))
-            )
+        )
     </header>
 
 
     <content class="main-content">
         @RenderBody()
     </content>
-
-    <script>
-        $('.home-btn').on("click", function () {
-            $('.slider').toggleClass('expanded');
-        });
-
-        function onClick(e) {
-            location.href = '@Url.Action("Index", "SignIn")';
-            return false;
-        }
-
-        function closeToolTip(e) {
-            var tooltip = $("#mainMenu > li:last").data("kendoTooltip");
-            tooltip.hide();
-        }
-
-        function tooltipShow(e) {
-            document.body.addEventListener("mouseup", closeToolTip);
-        }
-
-        function tooltipHide(e) {
-            document.body.removeEventListener("mouseup", closeToolTip);
-        }
-    </script>
 </body>
 </html>
