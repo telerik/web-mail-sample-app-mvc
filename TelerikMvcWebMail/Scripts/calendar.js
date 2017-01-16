@@ -79,7 +79,11 @@ function onCalenderChange(e) {
 
 function onSchedulerChange(e) {
     var calendar = $('#calendar').data('kendoCalendar');
-    calendar.value(e.slots[0].start);
+    var selectedSlot = e.slots[0];
+
+    if (selectedSlot) {
+        calendar.value(selectedSlot.start);
+    }
 }
 
 function onSchedulerEdit(e) {
