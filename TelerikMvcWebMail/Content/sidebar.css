@@ -33,5 +33,6 @@
     .main-sidebar .footer .links {
       color: #1e8edf;
       font: 13px/26px Myriad Pro;
-      margin-bottom: 20px; }
+      margin-bottom: 20px;
+      cursor: pointer; }
 
