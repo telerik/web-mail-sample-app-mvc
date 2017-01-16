@@ -233,12 +233,10 @@ function mailGridDataBound(e) {
         }
     });
     if (grid.select().length == 0) {
-        $(".noData-message").show();
-        $(".mail-details").hide();
+        $(".mail-details-wrapper").addClass("empty")
     }
     else {
-        $(".noData-message").hide();
-        $(".mail-details").show();
+        $(".mail-details-wrapper").removeClass("empty")
     }
 }
 

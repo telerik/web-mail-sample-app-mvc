@@ -5,6 +5,52 @@
 .inner-section {
   overflow: visible; }
 
+.mail-details {
+  overflow: auto; }
+
+.unread {
+  font-weight: bold; }
+
+tbody:empty:before {
+  content: 'No mails to display in this category'; }
+
+.mail-details-wrapper {
+  flex: 1; }
+  .mail-details-wrapper .empty-msg {
+    display: none; }
+  .mail-details-wrapper.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .mail-details-wrapper.empty .mail-details {
+      display: none; }
+    .mail-details-wrapper.empty .empty-msg {
+      display: block;
+      flex: none;
+      padding: 20px 40px;
+      background: #fafafa; }
+
+.mail-details {
+  padding: 30px; }
+  .mail-details .mail-subject {
+    margin: 0 0 10px;
+    font-weight: 300;
+    font-size: 38px;
+    color: #000; }
+  .mail-details .mail-sender-wrapper {
+    margin: 25px 0; }
+  .mail-details label {
+    font-weight: 700;
+    margin-right: 5px;
+    color: #333333; }
+  .mail-details .mail-text {
+    margin: 0;
+    padding: 10px 0 30px;
+    color: #333333; }
+
+.noData-message {
+  background: #fafafa; }
+
 .main-section.vertical .inner-section {
   flex: 1; }
 
@@ -114,22 +160,4 @@
     top: 0;
     bottom: 0;
     border-left: 4px solid #1e8edf; }
-
-.mail-details {
-  padding: 30px; }
-  .mail-details .mail-subject {
-    margin: 0 0 10px;
-    font-weight: 300;
-    font-size: 38px;
-    color: #000; }
-  .mail-details .mail-sender-wrapper {
-    margin: 25px 0; }
-  .mail-details label {
-    font-weight: 700;
-    margin-right: 5px;
-    color: #333333; }
-  .mail-details .mail-text {
-    margin: 0;
-    padding: 10px 0 30px;
-    color: #333333; }
 

@@ -4,23 +4,7 @@
 
 @section PageStyles {
     <link href="@Url.Content("~/Content/mail.css")" rel="stylesheet" type="text/css" />
-
-    <style>
-        .mail-details {
-            overflow: auto;
-        }
-    </style>
 }
-
-<style>
-    .unread {
-        font-weight: bold;
-    }
-
-    tbody:empty:before {
-        content:'NO MAILS TO DISPLAY IN THIS CATEGORY';
-    }
-</style>
 
 @model IEnumerable<TelerikMvcWebMail.Models.MailViewModel>
 
@@ -113,17 +97,19 @@
                 )
             )
         </div>
-        <div class="noData-message">Select a row to display mail details</div>
-        <div class="mail-details" style="display:none;">
-            <div class="mail-details-header">
-                <h2 class="mail-subject"></h2>
-                <p class="mail-date"></p>
-                <p class="mail-sender-wrapper">
-                    <label>To:</label>
-                    <span class="mail-sender"></span>
-                </p>
+        <div class="mail-details-wrapper">
+            <div class="mail-details">
+                <div class="mail-details-header">
+                    <h2 class="mail-subject"></h2>
+                    <p class="mail-date"></p>
+                    <p class="mail-sender-wrapper">
+                        <label>To:</label>
+                        <span class="mail-sender"></span>
+                    </p>
+                </div>
+                <p class="mail-text"></p>
             </div>
-            <p class="mail-text"></p>
+            <p class="empty-msg">Select a row to display mail details</p>
         </div>
         @(Html.Kendo().ContextMenu()
             .Name("mailContextMenu")
