@@ -1,8 +1,16 @@
-﻿@import '_variables.scss'; 
+﻿@import '_variables.scss';
+
+.main-section {
+    overflow: auto;
+}
 
 .k-grid {
     border: 0;
     border-color: #ebebeb;
+
+    table {
+        table-layout: fixed;
+    }
 
     tr:hover {
         background: $accent;

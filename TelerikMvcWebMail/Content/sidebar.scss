@@ -1,9 +1,10 @@
 ﻿@import '_variables.scss';
 
 .main-sidebar {
+    width: 200px;
+    min-width: 200px;
     display: flex;
     flex-direction: column;
-    width: 200px;
     margin-right: -20px;
     padding-right: 20px;
     background: #fafafa;

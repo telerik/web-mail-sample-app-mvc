@@ -31,8 +31,10 @@
                     .HeaderTemplate("<input type='checkbox' class='master-checkbox' />");
                 columns.Bound(p => p.Subject)
                     .Title("Subject")
-                    .Width(600);
-                columns.Bound(p => p.CreatedOn).Title("Created On").Width(300).Format("{0:g}");
+                    .HtmlAttributes(new { @class = "subject-col" });
+                columns.Bound(p => p.CreatedOn).Title("Created On")
+                    .Width(300)
+                    .Format("{0:g}");
                 columns.Bound(p => p.Category).Title("Category");
 
             })

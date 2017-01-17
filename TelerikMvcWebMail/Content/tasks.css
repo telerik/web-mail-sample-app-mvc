@@ -1,6 +1,11 @@
-﻿.k-grid {
+﻿.main-section {
+  overflow: auto; }
+
+.k-grid {
   border: 0;
   border-color: #ebebeb; }
+  .k-grid table {
+    table-layout: fixed; }
   .k-grid tr:hover {
     background: #1e8edf; }
   .k-grid td,
