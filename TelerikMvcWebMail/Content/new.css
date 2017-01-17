@@ -32,7 +32,7 @@ label {
   padding: 0; }
 
 table.k-editor {
-  margin: 15px 0;
+  margin: 15px 0 0;
   border-spacing: 10px; }
   table.k-editor .k-editable-area {
     border: 0; }
@@ -41,8 +41,10 @@ h2 {
   font: 18px Roboto;
   color: #333; }
 
-.tasks .k-button {
-  padding: 5px 15px;
-  margin-right: 10px;
-  border-color: transparent; }
+.form-buttons {
+  padding-top: 15px; }
+  .form-buttons .k-button {
+    padding: 5px 15px;
+    margin-right: 10px;
+    border-color: transparent; }
 

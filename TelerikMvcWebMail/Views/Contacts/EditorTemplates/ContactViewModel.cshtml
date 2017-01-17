@@ -1,10 +1,14 @@
 ﻿@model TelerikMvcWebMail.Models.ContactViewModel
-@Styles.Render("~/Content/new.css")
+
 <div class="contact-edit-view k-widget">
+
+    @Styles.Render("~/Content/new.css")
+
     <h2>Create New Contact</h2>
-    @Html.HiddenFor(Model => Model.EmployeeID)
-    @Html.Label("newContactFolder", "Folder")
-    @(Html.Kendo().DropDownListFor(Model => Model.Folder)
+    <div class="forms-panel">
+        @Html.HiddenFor(Model => Model.EmployeeID)
+        @Html.Label("newContactFolder", "Folder")
+        @(Html.Kendo().DropDownListFor(Model => Model.Folder)
         .BindTo(new List<SelectListItem>() {
             new SelectListItem() {
                 Text = "Favorites",
@@ -17,18 +21,6 @@
                 Value = "Work"
             }
         })
-    )
-    <div class="upload-wrapper">
-        @(Html.Kendo().Upload()
-            .Name("photo")
-            .Multiple(false)
-            .Async(a => a
-                .Save("UploadPhoto", "Contacts")
-                .Remove("RemovePhoto", "Contacts")
-                .AutoUpload(true)
-            )
-            .Messages(m => m.Select("Add Photo ..."))
-            .Events(e => e.Select("onImageSelect"))
         )
         @Html.Label("Title", "Title")
         @(Html.TextBoxFor(Model => Model.Title, new { @class = "k-textbox" }))
@@ -50,5 +42,18 @@
             <button type="button" class="k-button k-primary k-update-button" href="\\#">Save</button>
             <button type="button" class="k-button k-cancel-button" href="\\#">Cancel</button>
         </div>
+    </div>
+    <div class="upload-wrapper">
+        @(Html.Kendo().Upload()
+            .Name("photo")
+            .Multiple(false)
+            .Async(a => a
+                .Save("UploadPhoto", "Contacts")
+                .Remove("RemovePhoto", "Contacts")
+                .AutoUpload(true)
+            )
+            .Messages(m => m.Select("Add Photo ..."))
+            .Events(e => e.Select("onImageSelect"))
+        )
     </div>
 </div>

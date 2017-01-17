@@ -34,18 +34,19 @@
         .Name("newTask")
         .HtmlAttributes(new { style = "height: 500px;" })
     )
-    @(Html.Kendo().Button()
+    <div class="form-buttons">
+        @(Html.Kendo().Button()
         .Name("addTask")
         .HtmlAttributes(new { @class = "k-primary" })
         .Tag("span")
         .Content("Add Task")
         .Events(e => e.Click("addClick"))
-    )
-
-    @(Html.Kendo().Button()
+        )
+        @(Html.Kendo().Button()
         .Name("cancel")
         .Tag("span")
         .Content("Cancel")
         .Events(e => e.Click("cancelClick"))
-    )
+        )
+    </div>
 </section>

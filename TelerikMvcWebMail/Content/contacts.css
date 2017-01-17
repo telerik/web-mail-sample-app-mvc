@@ -172,7 +172,8 @@
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 9; }
+  z-index: 9;
+  overflow: auto; }
   .contact-edit-view.k-state-selected {
     color: inherit;
     background: #fff;
@@ -180,6 +181,10 @@
   .contact-edit-view .k-dropdown,
   .contact-edit-view .k-textbox {
     width: 230px; }
+  .contact-edit-view .forms-panel,
   .contact-edit-view .upload-wrapper {
-    width: 320px; }
+    float: left; }
+  .contact-edit-view .upload-wrapper {
+    width: 320px;
+    margin: 39px 40px; }
 

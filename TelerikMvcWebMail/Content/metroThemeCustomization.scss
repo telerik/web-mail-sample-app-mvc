@@ -24,7 +24,8 @@ html {
 
     }
 
-    .k-textbox:hover {
+    .k-textbox:hover,
+    .k-textbox:focus {
         border-color: $accent;
     }
 

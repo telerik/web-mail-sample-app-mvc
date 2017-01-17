@@ -47,7 +47,7 @@
     }
 
     table.k-editor {
-        margin: 15px 0;
+        margin: 15px 0 0;
         border-spacing: 10px;
 
         .k-editable-area {
@@ -60,8 +60,12 @@
         color: #333;
     }
 
-.tasks .k-button {
-    padding: 5px 15px;
-    margin-right: 10px;
-    border-color: transparent;
+.form-buttons {
+    padding-top: 15px;
+
+    .k-button {
+        padding: 5px 15px;
+        margin-right: 10px;
+        border-color: transparent;
+    }
 }

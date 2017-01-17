@@ -278,6 +278,7 @@
     right: 0;
     bottom: 0;
     z-index: 9;
+    overflow: auto;
 
     &.k-state-selected {
         color: inherit;
@@ -290,8 +291,14 @@
         width: 230px;
     }
 
+    .forms-panel,
+    .upload-wrapper {
+        float: left;
+    }
+
     .upload-wrapper {
         width: 320px;
+        margin: 39px 40px;
     }
 }
 

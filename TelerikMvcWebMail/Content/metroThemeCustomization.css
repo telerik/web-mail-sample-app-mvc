@@ -16,7 +16,8 @@ html .k-state-hover:hover {
     color: inherit;
     background: #e6e6e6; }
 
-html .k-textbox:hover {
+html .k-textbox:hover,
+html .k-textbox:focus {
   border-color: #1e8edf; }
 
 html .k-state-focused,
