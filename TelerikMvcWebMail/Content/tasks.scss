@@ -1,10 +1,21 @@
 ﻿@import '_variables.scss'; 
 
 .k-grid {
-    border-width: 0 0 1px;
+    border: 0;
     border-color: #ebebeb;
 
     tr:hover {
         background: $accent;
+    }
+
+    td,
+    th.k-header {
+        border-width: 0 0 1px 0;
+        border-color: #ebebeb;
+    }
+
+    td:first-child,
+    th:first-child {
+        text-align: right;
     }
 }
