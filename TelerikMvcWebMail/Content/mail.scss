@@ -5,10 +5,6 @@
     flex-direction: column;
 }
 
-.inner-section {
-    overflow: visible;
-}
-
 .mail-details {
     overflow: auto;
 }
@@ -90,7 +86,9 @@ tbody:empty:before {
         }
 
         .k-grid {
-            height: calc(100% - 31px);
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 32px);
             box-sizing: border-box;
         }
 
@@ -110,6 +108,7 @@ tbody:empty:before {
 
     .inner-section{
         flex-direction: column;
+        overflow: visible;
     }
 
     .k-grid {
@@ -190,7 +189,6 @@ tbody:empty:before {
     }
 
     .k-grid-header {
-        /*width: 100%;*/
         box-sizing: border-box;
         border-color: #ebebeb;
     }

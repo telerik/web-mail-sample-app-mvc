@@ -7,7 +7,8 @@
 
 .inner-section {
   padding: 15px;
-  display: block; }
+  display: block;
+  overflow: auto; }
 
 .form-wrapper {
   width: 300px;

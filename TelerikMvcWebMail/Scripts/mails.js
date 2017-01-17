@@ -278,8 +278,7 @@ function mailSelectionChanged(e) {
         populateDetailsView(dataItem);
     }
 
-    $(".noData-message").hide();
-    $(".mail-details").show();
+    $(".mail-details-wrapper").removeClass("empty")
 }
 
 function checkSelectedCheckbox(selectedRows) {
