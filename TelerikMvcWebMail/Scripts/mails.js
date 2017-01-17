@@ -13,6 +13,7 @@
 
     $('.new-Mail').on('click', function (e) {
         $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail');
+        $(".main-section").removeClass("horizontal").removeClass("vertical");
     });
 
     $(".search-textbox").on('keyup', function (e) {
