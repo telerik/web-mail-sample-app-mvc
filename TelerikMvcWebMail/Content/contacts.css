@@ -162,3 +162,24 @@
   .card-view .details .column {
     padding-left: 0; }
 
+.k-listview {
+  position: static; }
+
+.contact-edit-view {
+  padding: 15px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9; }
+  .contact-edit-view.k-state-selected {
+    color: inherit;
+    background: #fff;
+    border-color: #fff; }
+  .contact-edit-view .k-dropdown,
+  .contact-edit-view .k-textbox {
+    width: 230px; }
+  .contact-edit-view .upload-wrapper {
+    width: 320px; }
+

@@ -1,33 +1,24 @@
 ﻿@model TelerikMvcWebMail.Models.ContactViewModel
-
+@Styles.Render("~/Content/new.css")
 <div class="contact-edit-view k-widget">
-    <div class="new-line">
-        <h3>Create New Contact</h3>
-    </div>
-
+    <h2>Create New Contact</h2>
     @Html.HiddenFor(Model => Model.EmployeeID)
-
-    <div class="new-contact-dropdown-wrapper">
-        @Html.Label("newContactFolder", "Folder")
-        <br />
-        @(Html.Kendo().DropDownListFor(Model => Model.Folder)
-            .BindTo(new List<SelectListItem>() {
-                new SelectListItem() {
-                    Text = "Favorites",
-                    Value = "Favorites"
-                }, new SelectListItem() {
-                    Text = "Friends",
-                    Value = "Friends"
-                }, new SelectListItem() {
-                    Text = "Work",
-                    Value = "Work"
-                }
-            })
-        )
-    </div>
-
-    <div class="new-contact-upload-wrapper">
-
+    @Html.Label("newContactFolder", "Folder")
+    @(Html.Kendo().DropDownListFor(Model => Model.Folder)
+        .BindTo(new List<SelectListItem>() {
+            new SelectListItem() {
+                Text = "Favorites",
+                Value = "Favorites"
+            }, new SelectListItem() {
+                Text = "Friends",
+                Value = "Friends"
+            }, new SelectListItem() {
+                Text = "Work",
+                Value = "Work"
+            }
+        })
+    )
+    <div class="upload-wrapper">
         @(Html.Kendo().Upload()
             .Name("photo")
             .Multiple(false)
@@ -39,42 +30,25 @@
             .Messages(m => m.Select("Add Photo ..."))
             .Events(e => e.Select("onImageSelect"))
         )
-    </div>
-    <dl>
-        <dt>Title</dt>
-        <dd>
-            @(Html.EditorFor(Model => Model.Title))
-            <span data-for="ProductName" class="k-invalid-msg"></span>
-        </dd>
-        <dt>Name</dt>
-        <dd>
-            @(Html.EditorFor(Model => Model.Name))
-            <span data-for="ProductName" class="k-invalid-msg"></span>
-        </dd>
-        <dt>Company</dt>
-        <dd>
-            @(Html.EditorFor(Model => Model.Company))
-        </dd>
-        <dt>City</dt>
-        <dd>
-            @(Html.EditorFor(Model => Model.City))
-        </dd>
-        <dt>Country</dt>
-        <dd>
-            @(Html.EditorFor(Model => Model.Country))
-        </dd>
-        <dt>Phone</dt>
-        <dd>
-            @(Html.EditorFor(Model => Model.HomePhone))
-        </dd>
-        <dt>Email</dt>
-        <dd>
-            @(Html.EditorFor(Model => Model.Email))
-        </dd>
-    </dl>
-    <div class="form-buttons">
-        <button type="button" class="k-button k-primary k-update-button" href="\\#">Save</button>
-        <button type="button" class="k-button k-cancel-button" href="\\#">Cancel</button>
+        @Html.Label("Title", "Title")
+        @(Html.TextBoxFor(Model => Model.Title, new { @class = "k-textbox" }))
+        <span data-for="ProductName" class="k-invalid-msg"></span>
+        @Html.Label("Name", "Name")
+        @(Html.TextBoxFor(Model => Model.Name, new { @class = "k-textbox" }))
+        <span data-for="ProductName" class="k-invalid-msg"></span>
+        @Html.Label("Company", "Company")
+        @(Html.TextBoxFor(Model => Model.Company, new { @class = "k-textbox" }))
+        @Html.Label("City", "City")
+        @(Html.TextBoxFor(Model => Model.City, new { @class = "k-textbox" }))
+        @Html.Label("Country", "Country")
+        @(Html.TextBoxFor(Model => Model.Country, new { @class = "k-textbox" }))
+        @Html.Label("HomePhone", "HomePhone")
+        @(Html.TextBoxFor(Model => Model.HomePhone, new { @class = "k-textbox" }))
+        @Html.Label("Email", "Email")
+        @(Html.TextBoxFor(Model => Model.Email, new { @class = "k-textbox" }))
+        <div class="form-buttons">
+            <button type="button" class="k-button k-primary k-update-button" href="\\#">Save</button>
+            <button type="button" class="k-button k-cancel-button" href="\\#">Cancel</button>
+        </div>
     </div>
 </div>
-

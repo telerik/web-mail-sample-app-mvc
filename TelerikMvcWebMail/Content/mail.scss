@@ -78,6 +78,7 @@ tbody:empty:before {
 
     .inner-section {
         flex: 1;
+        flex-direction: row;
     }
 
         .mail-grid {

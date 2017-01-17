@@ -266,3 +266,32 @@
     }
 }
 
+.k-listview {
+    position: static;
+}
+
+.contact-edit-view {
+    padding: 15px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9;
+
+    &.k-state-selected {
+        color: inherit;
+        background: #fff;
+        border-color: #fff;
+    }
+
+    .k-dropdown,
+    .k-textbox {
+        width: 230px;
+    }
+
+    .upload-wrapper {
+        width: 320px;
+    }
+}
+
