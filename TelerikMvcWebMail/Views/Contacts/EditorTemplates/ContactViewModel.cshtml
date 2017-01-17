@@ -5,6 +5,8 @@
         <h3>Create New Contact</h3>
     </div>
 
+    @Html.HiddenFor(Model => Model.EmployeeID)
+
     <div class="new-contact-dropdown-wrapper">
         @Html.Label("newContactFolder", "Folder")
         <br />
@@ -25,9 +27,17 @@
     </div>
 
     <div class="new-contact-upload-wrapper">
+
         @(Html.Kendo().Upload()
-        .Name("photos")
-        .Messages(m => m.DropFilesHere("Drop files here to upload").Select("Add Photo..."))
+            .Name("photo")
+            .Multiple(false)
+            .Async(a => a
+                .Save("UploadPhoto", "Contacts")
+                .Remove("RemovePhoto", "Contacts")
+                .AutoUpload(true)
+            )
+            .Messages(m => m.Select("Add Photo ..."))
+            .Events(e => e.Select("onImageSelect"))
         )
     </div>
     <dl>
@@ -62,8 +72,9 @@
             @(Html.EditorFor(Model => Model.Email))
         </dd>
     </dl>
-    <div class="edit-buttons">
+    <div class="form-buttons">
         <button type="button" class="k-button k-primary k-update-button" href="\\#">Save</button>
         <button type="button" class="k-button k-cancel-button" href="\\#">Cancel</button>
     </div>
 </div>
+

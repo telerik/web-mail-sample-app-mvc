@@ -122,7 +122,7 @@ function createNewMail(e) {
     var email = dataItem.Email;
 
     openNewMailView(email);
-};
+}
 
 function singleCreateNewMail(e) {
     var target = $(e.target);
@@ -130,14 +130,13 @@ function singleCreateNewMail(e) {
     var email = singleItem.find('.hidden-email').text();
 
     openNewMailView(email);
-};
+}
 
 function openNewMailView(email) {
     $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?mailTo=' + email + '&fromView=Contacts');
 }
 
 function singleEditClick(e) {
-    debugger;
     var uid = getItemUid(e);
     var listView = $("#mainWidget").data("kendoListView");
     listView.edit(listView.element.find('[data-uid="' + uid + '"]'));
@@ -158,6 +157,11 @@ function getItemUid(e) {
 function onListViewSelectionChange(e) {
     var selecteditem = e.sender.select();
     var dataItem = e.sender.dataItem(selecteditem);
+
+    if (!dataItem) {
+        return;
+    }
+
     var template = kendo.template($('#single-contact-template').html());
     var result = template(dataItem);
     $(".single-contact-details").html(result);
@@ -165,4 +169,63 @@ function onListViewSelectionChange(e) {
     $('.k-single-email-button').on('click', singleCreateNewMail);
     $('.k-single-edit-button').on('click', singleEditClick);
     $('.k-single-delete-button').on('click', singleDeleteClick);
+}
+
+function onListViewEdit(e) {
+    if (!e.model.EmployeeID) {
+        e.model.EmployeeID = getId();
+        $('#EmployeeID').val(e.model.EmployeeID);
+    }
+}
+
+function getId() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    return text;
+}
+
+function onImageSelect(e) {
+    var fileInfo = e.files[0];
+
+    setTimeout(function () {
+        addPreview(fileInfo);
+    });
+}
+
+function addPreview(file) {
+    var raw = file.rawFile;
+    var reader = new FileReader();
+
+    if (raw) {
+        reader.onloadend = function () {
+            var image = $('<img class="image-preview">').attr('src', this.result);
+            var imageWrapper = $('<span class="image-wrapper"></span>').html(image);
+
+            $('.new-contact-upload-wrapper').html(imageWrapper);
+
+            var employeeId = $('#EmployeeID').val();
+            var imgData = getBase64Image(image[0]);
+            sessionStorage.setItem(employeeId, imgData);
+        };
+
+        reader.readAsDataURL(raw);
+    }
+}
+
+function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    var dataURL = canvas.toDataURL("image/png");
+
+    return dataURL.replace(/^data:image\/(png|jpg)\;base64,/, "");
 }

@@ -41,17 +41,17 @@
                 .Text("Cancel");
         })
         .Events(e => e.Select("newMailMenuSelect"))
-            )
-            @(Html.Kendo().Dialog()
-            .Name("newMailDialog")
-            .Visible(false)
-            .Title("")
-            .MaxWidth(400)
-            .Title("Demo Application")
-            .Actions(actions =>
-            {
-                actions.Add().Text("OK").Primary(true);
-            })
+    )
+    @(Html.Kendo().Dialog()
+        .Name("newMailDialog")
+        .Visible(false)
+        .Title("")
+        .MaxWidth(400)
+        .Title("Demo Application")
+        .Actions(actions =>
+        {
+            actions.Add().Text("OK").Primary(true);
+        })
     )
 </div>
 <div class="inner-section">
@@ -71,27 +71,27 @@
     </div>
     @Html.Label("newMailPriority", "Priority")
     @(Html.Kendo().DropDownList()
-    .Name("newMailPriority")
-    .BindTo(new List<SelectListItem>() {
-        new SelectListItem() {
-            Text = "Normal",
-            Value = "1"
-        },
-        new SelectListItem() {
-            Text = "Urgent",
-            Value = "2"
-        },
-        new SelectListItem() {
-            Text = "High",
-            Value = "3"
-        },
-        new SelectListItem() {
-            Text = "Low",
-            Value = "4"
-        }
-    })
-    .Value("1")
-    .HtmlAttributes(new { style = "width: 100px;" })
+        .Name("newMailPriority")
+        .BindTo(new List<SelectListItem>() {
+            new SelectListItem() {
+                Text = "Normal",
+                Value = "1"
+            },
+            new SelectListItem() {
+                Text = "Urgent",
+                Value = "2"
+            },
+            new SelectListItem() {
+                Text = "High",
+                Value = "3"
+            },
+            new SelectListItem() {
+                Text = "Low",
+                Value = "4"
+            }
+        })
+        .Value("1")
+        .HtmlAttributes(new { style = "width: 100px;" })
     )
     <label for="to-textbox">To</label>
     <input type="text" class="k-input long-textbox to-textbox" name="to-textbox" value="@ViewBag.MailTo">
@@ -100,18 +100,18 @@
     <div class="attachements-line">
         <label for="files">Attachments</label>
         @(Html.Kendo().Upload()
-        .Name("files")
-        .Async(a => a
-            .Save("Save", "Upload")
-            .Remove("Remove", "Upload")
-            .AutoUpload(true)
-        )
-        .Messages(m => m.Select("Add files ..."))
+            .Name("files")
+            .Async(a => a
+                .Save("Save", "Upload")
+                .Remove("Remove", "Upload")
+                .AutoUpload(true)
+            )
+            .Messages(m => m.Select("Add files ..."))
         )
     </div>
 
     @(Html.Kendo().Editor()
-    .Name("newMail")
-    .HtmlAttributes(new { style = "height: 500px;" })
+        .Name("newMail")
+        .HtmlAttributes(new { style = "height: 500px;" })
     )
 </div>
