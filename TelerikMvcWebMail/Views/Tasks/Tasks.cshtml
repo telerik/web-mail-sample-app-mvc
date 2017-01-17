@@ -36,7 +36,10 @@
                 columns.Bound(p => p.Category).Title("Category");
 
             })
-            .Editable(e => e.Mode(GridEditMode.InLine))
+            .Editable(e => e
+                .Mode(GridEditMode.InLine)
+                .DisplayDeleteConfirmation(false)
+            )
             .Selectable(s => s.Mode(GridSelectionMode.Multiple))
             .DataSource(dataSource => dataSource
                 .Ajax()

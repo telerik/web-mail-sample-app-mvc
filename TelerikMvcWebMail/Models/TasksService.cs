@@ -60,7 +60,7 @@ namespace TelerikMvcWebMail.Models
 
                 task.Id = id + 1;
 
-                GetAll().Insert(0, task);
+                GetAll().Add(task);
             }
             else
             {
