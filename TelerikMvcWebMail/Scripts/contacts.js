@@ -137,6 +137,7 @@ function openNewMailView(email) {
 }
 
 function singleEditClick(e) {
+    debugger;
     var uid = getItemUid(e);
     var listView = $("#mainWidget").data("kendoListView");
     listView.edit(listView.element.find('[data-uid="' + uid + '"]'));

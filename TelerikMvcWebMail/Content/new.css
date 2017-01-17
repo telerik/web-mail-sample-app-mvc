@@ -9,6 +9,9 @@
   padding: 15px;
   display: block;
   overflow: auto; }
+  .inner-section .k-state-hover:hover {
+    color: #fff;
+    background: #1e8edf; }
 
 .form-wrapper {
   width: 300px;
@@ -19,21 +22,27 @@ label {
   padding: 15px 0 5px; }
 
 .long-textbox {
-  width: 100%; }
+  width: 100%;
+  box-sizing: border-box; }
 
 .k-upload {
-  background: #fafafa;
-  margin-bottom: 15px; }
+  background: #fafafa; }
 
 .k-webkit .k-editor-toolbar li {
   padding: 0; }
 
 table.k-editor {
+  margin: 15px 0;
   border-spacing: 10px; }
   table.k-editor .k-editable-area {
     border: 0; }
 
-.inner-section .k-state-hover:hover {
-  color: #fff;
-  background: #1e8edf; }
+h2 {
+  font: 18px Roboto;
+  color: #333; }
+
+.tasks .k-button {
+  padding: 5px 15px;
+  margin-right: 10px;
+  border-color: transparent; }
 

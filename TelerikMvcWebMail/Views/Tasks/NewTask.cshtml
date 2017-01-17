@@ -2,57 +2,50 @@
     ViewBag.Title = "NewTask";
 }
 
+@Styles.Render("~/Content/new.css")
 @Scripts.Render("~/Scripts/new-task.js")
 
-<div class="new-wrapper">
+<section class="inner-section tasks">
     <h2>Add New Task</h2>
-    <div class="new-line">
-        @Html.Label("newTaskCategory", "Category")
-        <br />
-        @(Html.Kendo().DropDownList()
-            .Name("newTaskCategory")
-            .BindTo(new List<SelectListItem>() {
-                new SelectListItem() {
-                    Text = "All",
-                    Value = "All"
-                },
-                new SelectListItem() {
-                    Text = "Personal",
-                    Value = "Personal"
-                },
-                new SelectListItem() {
-                    Text = "Work",
-                    Value = "Work"
-                }
-            })
-            .Value("All")
-            .HtmlAttributes(new { style = "width: 200px;" })
-        )
-    </div>
-    <div class="new-line">
-        <label for="subject-textbox">Subject</label>
-        <br />
-        <input type="text" class="k-input long-textbox subject-textbox" name="subject-textbox">
-    </div>
+    @Html.Label("newTaskCategory", "Category")
+    @(Html.Kendo().DropDownList()
+        .Name("newTaskCategory")
+        .BindTo(new List<SelectListItem>() {
+            new SelectListItem() {
+                Text = "All",
+                Value = "All"
+            },
+            new SelectListItem() {
+                Text = "Personal",
+                Value = "Personal"
+            },
+            new SelectListItem() {
+                Text = "Work",
+                Value = "Work"
+            }
+        })
+        .Value("All")
+        .HtmlAttributes(new { style = "width: 200px;" })
+    )
+    <label for="subject-textbox">Subject</label>
+    <input type="text" class="k-input long-textbox subject-textbox" name="subject-textbox">
 
     @(Html.Kendo().Editor()
         .Name("newTask")
         .HtmlAttributes(new { style = "height: 500px;" })
     )
-    <div class="new-line">
-        @(Html.Kendo().Button()
-            .Name("addTask")
-            .HtmlAttributes(new { @class = "k-primary" })
-            .Tag("span")
-            .Content("Add Task")
-            .Events(e => e.Click("addClick"))
-        )
+    @(Html.Kendo().Button()
+        .Name("addTask")
+        .HtmlAttributes(new { @class = "k-primary" })
+        .Tag("span")
+        .Content("Add Task")
+        .Events(e => e.Click("addClick"))
+    )
 
-        @(Html.Kendo().Button()
-            .Name("cancel")
-            .Tag("span")
-            .Content("Cancel")
-            .Events(e => e.Click("cancelClick"))
-        )
-    </div>
-</div>
+    @(Html.Kendo().Button()
+        .Name("cancel")
+        .Tag("span")
+        .Content("Cancel")
+        .Events(e => e.Click("cancelClick"))
+    )
+</section>
