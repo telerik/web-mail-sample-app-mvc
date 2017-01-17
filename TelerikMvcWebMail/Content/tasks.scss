@@ -20,8 +20,6 @@
     }
 }
 
-.tasks tbody:empty:before {
+tbody:empty:before {
     content:'No tasks to display in this category';
-    position: absolute;
-    padding: 30px 17px;
-} 
+}

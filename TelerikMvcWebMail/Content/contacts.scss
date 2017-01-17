@@ -25,7 +25,6 @@
 
 
 .inner-section {
-    display: flex;
 
     .edit-buttons {
         display: none;
@@ -132,6 +131,7 @@
 
 /* List view - default */
 .list-view {
+    flex-direction: row;
 
     .list-view-inner {
         flex: 0.3;

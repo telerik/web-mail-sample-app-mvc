@@ -11,29 +11,28 @@
 .btn-listdetails:before {
   content: "\e029"; }
 
-.inner-section {
-  display: flex; }
-  .inner-section .edit-buttons {
-    display: none;
-    position: absolute; }
-    .inner-section .edit-buttons .k-button {
-      display: inline-block;
-      width: 1.14286em;
-      line-height: 1.14286;
-      padding: 2px;
-      border-radius: 50%;
-      box-sizing: content-box;
-      border-width: 2px; }
-      .inner-section .edit-buttons .k-button .icon:before {
-        font: 13px WebComponentsIcons; }
-    .inner-section .edit-buttons .i-mail:before {
-      content: "\e809"; }
-    .inner-section .edit-buttons .i-edit:before {
-      content: "\e10b"; }
-    .inner-section .edit-buttons .i-delete:before {
-      content: "\e10c"; }
-  .inner-section .k-pdf-export.list-view-inner {
-    overflow: visible; }
+.inner-section .edit-buttons {
+  display: none;
+  position: absolute; }
+  .inner-section .edit-buttons .k-button {
+    display: inline-block;
+    width: 1.14286em;
+    line-height: 1.14286;
+    padding: 2px;
+    border-radius: 50%;
+    box-sizing: content-box;
+    border-width: 2px; }
+    .inner-section .edit-buttons .k-button .icon:before {
+      font: 13px WebComponentsIcons; }
+  .inner-section .edit-buttons .i-mail:before {
+    content: "\e809"; }
+  .inner-section .edit-buttons .i-edit:before {
+    content: "\e10b"; }
+  .inner-section .edit-buttons .i-delete:before {
+    content: "\e10c"; }
+
+.inner-section .k-pdf-export.list-view-inner {
+  overflow: visible; }
 
 .contacts-list {
   border: 0; }
@@ -79,53 +78,52 @@
   margin-right: 18px; }
 
 /* List view - default */
-.list-view .list-view-inner {
-  flex: 0.3;
-  overflow: auto;
-  border-right: 1px solid #ebebeb; }
-  .list-view .list-view-inner .contact-view {
-    line-height: 50px;
-    font-size: 15px;
-    border-width: 0 0 1px;
-    border-color: #ebebeb;
-    line-height: 50px; }
-    .list-view .list-view-inner .contact-view.k-state-selected {
+.list-view {
+  flex-direction: row; }
+  .list-view .list-view-inner {
+    flex: 0.3;
+    overflow: auto;
+    border-right: 1px solid #ebebeb; }
+    .list-view .list-view-inner .contact-view {
+      line-height: 50px;
+      font-size: 15px;
+      border-width: 0 0 1px;
+      border-color: #ebebeb;
+      line-height: 50px; }
+      .list-view .list-view-inner .contact-view.k-state-selected {
+        color: #000; }
+        .list-view .list-view-inner .contact-view.k-state-selected:before {
+          content: "";
+          display: block; }
+    .list-view .list-view-inner .details {
+      display: none; }
+  .list-view .contacts-list .image-wrapper {
+    width: 50px;
+    height: 50px;
+    margin-right: 16px; }
+  .list-view .contacts-list .edit-buttons {
+    right: 15px;
+    top: 0; }
+  .list-view .single-contact-details {
+    padding: 17px 15px;
+    flex: 0.7;
+    border: 0; }
+    .list-view .single-contact-details .contact-view {
+      border: 0;
+      cursor: default;
       color: #000; }
-      .list-view .list-view-inner .contact-view.k-state-selected:before {
-        content: "";
-        display: block; }
-  .list-view .list-view-inner .details {
-    display: none; }
-
-.list-view .contacts-list .image-wrapper {
-  width: 50px;
-  height: 50px;
-  margin-right: 16px; }
-
-.list-view .contacts-list .edit-buttons {
-  right: 15px;
-  top: 0; }
-
-.list-view .single-contact-details {
-  padding: 17px 15px;
-  flex: 0.7;
-  border: 0; }
-  .list-view .single-contact-details .contact-view {
-    border: 0;
-    cursor: default;
-    color: #000; }
-    .list-view .single-contact-details .contact-view:hover {
-      background: transparent; }
-  .list-view .single-contact-details .header {
-    margin-bottom: 15px;
-    padding: 15px;
-    background: #fafafa; }
-    .list-view .single-contact-details .header .edit-buttons {
-      display: block;
-      left: 105px;
-      top: 60px; }
-    .list-view .single-contact-details .header .name {
-      font: 100 30px 'Segoe UI'; }
+      .list-view .single-contact-details .contact-view:hover {
+        background: transparent; }
+    .list-view .single-contact-details .header {
+      margin-bottom: 15px;
+      padding: 15px;
+      background: #fafafa; }
+      .list-view .single-contact-details .header .edit-buttons {
+        display: block;
+        left: 105px;
+        top: 60px; }
+      .list-view .single-contact-details .header .name {
+        font: 100 30px 'Segoe UI'; }
 
 /* Card view */
 .card-view .list-view-inner {

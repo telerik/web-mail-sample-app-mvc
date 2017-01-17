@@ -181,6 +181,7 @@ p {
 
 .inner-section {
   display: flex;
+  flex-direction: column;
   height: calc(100% - 3em);
   overflow: auto; }
 
@@ -203,4 +204,8 @@ p {
     box-sizing: border-box; }
     .searchbox .search-textbox:focus {
       font-style: normal; }
+
+tbody:empty:before {
+  position: absolute;
+  padding: 30px 17px; }
 

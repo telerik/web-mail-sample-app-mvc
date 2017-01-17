@@ -266,6 +266,7 @@ p {
 // Inner Section
 .inner-section {
     display: flex;
+    flex-direction: column;
     height: calc(100% - 3em);
     overflow: auto;
 }
@@ -296,3 +297,8 @@ p {
         }
     }
 }
+
+tbody:empty:before {
+    position: absolute;
+    padding: 30px 17px;
+} 
