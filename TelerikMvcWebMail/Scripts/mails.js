@@ -161,6 +161,9 @@ function updateSelectedClasses(btnElement) {
 function selectFolder(e) {
     var dataItem = this.dataItem(e.node);
     var selectedText = e.sender.dataItem(e.node).value;
+
+    $('input.master-checkbox').prop('checked', false);
+
     Cookies.set('selected', kendo.stringify(dataItem.index));
     Cookies.set('selectedNodeText', selectedText);
 
@@ -232,12 +235,16 @@ function mailGridDataBound(e) {
             populateNavigationTree(data);
         }
     });
-    if (grid.select().length == 0) {
-        $(".mail-details-wrapper").addClass("empty")
+    if (grid.select().length === 0) {
+        $(".mail-details-wrapper").addClass("empty");
     }
     else {
-        $(".mail-details-wrapper").removeClass("empty")
+        $(".mail-details-wrapper").removeClass("empty");
     }
+
+    if (grid.dataSource.view().length === 0) {
+        $('input.master-checkbox').prop('checked', false);
+    };
 }
 
 function bindCheckboxes() {

@@ -78,6 +78,9 @@ function bindCheckboxes() {
 function selectFolder(e) {
     var dataItem = this.dataItem(e.node);
     var selectedText = e.sender.dataItem(e.node).value;
+
+    $('input.master-checkbox').prop('checked', false);
+
     Cookies.set('selected', kendo.stringify(dataItem.index));
     selected = Cookies.get('selected');
 
@@ -104,6 +107,8 @@ $(document).ready(function () {
 
         var checkboxesToBeDeleted = $('.chkbx:checkbox:checked');
         var rows = checkboxesToBeDeleted.parents('tr[role="row"]');
+
+        $('input.master-checkbox').prop('checked', false);
 
         for (var i = 0; i < rows.length; i++) {
             tasksGrid.removeRow(rows[i]);
