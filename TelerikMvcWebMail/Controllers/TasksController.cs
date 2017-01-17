@@ -48,6 +48,8 @@ namespace TelerikMvcWebMail.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Tasks_Create(TaskViewModel task)
         {
+            task.CreatedOn = DateTime.Now;
+
             if (task != null && ModelState.IsValid)
             {
                 tasksService.Insert(task);

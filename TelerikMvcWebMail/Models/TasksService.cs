@@ -65,7 +65,6 @@ namespace TelerikMvcWebMail.Models
             else
             {
                 var entity = task.ToEntity();
-                entity.DateCreated = DateTime.Now;
 
                 entities.Notes.Add(entity);
                 entities.SaveChanges();
