@@ -63,9 +63,13 @@
   margin-top: 10px;
   color: #999999; }
 
-.details .column {
-  float: left;
-  padding: 0 60px 0 15px; }
+.details {
+  white-space: nowrap; }
+  .details .column {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 60px 0 15px;
+    overflow: hidden; }
 
 .header:after {
   content: "";
@@ -147,10 +151,14 @@
     border-right: 1px solid #ebebeb; }
 
 .card-view .header .name {
+  max-width: calc(100% - 88px);
   display: inline-block;
   padding-top: 7px;
   font-weight: 100;
-  font-size: 18px; }
+  font-size: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
 
 .card-view .header .edit-buttons {
   display: block;

@@ -9,6 +9,7 @@ body {
   box-sizing: border-box; }
 
 body {
+  min-width: 1000px;
   display: flex;
   flex-direction: column;
   margin: 0;
