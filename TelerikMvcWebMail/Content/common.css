@@ -13,9 +13,12 @@ body {
   flex-direction: column;
   margin: 0;
   padding-top: 61px;
-  font: 14px/1 Segoe UI, 'Roboto', Myriad Pro, sans-serif;
+  font: 14px/1.42857143 Segoe UI, 'Roboto', Myriad Pro, sans-serif;
   color: #787878;
   overflow: visible; }
+
+input {
+  font: inherit; }
 
 a {
   color: inherit;
@@ -37,6 +40,9 @@ p {
 
 .k-tooltip-button {
   display: none; }
+
+body > div:last-child {
+  flex: none; }
 
 .main-header {
   position: fixed;

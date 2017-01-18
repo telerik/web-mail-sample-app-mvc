@@ -227,6 +227,7 @@
     <Content Include="Scripts\calendar.js" />
     <Content Include="Scripts\contacts.js" />
     <Content Include="Scripts\Kendo\2017.1.112\jquery.min.js" />
+    <Content Include="Scripts\Kendo\2017.1.112\kendo.all.js" />
     <Content Include="Scripts\Kendo\2017.1.112\kendo.all.min.js" />
     <Content Include="Scripts\Kendo\2017.1.112\kendo.aspnetmvc.min.js" />
     <Content Include="Scripts\Kendo\2017.1.112\kendo.timezones.min.js" />

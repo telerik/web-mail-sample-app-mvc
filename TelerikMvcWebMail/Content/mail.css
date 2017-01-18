@@ -11,6 +11,9 @@
 tbody:empty:before {
   content: 'No mails to display in this category'; }
 
+.inner-section {
+  /*overflow: visible;*/ }
+
 .mail-details-wrapper {
   flex: 1; }
   .mail-details-wrapper .empty-msg {
@@ -59,8 +62,11 @@ tbody:empty:before {
 .main-section.vertical .k-grid {
   display: flex;
   flex-direction: column;
-  height: calc(100% - 32px);
+  height: calc(100% - 33px);
   box-sizing: border-box; }
+
+.main-section.vertical .mail-details-wrapper {
+  overflow: auto; }
 
 .main-section.vertical .mail-details {
   flex: 0.7; }
