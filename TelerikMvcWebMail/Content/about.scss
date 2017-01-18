@@ -1,0 +1,49 @@
+﻿.k-window {
+    max-width: 1000px;
+}
+
+.k-window-titlebar {
+    border-bottom: 0;
+}
+
+#aboutWindow {
+    padding: 0 52px 52px;
+    font-size: 16px;
+
+    h1 {
+        margin: 0 0 25px;
+    }
+
+    h2 {
+        margin: 45px 0 25px;
+    }
+
+    h1 {
+        color: #333333;
+        font-weight: 300;
+        font-size: 38px;
+    }
+
+    h2 {
+        color: #333333;
+        font-size: 24px;
+    }
+
+    a {
+        color: #1e8edf;
+    }
+
+    ul.products {
+        -webkit-columns: 3;
+        -moz-columns: 3;
+        columns: 3;
+    }
+
+    ul.requirements {
+        margin-top: 25px;
+
+        li:before {
+            content: "»";
+        }
+    }
+}

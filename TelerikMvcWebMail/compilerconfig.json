@@ -46,5 +46,9 @@
   {
     "outputFile": "Content/new.css",
     "inputFile": "Content/new.scss"
+  },
+  {
+    "outputFile": "Content/about.css",
+    "inputFile": "Content/about.scss"
   }
 ]
