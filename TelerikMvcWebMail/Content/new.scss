@@ -40,6 +40,10 @@
 
     .k-upload {
         background: #fafafa;
+
+        .k-dropzone em {
+            visibility: visible;
+        }
     }
 
     .k-webkit .k-editor-toolbar li {

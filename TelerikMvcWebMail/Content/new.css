@@ -28,6 +28,9 @@ label {
 .k-upload {
   background: #fafafa; }
 
+.k-upload .k-dropzone em {
+  visibility: visible; }
+
 .k-webkit .k-editor-toolbar li {
   padding: 0; }
 

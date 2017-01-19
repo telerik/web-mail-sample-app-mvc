@@ -3,7 +3,7 @@
     var itemText = $(e.item).children(".k-link").text();
 
     if (itemText == "Send") {
-        dialog.content("This is a Demo Application and your mail will not be send successfully.");
+        dialog.content("This is a Demo Application and your mail will not be send successfully. To develop further this functionality, please visit a help link SmptClient Class.");
         dialog.open();
     }
     else if (itemText == "Save") {
@@ -11,10 +11,12 @@
         dialog.open();
     }
     else if (itemText == "Cancel") {
-        if ("@(ViewBag.FromView)" && "@(ViewBag.FromView)" === "Contacts") {
-            window.location.href = location.protocol + '//' + location.host + '/Contacts/Index';
+        var currentLocation = window.location.href;
+
+        if (currentLocation.indexOf("Contacts") > -1) {
+            window.location.href = "/Contacts/Index/";
         } else {
-            window.location.href = location.protocol + '//' + location.host + '/Home/Index';
+            window.location.href = "/Home/Index/";
         }
     }
 }

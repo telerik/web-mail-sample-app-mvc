@@ -137,7 +137,7 @@ function singleCreateNewMail(e) {
 }
 
 function openNewMailView(email) {
-    $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?mailTo=' + email + '&fromView=Contacts');
+    $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?mailTo=' + email);
 }
 
 function singleEditClick(e) {
