@@ -28,7 +28,7 @@ namespace TelerikMvcWebMail.Models
                 {
                     EmployeeID = e.Id,
                     Name = e.Name,
-                    HomePhone = e.Phone,
+                    Phone = e.Phone,
                     Country = e.Country,
                     City = e.City,
                     Company = e.Company,
@@ -91,7 +91,7 @@ namespace TelerikMvcWebMail.Models
                     target.Company = contact.Company;
                     target.Country = contact.Country;
                     target.Email = contact.Email;
-                    target.HomePhone = contact.HomePhone;
+                    target.Phone = contact.Phone;
                     target.Name = contact.Name;
                     target.Title = contact.Title;
                 }

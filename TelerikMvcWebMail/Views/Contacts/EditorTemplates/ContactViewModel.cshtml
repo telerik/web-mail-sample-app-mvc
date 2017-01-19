@@ -38,8 +38,8 @@
         @(Html.TextBoxFor(Model => Model.City, new { @class = "k-textbox" }))
         @Html.Label("Country", "Country")
         @(Html.TextBoxFor(Model => Model.Country, new { @class = "k-textbox" }))
-        @Html.Label("HomePhone", "HomePhone")
-        @(Html.TextBoxFor(Model => Model.HomePhone, new { @class = "k-textbox" }))
+        @Html.Label("Phone", "Phone")
+        @(Html.TextBoxFor(Model => Model.Phone, new { @class = "k-textbox" }))
         @Html.Label("Email", "Email")
         @(Html.TextBoxFor(Model => Model.Email, new { @class = "k-textbox" }))
         <div class="form-buttons">
@@ -56,7 +56,11 @@
                 .Remove("RemovePhoto", "Contacts")
                 .AutoUpload(true)
             )
-            .Messages(m => m.Select("Add Photo ..."))
+            .Validation(v => v.AllowedExtensions(new string[] { ".gif", ".jpg", ".png" }))
+            .Messages(m => m
+                .Select("Add Photo ...")
+                .DropFilesHere("Drop files here to upload")
+            )
             .Events(e => e.Select("onImageSelect"))
         )
         <span class="image-wrapper"></span>

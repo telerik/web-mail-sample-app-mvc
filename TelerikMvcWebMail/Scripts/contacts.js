@@ -208,6 +208,10 @@ function getId() {
 function onImageSelect(e) {
     var fileInfo = e.files[0];
 
+    if (fileInfo.validationErrors && fileInfo.validationErrors.length > 0) {
+        return;
+    }
+
     setTimeout(function () {
         addPreview(fileInfo);
     });

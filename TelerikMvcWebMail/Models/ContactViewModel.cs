@@ -57,7 +57,7 @@ namespace TelerikMvcWebMail.Models
         }
 
         [StringLength(30)]
-        public string HomePhone
+        public string Phone
         {
             get;
             set;
@@ -76,7 +76,7 @@ namespace TelerikMvcWebMail.Models
                 Email = Email,
                 Id = EmployeeID,
                 Name = Name,
-                Phone = HomePhone,
+                Phone = Phone,
                 Folder = Folder,
                 Title = Title
             };
