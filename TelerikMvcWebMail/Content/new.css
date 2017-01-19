@@ -17,6 +17,13 @@
   width: 300px;
   float: left; }
 
+.input-wrapper {
+  position: relative; }
+  .input-wrapper .k-invalid-msg {
+    display: block;
+    line-height: 30px;
+    white-space: nowrap; }
+
 label {
   display: block;
   padding: 15px 0 5px; }

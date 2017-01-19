@@ -139,8 +139,6 @@ body > div:last-child {
     border-bottom-color: #fff;
     border-width: 0 9px 9px 9px;
     margin-left: -8px; }
-  .k-widget.k-tooltip span {
-    display: block; }
   .k-widget.k-tooltip .name {
     font-size: 15px;
     margin: 5px; }
