@@ -82,6 +82,7 @@ function selectFolder(e) {
     var dataItem = this.dataItem(e.node);
     var selectedText = e.sender.dataItem(e.node).value;
 
+    $(".search-textbox").val('');
     $('input.master-checkbox').prop('checked', false);
 
     Cookies.set('selected', kendo.stringify(dataItem.index));

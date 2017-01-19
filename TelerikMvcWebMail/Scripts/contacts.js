@@ -100,6 +100,8 @@ function selectFolder(e) {
     Cookies.set('selected', kendo.stringify(dataItem.index));
     selected = Cookies.get('selected');
 
+    $(".search-textbox").val('');
+
     var contactsListView = $("#mainWidget").data("kendoListView");
 
     if (!contactsListView) {
