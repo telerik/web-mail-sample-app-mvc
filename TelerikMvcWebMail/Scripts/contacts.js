@@ -69,17 +69,21 @@ function onListViewDataBound(e) {
         success: function (listViewData) {
             var numbers = getInitialNumberOfItems(listViewData.Data);
             var data = [{
-                text: "All " + numbers.All,
-                value: "All"
+                text: "All ",
+                value: "All",
+                number: numbers.All
             }, {
-                text: "Favorites " + numbers.Favorites,
-                value: "Favorites"
+                text: "Favorites ",
+                value: "Favorites",
+                number: numbers.Favorites
             }, {
-                text: "Friends " + numbers.Friends,
-                value: "Friends"
+                text: "Friends ",
+                value: "Friends",
+                number: numbers.Friends
             }, {
-                text: "Work " + numbers.Work,
-                value: "Work"
+                text: "Work ",
+                value: "Work",
+                number: numbers.Work
             }];
 
             populateNavigationTree(data);

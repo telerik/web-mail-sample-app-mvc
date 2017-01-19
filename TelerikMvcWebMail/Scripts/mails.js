@@ -213,26 +213,33 @@ function mailGridDataBound(e) {
         success: function (gridData) {
             var numbers = getinitialNumberOfItems(gridData.Data);
             var data = [{
-                text: "Inbox " + numbers.Inbox,
-                value: "Inbox"
+                text: "Inbox ",
+                value: "Inbox",
+                number: numbers.Inbox
             }, {
-                text: "Junk " + numbers.Junk,
-                value: "Junk"
+                text: "Junk ",
+                value: "Junk",
+                number: numbers.Junk
             }, {
-                text: "Drafts " + numbers.Drafts,
-                value: "Drafts"
+                text: "Drafts ",
+                value: "Drafts",
+                number: numbers.Drafts
             }, {
-                text: "Deleted " + numbers.Deleted,
-                value: "Deleted"
+                text: "Deleted ",
+                value: "Deleted",
+                number: numbers.Deleted
             }, {
-                text: "NativeScript " + numbers.NativeScript,
-                value: "NativeScript"
+                text: "NativeScript ",
+                value: "NativeScript",
+                number: numbers.NativeScript
             }, {
-                text: "KendoUI " + numbers.KendoUI,
-                value: "KendoUI"
+                text: "KendoUI ",
+                value: "KendoUI",
+                number: numbers.KendoUI
             }, {
-                text: "Sitefinity " + numbers.Sitefinity,
-                value: "Sitefinity"
+                text: "Sitefinity ",
+                value: "Sitefinity",
+                number: numbers.Sitefinity
             }];
 
             populateNavigationTree(data);

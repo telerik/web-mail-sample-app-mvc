@@ -27,6 +27,14 @@
     display: block;
     margin: 0;
     padding: 10px 15px; }
+    .main-sidebar .k-treeview .k-in:after {
+      content: "";
+      display: block;
+      clear: both; }
+  .main-sidebar .k-treeview .folder-name {
+    float: left; }
+  .main-sidebar .k-treeview .number {
+    float: right; }
   .main-sidebar .footer {
     padding: 15px;
     font-size: 10px;

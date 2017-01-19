@@ -35,14 +35,17 @@ function tasksGridDataBound(e) {
         success: function (gridData) {
             var numbers = getInitialNumberOfItems(gridData.Data);
             var data = [{
-                text: "All " + numbers.All,
-                value: "All"
+                text: "All ",
+                value: "All",
+                number: numbers.All
             }, {
-                text: "Personal " + numbers.Personal,
-                value: "Personal"
+                text: "Personal ",
+                value: "Personal",
+                number: numbers.Personal
             }, {
-                text: "Work " + numbers.Work,
-                value: "Work"
+                text: "Work ",
+                value: "Work",
+                number: numbers.Work
             }];
 
             populateNavigationTree(data);

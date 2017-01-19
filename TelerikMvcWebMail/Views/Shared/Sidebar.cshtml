@@ -4,12 +4,18 @@
 
 @Scripts.Render("~/Scripts/sidebar.js")
 
+<script id="treeview-template" type="text/kendo-ui-template">
+    <span class="folder-name">#: item.text #</span>
+    <span class="number">#: item.number #</span>
+</script>
+
 <aside class="main-sidebar">
     <div class="content">
         <span class="new-btn new-@(ViewBag.Title)">New @(ViewBag.Title)</span>
         @(Html.Kendo().TreeView()
         .Name("navigationTreeView")
         .Events(e => e.Select("selectFolder"))
+        .TemplateId("treeview-template")
         )
     </div>
     @Html.Partial("SidebarFooter")

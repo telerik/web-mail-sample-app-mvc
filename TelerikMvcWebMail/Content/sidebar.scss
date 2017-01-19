@@ -40,6 +40,20 @@
             display: block;
             margin: 0;
             padding: 10px 15px;
+
+            &:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+        }
+
+        .folder-name {
+            float: left;
+        }
+
+        .number {
+            float: right;
         }
 
 
