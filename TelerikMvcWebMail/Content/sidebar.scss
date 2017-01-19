@@ -68,8 +68,16 @@
         .links {
             color: $accent;
             font: 13px/26px Myriad Pro;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             cursor: pointer;
+
+            p {
+                margin-bottom: 5px;
+            }
+        }
+
+        & > p {
+            margin-top: 10px;
         }
     }
 }
