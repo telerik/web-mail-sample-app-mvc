@@ -83,9 +83,6 @@ tbody:empty:before {
   height: 270px;
   border-bottom: 1px solid #ebebeb; }
 
-.main-section.horizontal .k-grid-content {
-  height: 203px !important; }
-
 .main-section.horizontal .mail-details-wrapper {
   overflow: auto; }
 
