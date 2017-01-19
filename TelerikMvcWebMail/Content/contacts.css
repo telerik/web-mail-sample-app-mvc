@@ -196,4 +196,7 @@
   .contact-edit-view .upload-wrapper {
     width: 320px;
     margin: 39px 40px; }
-
+  .contact-edit-view .upload-wrapper .image-preview {
+    display: block;
+    height: 70px;
+    width: 70px; }

@@ -8,18 +8,6 @@
     <link type="text/css" href="@Url.Content("~/Content/contacts.css")" rel="stylesheet" />
 }
 
-<style>
-    .image-preview {
-        display: block;
-        height: 70px;
-        width: 70px;
-    }
-
-    img.null {
-        display: none;
-    }
-</style>
-
 @Scripts.Render("~/Scripts/contacts.js")
 
 <script type="text/x-kendo-tmpl" id="single-contact-template">
@@ -27,8 +15,7 @@
         <div class="header">
             <span class="hidden-email" style="display:none">#: Email #</span>
             <span class="image-wrapper">
-                <img class="#: sessionStorage.getItem(EmployeeID) #" src="#: 'data:image/png;base64,' + sessionStorage.getItem(EmployeeID) #" alt="#:EmployeeID # image"/>
-                <img src="@Url.Content("~/Content/contacts/")#:EmployeeID#.jpg" alt="#:EmployeeID # image" onerror="this.style.display='none';" />
+                <img src="# if (sessionStorage.getItem(EmployeeID)) { # data:image/png;base64,#:sessionStorage.getItem(EmployeeID)# # } else { # ./Content/contacts/#:EmployeeID#.jpg # } #" alt="#:EmployeeID # image"/>
             </span>
             <span class="name">#: Name #</span>
             <div class="edit-buttons">
@@ -84,6 +71,7 @@
                     .DataBound("onListViewDataBound")
                     .Change("onListViewSelectionChange")
                     .Edit("onListViewEdit")
+                    .Cancel("onListViewCancel")
                 )
                 .HtmlAttributes(new { @class = "contacts-list" })
             )

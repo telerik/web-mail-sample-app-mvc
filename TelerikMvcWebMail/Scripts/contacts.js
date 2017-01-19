@@ -6,7 +6,7 @@
 });
 
 function exportPeople() {
-    kendo.drawing.drawDOM($(".inner-section > .list-view-inner"))
+    kendo.drawing.drawDOM($(".inner-section .k-listview"))
         .then(function (group) {
             return kendo.drawing.exportPDF(group, {
                 paperSize: "auto",
@@ -170,17 +170,26 @@ function onListViewSelectionChange(e) {
     var result = template(dataItem);
     $(".single-contact-details").html(result);
 
+    attachButtonHandlers();
+}
+
+function attachButtonHandlers() {
     $('.k-single-email-button').on('click', singleCreateNewMail);
     $('.k-single-edit-button').on('click', singleEditClick);
     $('.k-single-delete-button').on('click', singleDeleteClick);
 }
 
 function onListViewEdit(e) {
-    //debugger;
     if (!e.model.EmployeeID) {
         e.model.EmployeeID = getId();
         $('#EmployeeID').val(e.model.EmployeeID);
     }
+}
+
+function onListViewCancel(e) {
+    setTimeout(function (e) {
+        attachButtonHandlers();
+    }, 0);
 }
 
 function getId() {
@@ -209,9 +218,8 @@ function addPreview(file) {
     if (raw) {
         reader.onloadend = function () {
             var image = $('<img class="image-preview">').attr('src', this.result);
-            var imageWrapper = $('<span class="image-wrapper"></span>').html(image);
 
-            $('.new-contact-upload-wrapper').html(imageWrapper);
+            $('.image-wrapper').html(image);
 
             var employeeId = $('#EmployeeID').val();
             var imgData = getBase64Image(image[0]);
