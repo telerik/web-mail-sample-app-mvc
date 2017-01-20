@@ -7,7 +7,21 @@
     <meta name="viewport" content="width=device-width" />
     <title>SignIn</title>
     <link type="image/x-icon" href="favicon.ico" rel="shortcut icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/Kendo/2017.1.112/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/2017.1.112/kendo.mobile.all.min.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/2017.1.112/kendo.dataviz.min.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/2017.1.112/kendo.metro.min.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/2017.1.112/kendo.dataviz.metro.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link type="text/css" href="~/Content/signIn.css" rel="stylesheet" />
+
+    <script src="~/Scripts/Kendo/2017.1.112/jquery.min.js"></script>
+    <script src="~/Scripts/Kendo/2017.1.112/kendo.all.min.js"></script>
+    <script src="~/Scripts/Kendo/2017.1.112/kendo.aspnetmvc.min.js"></script>
+    <script src="~/Scripts/Kendo/2017.1.112/kendo.timezones.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.3/js.cookie.min.js"></script>
+    @Scripts.Render("~/Scripts/sign-in.js")
 </head>
 <body>
     <div class="sidebar">
@@ -36,12 +50,22 @@
         <input type="password" class="k-input password-textbox" name="password-textbox" value="password">
         <br />
         <button id="signInButton" class="k-primary" onclick="location.href='@Url.Action("Index", "Home")';return false;">Sign In</button>
-        <div>
-            @Html.ActionLink("About This App", "About", "Home")
-        </div>
+        <p id="btn-about">About This App</p>
         <div>
             @Html.ActionLink("Download Source Code", "Index", "SignIn")
         </div>
     </div>
+
+    @(Html.Kendo().Window()
+        .Name("aboutWindow")
+        .Title("")
+        .Content("loading...")
+        .Iframe(false)
+        .Modal(true)
+        .LoadContentFrom("About", "Home")
+        .Actions(actions => actions.Close())
+        .Draggable(true)
+        .Visible(false)
+    )
 </body>
 </html>
