@@ -114,10 +114,19 @@ function selectFolder(e) {
 }
 
 function searchContacts(e) {
-    var text = $(e.target).val();
-
+    var text = $(e.target).val().toLowerCase();
     var listView = $("#mainWidget").data("kendoListView");
-    listView.dataSource.filter({ field: "Name", operator: "contains", value: text });
+
+    var dataInView = listView.dataSource.view();
+    dataInView.forEach(function (item) {
+        var row = $('div[data-uid="' + item.uid + '"]');
+
+        if (item.Name.toLowerCase().indexOf(text) > -1) {
+            row.show();
+        } else {
+            row.hide();
+        }
+    });
 }
 
 function createNewMail(e) {

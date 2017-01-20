@@ -100,10 +100,19 @@ function selectFolder(e) {
 
 $(document).ready(function () {
     $(".search-textbox").on('keyup', function (e) {
-        var text = $(e.target).val();
-
+        var text = $(e.target).val().toLowerCase();
         var tasksGrid = $("#mainWidget").data("kendoGrid");
-        tasksGrid.dataSource.filter({ field: "Subject", operator: "contains", value: text });
+
+        var dataInView = tasksGrid.dataSource.view();
+        dataInView.forEach(function (item) {
+            var row = $('tr[data-uid="' + item.uid + '"]');
+
+            if (item.Subject.toLowerCase().indexOf(text) > -1) {
+                row.show();
+            } else {
+                row.hide();
+            }
+        });
     });
 
     $('.btn-delete').on('click', function () {

@@ -17,14 +17,19 @@
     });
 
     $(".search-textbox").on('keyup', function (e) {
-        var text = $(e.target).val();
+        var text = $(e.target).val().toLowerCase();
         var mailGrid = $("#mainWidget").data("kendoGrid");
 
-        if (text === null || text == '') {
-            mailGrid.dataSource.filter({});
-        } else {
-            mailGrid.dataSource.filter({ field: "Subject", operator: "contains", value: text });
-        }
+        var dataInView = mailGrid.dataSource.view();
+        dataInView.forEach(function (item) {
+            var row = $('tr[data-uid="' + item.uid + '"]');
+
+            if (item.Subject.toLowerCase().indexOf(text) > -1) {
+                row.show();
+            } else {
+                row.hide();
+            }
+        });
     });
 
     $('.master-checkbox').on('change', function (e) {
