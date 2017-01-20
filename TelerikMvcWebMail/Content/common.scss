@@ -69,6 +69,10 @@ body > div:last-child {
     flex: none;
 }
 
+.image-wrapper {
+    overflow: hidden;
+}
+
 
 // Header
 .main-header {
@@ -155,7 +159,6 @@ body > div:last-child {
         display: inline-block;
         height: 36px;
         width: 36px;
-        overflow: hidden;
         margin: -10px -5px;
         border-radius: 50%;
 

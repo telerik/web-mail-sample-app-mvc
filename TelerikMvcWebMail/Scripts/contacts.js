@@ -235,7 +235,7 @@ function addPreview(file) {
         reader.onloadend = function () {
             var image = $('<img class="image-preview">').attr('src', this.result);
 
-            $('.image-wrapper').html(image);
+            $('.upload-image-wrapper').html(image);
 
             var employeeId = $('#EmployeeID').val();
 

@@ -71,9 +71,27 @@
         font: 18px Roboto;
         color: #333;
     }
+    
+
+    .upload-wrapper {
+        width: 400px;
+        margin-left: 40px;
+
+        .upload-image-wrapper {
+            display: block;
+            width: auto;
+            height: auto;
+            margin-top: 35px;
+        }
+
+        .image-preview {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+    }
 
 .form-buttons {
-    padding-top: 15px;
+    padding: 15px 0;
 
     .k-button {
         padding: 5px 15px;

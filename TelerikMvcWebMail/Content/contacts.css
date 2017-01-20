@@ -174,7 +174,7 @@
   position: static; }
 
 .contact-edit-view {
-  padding: 15px;
+  padding: 15px 15px 0;
   position: absolute;
   left: 0;
   top: 0;
@@ -189,17 +189,10 @@
     border-color: #fff; }
   .contact-edit-view .k-dropdown,
   .contact-edit-view .k-textbox {
-    width: 230px; }
+    width: 400px; }
   .contact-edit-view .forms-panel {
     width: 400px; }
+  .contact-edit-view .forms-panel,
   .contact-edit-view .upload-wrapper {
-    width: 350px;
-    position: absolute;
-    left: 250px;
-    top: 35px;
-    margin: 39px 40px; }
-    .contact-edit-view .upload-wrapper .image-preview {
-      display: block;
-      height: 70px;
-      width: 70px; }
+    float: left; }
 

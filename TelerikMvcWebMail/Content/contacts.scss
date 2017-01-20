@@ -281,7 +281,7 @@
 }
 
 .contact-edit-view {
-    padding: 15px;
+    padding: 15px 15px 0;
     position: absolute;
     left: 0;
     top: 0;
@@ -299,25 +299,18 @@
 
     .k-dropdown,
     .k-textbox {
-        width: 230px;
+        width: 400px;
     }
 
     .forms-panel {
         width: 400px;
     }
 
+    .forms-panel,
     .upload-wrapper {
-        width: 350px;
-        position: absolute;
-        left: 250px;
-        top: 35px;
-        margin: 39px 40px;
-
-        .image-preview {
-            display: block;
-            height: 70px;
-            width: 70px;
-        }
+        float: left;
     }
+
+
 }
 
