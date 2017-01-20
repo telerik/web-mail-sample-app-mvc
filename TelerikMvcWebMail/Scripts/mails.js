@@ -336,7 +336,7 @@ function mailContextMenuOpen(e) {
     var mailsGrid = $('#mainWidget').data('kendoGrid');
     var mailsInView = mailsGrid.dataSource.view().length;
     if (mailsInView == 0) {
-        е.preventDefault();
+        e.preventDefault();
     }
 }
 
