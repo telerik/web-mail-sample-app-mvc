@@ -51,9 +51,11 @@
     </script>
 
     <header class="main-header">
-        <h1 class="logo">
-            WebMail
-        </h1>
+        <a href="@Url.Action("Index", "Home")" title="Go to WebMail">
+            <h1 class="logo">
+                WebMail
+            </h1>
+        </a>
         @(Html.Kendo().Menu()
                 .Name("mainMenu")
                 .Items(items =>

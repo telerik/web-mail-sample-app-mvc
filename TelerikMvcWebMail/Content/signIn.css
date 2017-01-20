@@ -57,7 +57,8 @@ a {
     padding: 10px 20px;
     border: 0;
     color: #fff;
-    background: #1e8edf; }
+    background: #1e8edf;
+    cursor: pointer; }
   .content a,
   .content a:hover {
     display: inline-block;
