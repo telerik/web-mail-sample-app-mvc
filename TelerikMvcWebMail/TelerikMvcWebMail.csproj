@@ -240,6 +240,7 @@
     <Content Include="Scripts\new-task.js" />
     <Content Include="Scripts\sidebar-footer.js" />
     <Content Include="Scripts\sidebar.js" />
+    <Content Include="Scripts\sign-in.js" />
     <Content Include="Scripts\tasks.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

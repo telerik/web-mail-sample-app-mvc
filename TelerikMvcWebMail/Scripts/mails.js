@@ -267,14 +267,16 @@ function bindCheckboxes() {
     $('.chkbx').on('change', function (e) {
         var target = $(e.target);
         var checked = e.target.checked;
-        var tasksGrid = $("#mainWidget").data("kendoGrid");
-        var selectedRows = tasksGrid.select();
+        var mailsGrid = $("#mainWidget").data("kendoGrid");
+        var selectedRows = mailsGrid.select();
         var checkedRow = $(target).parents('tr');
 
         if (checked) {
             checkedRow.addClass('k-state-selected');
             selectedRows.add(checkedRow);
-            tasksGrid.select(selectedRows);
+            mailsGrid.select(selectedRows);
+            checkedRow.click();
+
         } else {
             $('.master-checkbox').prop('checked', false);
 
@@ -285,7 +287,7 @@ function bindCheckboxes() {
             });
 
             checkedRow.removeClass('k-state-selected');
-            tasksGrid.select(resultSelection);
+            mailsGrid.select(resultSelection);
         }
     });
 }
@@ -299,9 +301,8 @@ function mailSelectionChanged(e) {
     if (selectedRows.length === 1) {
         var dataItem = this.dataItem(selectedRows[0]);
         populateDetailsView(dataItem);
+        $(".mail-details-wrapper").removeClass("empty")
     }
-
-    $(".mail-details-wrapper").removeClass("empty")
 }
 
 function checkSelectedCheckbox(selectedRows) {
