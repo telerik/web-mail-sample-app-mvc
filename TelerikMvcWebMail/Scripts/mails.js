@@ -16,6 +16,16 @@
         $(".main-section").removeClass("horizontal").removeClass("vertical");
     });
 
+    $("#mainWidget").on("mousedown", "tr[role='row']", function (e) {
+        if (e.which === 3) {
+            if (!$(this).hasClass("k-state-selected")) {
+                $("#mainWidget tbody tr").removeClass("k-state-selected");
+                var mailGrid = $("#mainWidget").data("kendoGrid");
+                mailGrid.select($(this));
+            }
+        }
+    });
+
     $(".search-textbox").on('keyup', function (e) {
         var text = $(e.target).val().toLowerCase();
         var mailGrid = $("#mainWidget").data("kendoGrid");
@@ -299,6 +309,9 @@ function bindCheckboxes() {
 
 function mailSelectionChanged(e) {
     var selectedRows = this.select();
+    var contextMenu = $('#mailContextMenu').data('kendoContextMenu');
+    var menu = $('#mailMenu').data('kendoMenu');
+    var menuItems = ["#FW", "#RE", "#print"];
 
     selectionChanged(e.sender, 'mailsSelectedRow');
     checkSelectedCheckbox(selectedRows);
@@ -306,8 +319,31 @@ function mailSelectionChanged(e) {
     if (selectedRows.length === 1) {
         var dataItem = this.dataItem(selectedRows[0]);
         populateDetailsView(dataItem);
+
         $(".mail-details-wrapper").removeClass("empty")
+
+        enableDisableMenuItems(true, contextMenu, menuItems);
+        enableDisableMenuItems(true, menu, menuItems);
     }
+    else if (selectedRows.length > 1) {
+        enableDisableMenuItems(false, contextMenu, menuItems);
+        enableDisableMenuItems(false, menu, menuItems);
+    }
+}
+
+
+function mailContextMenuOpen(e) {
+    var mailsGrid = $('#mainWidget').data('kendoGrid');
+    var mailsInView = mailsGrid.dataSource.view().length;
+    if (mailsInView == 0) {
+        е.preventDefault();
+    }
+}
+
+function enableDisableMenuItems(action, menu, items) {
+    items.forEach(function (itemID) {
+        menu.enable(itemID, action);
+    });
 }
 
 function checkSelectedCheckbox(selectedRows) {

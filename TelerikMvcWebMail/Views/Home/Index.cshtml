@@ -48,7 +48,7 @@
                 {
                     children.Add().Text("Mark as read").HtmlAttributes(new { @id = "read", @operation = "readUnread" });
                     children.Add().Text("Mark as unread").HtmlAttributes(new { @id = "unread", @operation = "readUnread" });
-                    children.Add().Text("Print").HtmlAttributes(new { @id = "FW", @operation = "print" });
+                    children.Add().Text("Print").HtmlAttributes(new { @id = "print", @operation = "print" });
                 });
             items.Add().HtmlAttributes(new { @id = "horizontalPanes", @operation = "changeView", @class = "iconsOnly selected" });
             items.Add().HtmlAttributes(new { @id = "verticalPanes", @operation = "changeView", @class = "iconsOnly" });
@@ -128,7 +128,7 @@
                 items.Add().Text("Junk").HtmlAttributes(new { @id = "Junk", @operation = "moveDelete" });
                 items.Add().Text("Print").HtmlAttributes(new { @id = "print", @operation = "print" });
             })
-            .Events(e => e.Select("mailMenuSelect"))
+            .Events(e => e.Select("mailMenuSelect").Open("mailContextMenuOpen"))
         )
     </div>
 </section>
