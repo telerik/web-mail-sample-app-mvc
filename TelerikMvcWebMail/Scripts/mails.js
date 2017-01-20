@@ -276,7 +276,6 @@ function bindCheckboxes() {
             selectedRows.add(checkedRow);
             mailsGrid.select(selectedRows);
             checkedRow.click();
-
         } else {
             $('.master-checkbox').prop('checked', false);
 
@@ -288,6 +287,10 @@ function bindCheckboxes() {
 
             checkedRow.removeClass('k-state-selected');
             mailsGrid.select(resultSelection);
+
+            if (resultSelection.length === 0) {
+                $('input.master-checkbox').prop('checked', false);
+            }
         }
     });
 }

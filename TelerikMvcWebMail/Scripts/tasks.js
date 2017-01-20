@@ -65,6 +65,7 @@ function bindCheckboxes() {
             checkedRow.addClass('k-state-selected');
             selectedRows.add(checkedRow);
             tasksGrid.select(selectedRows);
+            checkedRow.click();
         } else {
             var resultSelection = $.map(selectedRows, function (row) {
                 if ($(row).attr('data-uid') !== checkedRow.attr('data-uid')) {
@@ -74,6 +75,11 @@ function bindCheckboxes() {
 
             checkedRow.removeClass('k-state-selected');
             tasksGrid.select(resultSelection);
+
+            debugger;
+            if (resultSelection.length === 0) {
+                $('input.master-checkbox').prop('checked', false);
+            }
         }
     });
 }
