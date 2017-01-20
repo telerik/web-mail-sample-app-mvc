@@ -238,8 +238,11 @@ function addPreview(file) {
             $('.image-wrapper').html(image);
 
             var employeeId = $('#EmployeeID').val();
-            var imgData = getBase64Image(image[0]);
-            sessionStorage.setItem(employeeId, imgData);
+
+            setTimeout(function () {
+                var imgData = getBase64Image(image[0]);
+                sessionStorage.setItem(employeeId, imgData);
+            }, 100);            
         };
 
         reader.readAsDataURL(raw);
@@ -248,13 +251,12 @@ function addPreview(file) {
 
 function getBase64Image(img) {
     var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
 
     var ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0);
 
     var dataURL = canvas.toDataURL("image/png");
+    console.log(dataURL);
 
     return dataURL.replace(/^data:image\/(png|jpg)\;base64,/, "");
 }
