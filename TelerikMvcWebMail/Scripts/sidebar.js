@@ -1,5 +1,6 @@
 ﻿var selected = Cookies.get('selected');
 var marked = false;
+var navigated = false;
 var savedScroll = 0;
 
 function setSelectedNode(selected) {
@@ -31,12 +32,14 @@ function polulateSelectedRows(widget) {
                     var row = widget.tbody.find("tr[data-uid='" + dataItem.uid + "']");
                     widget.select(row);
 
-                    if (!marked) {
+                    if (!marked && navigated) {
                         widget.content.scrollTop(row.offset().top - widget.content.offset().top);
-                    } else {
+                    } else if (marked && navigated) {
                         marked = false;
                         widget.content.scrollTop(savedScroll);
                     }
+
+                    navigated = false;
                 }
             }
         }

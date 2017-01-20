@@ -76,7 +76,6 @@ function bindCheckboxes() {
             checkedRow.removeClass('k-state-selected');
             tasksGrid.select(resultSelection);
 
-            debugger;
             if (resultSelection.length === 0) {
                 $('input.master-checkbox').prop('checked', false);
             }

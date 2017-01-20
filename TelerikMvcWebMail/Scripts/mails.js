@@ -179,6 +179,8 @@ function selectFolder(e) {
     selected = Cookies.get('selected');
     selectedNodeText = Cookies.get('selectedNodeText');
 
+    navigated = true;
+
     filterGrid(selectedText);
 }
 
