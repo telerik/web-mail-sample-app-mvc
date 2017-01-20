@@ -302,13 +302,15 @@
         width: 230px;
     }
 
-    .forms-panel,
-    .upload-wrapper {
-        float: left;
+    .forms-panel {
+        width: 400px;
     }
 
     .upload-wrapper {
-        width: 320px;
+        width: 350px;
+        position: absolute;
+        left: 250px;
+        top: 35px;
         margin: 39px 40px;
 
         .image-preview {

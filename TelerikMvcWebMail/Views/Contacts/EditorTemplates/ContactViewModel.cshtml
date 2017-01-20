@@ -22,16 +22,12 @@
             }
         })
         )
-        <div class="input-wrapper">
-            @Html.Label("Title", "Title")
-            @(Html.TextBoxFor(Model => Model.Title, new { @class = "k-textbox" }))
-            <span data-for="ProductName" class="k-invalid-msg"></span>
-        </div>
-        <div class="input-wrapper">
-            @Html.Label("Name", "Name")
-            @(Html.TextBoxFor(Model => Model.Name, new { @class = "k-textbox" }))
-            <span data-for="ProductName" class="k-invalid-msg"></span>
-        </div>
+        @Html.Label("Title", "Title")
+        @(Html.TextBoxFor(Model => Model.Title, new { @class = "k-textbox" }))
+        <span data-for="ProductName" class="k-invalid-msg"></span>
+        @Html.Label("Name", "Name")
+        @(Html.TextBoxFor(Model => Model.Name, new { @class = "k-textbox" }))
+        <span data-for="ProductName" class="k-invalid-msg"></span>
         @Html.Label("Company", "Company")
         @(Html.TextBoxFor(Model => Model.Company, new { @class = "k-textbox" }))
         @Html.Label("City", "City")

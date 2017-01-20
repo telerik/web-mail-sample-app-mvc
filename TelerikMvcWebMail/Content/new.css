@@ -17,12 +17,11 @@
   width: 300px;
   float: left; }
 
-.input-wrapper {
+.k-tooltip.k-invalid-msg {
+  display: block;
+  line-height: 30px;
+  white-space: nowrap;
   position: relative; }
-  .input-wrapper .k-invalid-msg {
-    display: block;
-    line-height: 30px;
-    white-space: nowrap; }
 
 label {
   display: block;
@@ -34,9 +33,8 @@ label {
 
 .k-upload {
   background: #fafafa; }
-
-.k-upload .k-dropzone em {
-  visibility: visible; }
+  .k-upload .k-dropzone em {
+    visibility: visible; }
 
 .k-webkit .k-editor-toolbar li {
   padding: 0; }

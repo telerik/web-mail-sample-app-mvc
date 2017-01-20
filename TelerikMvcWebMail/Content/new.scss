@@ -28,14 +28,12 @@
         float: left;
     }
 
-    .input-wrapper {
-        position: relative;
 
-        .k-invalid-msg {
-            display: block;
-            line-height: 30px;
-            white-space: nowrap;
-        }
+    .k-tooltip.k-invalid-msg {
+        display: block;
+        line-height: 30px;
+        white-space: nowrap;
+        position: relative;
     }
 
     label {
