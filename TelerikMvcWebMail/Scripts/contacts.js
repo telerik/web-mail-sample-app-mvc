@@ -146,6 +146,7 @@ function singleEditClick(e) {
     var uid = getItemUid(e);
     var listView = $("#mainWidget").data("kendoListView");
     listView.edit(listView.element.find('[data-uid="' + uid + '"]'));
+    $(".form-title .action").html("Edit");
 }
 
 function singleDeleteClick(e) {
