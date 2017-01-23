@@ -9,10 +9,25 @@ body {
   color: #787878;
   background: #fafafa; }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+
+h2 {
+  font-weight: normal; }
+
 a {
   color: inherit; }
   a, a:hover {
     text-decoration: none; }
+
+.k-state-hover:hover {
+  color: inherit;
+  background: #e6e6e6;
+  border-color: #e6e6e6; }
+  .k-state-hover:hover .k-icon {
+    color: inherit; }
 
 .sidebar {
   width: 355px;

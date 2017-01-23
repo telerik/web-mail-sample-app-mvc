@@ -13,12 +13,32 @@ body {
     background: #fafafa;
 }
 
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    font-weight: normal;
+}
+
 a {
     color: inherit;
 
     &,
     &:hover {
         text-decoration:  none;
+    }
+}
+
+.k-state-hover:hover {
+    color: inherit;
+    background: $hover;
+    border-color: $hover;
+
+    .k-icon {
+        color: inherit;
     }
 }
 
