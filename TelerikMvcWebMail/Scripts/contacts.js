@@ -199,6 +199,9 @@ function onListViewEdit(e) {
 }
 
 function onListViewCancel(e) {
+    var currentContactId = e.model.EmployeeID;
+    sessionStorage.removeItem(currentContactId);
+
     setTimeout(function (e) {
         attachButtonHandlers();
     }, 0);
