@@ -285,9 +285,8 @@ function bindCheckboxes() {
 
         if (checked) {
             checkedRow.addClass('k-state-selected');
-            selectedRows.add(checkedRow);
+            selectedRows = mailsGrid.select();
             mailsGrid.select(selectedRows);
-            checkedRow.click();
         } else {
             $('.master-checkbox').prop('checked', false);
 
