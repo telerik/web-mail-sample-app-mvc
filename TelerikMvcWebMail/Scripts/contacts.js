@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿var selectedContactUid;
+
+$(document).ready(function () {
     $('.new-Contact').on('click', function (e) {
         var listView = $("#mainWidget").data("kendoListView");
         listView.add();
@@ -58,6 +60,8 @@ function getInitialNumberOfItems(listViewData) {
 
 function onListViewDataBound(e) {
     var listView = e.sender;
+    restoreSlection(listView);
+
     var selectedItem = listView.select();
 
     if (selectedItem.length === 0) {
@@ -92,6 +96,14 @@ function onListViewDataBound(e) {
 
     $('.k-email-button').on('click', createNewMail);
     $('.search-textbox').on('keyup', searchContacts);
+}
+
+function restoreSlection(listView) {
+    if (selectedContactUid) {
+        var currectContactElement = $('.contact-view[uid="' + selectedContactUid + '"]');
+        selectedContactUid = null;
+        listView.select(currectContactElement);
+    }
 }
 
 function selectFolder(e) {
@@ -202,9 +214,13 @@ function onListViewCancel(e) {
     var currentContactId = e.model.EmployeeID;
     sessionStorage.removeItem(currentContactId);
 
-    setTimeout(function (e) {
+    setTimeout(function () {
         attachButtonHandlers();
     }, 0);
+}
+
+function onListViewChangeSave(e) {
+    selectedContactUid = e.model.uid;
 }
 
 function getId() {
@@ -245,7 +261,7 @@ function addPreview(file) {
             setTimeout(function () {
                 var imgData = getBase64Image(image[0]);
                 sessionStorage.setItem(employeeId, imgData);
-            }, 100);            
+            }, 100);
         };
 
         reader.readAsDataURL(raw);
