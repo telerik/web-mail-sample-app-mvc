@@ -213,9 +213,13 @@ function onListViewEdit(e) {
 function onListViewCancel(e) {
     var currentContactId = e.model.EmployeeID;
     sessionStorage.removeItem(currentContactId);
+    var cancelEditContactUid = e.model.uid;
 
     setTimeout(function () {
         attachButtonHandlers();
+
+        var currectContactElement = $('.contact-view[uid="' + cancelEditContactUid + '"]');
+        e.sender.select(currectContactElement);
     }, 0);
 }
 
