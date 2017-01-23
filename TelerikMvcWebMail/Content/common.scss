@@ -18,7 +18,7 @@ body {
 
 
 body {
-    min-width: 1000px;
+    min-width: $min-width;
     display: flex;
     flex-direction: column;
     margin: 0;
@@ -80,6 +80,7 @@ body > div:last-child {
     top: 0;
     left: 0;
     right: 0;
+    min-width: $min-width;
     color: #fff;
     background-color: #2593e5;
     background-image: linear-gradient(90deg, transparent, #0072c6);

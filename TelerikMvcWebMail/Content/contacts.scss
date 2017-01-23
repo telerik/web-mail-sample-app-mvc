@@ -21,6 +21,8 @@
 
     .btn-listdetails:before {
         content: "\e029";
+        display: block;
+        transform: rotate(180deg);
     }
 
 
@@ -114,8 +116,17 @@
         .column {
             display: inline-block;
             vertical-align: top;
-            padding: 0 60px 0 15px;
             overflow: hidden;
+            width: 62%;
+
+            &:first-child {
+                width: 38%;
+            }
+
+            p {
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         }
     }
 
@@ -269,10 +280,6 @@
 
     .details {
         display: block;
-
-        .column {
-            padding-left: 0;
-        }
     }
 }
 
@@ -312,5 +319,14 @@
     }
 
 
+}
+
+@media screen and (max-width: 1200px) {
+    .card-view {
+
+        .contact-view {
+            width: 50%;
+        }
+    }
 }
 

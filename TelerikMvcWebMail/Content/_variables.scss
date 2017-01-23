@@ -3,6 +3,8 @@ $accent: #1e8edf;
 $hover: #e6e6e6;
 $hover-primary: #4ba5e5;
 
+$min-width: 1000px;
+
 @mixin selected {
     color: #fff;
     border-color: $accent;

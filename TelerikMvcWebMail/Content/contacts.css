@@ -9,7 +9,9 @@
   content: "\e02a"; }
 
 .btn-listdetails:before {
-  content: "\e029"; }
+  content: "\e029";
+  display: block;
+  transform: rotate(180deg); }
 
 .inner-section .edit-buttons {
   display: none;
@@ -68,8 +70,13 @@
   .details .column {
     display: inline-block;
     vertical-align: top;
-    padding: 0 60px 0 15px;
-    overflow: hidden; }
+    overflow: hidden;
+    width: 62%; }
+    .details .column:first-child {
+      width: 38%; }
+    .details .column p {
+      overflow: hidden;
+      text-overflow: ellipsis; }
 
 .header:after {
   content: "";
@@ -167,8 +174,6 @@
 
 .card-view .details {
   display: block; }
-  .card-view .details .column {
-    padding-left: 0; }
 
 .k-listview {
   position: static; }
@@ -195,4 +200,8 @@
   .contact-edit-view .forms-panel,
   .contact-edit-view .upload-wrapper {
     float: left; }
+
+@media screen and (max-width: 1200px) {
+  .card-view .contact-view {
+    width: 50%; } }
 
