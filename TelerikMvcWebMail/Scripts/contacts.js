@@ -274,7 +274,9 @@ function addPreview(file) {
 
 function getBase64Image(img) {
     var canvas = document.createElement("canvas");
-
+    canvas.height = img.naturalHeight;
+    canvas.width = img.naturalWidth;
+    
     var ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0);
     var dataURL = canvas.toDataURL("image/png");
