@@ -59,10 +59,15 @@ a {
     color: #fff;
     background: #1e8edf;
     cursor: pointer; }
-  .content a,
-  .content a:hover {
-    display: inline-block;
-    margin: 10px 0;
+  .content .k-primary:hover {
+    background: #4ba5e5; }
+  .content .links p,
+  .content .links a,
+  .content .links a:hover {
+    margin: 10px 0 20px;
     color: #1e8edf;
+    cursor: pointer; }
+  .content .links a {
+    display: block;
     text-decoration: none; }
 

@@ -50,8 +50,8 @@
         <input type="password" class="k-input password-textbox" name="password-textbox" value="password">
         <br />
         <button id="signInButton" class="k-primary" onclick="location.href='@Url.Action("Index", "Home")';return false;">Sign In</button>
-        <p id="btn-about">About This App</p>
-        <div>
+        <div class="links">
+            <p id="btn-about">About This App</p>
             @Html.ActionLink("Download Source Code", "Index", "SignIn")
         </div>
     </div>

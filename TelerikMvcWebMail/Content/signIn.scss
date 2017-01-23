@@ -83,11 +83,22 @@ a {
         cursor: pointer;
     }
 
-    a,
-    a:hover {
-        display: inline-block;
-        margin: 10px 0;
-        color: $accent;
-        text-decoration: none;
+    .k-primary:hover {
+        background: $hover-primary;
+    }
+
+    .links {
+        p,
+        a,
+        a:hover {
+            margin: 10px 0 20px;
+            color: $accent;
+            cursor: pointer;
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+        }
     }
 }
