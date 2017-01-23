@@ -49,9 +49,12 @@ h2 {
   font: 18px Roboto;
   color: #333; }
 
+.forms-panel {
+  margin-right: 40px; }
+
 .upload-wrapper {
   width: 400px;
-  margin-left: 40px; }
+  margin-bottom: 20px; }
   .upload-wrapper .upload-image-wrapper {
     display: block;
     width: auto;
@@ -62,7 +65,8 @@ h2 {
     margin-bottom: 20px; }
 
 .form-buttons {
-  padding: 15px 0; }
+  padding: 15px 0;
+  clear: both; }
   .form-buttons .k-button {
     padding: 5px 15px;
     margin-right: 10px;

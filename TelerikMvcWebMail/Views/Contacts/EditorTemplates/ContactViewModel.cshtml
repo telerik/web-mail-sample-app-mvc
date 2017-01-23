@@ -38,10 +38,6 @@
         @(Html.TextBoxFor(Model => Model.Phone, new { @class = "k-textbox" }))
         @Html.Label("Email", "Email")
         @(Html.TextBoxFor(Model => Model.Email, new { @class = "k-textbox" }))
-        <div class="form-buttons">
-            <button type="button" class="k-button k-primary k-update-button" href="\\#">Save</button>
-            <button type="button" class="k-button k-cancel-button" href="\\#">Cancel</button>
-        </div>
     </div>
     <div class="upload-wrapper">
         <span class="upload-image-wrapper"></span>
@@ -60,5 +56,9 @@
             )
             .Events(e => e.Select("onImageSelect"))
         )
+    </div>
+    <div class="form-buttons">
+        <button type="button" class="k-button k-primary k-update-button" href="\\#">Save</button>
+        <button type="button" class="k-button k-cancel-button" href="\\#">Cancel</button>
     </div>
 </div>
