@@ -63,9 +63,8 @@ function bindCheckboxes() {
 
         if (checked) {
             checkedRow.addClass('k-state-selected');
-            selectedRows.add(checkedRow);
+            selectedRows = tasksGrid.select();
             tasksGrid.select(selectedRows);
-            checkedRow.click();
         } else {
             var resultSelection = $.map(selectedRows, function (row) {
                 if ($(row).attr('data-uid') !== checkedRow.attr('data-uid')) {
