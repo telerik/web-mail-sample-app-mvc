@@ -267,16 +267,50 @@ function mailGridDataBound(e) {
             populateNavigationTree(data);
         }
     });
-    if (grid.select().length === 0) {
-        $(".mail-details-wrapper").addClass("empty");
+    if (grid.select().length === 1) {
+        $(".mail-details-wrapper").removeClass("empty");
     }
     else {
-        $(".mail-details-wrapper").removeClass("empty");
+        $(".mail-details-wrapper").addClass("empty");
     }
 
     if (grid.dataSource.view().length === 0) {
         $('input.master-checkbox').prop('checked', false);
     };
+}
+
+function polulateSelectedRows(widget) {
+    var navigationTreeView = $('#navigationTreeView').data('kendoTreeView');
+    var treeViewSelectedItem = navigationTreeView.select();
+    var widgetDataSource = widget.dataSource;
+
+    if (treeViewSelectedItem.length === 1) {
+        var treeViewDataItem = navigationTreeView.dataItem(treeViewSelectedItem);
+        var treeViewItemValue = treeViewDataItem.value;
+        var selectedRowsFromCoockie = Cookies.get('mailsSelectedRow' + treeViewItemValue);
+
+        if (selectedRowsFromCoockie) {
+            var selectedRowsArray = selectedRowsFromCoockie.split(',');
+
+            for (var i = 0; i < selectedRowsArray.length; i++) {
+                currentRowId = selectedRowsArray[i];
+                var dataItem = widgetDataSource.get(currentRowId);
+                if (dataItem) {
+                    var row = widget.tbody.find("tr[data-uid='" + dataItem.uid + "']");
+                    widget.select(row);
+
+                    if (!marked && navigated) {
+                        widget.content.scrollTop(row.offset().top - widget.content.offset().top);
+                    } else if (marked && navigated) {
+                        marked = false;
+                        widget.content.scrollTop(savedScroll);
+                    }
+
+                    navigated = false;
+                }
+            }
+        }
+    }
 }
 
 function bindCheckboxes() {
