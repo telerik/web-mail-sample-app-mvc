@@ -229,11 +229,6 @@
     <Content Include="Fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\calendar.js" />
     <Content Include="Scripts\contacts.js" />
-    <Content Include="Scripts\Kendo\2017.1.112\jquery.min.js" />
-    <Content Include="Scripts\Kendo\2017.1.112\kendo.all.js" />
-    <Content Include="Scripts\Kendo\2017.1.112\kendo.all.min.js" />
-    <Content Include="Scripts\Kendo\2017.1.112\kendo.aspnetmvc.min.js" />
-    <Content Include="Scripts\Kendo\2017.1.112\kendo.timezones.min.js" />
     <Content Include="Scripts\layout.js" />
     <Content Include="Scripts\mails.js" />
     <Content Include="Scripts\new-mail.js" />
@@ -325,10 +320,6 @@
     <Content Include="Views\Shared\Sidebar.cshtml" />
     <Content Include="Content\signIn.scss" />
     <Content Include="Content\sidebar.scss" />
-    <Content Include="Scripts\Kendo\2017.1.112\jquery.min.map" />
-    <Content Include="Scripts\Kendo\2017.1.112\kendo.all.min.js.map" />
-    <Content Include="Scripts\Kendo\2017.1.112\kendo.aspnetmvc.min.js.map" />
-    <Content Include="Scripts\Kendo\2017.1.112\kendo.timezones.min.js.map" />
     <Content Include="Content\metroThemeCustomization.scss" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Content\tasks.scss" />
