@@ -91,7 +91,7 @@
                     .Model(model => model.Id(p => p.ID))
                     .Create(create => create.Action("Create", "Home"))
                     .Read(read => read.Action("Read", "Home"))
-                    .Update(update => update.Action("Update", "Home"))
+                    .Update(update => update.Action("Update", "Home")).Events(e => e.Change("dataSourceChange"))
 
                 )
                 .Events(e => e

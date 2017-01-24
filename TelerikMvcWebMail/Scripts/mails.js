@@ -85,15 +85,6 @@ function mailMoveDelete(id) {
     }
 
     grid.dataSource.sync();
-
-    setTimeout(function () {
-        var treeview = $("#navigationTreeView").data("kendoTreeView");
-        var dataItem = treeview.dataItem(treeview.select());
-
-        if (dataItem) {
-            grid.dataSource.filter({ field: "Folder", operator: "contains", value: dataItem.value });
-        }
-    }, 2000)
 }
 
 function mailReplyForward(id) {
@@ -212,6 +203,18 @@ function getinitialNumberOfItems(gridData) {
     }
 
     return numbers;
+}
+
+function dataSourceChange(e) {
+    var grid = $("#mainWidget").data("kendoGrid");
+    var treeview = $("#navigationTreeView").data("kendoTreeView");
+
+    if (e.action === "sync") {
+        var dataItem = treeview.dataItem(treeview.select());
+        if (dataItem) {
+            grid.dataSource.filter({ field: "Folder", operator: "contains", value: dataItem.value });
+        }
+    }
 }
 
 function mailGridDataBound(e) {
