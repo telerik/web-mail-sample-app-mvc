@@ -41,7 +41,7 @@
     </div>
     <div class="upload-wrapper">
         <span class="upload-image-wrapper">
-            <img class="image-preview"/>
+            <img class="image-preview" src="# if (sessionStorage.getItem(EmployeeID)) { # data:image/png;base64,#:sessionStorage.getItem(EmployeeID)# # } else { # @(Url.Content("~/Contacts/Picture/"))#:EmployeeID# # } #" alt="#:EmployeeID # image"/>
         </span>
         @(Html.Kendo().Upload()
             .Name("photo")

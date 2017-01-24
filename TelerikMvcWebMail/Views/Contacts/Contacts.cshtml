@@ -15,7 +15,7 @@
         <div class="header">
             <span class="hidden-email" style="display:none">#: Email #</span>
             <span class="image-wrapper">
-                <img src="# if (sessionStorage.getItem(EmployeeID)) { # data:image/png;base64,#:sessionStorage.getItem(EmployeeID)# # } else { # @(Url.Content("~/Contacts/Picture/"))#:EmployeeID# # } #" alt="#:EmployeeID # image" onerror="this.onerror = null; this.src = '/Content/contacts/dafault-contact.png';"/>
+                <img src="# if (sessionStorage.getItem(EmployeeID)) { # data:image/png;base64,#:sessionStorage.getItem(EmployeeID)# # } else { # @(Url.Content("~/Contacts/Picture/"))#:EmployeeID# # } #" alt="#:EmployeeID # image"/>
             </span>
             <span class="name">#: Name #</span>
             <div class="edit-buttons">
