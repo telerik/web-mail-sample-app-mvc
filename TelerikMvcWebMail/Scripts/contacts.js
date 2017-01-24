@@ -1,4 +1,5 @@
 ﻿var selectedContactUid;
+var newContactIsCreated = false;
 
 $(document).ready(function () {
     $('.new-Contact').on('click', function (e) {
@@ -207,17 +208,22 @@ function onListViewEdit(e) {
     if (!e.model.EmployeeID) {
         e.model.EmployeeID = getId();
         $('#EmployeeID').val(e.model.EmployeeID);
+        newContactIsCreated = true;
     }
 }
 
 function onListViewCancel(e) {
-    var currentContactId = e.model.EmployeeID;
-    sessionStorage.removeItem(currentContactId);
+    if (newContactIsCreated) {
+        var currentContactId = e.model.EmployeeID;
+        sessionStorage.removeItem(currentContactId);
+        newContactIsCreated = false;
+    }
+
+    newContactIsCreated = false;
     var cancelEditContactUid = e.model.uid;
 
     setTimeout(function () {
         attachButtonHandlers();
-
         var currectContactElement = $('.contact-view[uid="' + cancelEditContactUid + '"]');
         e.sender.select(currectContactElement);
     }, 0);
@@ -225,6 +231,7 @@ function onListViewCancel(e) {
 
 function onListViewChangeSave(e) {
     selectedContactUid = e.model.uid;
+    newContactIsCreated = false;
 }
 
 function getId() {
