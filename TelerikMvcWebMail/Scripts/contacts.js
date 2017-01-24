@@ -204,7 +204,6 @@ function attachButtonHandlers() {
 }
 
 function onListViewEdit(e) {
-    debugger;
     if (!e.model.EmployeeID) {
         e.model.EmployeeID = getId();
         $('#EmployeeID').val(e.model.EmployeeID);
