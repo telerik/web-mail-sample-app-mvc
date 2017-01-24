@@ -308,9 +308,6 @@ function bindCheckboxes() {
 
 function mailSelectionChanged(e) {
     var selectedRows = this.select();
-    var contextMenu = $('#mailContextMenu').data('kendoContextMenu');
-    var menu = $('#mailMenu').data('kendoMenu');
-    var menuItems = ["#FW", "#RE", "#print"];
 
     selectionChanged(e.sender, 'mailsSelectedRow');
     checkSelectedCheckbox(selectedRows);
@@ -320,28 +317,34 @@ function mailSelectionChanged(e) {
         populateDetailsView(dataItem);
 
         $(".mail-details-wrapper").removeClass("empty")
-
-        enableDisableMenuItems(true, contextMenu, menuItems);
-        enableDisableMenuItems(true, menu, menuItems);
-    }
-    else if (selectedRows.length > 1) {
-        enableDisableMenuItems(false, contextMenu, menuItems);
-        enableDisableMenuItems(false, menu, menuItems);
     }
 }
 
-
-function mailContextMenuOpen(e) {
+function mailMenuOpen(e) {
+    var senderID = this.element.attr("id");
     var mailsGrid = $('#mainWidget').data('kendoGrid');
     var mailsInView = mailsGrid.dataSource.view().length;
+    var selectedRows = mailsGrid.select();
+    var menuItems = ["#FW", "#RE", "#RE_ALL", "#print"];
+
     if (mailsInView == 0) {
-        e.preventDefault();
+        enableDisableMenuItems(false, senderID, e.sender)
+    }
+    else if (selectedRows.length === 1) {
+        enableDisableMenuItems(true, senderID, e.sender)
+    }
+    else if (selectedRows.length > 1) {
+        enableDisableMenuItems(true, senderID, e.sender)
+
+        menuItems.forEach(function (itemID) {
+            e.sender.enable(itemID, false);
+        });
     }
 }
 
-function enableDisableMenuItems(action, menu, items) {
-    items.forEach(function (itemID) {
-        menu.enable(itemID, action);
+function enableDisableMenuItems(isEnabled, menuId, menu) {
+    $("#" + menuId).find(".k-item:not(:has(.k-group))").each(function (index) {
+        menu.enable($(this), isEnabled);
     });
 }
 

@@ -21,7 +21,7 @@
                 .Items(children =>
                 {
                     children.Add().Text("Reply").HtmlAttributes(new { @id = "RE", @operation = "replyForward" });
-                    children.Add().Text("Reply All").HtmlAttributes(new { @id = "RE", @operation = "replyForward" });
+                    children.Add().Text("Reply All").HtmlAttributes(new { @id = "RE_ALL", @operation = "replyForward" });
                     children.Add().Text("Forward").HtmlAttributes(new { @id = "FW", @operation = "replyForward" });
                 });
             items.Add().Text("Delete").HtmlAttributes(new { @id = "Deleted", @operation = "moveDelete" });
@@ -54,7 +54,7 @@
             items.Add().HtmlAttributes(new { @id = "horizontalPanes", @operation = "changeView", @class = "iconsOnly selected" });
             items.Add().HtmlAttributes(new { @id = "verticalPanes", @operation = "changeView", @class = "iconsOnly" });
         })
-        .Events(e => e.Select("mailMenuSelect"))
+        .Events(e => e.Select("mailMenuSelect").Open("mailMenuOpen"))
     )
     <div class="inner-section">
         <div class="mail-grid">
@@ -129,7 +129,7 @@
                 items.Add().Text("Junk").HtmlAttributes(new { @id = "Junk", @operation = "moveDelete" });
                 items.Add().Text("Print").HtmlAttributes(new { @id = "print", @operation = "print" });
             })
-            .Events(e => e.Select("mailMenuSelect").Open("mailContextMenuOpen"))
+            .Events(e => e.Select("mailMenuSelect").Open("mailMenuOpen"))
         )
     </div>
 </section>

@@ -3,7 +3,7 @@
     var itemText = $(e.item).children(".k-link").text();
 
     if (itemText == "Send") {
-        dialog.content("This is a Demo Application and your mail will not be send successfully. To develop further this functionality, please visit a help link SmptClient Class.");
+        dialog.content("This is a Demo Application and your mail will not be send successfully.");
         dialog.open();
     }
     else if (itemText == "Save") {
