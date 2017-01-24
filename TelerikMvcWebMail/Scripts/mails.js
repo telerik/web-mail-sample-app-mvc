@@ -48,6 +48,7 @@
 
         if (checked) {
             tasksGrid.select('tr');
+
         } else {
             tasksGrid.clearSelection();
         }
@@ -301,6 +302,7 @@ function bindCheckboxes() {
 
             if (resultSelection.length === 0) {
                 $('input.master-checkbox').prop('checked', false);
+                $(".mail-details-wrapper").addClass("empty");
             }
         }
     });
@@ -315,8 +317,9 @@ function mailSelectionChanged(e) {
     if (selectedRows.length === 1) {
         var dataItem = this.dataItem(selectedRows[0]);
         populateDetailsView(dataItem);
-
-        $(".mail-details-wrapper").removeClass("empty")
+        $(".mail-details-wrapper").removeClass("empty");
+    } else {
+        $(".mail-details-wrapper").addClass("empty");
     }
 }
 
