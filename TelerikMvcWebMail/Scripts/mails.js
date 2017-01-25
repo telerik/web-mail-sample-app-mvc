@@ -217,6 +217,15 @@ function dataSourceChange(e) {
     }
 }
 
+function dataSourceRequestEnd(e) {
+    setTimeout(function () {
+        var grid = $("#mainWidget").data("kendoGrid");
+        if (grid.dataSource.view().length == 0) {
+            enableDisableMenuItems(false, "noselection");
+        }
+    }, 100)
+}
+
 function mailGridDataBound(e) {
     var grid = e.sender;
 
@@ -355,37 +364,55 @@ function mailSelectionChanged(e) {
         var dataItem = this.dataItem(selectedRows[0]);
         populateDetailsView(dataItem);
         $(".mail-details-wrapper").removeClass("empty");
+
+        enableDisableMenuItems(true);
     } else {
         $(".mail-details-wrapper").addClass("empty");
+
+        enableDisableMenuItems(false, "multiselection");
     }
 }
 
-function mailMenuOpen(e) {
-    var senderID = this.element.attr("id");
+function mailContextMenuOpen(e) {
     var mailsGrid = $('#mainWidget').data('kendoGrid');
     var mailsInView = mailsGrid.dataSource.view().length;
-    var selectedRows = mailsGrid.select();
-    var menuItems = ["#FW", "#RE", "#RE_ALL", "#print"];
 
     if (mailsInView == 0) {
-        enableDisableMenuItems(false, senderID, e.sender)
-    }
-    else if (selectedRows.length === 1) {
-        enableDisableMenuItems(true, senderID, e.sender)
-    }
-    else if (selectedRows.length > 1) {
-        enableDisableMenuItems(true, senderID, e.sender)
-
-        menuItems.forEach(function (itemID) {
-            e.sender.enable(itemID, false);
-        });
+        e.preventDefault();
     }
 }
 
-function enableDisableMenuItems(isEnabled, menuId, menu) {
-    $("#" + menuId).find(".k-item:not(:has(.k-group))").each(function (index) {
-        menu.enable($(this), isEnabled);
-    });
+function enableDisableMenuItems(isEnabled, selection) {
+    var menu = $('#mailMenu').data('kendoMenu');
+    var contextMenu = $('#mailContextMenu').data('kendoContextMenu');
+
+    if (isEnabled) {
+        $("#mailMenu").find(".k-item").each(function (index) {
+            menu.enable($(this), isEnabled);
+        });
+        $("#mailContextMenu").find(".k-item").each(function (index) {
+            contextMenu.enable($(this), isEnabled);
+        });
+    }
+    else if (!isEnabled && selection == "noselection") {
+        $("#mailMenu").find(".k-item").each(function (index) {
+            if ($(this)[0].id != "horizontalPanes" && $(this)[0].id != "verticalPanes") {
+                menu.enable($(this), isEnabled);
+            }
+        });
+    }
+    else if (!isEnabled && selection == "multiselection") {
+        var itemsIds = ["RE", "RE_ALL", "FW", "print"];
+
+            itemsIds.forEach(function (itemID) {
+                $("#mailMenu").find(".k-item[id=" + itemID + "]").each(function (index) {
+                    menu.enable($(this), isEnabled);
+                });
+                $("#mailContextMenu").find(".k-item[id=" + itemID + "]").each(function (index) {
+                    contextMenu.enable($(this), isEnabled);
+                });
+            });
+    }
 }
 
 function checkSelectedCheckbox(selectedRows) {

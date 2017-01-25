@@ -54,7 +54,7 @@
             items.Add().HtmlAttributes(new { @id = "horizontalPanes", @operation = "changeView", @class = "iconsOnly selected", @title = "Horizontal Panes" });
             items.Add().HtmlAttributes(new { @id = "verticalPanes", @operation = "changeView", @class = "iconsOnly", @title = "Vertical Panes" });
         })
-        .Events(e => e.Select("mailMenuSelect").Open("mailMenuOpen"))
+        .Events(e => e.Select("mailMenuSelect"))
     )
     <div class="inner-section">
         <div class="mail-grid">
@@ -91,7 +91,7 @@
                     .Model(model => model.Id(p => p.ID))
                     .Create(create => create.Action("Create", "Home"))
                     .Read(read => read.Action("Read", "Home"))
-                    .Update(update => update.Action("Update", "Home")).Events(e => e.Change("dataSourceChange"))
+                    .Update(update => update.Action("Update", "Home")).Events(e => e.Change("dataSourceChange").RequestEnd("dataSourceRequestEnd"))
 
                 )
                 .Events(e => e
@@ -129,7 +129,7 @@
                 items.Add().Text("Junk").HtmlAttributes(new { @id = "Junk", @operation = "moveDelete" });
                 items.Add().Text("Print").HtmlAttributes(new { @id = "print", @operation = "print" });
             })
-            .Events(e => e.Select("mailMenuSelect").Open("mailMenuOpen"))
+            .Events(e => e.Select("mailMenuSelect").Open("mailContextMenuOpen"))
         )
     </div>
 </section>
