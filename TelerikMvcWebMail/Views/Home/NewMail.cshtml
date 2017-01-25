@@ -71,7 +71,13 @@
         .HtmlAttributes(new { style = "width: 100px;" })
     )
     <label for="to-textbox">To</label>
-    <input type="text" class="k-input long-textbox to-textbox" name="to-textbox" value="@ViewBag.MailTo">
+    @(Html.Kendo().MultiSelect()
+        .Name("to-textbox")
+        .DataTextField("Text")
+        .DataValueField("Value")
+        .DataSource(ds => ds.Read("ContactsMails", "Contacts"))
+        .Value(ViewBag.MailTo)
+    )
     <label for="subject-textbox">Subject</label>
     <input type="text" class="k-input long-textbox subject-textbox" name="subject-textbox" value="@(ViewBag.Subject)">
     <div class="attachements-line">

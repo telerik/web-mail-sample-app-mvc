@@ -134,5 +134,16 @@ namespace TelerikMvcWebMail.Controllers
             // Return an empty string to signify success
             return Content("");
         }
+
+        public JsonResult ContactsMails()
+        {
+            var result = contactsService.Read().Select(c => new
+            {
+                Value = c.Email,
+                Text = c.Email
+            }).ToList();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }
