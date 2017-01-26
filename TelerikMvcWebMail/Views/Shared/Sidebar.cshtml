@@ -13,9 +13,9 @@
     <div class="content">
         <span class="new-btn new-@(ViewBag.Title)">New @(ViewBag.Title)</span>
         @(Html.Kendo().TreeView()
-        .Name("navigationTreeView")
-        .Events(e => e.Select("selectCategory"))
-        .TemplateId("treeview-template")
+            .Name("navigationTreeView")
+            .Events(e => e.Select("selectCategory"))
+            .TemplateId("treeview-template")
         )
     </div>
     @Html.Partial("SidebarFooter")
