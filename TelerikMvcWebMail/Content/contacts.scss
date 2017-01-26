@@ -104,9 +104,15 @@
                 width: 38%;
             }
 
-            p {
+            p,
+            p > span  {
                 overflow: hidden;
                 text-overflow: ellipsis;
+            }
+
+            p > span:nth-child(2) {
+                width: 100%;
+                display: inline-block;
             }
         }
     }

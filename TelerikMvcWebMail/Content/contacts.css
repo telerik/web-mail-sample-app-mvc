@@ -63,9 +63,13 @@
     width: 62%; }
     .details .column:first-child {
       width: 38%; }
-    .details .column p {
+    .details .column p,
+    .details .column p > span {
       overflow: hidden;
       text-overflow: ellipsis; }
+    .details .column p > span:nth-child(2) {
+      width: 100%;
+      display: inline-block; }
 
 .header:after {
   content: "";
