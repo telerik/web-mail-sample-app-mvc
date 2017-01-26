@@ -7,8 +7,8 @@
     <h2 class="form-title"><span class="action">Create New</span> Contact</h2>
     <div class="forms-panel">
         @Html.HiddenFor(Model => Model.EmployeeID)
-        @Html.Label("newContactFolder", "Folder")
-        @(Html.Kendo().DropDownListFor(Model => Model.Folder)
+        @Html.Label("newContactCategory", "Category")
+        @(Html.Kendo().DropDownListFor(Model => Model.Category)
         .BindTo(new List<SelectListItem>() {
             new SelectListItem() {
                 Text = "Favorites",

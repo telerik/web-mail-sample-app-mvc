@@ -21,15 +21,15 @@ namespace TelerikMvcWebMail.Models
         [AllowHtml]
         public string Text { get; set; }
 
-        public string Folder { get; set; }
+        public string Category { get; set; }
 
         public string To { get; set; }
 
         public string Email { get; set; }
 
-        internal Message ToEntity()
+        internal Mail ToEntity()
         {
-            return new Message
+            return new Mail
             {
                 Body = Text,
                 From = From,
@@ -37,7 +37,7 @@ namespace TelerikMvcWebMail.Models
                 Received = Date,
                 IsRead = IsRead,
                 To = To,
-                Folder = Folder,
+                Category = Category,
                 MessageID = ID,
                 Email = Email
             };

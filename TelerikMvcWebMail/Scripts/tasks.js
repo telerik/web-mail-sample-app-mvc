@@ -82,7 +82,7 @@ function bindCheckboxes() {
     });
 }
 
-function selectFolder(e) {
+function selectCategory(e) {
     var dataItem = this.dataItem(e.node);
     var selectedText = e.sender.dataItem(e.node).value;
 

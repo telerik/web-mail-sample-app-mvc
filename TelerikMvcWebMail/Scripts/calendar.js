@@ -18,14 +18,14 @@
             filters: $.map(selected, function (value) {
                 return {
                     operator: "eq",
-                    field: "OwnerID",
+                    field: "Category",
                     value: value
                 };
             })
         };
 
         if (filter.filters.length === 0) {
-            filter = { field: "OwnerID", operator: "eq", value: "7" };
+            filter = { field: "Category", operator: "eq", value: "7" };
         }
 
         var scheduler = $("#scheduler").data("kendoScheduler");

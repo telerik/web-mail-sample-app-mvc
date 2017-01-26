@@ -27,7 +27,7 @@ namespace TelerikMvcWebMail.Models
             {
                 result = entities.Events.ToList().Select(task => new EventViewModel
                 {
-                    TaskID = task.TaskID,
+                    TaskID = task.EventID,
                     Title = task.Title,
                     Start = DateTime.SpecifyKind(task.Start, DateTimeKind.Utc),
                     End = DateTime.SpecifyKind(task.End, DateTimeKind.Utc),
@@ -38,7 +38,7 @@ namespace TelerikMvcWebMail.Models
                     RecurrenceRule = task.RecurrenceRule,
                     RecurrenceException = task.RecurrenceException,
                     RecurrenceID = task.RecurrenceID,
-                    OwnerID = task.OwnerID
+                    Category = task.Category
                 }).ToList();
 
                 if (!UpdateDatabase)
@@ -80,7 +80,7 @@ namespace TelerikMvcWebMail.Models
                     entities.Events.Add(entity);
                     entities.SaveChanges();
 
-                    appointment.TaskID = entity.TaskID;
+                    appointment.TaskID = entity.EventID;
                 }
             }
         }
@@ -110,7 +110,7 @@ namespace TelerikMvcWebMail.Models
                         target.RecurrenceRule = appointment.RecurrenceRule;
                         target.RecurrenceException = appointment.RecurrenceException;
                         target.RecurrenceID = appointment.RecurrenceID;
-                        target.OwnerID = appointment.OwnerID;
+                        target.Category = appointment.Category;
                     }
                 }
                 else

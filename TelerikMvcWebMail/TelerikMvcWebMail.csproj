@@ -132,21 +132,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Contact.cs">
-      <DependentUpon>WebMail.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ContactsService.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\Event.cs">
       <DependentUpon>WebMail.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EventsService.cs" />
-    <Compile Include="Models\MailsService.cs" />
-    <Compile Include="Models\MailViewModel.cs" />
-    <Compile Include="Models\Message.cs">
+    <Compile Include="Models\Mail.cs">
       <DependentUpon>WebMail.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Note.cs">
+    <Compile Include="Models\MailsService.cs" />
+    <Compile Include="Models\MailViewModel.cs" />
+    <Compile Include="Models\Person.cs">
+      <DependentUpon>WebMail.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Task.cs">
       <DependentUpon>WebMail.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TasksService.cs" />
@@ -284,17 +284,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\WebMail.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>WebMail.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\WebMail.edmx.diagram">
-      <DependentUpon>WebMail.edmx</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Contacts\EditorTemplates\ContactViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -325,6 +314,13 @@
     <Content Include="Content\tasks.scss" />
     <Content Include="Content\new.scss" />
     <Content Include="Content\about.scss" />
+    <EntityDeploy Include="Models\WebMail.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WebMail.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\WebMail.edmx.diagram">
+      <DependentUpon>WebMail.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

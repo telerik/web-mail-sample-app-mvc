@@ -78,7 +78,7 @@ function mailMoveDelete(id) {
 
     for (var i = 0; i < grid.select().length; i++) {
         var selectedItem = grid.dataItem(grid.select()[i]);
-        selectedItem.Folder = id;
+        selectedItem.Category = id;
         selectedItem.dirty = true;
     }
 
@@ -166,7 +166,7 @@ function updateSelectedClasses(btnElement) {
     $(btnElement).addClass(selectedClass);
 }
 
-function selectFolder(e) {
+function selectCategory(e) {
     var dataItem = this.dataItem(e.node);
     var selectedText = e.sender.dataItem(e.node).value;
 
@@ -189,15 +189,15 @@ function filterGrid(selectedText) {
     if (!mailsGrid) {
         window.location.href = location.protocol + '//' + location.host + '/Home/Index';
     } else {
-        mailsGrid.dataSource.filter({ field: "Folder", operator: "contains", value: selectedText });
+        mailsGrid.dataSource.filter({ field: "Category", operator: "contains", value: selectedText });
     }
 }
 
 function getinitialNumberOfItems(gridData) {
     var numbers = { Inbox: 0, Junk: 0, Drafts: 0, Deleted: 0, NativeScript: 0, KendoUI: 0, Sitefinity: 0 };
     for (var i = 0; i < gridData.length; i++) {
-        var currentItemFolder = gridData[i].Folder;
-        numbers[currentItemFolder] += 1;
+        var currentItemCategory = gridData[i].Category;
+        numbers[currentItemCategory] += 1;
     }
 
     return numbers;
@@ -210,7 +210,7 @@ function dataSourceChange(e) {
     if (e.action === "sync") {
         var dataItem = treeview.dataItem(treeview.select());
         if (dataItem) {
-            grid.dataSource.filter({ field: "Folder", operator: "contains", value: dataItem.value });
+            grid.dataSource.filter({ field: "Category", operator: "contains", value: dataItem.value });
         }
     }
 }

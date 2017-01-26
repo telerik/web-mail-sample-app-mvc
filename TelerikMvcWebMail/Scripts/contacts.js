@@ -50,7 +50,7 @@ function updateSelectedViewButton(element) {
 function getInitialNumberOfItems(listViewData) {
     var numbers = { Favorites: 0, Friends: 0, Work: 0 };
     for (var i = 0; i < listViewData.length; i++) {
-        var currentItemCategory = listViewData[i].Folder;
+        var currentItemCategory = listViewData[i].Category;
         numbers[currentItemCategory] += 1;
     }
 
@@ -107,7 +107,7 @@ function restoreSlection(listView) {
     }
 }
 
-function selectFolder(e) {
+function selectCategory(e) {
     var dataItem = this.dataItem(e.node);
     var selectedText = e.sender.dataItem(e.node).value;
     Cookies.set('selected', kendo.stringify(dataItem.index));
@@ -122,7 +122,7 @@ function selectFolder(e) {
     } else if (selectedText === "All") {
         contactsListView.dataSource.filter({});
     } else {
-        contactsListView.dataSource.filter({ field: "Folder", operator: "contains", value: selectedText });
+        contactsListView.dataSource.filter({ field: "Category", operator: "contains", value: selectedText });
     }
 }
 

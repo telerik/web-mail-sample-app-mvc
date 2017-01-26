@@ -23,7 +23,7 @@ namespace TelerikMvcWebMail.Models
 
             if (result == null || UpdateDatabase)
             {
-                result = entities.Notes.Select(e => new TaskViewModel
+                result = entities.Tasks.Select(e => new TaskViewModel
                 {
                     Category = e.Category,
                     CreatedOn = e.DateCreated,
@@ -66,7 +66,7 @@ namespace TelerikMvcWebMail.Models
             {
                 var entity = task.ToEntity();
 
-                entities.Notes.Add(entity);
+                entities.Tasks.Add(entity);
                 entities.SaveChanges();
 
                 task.Id = entity.Id;
@@ -94,7 +94,7 @@ namespace TelerikMvcWebMail.Models
             else
             {
                 var entity = task.ToEntity();
-                entities.Notes.Attach(entity);
+                entities.Tasks.Attach(entity);
                 entities.Entry(entity).State = EntityState.Modified;
                 entities.SaveChanges();
             }
@@ -113,8 +113,8 @@ namespace TelerikMvcWebMail.Models
             else
             {
                 var entity = task.ToEntity();
-                entities.Notes.Attach(entity);
-                entities.Notes.Remove(entity);
+                entities.Tasks.Attach(entity);
+                entities.Tasks.Remove(entity);
                 entities.SaveChanges();
             }
         }

@@ -64,11 +64,11 @@ namespace TelerikMvcWebMail.Models
         }
 
         [StringLength(50)]
-        public string Folder { get; set; }
+        public string Category { get; set; }
 
-        public Contact ToEntity()
+        public Person ToEntity()
         {
-            return new Contact
+            return new Person
             {
                 City = City,
                 Company = Company,
@@ -77,7 +77,7 @@ namespace TelerikMvcWebMail.Models
                 Id = EmployeeID,
                 Name = Name,
                 Phone = Phone,
-                Folder = Folder,
+                Category = Category,
                 Title = Title
             };
         }

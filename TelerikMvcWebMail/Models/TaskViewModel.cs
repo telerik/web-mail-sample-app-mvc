@@ -17,9 +17,9 @@ namespace TelerikMvcWebMail.Models
 
         public string Content { get; set; }
 
-        internal Note ToEntity()
+        internal Task ToEntity()
         {
-            return new Note
+            return new Task
             {
                 Category = Category,
                 DateCreated = CreatedOn,

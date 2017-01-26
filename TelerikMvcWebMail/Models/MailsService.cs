@@ -23,7 +23,7 @@ namespace TelerikMvcWebMail.Models
 
             if (result == null || UpdateDatabase)
             {
-                result = entities.Messages.Select(message => new MailViewModel
+                result = entities.Mails.Select(message => new MailViewModel
                 {
                     ID = message.MessageID,
                     IsRead = message.IsRead,
@@ -32,7 +32,7 @@ namespace TelerikMvcWebMail.Models
                     Subject = message.Subject,
                     Date = message.Received,
                     Text = message.Body,
-                    Folder = message.Folder,
+                    Category = message.Category,
                     Email = message.Email
                 }).ToList();
 
@@ -60,7 +60,7 @@ namespace TelerikMvcWebMail.Models
             {
                 var entity = mail.ToEntity();
 
-                entities.Messages.Add(entity);
+                entities.Mails.Add(entity);
                 entities.SaveChanges();
 
                 mail.ID = entity.MessageID;
@@ -81,7 +81,7 @@ namespace TelerikMvcWebMail.Models
                     target.Date = mail.Date;
                     target.IsRead = mail.IsRead;
                     target.To = mail.To;
-                    target.Folder = mail.Folder;
+                    target.Category = mail.Category;
                     target.ID = mail.ID;
                     target.Email = mail.Email;
                 }
@@ -89,7 +89,7 @@ namespace TelerikMvcWebMail.Models
             else
             {
                 var entity = mail.ToEntity();
-                entities.Messages.Attach(entity);
+                entities.Mails.Attach(entity);
                 entities.Entry(entity).State = EntityState.Modified;
                 entities.SaveChanges();
             }

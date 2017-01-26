@@ -24,7 +24,7 @@ namespace TelerikMvcWebMail.Models
 
             if (result == null || UpdateDatabase)
             {
-                result = entities.Contacts.Select(e => new ContactViewModel
+                result = entities.People.Select(e => new ContactViewModel
                 {
                     EmployeeID = e.Id,
                     Name = e.Name,
@@ -32,7 +32,7 @@ namespace TelerikMvcWebMail.Models
                     Country = e.Country,
                     City = e.City,
                     Company = e.Company,
-                    Folder = e.Folder,
+                    Category = e.Category,
                     Title = e.Title,
                     Email = e.Email
                 }).ToList();
@@ -66,7 +66,7 @@ namespace TelerikMvcWebMail.Models
             {
                 var entity = contact.ToEntity();
 
-                entities.Contacts.Add(entity);
+                entities.People.Add(entity);
                 entities.SaveChanges();
 
                 contact.EmployeeID = entity.Id;
@@ -86,7 +86,7 @@ namespace TelerikMvcWebMail.Models
 
                 if (target != null)
                 {
-                    target.Folder = contact.Folder;
+                    target.Category = contact.Category;
                     target.City = contact.City;
                     target.Company = contact.Company;
                     target.Country = contact.Country;
@@ -99,7 +99,7 @@ namespace TelerikMvcWebMail.Models
             else
             {
                 var entity = contact.ToEntity();
-                entities.Contacts.Attach(entity);
+                entities.People.Attach(entity);
                 entities.Entry(entity).State = EntityState.Modified;
                 entities.SaveChanges();
             }
@@ -118,8 +118,8 @@ namespace TelerikMvcWebMail.Models
             else
             {
                 var entity = contact.ToEntity();
-                entities.Contacts.Attach(entity);
-                entities.Contacts.Remove(entity);
+                entities.People.Attach(entity);
+                entities.People.Remove(entity);
                 entities.SaveChanges();
             }
         }

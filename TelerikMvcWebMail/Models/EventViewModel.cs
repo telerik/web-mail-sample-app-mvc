@@ -52,7 +52,7 @@ namespace TelerikMvcWebMail.Models
 
         public bool IsAllDay { get; set; }
 
-        public int? OwnerID { get; set; }
+        public int? Category { get; set; }
 
         private bool isAllDay;
         bool ISchedulerEvent.IsAllDay
@@ -72,7 +72,7 @@ namespace TelerikMvcWebMail.Models
         {
             return new Event
             {
-                TaskID = TaskID,
+                EventID = TaskID,
                 Title = Title,
                 Start = Start,
                 End = End,
@@ -83,7 +83,7 @@ namespace TelerikMvcWebMail.Models
                 EndTimezone = EndTimezone,
                 RecurrenceID = RecurrenceID,
                 IsAllDay = IsAllDay,
-                OwnerID = OwnerID
+                Category = Category
             };
         }
     }

@@ -4,43 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WebMailModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="WebMailModelStoreContainer">
-          <EntitySet Name="Contacts" EntityType="WebMailModel.Store.Contacts" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Events" EntityType="WebMailModel.Store.Events" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Messages" EntityType="WebMailModel.Store.Messages" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Notes" EntityType="WebMailModel.Store.Notes" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Tasks_Tasks" Association="WebMailModel.Store.FK_Tasks_Tasks">
-            <End Role="Events" EntitySet="Events" />
-            <End Role="Events1" EntitySet="Events" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Contacts">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nchar" Nullable="false" MaxLength="5" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" />
-          <Property Name="Country" Type="nvarchar" MaxLength="25" />
-          <Property Name="City" Type="nvarchar" MaxLength="30" />
-          <Property Name="Company" Type="nvarchar" MaxLength="40" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="30" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="ImageUrl" Type="nvarchar" MaxLength="15" />
-          <Property Name="FolderId" Type="int" />
-          <Property Name="Folder" Type="nvarchar" MaxLength="50" />
-        </EntityType>
+      <Schema Namespace="WebMailModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Events">
           <Key>
-            <PropertyRef Name="TaskID" />
+            <PropertyRef Name="EventID" />
           </Key>
-          <Property Name="TaskID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Start" Type="datetime" Nullable="false" />
           <Property Name="End" Type="datetime" Nullable="false" />
           <Property Name="Title" Type="ntext" Nullable="false" />
           <Property Name="Description" Type="ntext" />
-          <Property Name="OwnerID" Type="int" />
+          <Property Name="Category" Type="int" />
           <Property Name="IsAllDay" Type="bit" Nullable="false" />
           <Property Name="RecurrenceRule" Type="ntext" />
           <Property Name="RecurrenceID" Type="int" />
@@ -48,11 +22,11 @@
           <Property Name="StartTimezone" Type="ntext" />
           <Property Name="EndTimezone" Type="ntext" />
         </EntityType>
-        <EntityType Name="Messages">
+        <EntityType Name="Mails">
           <Key>
             <PropertyRef Name="MessageID" />
           </Key>
-          <Property Name="MessageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Body" Type="nvarchar(max)" />
           <Property Name="From" Type="nvarchar" MaxLength="256" />
           <Property Name="Email" Type="nvarchar" MaxLength="256" />
@@ -60,150 +34,153 @@
           <Property Name="Received" Type="smalldatetime" />
           <Property Name="IsRead" Type="bit" />
           <Property Name="To" Type="nvarchar" MaxLength="256" />
-          <Property Name="Folder" Type="nvarchar" MaxLength="50" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Notes">
+        <EntityType Name="People">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="nchar" MaxLength="5" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="25" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" />
+          <Property Name="Company" Type="nvarchar" MaxLength="40" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="30" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Subject" Type="nvarchar" MaxLength="256" />
-          <Property Name="FolderId" Type="int" />
           <Property Name="DateCreated" Type="smalldatetime" />
           <Property Name="NoteContent" Type="nvarchar" MaxLength="500" />
           <Property Name="Category" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Tasks_Tasks">
-          <End Role="Events" Type="WebMailModel.Store.Events" Multiplicity="0..1" />
-          <End Role="Events1" Type="WebMailModel.Store.Events" Multiplicity="*" />
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Events1" Type="Self.Events" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Events">
-              <PropertyRef Name="TaskID" />
+              <PropertyRef Name="EventID" />
             </Principal>
             <Dependent Role="Events1">
               <PropertyRef Name="RecurrenceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema Namespace="WebMailModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="WebMailEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Contacts" EntityType="WebMailModel.Contact" />
-          <EntitySet Name="Events" EntityType="WebMailModel.Event" />
-          <EntitySet Name="Messages" EntityType="WebMailModel.Message" />
-          <EntitySet Name="Notes" EntityType="WebMailModel.Note" />
-          <AssociationSet Name="FK_Tasks_Tasks" Association="WebMailModel.FK_Tasks_Tasks">
+        <EntityContainer Name="WebMailModelStoreContainer">
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mails" EntityType="Self.Mails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tasks_Tasks" Association="Self.FK_Tasks_Tasks">
             <End Role="Events" EntitySet="Events" />
             <End Role="Events1" EntitySet="Events" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Contact">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="true" />
-          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Title" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Country" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
-          <Property Name="City" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="Company" Type="String" MaxLength="40" Unicode="true" FixedLength="false" />
-          <Property Name="Phone" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ImageUrl" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
-          <Property Name="FolderId" Type="Int32" />
-          <Property Name="Folder" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebMailModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Event">
           <Key>
-            <PropertyRef Name="TaskID" />
+            <PropertyRef Name="EventID" />
           </Key>
-          <Property Name="TaskID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Start" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="End" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="OwnerID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="Int32" />
           <Property Name="IsAllDay" Type="Boolean" Nullable="false" />
-          <Property Name="RecurrenceRule" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="RecurrenceRule" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RecurrenceID" Type="Int32" />
-          <Property Name="RecurrenceException" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="StartTimezone" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="EndTimezone" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Events1" Relationship="WebMailModel.FK_Tasks_Tasks" FromRole="Events" ToRole="Events1" />
-          <NavigationProperty Name="Event1" Relationship="WebMailModel.FK_Tasks_Tasks" FromRole="Events1" ToRole="Events" />
+          <Property Name="RecurrenceException" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartTimezone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EndTimezone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Events1" Relationship="Self.FK_Tasks_Tasks" FromRole="Events" ToRole="Events1" />
+          <NavigationProperty Name="Event1" Relationship="Self.FK_Tasks_Tasks" FromRole="Events1" ToRole="Events" />
         </EntityType>
-        <EntityType Name="Message">
+        <EntityType Name="Mail">
           <Key>
             <PropertyRef Name="MessageID" />
           </Key>
-          <Property Name="MessageID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Body" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="From" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="Email" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="Subject" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="From" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Received" Type="DateTime" Precision="0" />
           <Property Name="IsRead" Type="Boolean" />
-          <Property Name="To" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="Folder" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="To" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Note">
+        <EntityType Name="Person">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Subject" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="FolderId" Type="Int32" />
+          <Property Name="Id" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="DateCreated" Type="DateTime" Precision="0" />
-          <Property Name="NoteContent" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <Property Name="Category" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="NoteContent" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Tasks_Tasks">
-          <End Role="Events" Type="WebMailModel.Event" Multiplicity="0..1" />
-          <End Role="Events1" Type="WebMailModel.Event" Multiplicity="*" />
+          <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+          <End Role="Events1" Type="Self.Event" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Events">
-              <PropertyRef Name="TaskID" />
+              <PropertyRef Name="EventID" />
             </Principal>
             <Dependent Role="Events1">
               <PropertyRef Name="RecurrenceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="WebMailEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="Mails" EntityType="Self.Mail" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <AssociationSet Name="FK_Tasks_Tasks" Association="Self.FK_Tasks_Tasks">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Events1" EntitySet="Events" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="WebMailModelStoreContainer" CdmEntityContainer="WebMailEntities">
-          <EntitySetMapping Name="Contacts">
-            <EntityTypeMapping TypeName="WebMailModel.Contact">
-              <MappingFragment StoreEntitySet="Contacts">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-                <ScalarProperty Name="FolderId" ColumnName="FolderId" />
-                <ScalarProperty Name="Folder" ColumnName="Folder" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="WebMailModel.Event">
               <MappingFragment StoreEntitySet="Events">
-                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
                 <ScalarProperty Name="Start" ColumnName="Start" />
                 <ScalarProperty Name="End" ColumnName="End" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="IsAllDay" ColumnName="IsAllDay" />
                 <ScalarProperty Name="RecurrenceRule" ColumnName="RecurrenceRule" />
                 <ScalarProperty Name="RecurrenceID" ColumnName="RecurrenceID" />
@@ -213,9 +190,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Messages">
-            <EntityTypeMapping TypeName="WebMailModel.Message">
-              <MappingFragment StoreEntitySet="Messages">
+          <EntitySetMapping Name="Mails">
+            <EntityTypeMapping TypeName="WebMailModel.Mail">
+              <MappingFragment StoreEntitySet="Mails">
                 <ScalarProperty Name="MessageID" ColumnName="MessageID" />
                 <ScalarProperty Name="Body" ColumnName="Body" />
                 <ScalarProperty Name="From" ColumnName="From" />
@@ -224,16 +201,30 @@
                 <ScalarProperty Name="Received" ColumnName="Received" />
                 <ScalarProperty Name="IsRead" ColumnName="IsRead" />
                 <ScalarProperty Name="To" ColumnName="To" />
-                <ScalarProperty Name="Folder" ColumnName="Folder" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Notes">
-            <EntityTypeMapping TypeName="WebMailModel.Note">
-              <MappingFragment StoreEntitySet="Notes">
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="WebMailModel.Person">
+              <MappingFragment StoreEntitySet="People">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="WebMailModel.Task">
+              <MappingFragment StoreEntitySet="Tasks">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
-                <ScalarProperty Name="FolderId" ColumnName="FolderId" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="NoteContent" ColumnName="NoteContent" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
@@ -254,8 +245,10 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
