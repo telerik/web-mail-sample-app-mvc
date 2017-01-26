@@ -2,7 +2,7 @@
     var treeview = $("#navigationTreeView").data("kendoTreeView");
     if (!Cookies.get('selected')) {
         Cookies.remove('selectedNodeText');
-        enableDisableMenuItems(false, "noselection");
+        setMenuItemsAvailability(false, "noselection");
     }
 
     if (Cookies.get('selectedNodeText')) {
@@ -49,10 +49,12 @@
 
         if (checked) {
             tasksGrid.select('tr');
+            setMenuItemsAvailability(false, "multiselection");
 
         } else {
             tasksGrid.clearSelection();
-            enableDisableMenuItems(false, "noselection");
+            setMenuItemsAvailability(true);
+            setMenuItemsAvailability(false, "noselection");
         }
     });
 });
@@ -220,7 +222,7 @@ function dataSourceRequestEnd(e) {
     setTimeout(function () {
         var grid = $("#mainWidget").data("kendoGrid");
         if (grid.dataSource.view().length == 0) {
-            enableDisableMenuItems(false, "noselection");
+            setMenuItemsAvailability(false, "noselection");
         }
     }, 100)
 }
@@ -348,7 +350,7 @@ function bindCheckboxes() {
             if (resultSelection.length === 0) {
                 $('input.master-checkbox').prop('checked', false);
                 $(".mail-details-wrapper").addClass("empty");
-                enableDisableMenuItems(false, "noselection");
+                setMenuItemsAvailability(false, "noselection");
             }
         }
     });
@@ -365,11 +367,10 @@ function mailSelectionChanged(e) {
         populateDetailsView(dataItem);
         $(".mail-details-wrapper").removeClass("empty");
 
-        enableDisableMenuItems(true);
+        setMenuItemsAvailability(true);
     } else {
         $(".mail-details-wrapper").addClass("empty");
-
-        enableDisableMenuItems(false, "multiselection");
+        setMenuItemsAvailability(false, "multiselection");
     }
 }
 
@@ -382,35 +383,37 @@ function mailContextMenuOpen(e) {
     }
 }
 
-function enableDisableMenuItems(isEnabled, selection) {
+function setMenuItemsAvailability(isEnabled, selection) {
     var menu = $('#mailMenu').data('kendoMenu');
     var contextMenu = $('#mailContextMenu').data('kendoContextMenu');
 
     if (isEnabled) {
-        $("#mailMenu").find(".k-item").each(function (index) {
-            menu.enable($(this), isEnabled);
-        });
-        $("#mailContextMenu").find(".k-item").each(function (index) {
-            contextMenu.enable($(this), isEnabled);
-        });
+        toggleEnableMenuItems(menu, "mailMenu", isEnabled);
+        toggleEnableMenuItems(contextMenu, "mailContextMenu", isEnabled);
     }
     else if (!isEnabled && selection == "noselection") {
-        $("#mailMenu").find(".k-item").each(function (index) {
-            menu.enable($(this), isEnabled);
-        });
+        toggleEnableMenuItems(menu, "mailMenu", isEnabled);
     }
     else if (!isEnabled && selection == "multiselection") {
         var itemsIds = ["RE", "RE_ALL", "FW", "print"];
 
-            itemsIds.forEach(function (itemID) {
-                $("#mailMenu").find(".k-item[id=" + itemID + "]").each(function (index) {
-                    menu.enable($(this), isEnabled);
-                });
-                $("#mailContextMenu").find(".k-item[id=" + itemID + "]").each(function (index) {
-                    contextMenu.enable($(this), isEnabled);
-                });
+        toggleEnableMenuItems(menu, "mailMenu", true);
+
+        itemsIds.forEach(function (itemID) {
+            $("#mailMenu").find(".k-item[id=" + itemID + "]").each(function (index) {
+                menu.enable($(this), isEnabled);
             });
+            $("#mailContextMenu").find(".k-item[id=" + itemID + "]").each(function (index) {
+                contextMenu.enable($(this), isEnabled);
+            });
+        });
     }
+}
+
+function toggleEnableMenuItems(widget, widgetId, isEnabled) {
+    $("#" + widgetId).find(".k-item").each(function (index) {
+        widget.enable($(this), isEnabled);
+    });
 }
 
 function checkSelectedCheckbox(selectedRows) {
