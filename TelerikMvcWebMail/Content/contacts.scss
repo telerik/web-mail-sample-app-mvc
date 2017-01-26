@@ -69,7 +69,7 @@
         }
 
         .image-wrapper {
-            float: left;
+            flex: none;
             overflow: hidden;
         }
 
@@ -118,6 +118,13 @@
     }
 
         .header {
+            display: flex;
+
+            .name {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
 
             &:after {
                 content: "";
@@ -253,9 +260,6 @@
             padding-top: 7px;
             font-weight: 100;
             font-size: 18px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .edit-buttons {

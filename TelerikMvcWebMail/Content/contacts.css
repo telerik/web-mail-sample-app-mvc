@@ -39,7 +39,7 @@
   .contact-view:hover .edit-buttons {
     display: block; }
   .contact-view .image-wrapper {
-    float: left;
+    flex: none;
     overflow: hidden; }
   .contact-view img {
     width: 100%; }
@@ -71,10 +71,16 @@
       width: 100%;
       display: inline-block; }
 
-.header:after {
-  content: "";
-  display: block;
-  clear: both; }
+.header {
+  display: flex; }
+  .header .name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  .header:after {
+    content: "";
+    display: block;
+    clear: both; }
 
 .image-wrapper {
   width: 70px;
@@ -155,10 +161,7 @@
   display: inline-block;
   padding-top: 7px;
   font-weight: 100;
-  font-size: 18px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; }
+  font-size: 18px; }
 
 .card-view .header .edit-buttons {
   display: block;
