@@ -187,7 +187,7 @@ body > div:last-child {
           color: #1e8edf; }
       .main-section .toolbar .btn.btn-cards:before {
         content: "\e02a"; }
-      .main-section .toolbar .btn.btn-vertical-pane:before, .main-section .toolbar .btn.btn-listdetails:before {
+      .main-section .toolbar .btn.btn-vertical-pane:before {
         content: "\e029";
         transform: rotate(180deg); }
       .main-section .toolbar .btn.btn-horizontal-pane:before {

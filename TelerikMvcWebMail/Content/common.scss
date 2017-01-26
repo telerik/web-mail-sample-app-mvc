@@ -269,8 +269,7 @@ body > div:last-child {
                 content: "\e02a";
             }
 
-            &.btn-vertical-pane:before,
-            &.btn-listdetails:before {
+            &.btn-vertical-pane:before {
                 content: "\e029";
                 transform: rotate(180deg);
             }
