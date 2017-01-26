@@ -90,26 +90,13 @@ tbody:empty:before {
   border-bottom: 1px solid #ededed; }
 
 #mailMenu {
-  border-width: 0 0 1px; }
+  border-width: 0; }
   #mailMenu > .k-item {
     border: 0;
     float: left; }
     #mailMenu > .k-item .k-link {
       padding-top: .8em;
       padding-bottom: .8em; }
-    #mailMenu > .k-item.iconsOnly {
-      float: right; }
-      #mailMenu > .k-item.iconsOnly .k-link:before {
-        font-size: 16px;
-        display: block;
-        font-family: WebComponentsIcons;
-        text-align: center; }
-    #mailMenu > .k-item#horizontalPanes .k-link:before {
-      content: "\e02c";
-      transform: rotate(180deg); }
-    #mailMenu > .k-item#verticalPanes .k-link:before {
-      content: "\e029";
-      transform: rotate(180deg); }
   #mailMenu .k-link.k-state-active {
     color: #fff;
     border-color: #1e8edf;

@@ -70,9 +70,6 @@ function mailMenuSelect(e) {
         case "print":
             mailPrint();
             break;
-        case "changeView":
-            e.item.id == "verticalPanes" ? changeToVerticalPanes(e) : changeToHorizontalPanes(e);
-            break;
     }
 }
 
@@ -398,9 +395,7 @@ function enableDisableMenuItems(isEnabled, selection) {
     }
     else if (!isEnabled && selection == "noselection") {
         $("#mailMenu").find(".k-item").each(function (index) {
-            if ($(this)[0].id != "horizontalPanes" && $(this)[0].id != "verticalPanes") {
-                menu.enable($(this), isEnabled);
-            }
+            menu.enable($(this), isEnabled);
         });
     }
     else if (!isEnabled && selection == "multiselection") {

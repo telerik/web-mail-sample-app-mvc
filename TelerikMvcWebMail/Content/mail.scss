@@ -135,7 +135,7 @@ tbody:empty:before {
 }
 
 #mailMenu {
-    border-width: 0 0 1px;
+    border-width: 0;
 
     & > .k-item {
         border: 0;
@@ -144,31 +144,6 @@ tbody:empty:before {
         .k-link {
             padding-top: .8em;
             padding-bottom: .8em;
-        }
-
-        &.iconsOnly {
-            float: right;
-
-                .k-link:before {
-                    font-size: 16px;
-                    display: block;
-                    font-family: WebComponentsIcons;
-                    text-align: center;
-                }
-        }
-
-        &#horizontalPanes {
-            .k-link:before {
-                content: "\e02c";
-                transform: rotate(180deg);
-            }
-        }
-
-        &#verticalPanes {
-            .k-link:before {
-                content: "\e029";
-                transform: rotate(180deg);
-            }
         }
     }
 

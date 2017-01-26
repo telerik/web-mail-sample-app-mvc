@@ -170,27 +170,38 @@ body > div:last-child {
       float: left; }
     .main-section .toolbar .right {
       float: right; }
-      .main-section .toolbar .right .btn {
-        padding: 9px;
-        width: 1.42857em; }
-        .main-section .toolbar .right .btn:before {
-          font: 16px WebComponentsIcons; }
-    .main-section .toolbar:after {
-      content: "";
-      display: block;
-      clear: both; }
     .main-section .toolbar .btn {
       display: inline-block;
-      padding: 9px 16px;
+      padding: 0.71em 16px;
       line-height: 1.42857;
       height: 1.42857em;
       text-align: center;
       cursor: pointer; }
+      .main-section .toolbar .btn.iconOnly {
+        width: 1.42857em;
+        padding: 0.71em; }
+        .main-section .toolbar .btn.iconOnly:before {
+          font: 16px WebComponentsIcons;
+          display: inline-block; }
+        .main-section .toolbar .btn.iconOnly.selected {
+          color: #1e8edf; }
+      .main-section .toolbar .btn.btn-cards:before {
+        content: "\e02a"; }
+      .main-section .toolbar .btn.btn-vertical-pane:before, .main-section .toolbar .btn.btn-listdetails:before {
+        content: "\e029";
+        transform: rotate(180deg); }
+      .main-section .toolbar .btn.btn-horizontal-pane:before {
+        content: "\e02c";
+        transform: rotate(180deg); }
       .main-section .toolbar .btn:hover {
         background: #ebebeb; }
-      .main-section .toolbar .btn:active {
+      .main-section .toolbar .btn:not(.iconOnly):active {
         color: #fff;
         background: #1e8edf; }
+    .main-section .toolbar:after {
+      content: "";
+      display: block;
+      clear: both; }
 
 .inner-section {
   display: flex;

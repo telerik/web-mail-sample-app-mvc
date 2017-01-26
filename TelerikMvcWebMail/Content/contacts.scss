@@ -6,25 +6,6 @@
     flex-direction: column;
 }
 
-.btn {
-
-
-    &.selected {
-        color: $accent;
-    }
-
-}
-
-    .btn-cards:before {
-        content: "\e02a";
-    }
-
-    .btn-listdetails:before {
-        content: "\e029";
-        display: block;
-        transform: rotate(180deg);
-    }
-
 
 .inner-section {
 

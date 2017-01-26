@@ -11,51 +11,57 @@
 @Html.Partial("Sidebar")
 
 <section class="main-section horizontal">
-    @(Html.Kendo().Menu()
-        .Name("mailMenu")
-        .OpenOnClick(true)
-        .Items(items =>
-        {
-            items.Add()
-                .Text("Reply")
-                .Items(children =>
+    <div class="toolbar">
+        <div class="left">
+            @(Html.Kendo().Menu()
+                .Name("mailMenu")
+                .OpenOnClick(true)
+                .Items(items =>
                 {
-                    children.Add().Text("Reply").HtmlAttributes(new { @id = "RE", @operation = "replyForward" });
-                    children.Add().Text("Reply All").HtmlAttributes(new { @id = "RE_ALL", @operation = "replyForward" });
-                    children.Add().Text("Forward").HtmlAttributes(new { @id = "FW", @operation = "replyForward" });
-                });
-            items.Add().Text("Delete").HtmlAttributes(new { @id = "Deleted", @operation = "moveDelete" });
-            items.Add()
-                .Text("Move")
-                .Items(children =>
-                {
-                    children.Add().Text("Inbox").HtmlAttributes(new { @id = "Inbox", @operation = "moveDelete" });
-                    children.Add().Text("Junk").HtmlAttributes(new { @id = "Junk", @operation = "moveDelete" });
-                    children.Add().Text("Drafts").HtmlAttributes(new { @id = "Drafts", @operation = "moveDelete" });
-                    children.Add().Text("Deleted").HtmlAttributes(new { @id = "Deleted", @operation = "moveDelete" });
-                    children.Add().Text("NativeScript").HtmlAttributes(new { @id = "NativeScript", @operation = "moveDelete" });
-                    children.Add().Text("KendoUI").HtmlAttributes(new { @id = "KendoUI", @operation = "moveDelete" });
-                    children.Add().Text("Sitefinity").HtmlAttributes(new { @id = "Sitefinity", @operation = "moveDelete" });
-                });
-            items.Add()
-                .Text("Junk")
-                .Items(children =>
-                {
-                    children.Add().Text("Report Spam").HtmlAttributes(new { @id = "Junk", @operation = "moveDelete" });
-                });
-            items.Add()
-                .Text("More")
-                .Items(children =>
-                {
-                    children.Add().Text("Mark as read").HtmlAttributes(new { @id = "read", @operation = "readUnread" });
-                    children.Add().Text("Mark as unread").HtmlAttributes(new { @id = "unread", @operation = "readUnread" });
-                    children.Add().Text("Print").HtmlAttributes(new { @id = "print", @operation = "print" });
-                });
-            items.Add().HtmlAttributes(new { @id = "horizontalPanes", @operation = "changeView", @class = "iconsOnly selected", @title = "Horizontal Panes" });
-            items.Add().HtmlAttributes(new { @id = "verticalPanes", @operation = "changeView", @class = "iconsOnly", @title = "Vertical Panes" });
-        })
-        .Events(e => e.Select("mailMenuSelect"))
-    )
+                    items.Add()
+                        .Text("Reply")
+                        .Items(children =>
+                        {
+                            children.Add().Text("Reply").HtmlAttributes(new { @id = "RE", @operation = "replyForward" });
+                            children.Add().Text("Reply All").HtmlAttributes(new { @id = "RE_ALL", @operation = "replyForward" });
+                            children.Add().Text("Forward").HtmlAttributes(new { @id = "FW", @operation = "replyForward" });
+                        });
+                    items.Add().Text("Delete").HtmlAttributes(new { @id = "Deleted", @operation = "moveDelete" });
+                    items.Add()
+                        .Text("Move")
+                        .Items(children =>
+                        {
+                            children.Add().Text("Inbox").HtmlAttributes(new { @id = "Inbox", @operation = "moveDelete" });
+                            children.Add().Text("Junk").HtmlAttributes(new { @id = "Junk", @operation = "moveDelete" });
+                            children.Add().Text("Drafts").HtmlAttributes(new { @id = "Drafts", @operation = "moveDelete" });
+                            children.Add().Text("Deleted").HtmlAttributes(new { @id = "Deleted", @operation = "moveDelete" });
+                            children.Add().Text("NativeScript").HtmlAttributes(new { @id = "NativeScript", @operation = "moveDelete" });
+                            children.Add().Text("KendoUI").HtmlAttributes(new { @id = "KendoUI", @operation = "moveDelete" });
+                            children.Add().Text("Sitefinity").HtmlAttributes(new { @id = "Sitefinity", @operation = "moveDelete" });
+                        });
+                    items.Add()
+                        .Text("Junk")
+                        .Items(children =>
+                        {
+                            children.Add().Text("Report Spam").HtmlAttributes(new { @id = "Junk", @operation = "moveDelete" });
+                        });
+                    items.Add()
+                        .Text("More")
+                        .Items(children =>
+                        {
+                            children.Add().Text("Mark as read").HtmlAttributes(new { @id = "read", @operation = "readUnread" });
+                            children.Add().Text("Mark as unread").HtmlAttributes(new { @id = "unread", @operation = "readUnread" });
+                            children.Add().Text("Print").HtmlAttributes(new { @id = "print", @operation = "print" });
+                        });
+                })
+                .Events(e => e.Select("mailMenuSelect"))
+            )
+        </div>
+        <div class="right">
+            <span class="btn btn-vertical-pane iconOnly" onclick="changeToVerticalPanes(this)" title="Display vertical panes"></span>
+            <span class="btn btn-horizontal-pane selected iconOnly" onclick=" changeToHorizontalPanes(this)" title="Display cards"></span>
+        </div>
+    </div>
     <div class="inner-section">
         <div class="mail-grid">
             <span class="searchbox">

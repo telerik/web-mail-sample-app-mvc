@@ -241,14 +241,52 @@ body > div:last-child {
 
         .right {
             float: right;
+        }
 
-            .btn {
-                padding: 9px;
+        .btn {
+            display: inline-block;
+            padding: 0.71em 16px;
+            line-height: (20/14);
+            height: (20/14)*1em;
+            text-align: center;
+            cursor: pointer;
+
+            &.iconOnly {
                 width: (20/14)*1em;
+                padding: 0.71em;
 
                 &:before {
                     font: 16px WebComponentsIcons;
+                    display: inline-block;
                 }
+
+                &.selected {
+                    color: $accent;
+                }
+            }
+
+            &.btn-cards:before {
+                content: "\e02a";
+            }
+
+            &.btn-vertical-pane:before,
+            &.btn-listdetails:before {
+                content: "\e029";
+                transform: rotate(180deg);
+            }
+
+            &.btn-horizontal-pane:before {
+                content: "\e02c";
+                transform: rotate(180deg);
+            }
+
+            &:hover {
+                background: #ebebeb;
+            }
+
+            &:not(.iconOnly):active {
+                color: #fff;
+                background: #1e8edf;
             }
         }
 
@@ -256,24 +294,6 @@ body > div:last-child {
             content: "";
             display: block;
             clear: both;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 9px 16px;
-            line-height: (20/14);
-            height: (20/14)*1em;
-            text-align: center;
-            cursor: pointer;
-
-            &:hover {
-                background: #ebebeb;
-            }
-
-            &:active {
-                color: #fff;
-                background: #1e8edf;
-            }
         }
     }
 }
