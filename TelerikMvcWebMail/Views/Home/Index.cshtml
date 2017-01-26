@@ -49,8 +49,8 @@
                         .Text("More")
                         .Items(children =>
                         {
-                            children.Add().Text("Mark as read").HtmlAttributes(new { @id = "read", @operation = "readUnread" });
                             children.Add().Text("Mark as unread").HtmlAttributes(new { @id = "unread", @operation = "readUnread" });
+                            children.Add().Text("Mark as read").HtmlAttributes(new { @id = "read", @operation = "readUnread" });
                             children.Add().Text("Print").HtmlAttributes(new { @id = "print", @operation = "print" });
                         });
                 })

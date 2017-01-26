@@ -52,6 +52,7 @@
 
         } else {
             tasksGrid.clearSelection();
+            enableDisableMenuItems(false, "noselection");
         }
     });
 });
