@@ -2,6 +2,7 @@
     var treeview = $("#navigationTreeView").data("kendoTreeView");
     if (!Cookies.get('selected')) {
         Cookies.remove('selectedNodeText');
+        enableDisableMenuItems(false, "noselection");
     }
 
     if (Cookies.get('selectedNodeText')) {
@@ -349,6 +350,7 @@ function bindCheckboxes() {
             if (resultSelection.length === 0) {
                 $('input.master-checkbox').prop('checked', false);
                 $(".mail-details-wrapper").addClass("empty");
+                enableDisableMenuItems(false, "noselection");
             }
         }
     });
