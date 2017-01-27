@@ -1,8 +1,10 @@
 ﻿var navigated = false;
 var marked = false;
+var markedAsUnread = false;
 var savedScroll = 0;
 
 $(document).ready(function () {
+    // Preselect Mails category
     var treeview = $("#navigationTreeView").data("kendoTreeView");
     if (!Cookies.get('selected')) {
         Cookies.remove('selectedNodeText');
@@ -21,6 +23,7 @@ $(document).ready(function () {
         $(".main-section").removeClass("horizontal").removeClass("vertical");
     });
 
+    // Attach new mails handler
     $("#mainWidget").on("mousedown", "tr[role='row']", function (e) {
         if (e.which === 3) {
             if (!$(this).hasClass("k-state-selected")) {
@@ -31,6 +34,7 @@ $(document).ready(function () {
         }
     });
 
+    // Attach search textbox handler
     $(".search-textbox").on('keyup', function (e) {
         var text = $(e.target).val().toLowerCase();
         var mailGrid = $("#mainWidget").data("kendoGrid");
@@ -47,6 +51,7 @@ $(document).ready(function () {
         });
     });
 
+    // Attach master checkbox handler
     $('.master-checkbox').on('change', function (e) {
         var checked = e.target.checked;
         var tasksGrid = $("#mainWidget").data("kendoGrid");
@@ -63,10 +68,14 @@ $(document).ready(function () {
     });
 });
 
+// Menu select item handler and its functions
 function mailMenuSelect(e) {
     switch (e.item.getAttribute("operation")) {
-        case "replyForward":
-            mailReplyForward(e.item.id);
+        case "reply":
+            mailReply(e.item.id);
+            break;
+        case "forward":
+            mailForward(e.item.id);
             break;
         case "moveDelete":
             mailMoveDelete(e.item.id);
@@ -77,6 +86,33 @@ function mailMenuSelect(e) {
         case "print":
             mailPrint();
             break;
+    }
+}
+
+function mailReply(id) {
+    var grid = $("#mainWidget").data("kendoGrid");
+    var selected = grid.dataItem(grid.select());
+
+    if (!selected) {
+        $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?id=' + id);
+    }
+    else {
+        var subject = selected.Subject.replace(/ /g, '%20');
+        var mailTo = selected.Email;
+        $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?id=' + id + '&mailTo=' + mailTo + '&subject=' + subject);
+    }
+}
+
+function mailForward(id) {
+    var grid = $("#mainWidget").data("kendoGrid");
+    var selected = grid.dataItem(grid.select());
+
+    if (!selected) {
+        $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?id=' + id);
+    }
+    else {
+        var subject = selected.Subject.replace(/ /g, '%20');
+        $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?id=' + id + '&subject=' + subject);
     }
 }
 
@@ -92,34 +128,26 @@ function mailMoveDelete(id) {
     grid.dataSource.sync();
 }
 
-function mailReplyForward(id) {
-    var grid = $("#mainWidget").data("kendoGrid");
-    var selected = grid.dataItem(grid.select());
-
-    if (!selected) {
-        $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?id=' + id);
-    }
-    else {
-        var subject = selected.Subject.replace(/ /g, '%20');
-        var mailTo = selected.Email;
-
-        $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?id=' + id + '&mailTo=' + mailTo + '&subject=' + subject);
-    }
-}
-
 function mailMarkAsReadUnread(id) {
     var grid = $("#mainWidget").data("kendoGrid");
     var selectedRows = grid.select();
+    var read;
+
+    if (id === "read") {
+        read = true;
+    } else {
+        read = false;
+    }
 
     for (var i = 0; i < selectedRows.length; i++) {
         var item = grid.dataItem(selectedRows[i]);
-        id == "read" ? item.IsRead = true : item.IsRead = false;
+        item.IsRead = read;
         item.dirty = true;
-        id == "read" ? $(selectedRows[i]).removeClass("unread") : $(selectedRows[i]).addClass("unread");;
+        read === true ? $(selectedRows[i]).removeClass("unread") : $(selectedRows[i]).addClass("unread");;
     }
 
-    if (id == "unread") {
-        Cookies.set('markedAsUnread', 'marked');
+    if (!read) {
+        markedAsUnread = true;
     }
 
     grid.dataSource.sync();
@@ -144,6 +172,7 @@ function mailPrint() {
     }
 }
 
+// Switch between vertical / horizontal panes view
 function changeToVerticalPanes(e) {
     var grid = $("#mainWidget").data("kendoGrid");
     grid.hideColumn(1);
@@ -173,6 +202,7 @@ function updateSelectedClasses(btnElement) {
     $(btnElement).addClass(selectedClass);
 }
 
+// Select category handler in the sidebar navigation
 function selectCategory(e) {
     var dataItem = this.dataItem(e.node);
     var selectedText = e.sender.dataItem(e.node).value;
@@ -191,6 +221,7 @@ function selectCategory(e) {
     filterGrid(selectedText);
 }
 
+// Filter grid according to the currently selected mails category
 function filterGrid(selectedText) {
     var mailsGrid = $("#mainWidget").data("kendoGrid");
     if (!mailsGrid) {
@@ -200,6 +231,7 @@ function filterGrid(selectedText) {
     }
 }
 
+// Get the number of mails in each category
 function getinitialNumberOfItems(gridData) {
     var numbers = { Inbox: 0, Junk: 0, Drafts: 0, Deleted: 0, NativeScript: 0, KendoUI: 0, Sitefinity: 0 };
     for (var i = 0; i < gridData.length; i++) {
@@ -211,26 +243,26 @@ function getinitialNumberOfItems(gridData) {
 }
 
 function dataSourceChange(e) {
-    var grid = $("#mainWidget").data("kendoGrid");
-    var treeview = $("#navigationTreeView").data("kendoTreeView");
-
-    if (e.action === "sync") {
-        var dataItem = treeview.dataItem(treeview.select());
-        if (dataItem) {
-            grid.dataSource.filter({ field: "Category", operator: "contains", value: dataItem.value });
-        }
-    }
+    //var grid = $("#mainWidget").data("kendoGrid");
+    //var treeview = $("#navigationTreeView").data("kendoTreeView");
+    //if (e.action === "sync") {
+    //    var dataItem = treeview.dataItem(treeview.select());
+    //    if (dataItem) {
+    //        grid.dataSource.filter({ field: "Category", operator: "contains", value: dataItem.value });
+    //    }
+    //}
 }
 
 function dataSourceRequestEnd(e) {
-    setTimeout(function () {
-        var grid = $("#mainWidget").data("kendoGrid");
-        if (grid.dataSource.view().length == 0) {
-            setMenuItemsAvailability(false, "noselection");
-        }
-    }, 100)
+    //setTimeout(function () {
+    //    var grid = $("#mainWidget").data("kendoGrid");
+    //    if (grid.dataSource.view().length == 0) {
+    //        setMenuItemsAvailability(false, "noselection");
+    //    }
+    //}, 100)
 }
 
+// Attach mails grid events
 function mailGridDataBound(e) {
     var grid = e.sender;
 
@@ -293,6 +325,77 @@ function mailGridDataBound(e) {
     };
 }
 
+function mailContextMenuOpen(e) {
+    var mailsGrid = $('#mainWidget').data('kendoGrid');
+    var mailsInView = mailsGrid.dataSource.view().length;
+
+    if (mailsInView == 0) {
+        e.preventDefault();
+    }
+}
+
+function mailSelectionChanged(e) {
+    var selectedRows = this.select();
+
+    selectionChanged(e.sender, 'mailsSelectedRow');
+    checkSelectedCheckbox(selectedRows);
+
+    if (selectedRows.length === 1) {
+        var dataItem = this.dataItem(selectedRows[0]);
+        populateDetailsView(dataItem);
+        $(".mail-details-wrapper").removeClass("empty");
+
+        setMenuItemsAvailability(true);
+    } else {
+        $(".mail-details-wrapper").addClass("empty");
+        setMenuItemsAvailability(false, "multiselection");
+    }
+}
+
+function selectionChanged(widget, selectedRowPrefix) {
+    var navigationTreeView = $('#navigationTreeView').data('kendoTreeView');
+    var selectedNode = navigationTreeView.select();
+    var selectedRows = widget.select();
+
+    if (!selectedNode) {
+        return;
+    }
+
+    var selectedNodeData = navigationTreeView.dataItem(selectedNode);
+    var selectedNodeValue = selectedNodeData.value;
+
+    if (selectedRows.length === 1) {
+        var dataItem = widget.dataItem(selectedRows);
+
+        if (markedAsUnread) {
+            markedAsUnread = false;
+        } else if (!dataItem.IsRead) {
+            marked = true;
+            savedScroll = widget.content.scrollTop();
+
+            dataItem.IsRead = true;
+            dataItem.dirty = true;
+            selectedRows.removeClass("unread");
+            debugger
+            widget.dataSource.sync();
+        }
+
+        Cookies.set(selectedRowPrefix + selectedNodeValue, dataItem.ID);
+    } else {
+        var selectedRowsIds = [];
+
+        for (var i = 0; i < selectedRows.length; i++) {
+            var selectedRow = selectedRows[i];
+            var dataItem = widget.dataItem(selectedRow);
+
+            selectedRowsIds.push(dataItem.ID);
+        }
+
+        Cookies.set(selectedRowPrefix + selectedNodeValue, selectedRowsIds.join());
+    }
+}
+
+// Populated selected rows, based on previously saved selection
 function polulateSelectedRows(widget) {
     var navigationTreeView = $('#navigationTreeView').data('kendoTreeView');
     var treeViewSelectedItem = navigationTreeView.select();
@@ -327,6 +430,7 @@ function polulateSelectedRows(widget) {
     }
 }
 
+// Bind mail ceckboxes
 function bindCheckboxes() {
     $('.chkbx').on('change', function (e) {
         var target = $(e.target);
@@ -360,33 +464,7 @@ function bindCheckboxes() {
     });
 }
 
-function mailSelectionChanged(e) {
-    var selectedRows = this.select();
-
-    selectionChanged(e.sender, 'mailsSelectedRow');
-    checkSelectedCheckbox(selectedRows);
-
-    if (selectedRows.length === 1) {
-        var dataItem = this.dataItem(selectedRows[0]);
-        populateDetailsView(dataItem);
-        $(".mail-details-wrapper").removeClass("empty");
-
-        setMenuItemsAvailability(true);
-    } else {
-        $(".mail-details-wrapper").addClass("empty");
-        setMenuItemsAvailability(false, "multiselection");
-    }
-}
-
-function mailContextMenuOpen(e) {
-    var mailsGrid = $('#mainWidget').data('kendoGrid');
-    var mailsInView = mailsGrid.dataSource.view().length;
-
-    if (mailsInView == 0) {
-        e.preventDefault();
-    }
-}
-
+// Configure menu items availability
 function setMenuItemsAvailability(isEnabled, selection) {
     var menu = $('#mailMenu').data('kendoMenu');
     var contextMenu = $('#mailContextMenu').data('kendoContextMenu');
@@ -394,11 +472,9 @@ function setMenuItemsAvailability(isEnabled, selection) {
     if (isEnabled) {
         toggleEnableMenuItems(menu, "mailMenu", isEnabled);
         toggleEnableMenuItems(contextMenu, "mailContextMenu", isEnabled);
-    }
-    else if (!isEnabled && selection == "noselection") {
+    } else if (!isEnabled && selection == "noselection") {
         toggleEnableMenuItems(menu, "mailMenu", isEnabled);
-    }
-    else if (!isEnabled && selection == "multiselection") {
+    } else if (!isEnabled && selection == "multiselection") {
         var itemsIds = ["RE", "RE_ALL", "FW", "print"];
 
         toggleEnableMenuItems(menu, "mailMenu", true);
@@ -420,6 +496,7 @@ function toggleEnableMenuItems(widget, widgetId, isEnabled) {
     });
 }
 
+// Check checkbox on mail selection
 function checkSelectedCheckbox(selectedRows) {
     var mailsGrid = $('#mainWidget').data('kendoGrid');
     var mailsInView = mailsGrid.dataSource.view().length;
@@ -436,53 +513,10 @@ function checkSelectedCheckbox(selectedRows) {
     checkboxes.prop('checked', true);
 }
 
+// Populate the details view with the selected mail
 function populateDetailsView(item) {
     $('.mail-subject').text(item.Subject);
     $('.mail-sender').text(item.To);
     $('.mail-date').text(item.Date);
     $('.mail-text').html(item.Text);
-}
-
-function selectionChanged(widget, selectedRowPrefix) {
-    var navigationTreeView = $('#navigationTreeView').data('kendoTreeView');
-    var selectedNode = navigationTreeView.select();
-    var selectedRows = widget.select();
-
-    if (!selectedNode) {
-        return;
-    }
-
-    var selectedNodeData = navigationTreeView.dataItem(selectedNode);
-    var selectedNodeValue = selectedNodeData.value;
-
-    if (selectedRows.length === 1) {
-        var dataItem = widget.dataItem(selectedRows);
-
-        if (Cookies.get('markedAsUnread') === 'marked') {
-            Cookies.set('markedAsUnread', '');
-        } else if (!dataItem.IsRead) {
-            marked = true;
-            savedScroll = widget.content.scrollTop();
-
-            dataItem.IsRead = true;
-            dataItem.dirty = true;
-            selectedRows.removeClass("unread");
-            widget.dataSource.sync();
-
-
-        }
-
-        Cookies.set(selectedRowPrefix + selectedNodeValue, dataItem.ID);
-    } else {
-        var selectedRowsIds = [];
-
-        for (var i = 0; i < selectedRows.length; i++) {
-            var selectedRow = selectedRows[i];
-            var dataItem = widget.dataItem(selectedRow);
-
-            selectedRowsIds.push(dataItem.ID);
-        }
-
-        Cookies.set(selectedRowPrefix + selectedNodeValue, selectedRowsIds.join());
-    }
 }

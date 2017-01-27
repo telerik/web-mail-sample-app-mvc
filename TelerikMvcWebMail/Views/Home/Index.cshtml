@@ -22,9 +22,9 @@
                         .Text("Reply")
                         .Items(children =>
                         {
-                            children.Add().Text("Reply").HtmlAttributes(new { @id = "RE", @operation = "replyForward" });
-                            children.Add().Text("Reply All").HtmlAttributes(new { @id = "RE_ALL", @operation = "replyForward" });
-                            children.Add().Text("Forward").HtmlAttributes(new { @id = "FW", @operation = "replyForward" });
+                            children.Add().Text("Reply").HtmlAttributes(new { @id = "RE", @operation = "reply" });
+                            children.Add().Text("Reply All").HtmlAttributes(new { @id = "RE_ALL", @operation = "reply" });
+                            children.Add().Text("Forward").HtmlAttributes(new { @id = "FW", @operation = "forward" });
                         });
                     items.Add().Text("Delete").HtmlAttributes(new { @id = "Deleted", @operation = "moveDelete" });
                     items.Add()
@@ -97,8 +97,8 @@
                     .Model(model => model.Id(p => p.ID))
                     .Create(create => create.Action("Create", "Home"))
                     .Read(read => read.Action("Read", "Home"))
-                    .Update(update => update.Action("Update", "Home")).Events(e => e.Change("dataSourceChange").RequestEnd("dataSourceRequestEnd"))
-
+                    .Update(update => update.Action("Update", "Home"))
+                    .Events(e => e.Change("dataSourceChange").RequestEnd("dataSourceRequestEnd"))
                 )
                 .Events(e => e
                     .Change("mailSelectionChanged")
