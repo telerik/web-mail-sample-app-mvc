@@ -1,13 +1,31 @@
 ﻿var selectedContactUid;
-var newContactIsCreated = false;
 
 $(document).ready(function () {
+    // Attach handler for the new contact button click
     $('.new-Contact').on('click', function (e) {
         var listView = $("#mainWidget").data("kendoListView");
         listView.add();
     });
+
+    // Attach contact search handler
+    $('.search-textbox').on('keyup', function (e) {
+        var text = $(e.target).val().toLowerCase();
+        var listView = $("#mainWidget").data("kendoListView");
+
+        var dataInView = listView.dataSource.view();
+        dataInView.forEach(function (item) {
+            var row = $('div[data-uid="' + item.uid + '"]');
+
+            if (item.Name.toLowerCase().indexOf(text) > -1) {
+                row.show();
+            } else {
+                row.hide();
+            }
+        });
+    });
 });
 
+// Exporting the ListView of contacts using kendo.drawing
 function exportPeople() {
     kendo.drawing.drawDOM($(".inner-section .k-listview"))
         .then(function (group) {
@@ -24,6 +42,7 @@ function exportPeople() {
         });
 }
 
+// Switch layout between List/Cards view
 function changeToListDetails(e) {
     var contactsElement = $('.inner-section');
     contactsElement.removeClass("card-view");
@@ -47,6 +66,7 @@ function updateSelectedViewButton(element) {
     $(element).addClass(selectedClass);
 }
 
+// Get the number of contacts in each category and the total number of contacts (All)
 function getInitialNumberOfItems(listViewData) {
     var numbers = { Favorites: 0, Friends: 0, Work: 0 };
     for (var i = 0; i < listViewData.length; i++) {
@@ -59,6 +79,7 @@ function getInitialNumberOfItems(listViewData) {
     return numbers;
 }
 
+// ListView event handlers
 function onListViewDataBound(e) {
     var listView = e.sender;
     restoreSlection(listView);
@@ -94,19 +115,49 @@ function onListViewDataBound(e) {
             populateNavigationTree(data);
         }
     });
-
-    $('.k-email-button').on('click', createNewMail);
-    $('.search-textbox').on('keyup', searchContacts);
 }
 
-function restoreSlection(listView) {
-    if (selectedContactUid) {
-        var currectContactElement = $('.contact-view[uid="' + selectedContactUid + '"]');
-        selectedContactUid = null;
-        listView.select(currectContactElement);
+function onListViewSelectionChange(e) {
+    var selecteditem = e.sender.select();
+    var dataItem = e.sender.dataItem(selecteditem);
+
+    if (!dataItem) {
+        return;
+    }
+
+    var template = kendo.template($('#single-contact-template').html());
+    var result = template(dataItem);
+    $(".single-contact-details").html(result);
+
+    attachButtonHandlers();
+}
+
+function onListViewEdit(e) {
+    if (!e.model.EmployeeID) {
+        e.model.EmployeeID = getId();
+        $('#EmployeeID').val(e.model.EmployeeID);
     }
 }
 
+function onListViewChangeCancel(e) {
+    var cancelEditContactUid = e.model.uid;
+
+    setTimeout(function () {
+        var currectContactElement = $('.contact-view[uid="' + cancelEditContactUid + '"]');
+        e.sender.select(currectContactElement);
+    }, 0);
+}
+
+function onListViewChangeSave(e) {
+    var image = $('img.image-preview');
+    var employeeId = e.model.EmployeeID;
+    var imgData = getBase64Image(image[0]);
+    sessionStorage.setItem(employeeId, imgData);
+
+    selectedContactUid = e.model.uid;
+}
+
+// Select category handler in the sidebar navigation
 function selectCategory(e) {
     var dataItem = this.dataItem(e.node);
     var selectedText = e.sender.dataItem(e.node).value;
@@ -126,30 +177,20 @@ function selectCategory(e) {
     }
 }
 
-function searchContacts(e) {
-    var text = $(e.target).val().toLowerCase();
-    var listView = $("#mainWidget").data("kendoListView");
-
-    var dataInView = listView.dataSource.view();
-    dataInView.forEach(function (item) {
-        var row = $('div[data-uid="' + item.uid + '"]');
-
-        if (item.Name.toLowerCase().indexOf(text) > -1) {
-            row.show();
-        } else {
-            row.hide();
-        }
-    });
+// Restore previously selected item after ListView DataBound
+function restoreSlection(listView) {
+    if (selectedContactUid) {
+        var currectContactElement = $('.contact-view[uid="' + selectedContactUid + '"]');
+        selectedContactUid = null;
+        listView.select(currectContactElement);
+    }
 }
 
-function createNewMail(e) {
-    var target = $(e.target);
-    var listVewItem = target.parents('.contact-list, .contact-card');
-    var listView = $('#mainWidget').data('kendoListView');
-    var dataItem = listView.dataItem(listVewItem);
-    var email = dataItem.Email;
-
-    openNewMailView(email);
+// Attach handlers for each contact buttons
+function attachButtonHandlers() {
+    $('.k-single-email-button').on('click', singleCreateNewMail);
+    $('.k-single-edit-button').on('click', singleEditClick);
+    $('.k-single-delete-button').on('click', singleDeleteClick);
 }
 
 function singleCreateNewMail(e) {
@@ -157,10 +198,6 @@ function singleCreateNewMail(e) {
     var singleItem = target.parents('.contact-view');
     var email = singleItem.find('.hidden-email').text();
 
-    openNewMailView(email);
-}
-
-function openNewMailView(email) {
     $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?mailTo=' + email);
 }
 
@@ -183,57 +220,7 @@ function getItemUid(e) {
     return singleItem.attr('uid');
 }
 
-function onListViewSelectionChange(e) {
-    var selecteditem = e.sender.select();
-    var dataItem = e.sender.dataItem(selecteditem);
-
-    if (!dataItem) {
-        return;
-    }
-
-    var template = kendo.template($('#single-contact-template').html());
-    var result = template(dataItem);
-    $(".single-contact-details").html(result);
-
-    attachButtonHandlers();
-}
-
-function attachButtonHandlers() {
-    $('.k-single-email-button').on('click', singleCreateNewMail);
-    $('.k-single-edit-button').on('click', singleEditClick);
-    $('.k-single-delete-button').on('click', singleDeleteClick);
-}
-
-function onListViewEdit(e) {
-    if (!e.model.EmployeeID) {
-        e.model.EmployeeID = getId();
-        $('#EmployeeID').val(e.model.EmployeeID);
-        newContactIsCreated = true;
-    }
-}
-
-function onListViewCancel(e) {
-    if (newContactIsCreated) {
-        var currentContactId = e.model.EmployeeID;
-        sessionStorage.removeItem(currentContactId);
-        newContactIsCreated = false;
-    }
-
-    newContactIsCreated = false;
-    var cancelEditContactUid = e.model.uid;
-
-    setTimeout(function () {
-        attachButtonHandlers();
-        var currectContactElement = $('.contact-view[uid="' + cancelEditContactUid + '"]');
-        e.sender.select(currectContactElement);
-    }, 0);
-}
-
-function onListViewChangeSave(e) {
-    selectedContactUid = e.model.uid;
-    newContactIsCreated = false;
-}
-
+// Generate an ID for newly created contact
 function getId() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -245,6 +232,7 @@ function getId() {
     return text;
 }
 
+// Create preview of the newly selected image
 function onImageSelect(e) {
     var fileInfo = e.files[0];
 
@@ -264,21 +252,16 @@ function addPreview(file) {
     if (raw) {
         reader.onloadend = function () {
             var image = $('<img class="image-preview">').attr('src', this.result);
-
             $('.upload-image-wrapper').html(image);
-
-            var employeeId = $('#EmployeeID').val();
-
-            setTimeout(function () {
-                var imgData = getBase64Image(image[0]);
-                sessionStorage.setItem(employeeId, imgData);
-            }, 100);
         };
 
         reader.readAsDataURL(raw);
     }
 }
 
+// Retrieve Base 64 image to be stored in a session variable
+// This implementation subsititutes the save of the uploaded image to database / server
+// which would be in place in a real-life application
 function getBase64Image(img) {
     var canvas = document.createElement("canvas");
     canvas.height = img.naturalHeight;
