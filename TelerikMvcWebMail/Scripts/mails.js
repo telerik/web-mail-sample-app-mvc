@@ -1,4 +1,8 @@
-﻿$(document).ready(function () {
+﻿var navigated = false;
+var marked = false;
+var savedScroll = 0;
+
+$(document).ready(function () {
     var treeview = $("#navigationTreeView").data("kendoTreeView");
     if (!Cookies.get('selected')) {
         Cookies.remove('selectedNodeText');
@@ -437,4 +441,48 @@ function populateDetailsView(item) {
     $('.mail-sender').text(item.To);
     $('.mail-date').text(item.Date);
     $('.mail-text').html(item.Text);
+}
+
+function selectionChanged(widget, selectedRowPrefix) {
+    var navigationTreeView = $('#navigationTreeView').data('kendoTreeView');
+    var selectedNode = navigationTreeView.select();
+    var selectedRows = widget.select();
+
+    if (!selectedNode) {
+        return;
+    }
+
+    var selectedNodeData = navigationTreeView.dataItem(selectedNode);
+    var selectedNodeValue = selectedNodeData.value;
+
+    if (selectedRows.length === 1) {
+        var dataItem = widget.dataItem(selectedRows);
+
+        if (Cookies.get('markedAsUnread') === 'marked') {
+            Cookies.set('markedAsUnread', '');
+        } else if (!dataItem.IsRead) {
+            marked = true;
+            savedScroll = widget.content.scrollTop();
+
+            dataItem.IsRead = true;
+            dataItem.dirty = true;
+            selectedRows.removeClass("unread");
+            widget.dataSource.sync();
+
+
+        }
+
+        Cookies.set(selectedRowPrefix + selectedNodeValue, dataItem.ID);
+    } else {
+        var selectedRowsIds = [];
+
+        for (var i = 0; i < selectedRows.length; i++) {
+            var selectedRow = selectedRows[i];
+            var dataItem = widget.dataItem(selectedRow);
+
+            selectedRowsIds.push(dataItem.ID);
+        }
+
+        Cookies.set(selectedRowPrefix + selectedNodeValue, selectedRowsIds.join());
+    }
 }
