@@ -243,23 +243,32 @@ function getinitialNumberOfItems(gridData) {
 }
 
 function dataSourceChange(e) {
-    //var grid = $("#mainWidget").data("kendoGrid");
-    //var treeview = $("#navigationTreeView").data("kendoTreeView");
-    //if (e.action === "sync") {
-    //    var dataItem = treeview.dataItem(treeview.select());
-    //    if (dataItem) {
-    //        grid.dataSource.filter({ field: "Category", operator: "contains", value: dataItem.value });
-    //    }
-    //}
+    var grid = $("#mainWidget").data("kendoGrid");
+    var treeview = $("#navigationTreeView").data("kendoTreeView");
+    if (e.action === "sync") {
+        var dataItem = treeview.dataItem(treeview.select());
+
+        var data = grid.dataSource.data();
+        var dataLength = data.length;
+
+        for (var i = 0; i < dataLength; i++) {
+            var currntItem = data[i];
+            if (currntItem.Category !== dataItem.value) {
+                i -= 1;
+                dataLength -= 1;
+                grid.dataSource.pushDestroy(currntItem);
+            }
+        }
+    }
 }
 
 function dataSourceRequestEnd(e) {
-    //setTimeout(function () {
-    //    var grid = $("#mainWidget").data("kendoGrid");
-    //    if (grid.dataSource.view().length == 0) {
-    //        setMenuItemsAvailability(false, "noselection");
-    //    }
-    //}, 100)
+    setTimeout(function () {
+        var grid = $("#mainWidget").data("kendoGrid");
+        if (grid.dataSource.view().length == 0) {
+            setMenuItemsAvailability(false, "noselection");
+        }
+    }, 100)
 }
 
 // Attach mails grid events
@@ -376,7 +385,6 @@ function selectionChanged(widget, selectedRowPrefix) {
             dataItem.IsRead = true;
             dataItem.dirty = true;
             selectedRows.removeClass("unread");
-            debugger
             widget.dataSource.sync();
         }
 
