@@ -126,9 +126,9 @@
             .Orientation(ContextMenuOrientation.Vertical)
             .Items(items =>
             {
-                items.Add().Text("Reply").HtmlAttributes(new { @id = "RE", @operation = "replyForward" });
-                items.Add().Text("Reply All").HtmlAttributes(new { @id = "RE", @operation = "replyForward" });
-                items.Add().Text("Forward").HtmlAttributes(new { @id = "FW", @operation = "replyForward" });
+                items.Add().Text("Reply").HtmlAttributes(new { @id = "RE", @operation = "reply" });
+                items.Add().Text("Reply All").HtmlAttributes(new { @id = "RE", @operation = "reply" });
+                items.Add().Text("Forward").HtmlAttributes(new { @id = "FW", @operation = "forward" });
                 items.Add().Text("Mark as unread").HtmlAttributes(new { @id = "unread", @operation = "readUnread" });
                 items.Add().Text("Mark as read").HtmlAttributes(new { @id = "read", @operation = "readUnread" });
                 items.Add().Text("Delete").HtmlAttributes(new { @id = "Deleted", @operation = "moveDelete" });
