@@ -207,6 +207,7 @@ function selectCategory(e) {
     var dataItem = this.dataItem(e.node);
     var selectedText = e.sender.dataItem(e.node).value;
 
+    setMenuItemsAvailability(false, "noselection");
     $(".search-textbox").val('');
     $('input.master-checkbox').prop('checked', false);
 
