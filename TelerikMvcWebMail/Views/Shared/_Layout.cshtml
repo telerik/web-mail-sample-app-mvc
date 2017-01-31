@@ -2,9 +2,6 @@
 <html>
 <head>
     <title>@ViewBag.Title - My Kendo UI MVC Application</title>
-
-    @*<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />*@
-
     <link type="image/x-icon" href="~/favicon-progress.ico" rel="shortcut icon">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -44,13 +41,11 @@
             .ToClientTemplate()
         )
     </script>
-
     <script type="text/kendo-ui" id="menu-item-template">
         <span>
             <img src='http://demos.telerik.com/kendo-ui/content/web/Customers/PICCO.jpg' />
         </span>
     </script>
-
     <header class="main-header">
         <a href="@Url.Action("Index", "Home")" title="Go to WebMail">
             <h1 class="logo">
@@ -76,8 +71,6 @@
                 .ContentTemplateId("tooltip-template")
         )
     </header>
-
-
     <content class="main-content">
         @RenderBody()
     </content>
