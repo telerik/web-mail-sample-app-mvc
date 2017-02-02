@@ -4,7 +4,11 @@ $(document).ready(function () {
     // Attach handler for the new contact button click
     $('.new-Contact').on('click', function (e) {
         var listView = $("#mainWidget").data("kendoListView");
-        listView.add();
+        if (!listView) {
+            window.location.href = location.protocol + '//' + location.host + '/Contacts/Index';
+        } else {
+            listView.add();
+        }
     });
 
     // Attach contact search handler
