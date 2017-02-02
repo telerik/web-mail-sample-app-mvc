@@ -51,28 +51,26 @@ $(document).ready(function () {
         });
     });
 
-    // Attach master checkbox click handler
-    $('.master-checkbox').on('click', function (e) {
+    // Attach master checkbox handler
+    $('.master-checkbox').on('change', function (e) {
         var grid = $("#mainWidget").data("kendoGrid");
         var dataInView = grid.dataSource.view();
         if (dataInView.length == 0) {
             e.preventDefault();
         }
-    });
+        else {
+            var checked = e.target.checked;
+            var grid = $("#mainWidget").data("kendoGrid");
 
-    // Attach master checkbox handler
-    $('.master-checkbox').on('change', function (e) {
-        var checked = e.target.checked;
-        var grid = $("#mainWidget").data("kendoGrid");
+            if (checked) {
+                grid.select('tr');
+                setMenuItemsAvailability(false, "multiselection");
 
-        if (checked) {
-            grid.select('tr');
-            setMenuItemsAvailability(false, "multiselection");
-
-        } else {
-            grid.clearSelection();
-            setMenuItemsAvailability(true);
-            setMenuItemsAvailability(false, "noselection");
+            } else {
+                grid.clearSelection();
+                setMenuItemsAvailability(true);
+                setMenuItemsAvailability(false, "noselection");
+            }
         }
     });
 });
