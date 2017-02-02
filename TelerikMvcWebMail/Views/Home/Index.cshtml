@@ -49,8 +49,8 @@
                         .Text("More")
                         .Items(children =>
                         {
-                            children.Add().Text("Mark as unread").HtmlAttributes(new { @id = "unread", @operation = "readUnread" });
-                            children.Add().Text("Mark as read").HtmlAttributes(new { @id = "read", @operation = "readUnread" });
+                            children.Add().Text("Mark as unread").HtmlAttributes(new { @id = "unread", @operation = "unread" });
+                            children.Add().Text("Mark as read").HtmlAttributes(new { @id = "read", @operation = "read" });
                             children.Add().Text("Print").HtmlAttributes(new { @id = "print", @operation = "print" });
                         });
                 })
@@ -129,8 +129,8 @@
                 items.Add().Text("Reply").HtmlAttributes(new { @id = "RE", @operation = "reply" });
                 items.Add().Text("Reply All").HtmlAttributes(new { @id = "RE", @operation = "reply" });
                 items.Add().Text("Forward").HtmlAttributes(new { @id = "FW", @operation = "forward" });
-                items.Add().Text("Mark as unread").HtmlAttributes(new { @id = "unread", @operation = "readUnread" });
-                items.Add().Text("Mark as read").HtmlAttributes(new { @id = "read", @operation = "readUnread" });
+                items.Add().Text("Mark as unread").HtmlAttributes(new { @id = "unread", @operation = "unread" });
+                items.Add().Text("Mark as read").HtmlAttributes(new { @id = "read", @operation = "read" });
                 items.Add().Text("Delete").HtmlAttributes(new { @id = "Deleted", @operation = "moveDelete" });
                 items.Add().Text("Junk").HtmlAttributes(new { @id = "Junk", @operation = "moveDelete" });
                 items.Add().Text("Print").HtmlAttributes(new { @id = "print", @operation = "print" });

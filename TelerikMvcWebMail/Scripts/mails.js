@@ -89,10 +89,11 @@ function mailMenuSelect(e) {
         case "moveDelete":
             mailMoveDelete(e.item.id);
             break;
-        case "readUnread":
-            setTimeout(function () {
-                mailMarkAsReadUnread(e.item.id);
-            }, 100)
+        case "read":
+            mailMarkAsReadUnread("read");
+            break;
+        case "unread":
+            mailMarkAsReadUnread("unread");
             break;
         case "print":
             mailPrint();
