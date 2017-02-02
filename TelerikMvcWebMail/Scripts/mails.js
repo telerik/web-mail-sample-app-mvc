@@ -190,7 +190,7 @@ function changeToVerticalPanes(e) {
     grid.hideColumn(1);
     grid.hideColumn(2);
     grid.showColumn(3);
-    updateSelectedClasses(e.item);
+    updateSelectedClasses(e);
     $('.main-section').addClass("vertical");
     $('.main-section').removeClass("horizontal");
     grid.refresh();
@@ -201,17 +201,17 @@ function changeToHorizontalPanes(e) {
     grid.hideColumn(3);
     grid.showColumn(1);
     grid.showColumn(2);
-    updateSelectedClasses(e.item);
+    updateSelectedClasses(e);
     $('.main-section').addClass("horizontal");
     $('.main-section').removeClass("vertical");
     grid.refresh();
 }
 
-function updateSelectedClasses(btnElement) {
+function updateSelectedClasses(element) {
     var selectedClass = "selected";
 
-    $(".k-item." + selectedClass).removeClass(selectedClass);
-    $(btnElement).addClass(selectedClass);
+    $(".toolbar ." + selectedClass).removeClass(selectedClass);
+    $(element).addClass(selectedClass);
 }
 
 // Select category handler in the sidebar navigation
