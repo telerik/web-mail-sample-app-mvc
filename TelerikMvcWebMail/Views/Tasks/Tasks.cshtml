@@ -13,14 +13,14 @@
 @Html.Partial("Sidebar")
 
 <div class="main-section">
-	<div class="toolbar">
-		<span class="btn btn-delete">Delete</span>
-	</div>
-	<div class="inner-section">
+    <div class="toolbar">
+        <span class="btn btn-delete">Delete</span>
+    </div>
+    <div class="inner-section">
         <span class="searchbox">
             <input type="text" class="k-input long-textbox search-textbox" placeholder="Search tasks ..." name="to-textbox">
         </span>
-		@(Html.Kendo().Grid(Model)
+        @(Html.Kendo().Grid(Model)
             .Name("mainWidget")
             .Columns(columns =>
             {
@@ -60,5 +60,5 @@
                 .DataBound("tasksGridDataBound")
             )
         )
-	</div>
+    </div>
 </div>

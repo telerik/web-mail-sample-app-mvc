@@ -68,8 +68,8 @@ html, body {
 }
 
 .new-view-button {
-	font-size: 20px;
-	color: dodgerblue;
+    font-size: 20px;
+    color: dodgerblue;
 }
 
 /* CHECKBOX LIST */
@@ -91,8 +91,8 @@ html, body {
 }
 
 .view-header-wrapper div {
-	display: inline-block;
-	margin-right: 10px;
+    display: inline-block;
+    margin-right: 10px;
 }
 
 
@@ -171,15 +171,15 @@ html, body {
     width: 400px;
     height: 400px;
 }
- 
+
 /* NEW CONTACT */
-.new-contact-dropdown-wrapper, 
+.new-contact-dropdown-wrapper,
 .new-contact-upload-wrapper {
-	display: inline-block;
+    display: inline-block;
 }
 
 .new-contact-upload-wrapper {
-	width: 400px;
+    width: 400px;
 }
 
 .contact-edit-view {

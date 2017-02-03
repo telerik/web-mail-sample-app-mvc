@@ -20,14 +20,14 @@ namespace TelerikMvcWebMail.Controllers
         }
 
         public ActionResult Index()
-		{
-			return View("Contacts");
-		}
+        {
+            return View("Contacts");
+        }
 
-		public ActionResult NewContact()
-		{
-			return View();
-		}
+        public ActionResult NewContact()
+        {
+            return View();
+        }
 
         public ActionResult Contacts_Read([DataSourceRequest] DataSourceRequest request)
         {

@@ -9,8 +9,8 @@ using TelerikMvcWebMail.Models;
 
 namespace TelerikMvcWebMail.Controllers
 {
-	public class CalendarController : Controller
-	{
+    public class CalendarController : Controller
+    {
         private EventsService eventsService;
 
         public CalendarController()
@@ -18,10 +18,10 @@ namespace TelerikMvcWebMail.Controllers
             eventsService = new EventsService(new WebMailEntities());
         }
 
-		public ActionResult Index()
-		{
-			return View("Calendar");
-		}
+        public ActionResult Index()
+        {
+            return View("Calendar");
+        }
 
         public virtual JsonResult Read([DataSourceRequest] DataSourceRequest request)
         {
