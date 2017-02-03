@@ -9,6 +9,32 @@
 }
 
 
+@font-face {
+    font-family: "Noto Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Noto Sans"), local("NotoSans"), url("../fonts/noto/notosans-regular.ttf");
+}
+@font-face {
+    font-family: "Noto Sans";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Noto Sans Bold"), local("NotoSans-Bold"), url("../fonts/noto/notosans-bold.ttf");
+}
+@font-face {
+    font-family: "Noto Sans";
+    font-style: italic;
+    font-weight: 400;
+    src: local("Noto Sans Italic"), local("NotoSans-Italic"), url("../fonts/noto/notosans-italic.ttf");
+}
+@font-face {
+    font-family: "Noto Sans";
+    font-style: italic;
+    font-weight: 700;
+    src: local("Noto Sans Bold Italic"), local("NotoSans-BoldItalic"), url("../fonts/noto/notosans-bolditalic.ttf");
+}
+
+
 
 html,
 body {
@@ -23,7 +49,7 @@ body {
     flex-direction: column;
     margin: 0;
     padding-top: 61px;
-    font: 14px/1.42857143 Segoe UI, 'Roboto', Myriad Pro, sans-serif;
+    font: 14px/1.42857143 "Noto Sans", Segoe UI, 'Roboto', Myriad Pro, sans-serif;
     color: #787878;
     overflow: visible;
 }
@@ -93,10 +119,11 @@ body > div:last-child {
     }
 
     .logo {
-        font: 24px Roboto;
-        float: left;
-        line-height: 32px;
         padding: 13px 16px;
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: normal;
+        float: left;
 
         &:before {
             content: "\e809";
@@ -114,7 +141,6 @@ body > div:last-child {
 
 #mainMenu {
     float: right;
-    font-family: Segoe UI Emoji;
     color: inherit;
     background: transparent;
     border: 0;
@@ -335,4 +361,4 @@ body > div:last-child {
 tbody:empty:before {
     position: absolute;
     padding: 30px 17px;
-} 
+}

@@ -3,6 +3,30 @@
   src: url("../fonts/WebComponentsIcons/WebComponentsIcons.woff") format("woff"), url("../fonts/WebComponentsIcons/WebComponentsIcons.ttf") format("truetype"), url("../fonts/WebComponentsIcons/WebComponentsIcons.svg#svgFontName") format("svg");
   /* Legacy iOS */ }
 
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Noto Sans"), local("NotoSans"), url("../fonts/noto/notosans-regular.ttf"); }
+
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Noto Sans Bold"), local("NotoSans-Bold"), url("../fonts/noto/notosans-bold.ttf"); }
+
+@font-face {
+  font-family: "Noto Sans";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Noto Sans Italic"), local("NotoSans-Italic"), url("../fonts/noto/notosans-italic.ttf"); }
+
+@font-face {
+  font-family: "Noto Sans";
+  font-style: italic;
+  font-weight: 700;
+  src: local("Noto Sans Bold Italic"), local("NotoSans-BoldItalic"), url("../fonts/noto/notosans-bolditalic.ttf"); }
+
 html,
 body {
   height: 100%;
@@ -14,7 +38,7 @@ body {
   flex-direction: column;
   margin: 0;
   padding-top: 61px;
-  font: 14px/1.42857143 Segoe UI, 'Roboto', Myriad Pro, sans-serif;
+  font: 14px/1.42857143 "Noto Sans", Segoe UI, 'Roboto', Myriad Pro, sans-serif;
   color: #787878;
   overflow: visible; }
 
@@ -68,10 +92,11 @@ body > div:last-child {
     display: block;
     clear: both; }
   .main-header .logo {
-    font: 24px Roboto;
-    float: left;
+    padding: 13px 16px;
+    font-size: 24px;
     line-height: 32px;
-    padding: 13px 16px; }
+    font-weight: normal;
+    float: left; }
     .main-header .logo:before {
       content: "\e809";
       font-family: WebComponentsIcons;
@@ -83,7 +108,6 @@ body > div:last-child {
 
 #mainMenu {
   float: right;
-  font-family: Segoe UI Emoji;
   color: inherit;
   background: transparent;
   border: 0; }

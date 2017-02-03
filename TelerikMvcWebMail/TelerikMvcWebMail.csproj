@@ -186,7 +186,7 @@
     <Content Include="Content\contacts.css">
       <DependentUpon>contacts.scss</DependentUpon>
     </Content>
-    <Content Include="Content\fonts\noto\LICENSE_OFL.txt" />
+    <Content Include="Fonts\noto\LICENSE_OFL.txt" />
     <Content Include="Content\Kendo\2017.1.112\kendo.common.min.css" />
     <Content Include="Content\Kendo\2017.1.112\kendo.dataviz.metro.min.css" />
     <Content Include="Content\Kendo\2017.1.112\kendo.dataviz.min.css" />
@@ -322,14 +322,14 @@
     <Content Include="Models\WebMail.edmx.diagram">
       <DependentUpon>WebMail.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\fonts\noto\NotoSans-Bold.ttf" />
-    <Content Include="Content\fonts\noto\NotoSans-BoldItalic.ttf" />
-    <Content Include="Content\fonts\noto\NotoSans-Italic.ttf" />
-    <Content Include="Content\fonts\noto\NotoSans-Regular.ttf" />
-    <Content Include="Content\fonts\noto\NotoSansUI-Bold.ttf" />
-    <Content Include="Content\fonts\noto\NotoSansUI-BoldItalic.ttf" />
-    <Content Include="Content\fonts\noto\NotoSansUI-Italic.ttf" />
-    <Content Include="Content\fonts\noto\NotoSansUI-Regular.ttf" />
+    <Content Include="Fonts\noto\NotoSans-Bold.ttf" />
+    <Content Include="Fonts\noto\NotoSans-BoldItalic.ttf" />
+    <Content Include="Fonts\noto\NotoSans-Italic.ttf" />
+    <Content Include="Fonts\noto\NotoSans-Regular.ttf" />
+    <Content Include="Fonts\noto\NotoSansUI-Bold.ttf" />
+    <Content Include="Fonts\noto\NotoSansUI-BoldItalic.ttf" />
+    <Content Include="Fonts\noto\NotoSansUI-Italic.ttf" />
+    <Content Include="Fonts\noto\NotoSansUI-Regular.ttf" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
