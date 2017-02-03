@@ -39,10 +39,6 @@
             content: "\e10c";
         }
     }
-
-    .k-pdf-export.list-view-inner {
-        overflow: visible;
-    }
 }
 
     .contacts-list {
@@ -326,6 +322,13 @@
 
 
 }
+
+
+.list-view .contacts-list.k-pdf-export,
+.card-view .contacts-list.k-pdf-export {
+    overflow: visible;
+}
+
 
 @media screen and (max-width: 1200px) {
     .card-view {
