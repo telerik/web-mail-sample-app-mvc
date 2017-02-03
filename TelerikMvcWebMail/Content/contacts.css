@@ -144,13 +144,19 @@
 
 /* Card view */
 .card-view .list-view-inner {
-  flex: 1; }
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; }
 
 .card-view .single-contact-details {
   display: none; }
 
 .card-view .contacts-list {
-  border-color: #ebebeb; }
+  border-color: #ebebeb;
+  overflow: hidden;
+  overflow-y: auto;
+  flex: 1; }
 
 .card-view .contact-view {
   float: left;

@@ -234,6 +234,9 @@
 
     .list-view-inner {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
     }
 
     .single-contact-details {
@@ -242,6 +245,9 @@
 
     .contacts-list {
         border-color: #ebebeb;
+        overflow: hidden;
+        overflow-y: auto;
+        flex: 1;
     }
 
     .contact-view {
