@@ -10,11 +10,12 @@
   .main-sidebar .content {
     flex: 1; }
   .main-sidebar .new-btn {
-    display: block;
+    display: flex;
     padding: 13px 16px;
-    font: 16px Roboto;
+    font-size: 16px;
     color: #0072c6;
-    cursor: pointer; }
+    cursor: pointer;
+    align-items: center; }
     .main-sidebar .new-btn:before {
       display: inline-block;
       content: "\e11f";

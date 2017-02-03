@@ -15,11 +15,12 @@
     }
 
     .new-btn {
-        display: block;
+        display: flex;
         padding: 13px 16px;
-        font: 16px Roboto;
+        font-size: 16px;
         color: #0072c6;
         cursor: pointer;
+        align-items: center;
 
         &:before {
             display: inline-block;

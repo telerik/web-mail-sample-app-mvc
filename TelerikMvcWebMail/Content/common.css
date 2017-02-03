@@ -96,13 +96,15 @@ body > div:last-child {
     font-size: 24px;
     line-height: 32px;
     font-weight: normal;
-    float: left; }
+    float: left;
+    display: flex;
+    align-items: center; }
     .main-header .logo:before {
       content: "\e809";
       font-family: WebComponentsIcons;
-      font-size: 1.3em;
+      font-size: 32px;
       line-height: 1;
-      margin-top: -4px;
+      margin-right: 4px;
       vertical-align: middle;
       display: inline-block; }
 
