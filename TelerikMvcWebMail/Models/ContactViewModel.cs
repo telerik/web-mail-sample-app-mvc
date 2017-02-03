@@ -28,7 +28,7 @@ namespace TelerikMvcWebMail.Models
             set;
         }
 
-        [StringLength(50)]
+        [Required, StringLength(50)]
         public string Email
         {
             get;

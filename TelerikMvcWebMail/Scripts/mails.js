@@ -61,8 +61,12 @@ $(document).ready(function () {
 
             if (checked) {
                 grid.select('tr');
-                setMenuItemsAvailability(false, "multiselection");
-
+                if (dataInView.length == 1) {
+                    setMenuItemsAvailability(true);
+                }
+                else {
+                    setMenuItemsAvailability(false, "multiselection");
+                }
             } else {
                 grid.clearSelection();
                 setMenuItemsAvailability(true);
