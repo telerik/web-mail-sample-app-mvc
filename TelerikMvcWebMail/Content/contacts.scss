@@ -148,6 +148,15 @@
         flex: 0.3;
         overflow: auto;
         border-right: 1px solid #ebebeb;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        .contacts-list {
+            overflow: hidden;
+            overflow-y: auto;
+            flex: 1;
+        }
 
         .contact-view {
             line-height: 50px;
