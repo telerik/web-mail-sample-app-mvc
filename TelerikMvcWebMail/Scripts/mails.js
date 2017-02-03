@@ -55,10 +55,7 @@ $(document).ready(function () {
     $('.master-checkbox').on('change', function (e) {
         var grid = $("#mainWidget").data("kendoGrid");
         var dataInView = grid.dataSource.view();
-        if (dataInView.length == 0) {
-            e.preventDefault();
-        }
-        else {
+        if (dataInView.length != 0) {
             var checked = e.target.checked;
             var grid = $("#mainWidget").data("kendoGrid");
 
