@@ -43,6 +43,7 @@
 
 </head>
 <body>
+    <div id="BaseUrl" data-baseurl="@Context.Request.Url.GetLeftPart(UriPartial.Authority)@Url.Content("~/")"></div>
     @Scripts.Render("~/Scripts/layout.js")
 
     <script id="button-template" type="text/x-kendo-template">

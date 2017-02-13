@@ -37,17 +37,7 @@ namespace TelerikMvcWebMail.Controllers
 
         public ActionResult Picture(string id)
         {
-            var dir = Server.MapPath("/Content/contacts");
-            var path = Path.Combine(dir, id + ".jpg");
-
-            if (System.IO.File.Exists(path))
-            {
-                return base.File(path, "image/jpeg");
-            }
-            else
-            {
-                return base.File("/Content/contacts/dafault-contact.png", "image/png");
-            }
+            return base.File("../../Content/contacts/" + id + ".jpg", "image/jpeg");
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

@@ -5,7 +5,7 @@ $(document).ready(function () {
     $('.new-Contact').on('click', function (e) {
         var listView = $("#mainWidget").data("kendoListView");
         if (!listView) {
-            window.location.href = location.protocol + '//' + location.host + '/Contacts/Index';
+            window.location.href = baseUrl + '/Contacts/Index';
         } else {
             listView.add();
         }
@@ -95,7 +95,7 @@ function onListViewDataBound(e) {
     }
 
     $.ajax({
-        url: location.protocol + '//' + location.host + '/Contacts/Contacts_Read',
+        url: baseUrl + '/Contacts/Contacts_Read',
         success: function (listViewData) {
             var numbers = getInitialNumberOfItems(listViewData.Data);
             var data = [{
@@ -173,7 +173,7 @@ function selectCategory(e) {
     var contactsListView = $("#mainWidget").data("kendoListView");
 
     if (!contactsListView) {
-        window.location.href = location.protocol + '//' + location.host + '/Contacts/Index';
+        window.location.href = baseUrl + '/Contacts/Index';
     } else if (selectedText === "All") {
         contactsListView.dataSource.filter({});
     } else {
@@ -202,7 +202,7 @@ function singleCreateNewMail(e) {
     var singleItem = target.parents('.contact-view');
     var email = singleItem.find('.hidden-email').text();
 
-    $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?mailTo=' + email);
+    $(".main-section").load(baseUrl + '/Home/NewMail?mailTo=' + email);
 }
 
 function singleEditClick(e) {

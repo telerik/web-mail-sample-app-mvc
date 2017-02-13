@@ -31,7 +31,7 @@ $(document).ready(function () {
     });
 
     $('.new-Task').on('click', function (e) {
-        $(".main-section").load(location.protocol + '//' + location.host + '/Tasks/NewTask');
+        $(".main-section").load(baseUrl + '/Tasks/NewTask');
     });
 
     $('.master-checkbox').on('change', function (e) {
@@ -67,7 +67,7 @@ function tasksGridDataBound(e) {
     bindCheckboxes();
 
     $.ajax({
-        url: location.protocol + '//' + location.host + '/Tasks/Tasks_Read',
+        url: baseUrl + '/Tasks/Tasks_Read',
         success: function (gridData) {
             var numbers = getInitialNumberOfItems(gridData.Data);
             var data = [{
@@ -102,7 +102,7 @@ function selectCategory(e) {
 
     var tasksGrid = $("#mainWidget").data("kendoGrid");
     if (!tasksGrid) {
-        window.location.href = location.protocol + '//' + location.host + '/Tasks/Index';
+        window.location.href = baseUrl + '/Tasks/Index';
     } else if (selectedText == 'All') {
         tasksGrid.dataSource.filter({});
     } else {

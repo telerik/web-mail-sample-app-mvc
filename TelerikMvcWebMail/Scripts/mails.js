@@ -19,7 +19,7 @@ $(document).ready(function () {
     }
 
     $('.new-Mail').on('click', function (e) {
-        $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail');
+        $(".main-section").load(baseUrl + "/Home/NewMail");
         $(".main-section").removeClass("horizontal").removeClass("vertical");
     });
 
@@ -105,12 +105,12 @@ function mailReply(id) {
     var selected = grid.dataItem(grid.select());
 
     if (!selected) {
-        $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?id=' + id);
+        $(".main-section").load(baseUrl + '/Home/NewMail?id=' + id);
     }
     else {
         var subject = selected.Subject.replace(/ /g, '%20');
         var mailTo = selected.Email;
-        $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?id=' + id + '&mailTo=' + mailTo + '&subject=' + subject);
+        $(".main-section").load(baseUrl + '/Home/NewMail?id=' + id + '&mailTo=' + mailTo + '&subject=' + subject);
     }
 }
 
@@ -119,11 +119,11 @@ function mailForward(id) {
     var selected = grid.dataItem(grid.select());
 
     if (!selected) {
-        $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?id=' + id);
+        $(".main-section").load(baseUrl + '/Home/NewMail?id=' + id);
     }
     else {
         var subject = selected.Subject.replace(/ /g, '%20');
-        $(".main-section").load(location.protocol + '//' + location.host + '/Home/NewMail?id=' + id + '&subject=' + subject);
+        $(".main-section").load(baseUrl + '/Home/NewMail?id=' + id + '&subject=' + subject);
     }
 }
 
@@ -237,7 +237,7 @@ function selectCategory(e) {
 function filterGrid(selectedText) {
     var mailsGrid = $("#mainWidget").data("kendoGrid");
     if (!mailsGrid) {
-        window.location.href = location.protocol + '//' + location.host + '/Home/Index';
+        window.location.href = baseUrl + '/Home/Index';
     } else {
         mailsGrid.dataSource.filter({ field: "Category", operator: "contains", value: selectedText });
     }
@@ -298,7 +298,7 @@ function mailGridDataBound(e) {
     polulateSelectedRows(grid);
 
     $.ajax({
-        url: location.protocol + '//' + location.host + '/Home/Read',
+        url: baseUrl + '/Home/Read',
         success: function (gridData) {
             var numbers = getinitialNumberOfItems(gridData.Data);
             var data = [{
