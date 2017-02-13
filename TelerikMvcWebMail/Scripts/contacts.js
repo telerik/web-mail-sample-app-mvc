@@ -5,7 +5,7 @@ $(document).ready(function () {
     $('.new-Contact').on('click', function (e) {
         var listView = $("#mainWidget").data("kendoListView");
         if (!listView) {
-            window.location.href = baseUrl + '/Contacts/Index';
+            window.location.href = baseUrl + '/Contacts';
         } else {
             listView.add();
         }
