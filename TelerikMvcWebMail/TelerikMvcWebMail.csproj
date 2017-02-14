@@ -186,6 +186,7 @@
     <Content Include="Content\contacts.css">
       <DependentUpon>contacts.scss</DependentUpon>
     </Content>
+    <Content Include="Content\contacts\default-contact.png" />
     <Content Include="Fonts\noto\LICENSE_OFL.txt" />
     <Content Include="Content\Kendo\2017.1.112\kendo.common.min.css" />
     <Content Include="Content\Kendo\2017.1.112\kendo.dataviz.metro.min.css" />

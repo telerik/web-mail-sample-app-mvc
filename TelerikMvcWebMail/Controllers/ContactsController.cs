@@ -43,7 +43,7 @@ namespace TelerikMvcWebMail.Controllers
             }
             else
             {
-                return base.File("../../Content/contacts/" + "dafault-contact.png", "image/jpeg");
+                return base.File("../../Content/contacts/" + "default-contact.png", "image/jpeg");
             }
         }
 
