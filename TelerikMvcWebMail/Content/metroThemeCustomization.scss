@@ -48,6 +48,17 @@ html {
         color: inherit;
     }
 
+    .k-checkbox-label:hover:before,
+    .k-checkbox:checked+.k-checkbox-label:hover:before,
+    .k-checkbox:focus+.k-checkbox-label:before
+     {
+        border-color: $accent;
+    }
+
+    .k-checkbox:checked+.k-checkbox-label:before {
+        color: $accent;
+    }
+
 }
 
 .k-widget.k-tooltip {

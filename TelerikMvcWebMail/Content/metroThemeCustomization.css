@@ -35,6 +35,14 @@ html .k-icon,
 html .k-icon:hover {
   color: inherit; }
 
+html .k-checkbox-label:hover:before,
+html .k-checkbox:checked + .k-checkbox-label:hover:before,
+html .k-checkbox:focus + .k-checkbox-label:before {
+  border-color: #1e8edf; }
+
+html .k-checkbox:checked + .k-checkbox-label:before {
+  color: #1e8edf; }
+
 .k-widget.k-tooltip {
   background: #fff;
   color: inherit; }

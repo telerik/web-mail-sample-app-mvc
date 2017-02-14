@@ -48,7 +48,7 @@ table.k-editor {
     border: 0; }
 
 html .k-editor-dialog.k-editor-table-wizard-dialog .k-tabstrip-wrapper .k-content {
-  overflow: auto; }
+  font-size: 12px; }
 
 h2 {
   font: 18px Roboto;
