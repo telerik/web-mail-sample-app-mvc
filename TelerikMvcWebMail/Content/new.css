@@ -23,9 +23,11 @@
   white-space: nowrap;
   position: relative; }
 
-.label {
+.form-label {
   display: block;
-  padding: 15px 0 5px; }
+  padding: 15px 0 5px;
+  color: #787878;
+  font-size: 13px; }
 
 .long-textbox {
   width: 100%;
@@ -62,7 +64,8 @@ h2 {
     margin-top: 35px; }
   .upload-wrapper .image-preview {
     width: 100px;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    border: 1px solid #dbdbdb; }
 
 .form-buttons {
   padding: 15px 0;

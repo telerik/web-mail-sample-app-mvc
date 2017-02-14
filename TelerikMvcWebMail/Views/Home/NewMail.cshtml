@@ -33,7 +33,7 @@
 </div>
 <div class="inner-section">
     <div class="form-wrapper">
-        @Html.Label("newMailSender", "From", new { @class="label" })
+        @Html.Label("newMailSender", "From", new { @class = "form-label" })
         @(Html.Kendo().DropDownList()
             .Name("newMailSender")
             .BindTo(new List<SelectListItem>() {
@@ -46,7 +46,7 @@
             .HtmlAttributes(new { style = "width: 280px;" })
         )
     </div>
-    @Html.Label("newMailPriority", "Priority", new { @class = "label" })
+    @Html.Label("newMailPriority", "Priority", new { @class = "form-label" })
     @(Html.Kendo().DropDownList()
         .Name("newMailPriority")
         .BindTo(new List<SelectListItem>() {
@@ -70,7 +70,7 @@
         .Value("1")
         .HtmlAttributes(new { style = "width: 100px;" })
     )
-    <label for="to-textbox" class="label">To</label>
+    @Html.Label("to-textbox", "To", new { @class = "form-label" })
     @(Html.Kendo().MultiSelect()
         .Name("to-textbox")
         .DataTextField("Text")
@@ -78,10 +78,10 @@
         .DataSource(ds => ds.Read("ContactsMails", "Contacts"))
         .Value(ViewBag.MailTo)
     )
-    <label for="subject-textbox" class="label">Subject</label>
+    @Html.Label("subject-textbox", "Subject", new { @class = "form-label" })
     <input type="text" class="k-input long-textbox subject-textbox" name="subject-textbox" value="@(ViewBag.Subject)">
     <div class="attachements-line">
-        <label for="files" class="label">Attachments</label>
+        @Html.Label("files", "Attachments", new { @class = "form-label" })
         @(Html.Kendo().Upload()
             .Name("files")
             .Async(a => a

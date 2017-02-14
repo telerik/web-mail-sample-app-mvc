@@ -7,7 +7,7 @@
     <h2 class="form-title"><span class="action">Create New</span> Contact</h2>
     <div class="forms-panel">
         @Html.HiddenFor(Model => Model.EmployeeID)
-        @Html.Label("newContactCategory", "Category")
+        @Html.Label("newContactCategory", "Category", new { @class = "form-label" })
         @(Html.Kendo().DropDownListFor(Model => Model.Category)
         .BindTo(new List<SelectListItem>() {
             new SelectListItem() {
@@ -22,21 +22,21 @@
             }
         })
         )
-        @Html.Label("Title", "Title")
+        @Html.Label("Title", "Title", new { @class = "form-label" })
         @(Html.TextBoxFor(Model => Model.Title, new { @class = "k-textbox" }))
         <span data-for="ProductName" class="k-invalid-msg"></span>
-        @Html.Label("Name", "Name")
+        @Html.Label("Name", "Name", new { @class = "form-label" })
         @(Html.TextBoxFor(Model => Model.Name, new { @class = "k-textbox" }))
         <span data-for="ProductName" class="k-invalid-msg"></span>
-        @Html.Label("Company", "Company")
+        @Html.Label("Company", "Company", new { @class = "form-label" })
         @(Html.TextBoxFor(Model => Model.Company, new { @class = "k-textbox" }))
-        @Html.Label("City", "City")
+        @Html.Label("City", "City", new { @class = "form-label" })
         @(Html.TextBoxFor(Model => Model.City, new { @class = "k-textbox" }))
-        @Html.Label("Country", "Country")
+        @Html.Label("Country", "Country", new { @class = "form-label" })
         @(Html.TextBoxFor(Model => Model.Country, new { @class = "k-textbox" }))
-        @Html.Label("Phone", "Phone")
+        @Html.Label("Phone", "Phone", new { @class = "form-label" })
         @(Html.TextBoxFor(Model => Model.Phone, new { @class = "k-textbox" }))
-        @Html.Label("Email", "Email")
+        @Html.Label("Email", "Email", new { @class = "form-label" })
         @(Html.TextBoxFor(Model => Model.Email, new { @class = "k-textbox" }))
     </div>
     <div class="upload-wrapper">

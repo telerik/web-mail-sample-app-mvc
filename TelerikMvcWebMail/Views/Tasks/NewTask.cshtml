@@ -7,7 +7,7 @@
 
 <section class="inner-section tasks">
     <h2>Add New Task</h2>
-    @Html.Label("newTaskCategory", "Category")
+    @Html.Label("newTaskCategory", "Category", new { @class = "form-label" })
     @(Html.Kendo().DropDownList()
         .Name("newTaskCategory")
         .BindTo(new List<SelectListItem>() {
@@ -27,7 +27,7 @@
         .Value("All")
         .HtmlAttributes(new { style = "width: 200px;" })
     )
-    <label for="subject-textbox">Subject</label>
+    @Html.Label("subject-textbox", "Subject", new { @class = "form-label" })
     <input type="text" class="k-input long-textbox subject-textbox" name="subject-textbox">
 
     @(Html.Kendo().Editor()
