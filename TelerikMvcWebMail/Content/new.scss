@@ -69,6 +69,10 @@
         }
     }
 
+    html .k-editor-dialog.k-editor-table-wizard-dialog .k-tabstrip-wrapper .k-content {
+        overflow: auto;
+    }
+
     h2 {
         font: 18px Roboto;
         color: #333;

@@ -10,6 +10,11 @@ html {
         @include selected;
     }
 
+    .k-state-active,
+    .k-state-active:hover {
+        border-color: $accent;
+    }
+
     .k-state-hover,
     .k-state-hover:hover {
         color: inherit;
@@ -159,4 +164,10 @@ html {
         background: $accent;
         border-color: $accent;
     }
+}
+
+.k-panelbar .k-tabstrip-items .k-state-active,
+.k-tabstrip-items .k-state-active,
+.k-editor-dialog ul.k-tabstrip-items {
+    border-color: $accent;
 }

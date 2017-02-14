@@ -5,6 +5,10 @@ html .k-list .k-state-selected {
   border-color: #1e8edf;
   background: #1e8edf; }
 
+html .k-state-active,
+html .k-state-active:hover {
+  border-color: #1e8edf; }
+
 html .k-state-hover,
 html .k-state-hover:hover {
   color: inherit;
@@ -101,5 +105,10 @@ html .k-icon:hover {
 
 .k-dropdown-wrap.k-state-focused {
   background: #1e8edf;
+  border-color: #1e8edf; }
+
+.k-panelbar .k-tabstrip-items .k-state-active,
+.k-tabstrip-items .k-state-active,
+.k-editor-dialog ul.k-tabstrip-items {
   border-color: #1e8edf; }
 
