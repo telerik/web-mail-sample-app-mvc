@@ -104,6 +104,8 @@ function mailReply(id) {
     var grid = $("#mainWidget").data("kendoGrid");
     var selected = grid.dataItem(grid.select());
 
+    $(".main-section").removeClass("horizontal").removeClass("vertical");
+
     if (!selected) {
         $(".main-section").load(baseUrl + '/Home/NewMail?id=' + id);
     }
@@ -117,6 +119,8 @@ function mailReply(id) {
 function mailForward(id) {
     var grid = $("#mainWidget").data("kendoGrid");
     var selected = grid.dataItem(grid.select());
+
+    $(".main-section").removeClass("horizontal").removeClass("vertical");
 
     if (!selected) {
         $(".main-section").load(baseUrl + '/Home/NewMail?id=' + id);
