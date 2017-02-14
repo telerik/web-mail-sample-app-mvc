@@ -5,7 +5,7 @@
 
     $.ajax({
         method: "POST",
-        url: "/Tasks/Tasks_Create",
+        url: baseUrl + "/Tasks/Tasks_Create",
         data: {
             task: {
                 Category: selectedCategory,
@@ -14,10 +14,10 @@
             }
         }
     }).done(function (msg) {
-        window.location.href = "/Tasks/Index";
+        window.location.href = baseUrl + '/Tasks';
     });
 }
 
 function cancelClick() {
-    window.location.href = "/Tasks/Index";
+    window.location.href = baseUrl + '/Tasks';
 }

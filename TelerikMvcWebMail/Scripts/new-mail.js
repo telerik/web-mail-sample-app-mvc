@@ -14,9 +14,9 @@
         var currentLocation = window.location.href;
 
         if (currentLocation.indexOf("Contacts") > -1) {
-            window.location.href = "/Contacts";
+            window.location.href = baseUrl + "/Contacts";
         } else {
-            window.location.href = "/Home/Index/";
+            window.location.href = baseUrl + "/Home";
         }
     }
 }

@@ -215,12 +215,15 @@ function singleEditClick(e) {
 function singleDeleteClick(e) {
     var uid = getItemUid(e);
     var listView = $("#mainWidget").data("kendoListView");
-    listView.remove(listView.element.find('[data-uid="' + uid + '"]'));
+    if (listView.element.find('[data-uid="' + uid + '"]').length != 0) {
+        listView.remove(listView.element.find('[data-uid="' + uid + '"]'));
+    }
 }
 
 function getItemUid(e) {
     var target = $(e.target);
     var singleItem = target.parents('.contact-view');
+
     return singleItem.attr('uid');
 }
 

@@ -37,7 +37,14 @@ namespace TelerikMvcWebMail.Controllers
 
         public ActionResult Picture(string id)
         {
-            return base.File("../../Content/contacts/" + id + ".jpg", "image/jpeg");
+            if (id != null)
+            {
+                return base.File("../../Content/contacts/" + id + ".jpg", "image/jpeg");
+            }
+            else
+            {
+                return base.File("../../Content/contacts/" + "dafault-contact.png", "image/jpeg");
+            }
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
