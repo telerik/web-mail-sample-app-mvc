@@ -14,7 +14,7 @@
             }
         }
     }).done(function (msg) {
-        window.location.href = baseUrl + '/Tasks';
+        window.location.href = baseUrl + 'Tasks';
     });
 }
 
