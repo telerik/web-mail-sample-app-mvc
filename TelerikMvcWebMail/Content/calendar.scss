@@ -71,3 +71,8 @@
     border-bottom: 1px solid #ebebeb;
 }
 
+.k-scheduler-times,
+.k-scheduler-content {
+    height: calc(100% - 132px) !important; // IE fix
+}
+
