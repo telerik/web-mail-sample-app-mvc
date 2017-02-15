@@ -19,5 +19,5 @@
 }
 
 function cancelClick() {
-    window.location.href = baseUrl + '/Tasks';
+    window.location.href = baseUrl + 'Tasks';
 }
