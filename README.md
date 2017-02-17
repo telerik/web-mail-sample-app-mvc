@@ -1,6 +1,6 @@
 # WebMail sample app powered by Progress UI for ASP.NET MVC
 
-WebMail is a sample application created with Progress &reg; UI for ASP.NET MVC, Progress' [ASP.NET MVC wrappers](http://www.telerik.com/aspnet-mvc) taking care of the common functionality of your application, while leaving you with more time to work on the business logic of the app.
+WebMail is a sample application created with Telerik &reg; UI for ASP.NET MVC, Progress' [ASP.NET MVC wrappers](http://www.telerik.com/aspnet-mvc) taking care of the common functionality of your application, while leaving you with more time to work on the business logic of the app.
 
 This application showcases some of the most prominent Telerik ® UI for ASP.NET MVC components and leverages their powerful functionality to create a Microsoft Outlook inspired MVC application. You can easily spot how seamlessly the different controls fit and work together.
 
