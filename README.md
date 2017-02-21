@@ -1,4 +1,4 @@
-# WebMail sample app powered by Progress UI for ASP.NET MVC
+# WebMail sample app powered by Telerik UI for ASP.NET MVC
 
 WebMail is a sample application created with Telerik &reg; UI for ASP.NET MVC, Progress' [ASP.NET MVC wrappers](http://www.telerik.com/aspnet-mvc) taking care of the common functionality of your application, while leaving you with more time to work on the business logic of the app.
 
@@ -7,7 +7,7 @@ This application showcases some of the most prominent Telerik ® UI for ASP.NET 
 
 ## Requirments
 
-* [Progress UI for ASP.NET MVC](http://www.telerik.com/aspnet-mvc)
+* [Telerik UI for ASP.NET MVC](http://www.telerik.com/aspnet-mvc)
 * Visual Studio 2012 or later - [Download](https://www.microsoft.com/en-us/download/details.aspx?id=30682)
 * Microsoft SQL Server Express 2012 or later - [Download](https://www.microsoft.com/en-us/download/details.aspx?id=29062)
 * Microsoft .NET framework 4.5 or later - [Download](https://www.microsoft.com/en-us/download/details.aspx?id=30653)
