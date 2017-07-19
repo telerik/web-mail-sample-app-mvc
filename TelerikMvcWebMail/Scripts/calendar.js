@@ -90,7 +90,7 @@ function onSchedulerEdit(e) {
     var scheduler = e.sender;
     var selectedSlot = scheduler.select();
 
-    if (selectedSlot && selectedSlot.start && selectedSlot.end) {
+    if (selectedSlot && selectedSlot.start && selectedSlot.end && e.event.isNew()) {
         populateDateTimePickers(e.container, selectedSlot);
     }
 }
