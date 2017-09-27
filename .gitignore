@@ -14,7 +14,6 @@
 [Rr]elease/
 x64/
 build/
-[Bb]in/
 [Oo]bj/
 
 # NuGet Packages
@@ -197,3 +196,29 @@ node_modules
 logs
 *.log
 npm-debug.log*
+TelerikMvcWebMail/bin/Antlr3.Runtime.dll
+TelerikMvcWebMail/bin/EntityFramework.SqlServer.dll
+TelerikMvcWebMail/bin/EntityFramework.SqlServer.xml
+TelerikMvcWebMail/bin/EntityFramework.dll
+TelerikMvcWebMail/bin/EntityFramework.xml
+TelerikMvcWebMail/bin/Kendo.Mvc.xml
+TelerikMvcWebMail/bin/Microsoft.Web.Infrastructure.dll
+TelerikMvcWebMail/bin/Newtonsoft.Json.dll
+TelerikMvcWebMail/bin/Newtonsoft.Json.xml
+TelerikMvcWebMail/bin/System.Web.Helpers.dll
+TelerikMvcWebMail/bin/System.Web.Helpers.xml
+TelerikMvcWebMail/bin/System.Web.Mvc.dll
+TelerikMvcWebMail/bin/System.Web.Mvc.xml
+TelerikMvcWebMail/bin/System.Web.Optimization.dll
+TelerikMvcWebMail/bin/System.Web.Optimization.xml
+TelerikMvcWebMail/bin/System.Web.Razor.dll
+TelerikMvcWebMail/bin/System.Web.Razor.xml
+TelerikMvcWebMail/bin/System.Web.WebPages.Deployment.dll
+TelerikMvcWebMail/bin/System.Web.WebPages.Deployment.xml
+TelerikMvcWebMail/bin/System.Web.WebPages.Razor.dll
+TelerikMvcWebMail/bin/System.Web.WebPages.Razor.xml
+TelerikMvcWebMail/bin/System.Web.WebPages.dll
+TelerikMvcWebMail/bin/System.Web.WebPages.xml
+TelerikMvcWebMail/bin/TelerikMvcWebMail.dll
+TelerikMvcWebMail/bin/TelerikMvcWebMail.dll.config
+TelerikMvcWebMail/bin/WebGrease.dll
