@@ -11,6 +11,8 @@ namespace TelerikMvcWebMail.Controllers
 {
     public class CalendarController : Controller
     {
+    
+    //Declaring the database entities as a private global object for use in the entire controller
         private EventsService eventsService;
 
         public CalendarController()
@@ -58,6 +60,7 @@ namespace TelerikMvcWebMail.Controllers
             return Json(new[] { appointment }.ToDataSourceResult(request, ModelState));
         }
 
+//dispose all activities after the request completion
         protected override void Dispose(bool disposing)
         {
             eventsService.Dispose();
