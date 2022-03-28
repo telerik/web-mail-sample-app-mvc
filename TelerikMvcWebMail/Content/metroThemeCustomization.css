@@ -43,6 +43,36 @@ html .k-checkbox:focus + .k-checkbox-label:before {
 html .k-checkbox:checked + .k-checkbox-label:before {
   color: #1e8edf; }
 
+html .k-treeview-leaf.k-selected,
+html .k-treeview-leaf.k-selected:hover {
+  background: #1e8edf; }
+
+html .k-treeview-leaf:hover {
+  background: #e6e6e6;
+  color: inherit; }
+
+html .k-treeview-leaf.k-in {
+  width: 100%; }
+
+html .k-menu-horizontal .k-menu-link {
+  border-style: none;
+  margin-right: 10px;
+  padding-top: 14px;
+  padding-bottom: 12px; }
+
+html .k-menu:not(.k-context-menu) > .k-item {
+  color: #ffffff; }
+
+html .k-menu:not(.k-context-menu) > .k-item.k-hover, html .k-menu:not(.k-context-menu) > .k-item:hover {
+  background-color: #2593e5; }
+
+html .k-button-solid-base.k-active, html .k-button-solid-base.k-selected, html .k-button-solid-base:active {
+  border-color: #1e8edf;
+  background: #1e8edf; }
+
+html .k-treeview-leaf.k-selected.k-focus, html .k-treeview-leaf.k-selected:focus {
+  box-shadow: inset 0 0 0 1px #1e8edf; }
+
 .k-widget.k-tooltip {
   background: #fff;
   color: inherit; }
@@ -119,4 +149,3 @@ html .k-checkbox:checked + .k-checkbox-label:before {
 .k-tabstrip-items .k-state-active,
 .k-editor-dialog ul.k-tabstrip-items {
   border-color: #1e8edf; }
-

@@ -26,7 +26,6 @@ html {
             color: inherit;
             background: $hover;
         }
-
     }
 
     .k-textbox:hover,
@@ -49,22 +48,60 @@ html {
     }
 
     .k-checkbox-label:hover:before,
-    .k-checkbox:checked+.k-checkbox-label:hover:before,
-    .k-checkbox:focus+.k-checkbox-label:before
-     {
+    .k-checkbox:checked + .k-checkbox-label:hover:before,
+    .k-checkbox:focus + .k-checkbox-label:before {
         border-color: $accent;
     }
 
-    .k-checkbox:checked+.k-checkbox-label:before {
+    .k-checkbox:checked + .k-checkbox-label:before {
         color: $accent;
     }
 
+    .k-treeview-leaf.k-selected,
+    .k-treeview-leaf.k-selected:hover {
+        background: $accent;
+    }
+
+    .k-treeview-leaf:hover {
+        background: $hover;
+        color: inherit;
+    }
+
+    .k-treeview-leaf.k-in {
+        width: 100%;
+    }
+
+    .k-menu-horizontal .k-menu-link {
+        border-style: none;
+        margin-right: 10px;
+        padding-top: 14px;
+        padding-bottom: 12px;
+    }
+
+    .k-menu:not(.k-context-menu) > .k-item {
+        color: #ffffff;
+    }
+
+    .k-menu:not(.k-context-menu) > .k-item.k-hover, .k-menu:not(.k-context-menu) > .k-item:hover {
+        background-color: #2593e5;
+    }
+
+    .k-button-solid-base.k-active, .k-button-solid-base.k-selected, .k-button-solid-base:active {
+        border-color: $accent;
+        background: $accent;
+    }
+
+    .k-treeview-leaf.k-selected.k-focus, .k-treeview-leaf.k-selected:focus {
+        box-shadow: inset 0 0 0 1px $accent;
+    }
 }
 
 .k-widget.k-tooltip {
     background: #fff;
     color: inherit;
 }
+
+
 
 .k-scheduler  {
 
