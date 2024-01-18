@@ -1,188 +1,231 @@
 ﻿.main-section {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+}
 
 .inner-section .edit-buttons {
   display: none;
-  position: absolute; }
-  .inner-section .edit-buttons .k-button {
-    display: inline-block;
-    width: 1.14286em;
-    line-height: 1.14286;
-    padding: 2px;
-    border-radius: 50%;
-    box-sizing: content-box;
-    border-width: 2px; }
-    .inner-section .edit-buttons .k-button .icon:before {
-      font: 13px WebComponentsIcons; }
-  .inner-section .edit-buttons .i-mail:before {
-    content: "\e809"; }
-  .inner-section .edit-buttons .i-edit:before {
-    content: "\e10b"; }
-  .inner-section .edit-buttons .i-delete:before {
-    content: "\e10c"; }
+  position: absolute;
+}
+.inner-section .edit-buttons .k-button {
+  display: inline-block;
+  width: 1.1428571429em;
+  line-height: 1.1428571429;
+  padding: 2px;
+  border-radius: 50%;
+  box-sizing: content-box;
+  border-width: 2px;
+}
+.inner-section .edit-buttons .k-button .icon:before {
+  font: 13px WebComponentsIcons;
+}
+.inner-section .edit-buttons .i-mail:before {
+  content: "\e809";
+}
+.inner-section .edit-buttons .i-edit:before {
+  content: "\e10b";
+}
+.inner-section .edit-buttons .i-delete:before {
+  content: "\e10c";
+}
 
 .contacts-list {
-  border: 0; }
+  border: 0;
+}
 
 .contact-view {
   position: relative;
   cursor: pointer;
-  border-color: #ebebeb; }
-  .contact-view:hover, .contact-view.k-state-selected {
-    color: inherit;
-    background: #fafafa;
-    border-color: #ebebeb; }
-  .contact-view:hover .edit-buttons {
-    display: block; }
-  .contact-view .image-wrapper {
-    flex: none;
-    overflow: hidden; }
-  .contact-view img {
-    width: 100%; }
-  .contact-view:after {
-    content: "";
-    display: block;
-    clear: both; }
+  border-color: #ebebeb;
+}
+.contact-view:hover, .contact-view.k-state-selected {
+  color: inherit;
+  background: #fafafa;
+  border-color: #ebebeb;
+}
+.contact-view:hover .edit-buttons {
+  display: block;
+}
+.contact-view .image-wrapper {
+  flex: none;
+  overflow: hidden;
+}
+.contact-view img {
+  width: 100%;
+}
+.contact-view:after {
+  content: "";
+  display: block;
+  clear: both;
+}
 
 .label {
   display: block;
   font-size: 11px;
   margin-top: 10px;
-  color: #999999; }
+  color: #999999;
+}
 
 .details {
-  white-space: nowrap; }
-  .details .column {
-    display: inline-block;
-    vertical-align: top;
-    overflow: hidden;
-    width: 62%; }
-    .details .column:first-child {
-      width: 38%; }
-    .details .column p,
-    .details .column p > span {
-      overflow: hidden;
-      text-overflow: ellipsis; }
-    .details .column p > span:nth-child(2) {
-      width: 100%;
-      display: inline-block; }
+  white-space: nowrap;
+}
+.details .column {
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  width: 62%;
+}
+.details .column:first-child {
+  width: 38%;
+}
+.details .column p,
+.details .column p > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.details .column p > span:nth-child(2) {
+  width: 100%;
+  display: inline-block;
+}
 
 .header {
-  display: flex; }
-  .header .name {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; }
-  .header:after {
-    content: "";
-    display: block;
-    clear: both; }
+  display: flex;
+}
+.header .name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.header:after {
+  content: "";
+  display: block;
+  clear: both;
+}
 
 .image-wrapper {
   width: 70px;
   height: 70px;
-  margin-right: 18px; }
+  margin-right: 18px;
+}
 
 /* List view - default */
 .list-view {
-  flex-direction: row; }
-  .list-view .list-view-inner {
-    flex: 0.3;
-    overflow: auto;
-    border-right: 1px solid #ebebeb;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden; }
-    .list-view .list-view-inner .contacts-list {
-      overflow: hidden;
-      overflow-y: auto;
-      flex: 1; }
-    .list-view .list-view-inner .contact-view {
-      line-height: 50px;
-      font-size: 15px;
-      border-width: 0 0 1px;
-      border-color: #ebebeb;
-      line-height: 50px; }
-      .list-view .list-view-inner .contact-view.k-state-selected {
-        color: #000; }
-        .list-view .list-view-inner .contact-view.k-state-selected:before {
-          content: "";
-          display: block; }
-    .list-view .list-view-inner .details {
-      display: none; }
-  .list-view .contacts-list .image-wrapper {
-    width: 50px;
-    height: 50px;
-    margin-right: 16px; }
-  .list-view .contacts-list .edit-buttons {
-    right: 15px;
-    top: 0; }
-  .list-view .single-contact-details {
-    padding: 17px 15px;
-    flex: 0.7;
-    border: 0; }
-    .list-view .single-contact-details .contact-view {
-      border: 0;
-      cursor: default;
-      color: #000; }
-      .list-view .single-contact-details .contact-view:hover {
-        background: transparent; }
-    .list-view .single-contact-details .header {
-      margin-bottom: 15px;
-      padding: 15px;
-      background: #fafafa; }
-      .list-view .single-contact-details .header .edit-buttons {
-        display: block;
-        left: 105px;
-        top: 60px; }
-      .list-view .single-contact-details .header .name {
-        font: 100 30px 'Segoe UI'; }
+  flex-direction: row;
+}
+.list-view .list-view-inner {
+  flex: 0.3;
+  overflow: auto;
+  border-right: 1px solid #ebebeb;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.list-view .list-view-inner .contacts-list {
+  overflow: hidden;
+  overflow-y: auto;
+  flex: 1;
+}
+.list-view .list-view-inner .contact-view {
+  line-height: 50px;
+  font-size: 15px;
+  border-width: 0 0 1px;
+  border-color: #ebebeb;
+  line-height: 50px;
+}
+.list-view .list-view-inner .contact-view.k-state-selected {
+  color: #000;
+}
+.list-view .list-view-inner .contact-view.k-state-selected:before {
+  content: "";
+  display: block;
+}
+.list-view .list-view-inner .details {
+  display: none;
+}
+.list-view .contacts-list .image-wrapper {
+  width: 50px;
+  height: 50px;
+  margin-right: 16px;
+}
+.list-view .contacts-list .edit-buttons {
+  right: 15px;
+  top: 0;
+}
+.list-view .single-contact-details {
+  padding: 17px 15px;
+  flex: 0.7;
+  border: 0;
+}
+.list-view .single-contact-details .contact-view {
+  border: 0;
+  cursor: default;
+  color: #000;
+}
+.list-view .single-contact-details .contact-view:hover {
+  background: transparent;
+}
+.list-view .single-contact-details .header {
+  margin-bottom: 15px;
+  padding: 15px;
+  background: #fafafa;
+}
+.list-view .single-contact-details .header .edit-buttons {
+  display: block;
+  left: 105px;
+  top: 60px;
+}
+.list-view .single-contact-details .header .name {
+  font: 100 30px "Segoe UI";
+}
 
 /* Card view */
 .card-view .list-view-inner {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden; }
-
+  overflow: hidden;
+}
 .card-view .single-contact-details {
-  display: none; }
-
+  display: none;
+}
 .card-view .contacts-list {
   border-color: #ebebeb;
   overflow: hidden;
   overflow-y: auto;
-  flex: 1; }
-
+  flex: 1;
+}
 .card-view .contact-view {
   float: left;
   width: 33.33333333%;
   padding: 15px;
   box-sizing: border-box;
-  border-width: 0 0 1px 1px; }
-  .card-view .contact-view.k-state-selected, .card-view .contact-view:hover {
-    color: #000; }
-  .card-view .contact-view:last-child {
-    border-right: 1px solid #ebebeb; }
-
+  border-width: 0 0 1px 1px;
+}
+.card-view .contact-view.k-state-selected, .card-view .contact-view:hover {
+  color: #000;
+}
+.card-view .contact-view:last-child {
+  border-right: 1px solid #ebebeb;
+}
 .card-view .header .name {
   max-width: calc(100% - 88px);
   display: inline-block;
   padding-top: 7px;
   font-weight: 100;
-  font-size: 18px; }
-
+  font-size: 18px;
+}
 .card-view .header .edit-buttons {
   display: block;
   top: 50px;
-  left: 100px; }
-
+  left: 100px;
+}
 .card-view .details {
-  display: block; }
+  display: block;
+}
 
 .k-listview {
-  position: static; }
+  position: static;
+}
 
 .contact-edit-view {
   padding: 15px 15px 0;
@@ -193,25 +236,39 @@
   bottom: 0;
   border: 0;
   z-index: 9;
-  overflow: auto; }
-  .contact-edit-view.k-state-selected {
-    color: inherit;
-    background: #fff;
-    border-color: #fff; }
-  .contact-edit-view .k-dropdown,
-  .contact-edit-view .k-textbox {
-    width: 400px; }
-  .contact-edit-view .forms-panel {
-    width: 400px; }
-  .contact-edit-view .forms-panel,
-  .contact-edit-view .upload-wrapper {
-    float: left; }
+  overflow: auto;
+}
+.contact-edit-view.k-state-selected {
+  color: inherit;
+  background: #fff;
+  border-color: #fff;
+}
+.contact-edit-view .k-dropdown,
+.contact-edit-view .k-textbox {
+  width: 400px;
+}
+.contact-edit-view .forms-panel {
+  width: 400px;
+}
+.contact-edit-view .forms-panel,
+.contact-edit-view .upload-wrapper {
+  float: left;
+}
 
 .list-view .contacts-list.k-pdf-export,
 .card-view .contacts-list.k-pdf-export {
-  overflow: visible; }
+  overflow: visible;
+}
 
 @media screen and (max-width: 1200px) {
   .card-view .contact-view {
-    width: 50%; } }
+    width: 50%;
+  }
+}
+.k-listview-content > .k-selected {
+  background-color: white;
+}
 
+.k-edit-item {
+  background-color: white;
+}
