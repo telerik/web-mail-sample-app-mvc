@@ -10,14 +10,12 @@
         _gaq.push(['_setDomainName', '.telerik.com']);
         _gaq.push(['_addIgnoredRef', 'telerik.com']);
         _gaq.push(['_trackPageview']);
-        (function ()
-        {
+        (function () {
             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-        function trackPage(page)
-        {
+        function trackPage(page) {
             _gaq.push(['_trackPageview', page]);
         }
     </script>
@@ -25,19 +23,21 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/6.7.0/bootstrap/bootstrap-main.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/7.0.2/bootstrap/bootstrap-main.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     @Styles.Render("~/Content/css")
     @RenderSection("PageStyles", false)
     @RenderSection("PageStylesPartial", false)
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://kendo.cdn.telerik.com/2023.2.829/js/kendo.all.min.js"></script>
-    <script src="https://kendo.cdn.telerik.com/2023.2.829/js/kendo.aspnetmvc.min.js"></script>
-    <script src="https://kendo.cdn.telerik.com/2023.2.829/js/kendo.timezones.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2023.3.1114/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2023.3.1114/js/kendo.aspnetmvc.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2023.3.1114/js/kendo.timezones.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.3/js.cookie.min.js"></script>
-    <script src="https://kendo.cdn.telerik.com/2023.2.829/js/pako_deflate.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2023.3.1114/js/pako_deflate.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/%40progress/kendo-font-icons@2.0.0/dist/index.css" />
 
 </head>
 <body>

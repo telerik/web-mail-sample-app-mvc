@@ -60,8 +60,12 @@ html .k-menu-horizontal .k-menu-link {
   padding-top: 14px;
   padding-bottom: 12px; }
 
+html .k-menu:not(.k-context-menu){
+    background-color: #ffffff;
+}
+
 html .k-menu:not(.k-context-menu) > .k-item {
-  color: #ffffff; }
+    color: #ffffff; }
 
 html .k-menu:not(.k-context-menu) > .k-item.k-hover, html .k-menu:not(.k-context-menu) > .k-item:hover {
   background-color: #2593e5; }
