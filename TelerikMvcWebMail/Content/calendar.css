@@ -1,63 +1,45 @@
 ﻿.main-sidebar .k-calendar {
   width: 100%;
   border: 0;
-  background: transparent;
-}
-.main-sidebar .k-calendar .k-header,
-.main-sidebar .k-calendar .k-content,
-.main-sidebar .k-calendar th,
-.main-sidebar .k-calendar .k-nav-today {
-  background: transparent;
-}
+  background: transparent; }
+  .main-sidebar .k-calendar .k-header,
+  .main-sidebar .k-calendar .k-content,
+  .main-sidebar .k-calendar th,
+  .main-sidebar .k-calendar .k-nav-today {
+    background: transparent; }
+
 .main-sidebar .resource {
   padding: 10px 18px;
   cursor: pointer;
   position: relative;
-  border-left: 4px solid;
-}
-.main-sidebar .resource.presonal {
-  border-color: #6bcc65;
-}
-.main-sidebar .resource.presonal.selected {
-  background: #6bcc65;
-}
-.main-sidebar .resource.work {
-  border-color: #1e8edf;
-}
-.main-sidebar .resource.work.selected {
-  background: #1e8edf;
-}
-.main-sidebar .resource.development {
-  border-color: #ff55d9;
-}
-.main-sidebar .resource.development.selected {
-  background: #ff55d9;
-}
-.main-sidebar .resource.design {
-  border-color: #dd1c3c;
-}
-.main-sidebar .resource.design.selected {
-  background: #dd1c3c;
-}
-.main-sidebar .resource.marketing {
-  border-color: #ffc600;
-}
-.main-sidebar .resource.marketing.selected {
-  background: #ffc600;
-}
-.main-sidebar .resource.selected {
-  color: #fff;
-}
+  border-left: 4px solid; }
+  .main-sidebar .resource.presonal {
+    border-color: #6bcc65; }
+    .main-sidebar .resource.presonal.selected {
+      background: #6bcc65; }
+  .main-sidebar .resource.work {
+    border-color: #1e8edf; }
+    .main-sidebar .resource.work.selected {
+      background: #1e8edf; }
+  .main-sidebar .resource.development {
+    border-color: #ff55d9; }
+    .main-sidebar .resource.development.selected {
+      background: #ff55d9; }
+  .main-sidebar .resource.design {
+    border-color: #dd1c3c; }
+    .main-sidebar .resource.design.selected {
+      background: #dd1c3c; }
+  .main-sidebar .resource.marketing {
+    border-color: #ffc600; }
+    .main-sidebar .resource.marketing.selected {
+      background: #ffc600; }
+  .main-sidebar .resource.selected {
+    color: #fff; }
 
 .k-scheduler-layout {
-  border-bottom: 1px solid #ebebeb;
-}
+  border-bottom: 1px solid #ebebeb; }
 
 .k-scheduler-times,
 .k-scheduler-content {
-  height: calc(100% - 132px) !important;
-}
+  height: calc(100% - 132px) !important; }
 
-span.k-scheduler-mark {
-  margin-right: 8px;
-}
