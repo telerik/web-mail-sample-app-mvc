@@ -54,11 +54,20 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Kendo.Mvc, Version=2024.1.130.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.UI.for.AspNet.Mvc5.Lite.2024.1.130\lib\net45\Kendo.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Kendo.Mvc, Version=2024.1.130.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.UI.for.AspNet.Mvc5.Trial.2024.1.130\lib\net45\Kendo.Mvc.dll</HintPath>
+    <Reference Include="System.Data.SQLite, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.118.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.118.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.FontIcons, Version=2.1.0.0, Culture=neutral, PublicKeyToken=20b4b0547069c4f8, processorArchitecture=MSIL">
       <HintPath>..\packages\Telerik.FontIcons.2.1.0\lib\netstandard1.1\Telerik.FontIcons.dll</HintPath>
@@ -207,45 +216,24 @@
     <Compile Include="Models\ContactsService.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\Event.cs">
-      <DependentUpon>WebMail.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EventsService.cs" />
     <Compile Include="Models\Mail.cs">
-      <DependentUpon>WebMail.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MailsService.cs" />
     <Compile Include="Models\MailViewModel.cs" />
     <Compile Include="Models\Person.cs">
-      <DependentUpon>WebMail.tt</DependentUpon>
     </Compile>
+    <Compile Include="Configuration\SQLiteConfiguration.cs" />
     <Compile Include="Models\Task.cs">
-      <DependentUpon>WebMail.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TasksService.cs" />
     <Compile Include="Models\TaskViewModel.cs" />
     <Compile Include="Models\EventViewModel.cs" />
-    <Compile Include="Models\WebMail.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WebMail.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\WebMail.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WebMail.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\WebMail.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WebMail.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\WebMailContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\WebMail.mdf" />
-    <Content Include="App_Data\WebMail_log.ldf">
-      <DependentUpon>WebMail.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\about.css">
       <DependentUpon>about.scss</DependentUpon>
     </Content>
@@ -296,16 +284,6 @@
     </Content>
     <Content Include="Fonts\WebComponentsIcons\WebComponentsIcons.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\WebMail.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WebMail.edmx</DependentUpon>
-      <LastGenOutput>WebMail.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\WebMail.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WebMail.edmx</DependentUpon>
-      <LastGenOutput>WebMail.cs</LastGenOutput>
-    </Content>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
@@ -317,6 +295,21 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\calendar.js" />
     <Content Include="Scripts\contacts.js" />
+    <Content Include="Content\kendo\2023.3.1114\font-icons\kendo-font-icons.ttf" />
+    <Content Include="Content\kendo\2024.1.130\razor\Url.cshtml" />
+    <Content Include="Content\kendo\2024.1.130\razor\Time.cshtml" />
+    <Content Include="Content\kendo\2024.1.130\razor\String.cshtml" />
+    <Content Include="Content\kendo\2024.1.130\razor\Password.cshtml" />
+    <Content Include="Content\kendo\2024.1.130\razor\Number.cshtml" />
+    <Content Include="Content\kendo\2024.1.130\razor\Integer.cshtml" />
+    <Content Include="Content\kendo\2024.1.130\razor\GridForeignKey.cshtml" />
+    <Content Include="Content\kendo\2024.1.130\razor\EmailAddress.cshtml" />
+    <Content Include="Content\kendo\2024.1.130\razor\Email.cshtml" />
+    <Content Include="Content\kendo\2024.1.130\razor\DateTime.cshtml" />
+    <Content Include="Content\kendo\2024.1.130\razor\Date.cshtml" />
+    <Content Include="Content\kendo\2024.1.130\razor\Currency.cshtml" />
+    <Content Include="Content\kendo\2024.1.130\razor\Country.cshtml" />
+    <Content Include="Content\kendo\2024.1.130\razor\Boolean.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -361,6 +354,9 @@
     <Content Include="Images\heroAccent.png" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="App_Data\demos.db" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Tasks\NewTask.cshtml" />
     <Content Include="Views\Tasks\Tasks.cshtml" />
@@ -411,13 +407,6 @@
     <Content Include="Content\tasks.scss" />
     <Content Include="Content\new.scss" />
     <Content Include="Content\about.scss" />
-    <EntityDeploy Include="Models\WebMail.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>WebMail.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\WebMail.edmx.diagram">
-      <DependentUpon>WebMail.edmx</DependentUpon>
-    </Content>
     <Content Include="Fonts\noto\NotoSans-Bold.ttf" />
     <Content Include="Fonts\noto\NotoSans-BoldItalic.ttf" />
     <Content Include="Fonts\noto\NotoSans-Italic.ttf" />
@@ -484,8 +473,10 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
