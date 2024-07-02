@@ -54,8 +54,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Kendo.Mvc, Version=2024.1.130.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.UI.for.AspNet.Mvc5.Lite.2024.1.130\lib\net45\Kendo.Mvc.dll</HintPath>
+    <Reference Include="Kendo.Mvc">
+      <HintPath>..\packages\Telerik.UI.for.AspNet.Mvc5.Trial.2024.2.514\lib\net48\Kendo.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -296,20 +296,6 @@
     <Content Include="Scripts\calendar.js" />
     <Content Include="Scripts\contacts.js" />
     <Content Include="Content\kendo\2023.3.1114\font-icons\kendo-font-icons.ttf" />
-    <Content Include="Content\kendo\2024.1.130\razor\Url.cshtml" />
-    <Content Include="Content\kendo\2024.1.130\razor\Time.cshtml" />
-    <Content Include="Content\kendo\2024.1.130\razor\String.cshtml" />
-    <Content Include="Content\kendo\2024.1.130\razor\Password.cshtml" />
-    <Content Include="Content\kendo\2024.1.130\razor\Number.cshtml" />
-    <Content Include="Content\kendo\2024.1.130\razor\Integer.cshtml" />
-    <Content Include="Content\kendo\2024.1.130\razor\GridForeignKey.cshtml" />
-    <Content Include="Content\kendo\2024.1.130\razor\EmailAddress.cshtml" />
-    <Content Include="Content\kendo\2024.1.130\razor\Email.cshtml" />
-    <Content Include="Content\kendo\2024.1.130\razor\DateTime.cshtml" />
-    <Content Include="Content\kendo\2024.1.130\razor\Date.cshtml" />
-    <Content Include="Content\kendo\2024.1.130\razor\Currency.cshtml" />
-    <Content Include="Content\kendo\2024.1.130\razor\Country.cshtml" />
-    <Content Include="Content\kendo\2024.1.130\razor\Boolean.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
