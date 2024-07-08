@@ -20,18 +20,20 @@
       margin: 0 5px 0 0;
       font: 24px "WebComponentsIcons";
       vertical-align: middle; }
-  .main-sidebar .k-treeview .k-item {
+  .main-sidebar .k-treeview .k-treeview-item {
     padding: 0; }
-  .main-sidebar .k-treeview .k-in {
+  .main-sidebar .k-treeview, .k-treeview-item.k-treeview-leaf {
     display: block;
     margin: 0;
     padding: 10px 15px; }
-    .main-sidebar .k-treeview .k-in:after {
+    .main-sidebar .k-treeview, .k-treeview-item.k-treeview-leaf:after {
       content: "";
       display: block;
       clear: both; }
   .main-sidebar .k-treeview .folder-name {
-    float: left; }
+    float: left; 
+    padding-right: 10%;
+  }
   .main-sidebar .k-treeview .number {
     float: right; }
   .main-sidebar .footer {
