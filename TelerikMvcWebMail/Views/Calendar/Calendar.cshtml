@@ -30,8 +30,8 @@
 </aside>
 <section class="main-section">
     <div class="toolbar">
-        <span class="btn btn-export-pdf" onclick="onExportBtnClick('exportPdf')">Export to PDF</span>
-        <span class="btn btn-export-image" onclick="onExportBtnClick('exportImage')">Export to Image</span>
+        <span class="k-button k-button-solid-base k-button-solid k-button-md k-rounded-md" onclick="onExportBtnClick('exportPdf')">Export to PDF <span class="k-icon k-font-icon k-i-file-pdf"></span></span>
+        <span class="k-button k-button-solid-base k-button-solid k-button-md k-rounded-md" onclick="onExportBtnClick('exportImage')">Export to Image <span class="k-icon k-font-icon k-i-image"></span></span>
     </div>
     <div class="inner-section">
         @(Html.Kendo().Scheduler<TelerikMvcWebMail.Models.EventViewModel>()
