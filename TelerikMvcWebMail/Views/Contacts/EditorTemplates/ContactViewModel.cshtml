@@ -23,21 +23,21 @@
         })
         )
         @Html.Label("Title", "Title", new { @class = "form-label" })
-        @(Html.TextBoxFor(Model => Model.Title, new { @class = "k-textbox" }))
+        @(Html.Kendo().TextBoxFor(Model => Model.Title))
         <span data-for="ProductName" class="k-invalid-msg"></span>
         @Html.Label("Name", "Name", new { @class = "form-label" })
-        @(Html.TextBoxFor(Model => Model.Name, new { @class = "k-textbox" }))
+        @(Html.Kendo().TextBoxFor(Model => Model.Name))
         <span data-for="ProductName" class="k-invalid-msg"></span>
         @Html.Label("Company", "Company", new { @class = "form-label" })
-        @(Html.TextBoxFor(Model => Model.Company, new { @class = "k-textbox" }))
+        @(Html.Kendo().TextBoxFor(Model => Model.Company))
         @Html.Label("City", "City", new { @class = "form-label" })
-        @(Html.TextBoxFor(Model => Model.City, new { @class = "k-textbox" }))
+        @(Html.Kendo().TextBoxFor(Model => Model.City))
         @Html.Label("Country", "Country", new { @class = "form-label" })
-        @(Html.TextBoxFor(Model => Model.Country, new { @class = "k-textbox" }))
+        @(Html.Kendo().TextBoxFor(Model => Model.Country))
         @Html.Label("Phone", "Phone", new { @class = "form-label" })
-        @(Html.TextBoxFor(Model => Model.Phone, new { @class = "k-textbox" }))
+        @(Html.Kendo().TextBoxFor(Model => Model.Phone))
         @Html.Label("Email", "Email", new { @class = "form-label" })
-        @(Html.TextBoxFor(Model => Model.Email, new { @class = "k-textbox" }))
+        @(Html.Kendo().TextBoxFor(Model => Model.Email))
     </div>
     <div class="upload-wrapper">
         <span class="upload-image-wrapper">
@@ -60,7 +60,7 @@
         )
     </div>
     <div class="form-buttons">
-        <button type="button" class="k-button k-primary k-update-button" href="\\#">Save</button>
-        <button type="button" class="k-button k-cancel-button" href="\\#">Cancel</button>
+        <button type="button" class="k-button k-button-solid-base k-button-solid k-button-md k-rounded-md k-update-button" href="\\#">Save</button>
+        <button type="button" class="k-button k-button-solid-base k-button-solid k-button-md k-rounded-md k-cancel-button" href="\\#">Cancel</button>
     </div>
 </div>
