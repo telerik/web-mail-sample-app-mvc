@@ -1,53 +1,79 @@
 ﻿.main-sidebar {
-  width: 315px;
-  min-width: 200px;
-  display: flex;
-  flex-direction: column;
-  background: #fafafa;
-  overflow: auto; }
-  .main-sidebar .content {
-    flex: 1; }
-  .main-sidebar .new-btn {
+    width: 315px;
+    min-width: 200px;
     display: flex;
-    padding: 13px 16px;
-    font-size: 16px;
-    color: #0072c6;
-    cursor: pointer;
-    align-items: center; }
-    .main-sidebar .new-btn:before {
-      display: inline-block;
-      content: "\e11f";
-      margin: 0 5px 0 0;
-      font: 24px "WebComponentsIcons";
-      vertical-align: middle; }
-  .main-sidebar .k-treeview .k-treeview-item {
-    padding: 0; }
-  .main-sidebar .k-treeview, .k-treeview-item.k-treeview-leaf {
+    flex-direction: column;
+    background: #fafafa;
+    overflow: auto;
+}
+
+    .main-sidebar .content {
+        flex: 1;
+    }
+
+    .main-sidebar .new-btn {
+        display: flex;
+        padding: 13px 16px;
+        font-size: 16px;
+        color: #0072c6;
+        cursor: pointer;
+        align-items: center;
+    }
+
+        .main-sidebar .new-btn:before {
+            display: inline-block;
+            content: "\e11f";
+            margin: 0 5px 0 0;
+            font: 24px "WebComponentsIcons";
+            vertical-align: middle;
+        }
+
+    .main-sidebar .k-treeview .k-treeview-item {
+        padding: 0;
+    }
+
+    .main-sidebar .k-treeview .k-treeview-leaf {
+        display: block;
+        margin: 0;
+        padding: 10px 15px;
+    }
+
+        .main-sidebar .k-treeview .k-treeview-leaf:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+.k-treeview-top, .k-treeview-mid, .k-treeview-bot {
     display: block;
-    margin: 0;
-    padding: 10px 15px; }
-    .main-sidebar .k-treeview, .k-treeview-item.k-treeview-leaf:after {
-      content: "";
-      display: block;
-      clear: both; }
-  .main-sidebar .k-treeview .folder-name {
-    float: left; 
-    padding-right: 10%;
-  }
-  .main-sidebar .k-treeview .number {
-    float: right; }
-  .main-sidebar .footer {
+}
+
+.main-sidebar .k-treeview .folder-name {
+    float: left;
+}
+
+.main-sidebar .k-treeview .number {
+    float: right;
+}
+
+.main-sidebar .footer {
     padding: 15px;
     font-size: 10px;
-    color: #b7b7b7; }
-    .main-sidebar .footer .links {
-      color: #1e8edf;
-      font-size: 13px;
-      line-height: 26px;
-      margin-bottom: 10px;
-      cursor: pointer; }
-      .main-sidebar .footer .links p {
-        margin-bottom: 5px; }
-    .main-sidebar .footer > p {
-      margin-top: 10px; }
+    color: #b7b7b7;
+}
 
+    .main-sidebar .footer .links {
+        color: #1e8edf;
+        font-size: 13px;
+        line-height: 26px;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+        .main-sidebar .footer .links p {
+            margin-bottom: 5px;
+        }
+
+    .main-sidebar .footer > p {
+        margin-top: 10px;
+    }

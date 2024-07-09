@@ -31,11 +31,15 @@
 
     .k-treeview {
 
-        .k-item {
+        .k-treeview-item {
             padding: 0;
         }
 
-        .k-in {
+        .k-treeview-top, .k-treeview-mid, .k-treeview-bot {
+            display: block;
+        }
+
+        .k-treeview-leaf {
             display: block;
             margin: 0;
             padding: 10px 15px;
@@ -54,10 +58,7 @@
         .number {
             float: right;
         }
-
-
     }
-
 
     .footer {
         padding: 15px;
