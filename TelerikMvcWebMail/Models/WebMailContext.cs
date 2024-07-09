@@ -18,6 +18,7 @@ namespace TelerikMvcWebMail.Models
             },
             true)
         {
+            Database.SetInitializer<WebMailEntities>(null);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
