@@ -148,31 +148,29 @@ body > div:last-child {
       width: 120%;
       margin-left: -10%; }
 
-.k-widget.k-tooltip {
+.k-tooltip {
   font-size: 12px;
   top: 0; }
-  .k-widget.k-tooltip .k-tooltip-content {
+  .k-tooltip .k-tooltip-content {
     padding-right: 0;
     padding: 0 30px; }
-  .k-widget.k-tooltip .image-wrapper {
+  .k-tooltip .image-wrapper {
     width: 100px;
     height: 100px;
     margin: 25px auto 10px;
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.15); }
-    .k-widget.k-tooltip .image-wrapper img {
+    .k-tooltip .image-wrapper img {
       width: 102%;
       margin-top: -5%; }
-  .k-widget.k-tooltip .k-callout-n {
-    top: -9px;
-    border-bottom-color: #fff;
+  .k-tooltip .k-callout-n {
     border-width: 0 9px 9px 9px;
     margin-left: -8px; }
-  .k-widget.k-tooltip .name {
+  .k-tooltip .name {
     font-size: 15px;
     margin: 5px; }
-  .k-widget.k-tooltip #signInButton {
+  .k-tooltip #signInButton {
     margin: 40px 0;
     padding: 5px 30px;
     white-space: nowrap;
@@ -259,4 +257,3 @@ body > div:last-child {
 tbody:empty:before {
   position: absolute;
   padding: 30px 17px; }
-

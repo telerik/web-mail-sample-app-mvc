@@ -198,7 +198,7 @@ body > div:last-child {
     }
 }
 
-.k-widget.k-tooltip {
+.k-tooltip {
     font-size: 12px;
     top: 0;
 
@@ -222,13 +222,9 @@ body > div:last-child {
     }
 
     .k-callout-n {
-        top: -9px;
-        border-bottom-color: #fff;
         border-width: 0 9px 9px 9px;
         margin-left: -8px;
     }
-
-
 
     .name {
         font-size: 15px;
