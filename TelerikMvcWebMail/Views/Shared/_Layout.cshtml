@@ -43,7 +43,15 @@
 
 </head>
 <body>
-    <div id="BaseUrl" data-baseurl="@Context.Request.Url.GetLeftPart(UriPartial.Authority)@Url.Content("~/")"></div>
+    @{
+        var forwardedHost = Context.Request.Headers["X-Forwarded-Host"];
+        var forwardedProto = Context.Request.Headers["X-Forwarded-Proto"];
+        var baseUrl =
+            (string.IsNullOrEmpty(forwardedProto) ? Context.Request.Url.Scheme : forwardedProto) + "://" +
+            (string.IsNullOrEmpty(forwardedHost) ? Context.Request.Url.Host : forwardedHost) +
+            Url.Content("~/");
+    }
+    <div id="BaseUrl" data-baseurl="@baseUrl"></div>
     @Scripts.Render("~/Scripts/layout.js")
 
     <script id="button-template" type="text/x-kendo-template">
