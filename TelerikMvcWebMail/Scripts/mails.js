@@ -382,7 +382,7 @@ function selectionChanged(widget, selectedRowPrefix) {
     var selectedNode = navigationTreeView.select();
     var selectedRows = widget.select();
 
-    if (!selectedNode) {
+    if (selectedNode.length == 0) {
         return;
     }
 
